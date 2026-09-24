@@ -12,13 +12,13 @@ const fullWidth = sessions.filter(s => s.week === undefined)
 const weeks = [...new Set(sessions.filter(s => s.week !== undefined).map(s => s.week))]
   .map(week => ({ week, sessions: sessions.filter(s => s.week === week) }))
 
-// "02 Nov" + year -> "Mon 02 Nov 09:30"
+// "02 Nov" + year -> "Mon 02 Nov"
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-function when(s) {
-  const [day, month] = s.date.split(' ')
-  const date = new Date(Date.UTC(schedule.year, MONTHS.indexOf(month), Number(day)))
+function day(s) {
+  const [dd, month] = s.date.split(' ')
+  const date = new Date(Date.UTC(schedule.year, MONTHS.indexOf(month), Number(dd)))
   const weekday = date.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })
-  return `${weekday} ${s.date} ${s.slot}`
+  return `${weekday} ${s.date}`
 }
 </script>
 
@@ -27,7 +27,7 @@ function when(s) {
     <table v-if="fullWidth.length" class="schedule-table full-width">
       <tbody>
         <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: s.topic === props.highlight }">
-          <td class="session-time">{{ when(s) }}</td>
+          <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
           <td class="session-topic">{{ s.topic }}</td>
         </tr>
       </tbody>
@@ -38,7 +38,7 @@ function when(s) {
         <table class="schedule-table">
           <tbody>
             <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: s.topic === props.highlight }">
-              <td class="session-time">{{ when(s) }}</td>
+              <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
               <td class="session-topic">{{ s.topic }}</td>
             </tr>
           </tbody>
@@ -95,12 +95,32 @@ h3 {
   padding: 0.35rem 0.75rem;
 }
 
-.session-time {
+.session-when {
   width: 1%;
-  color: #444;
   white-space: nowrap;
   font-family: var(--slidev-code-font-family);
-  font-size: 0.75rem;
+}
+
+.day {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #536277;
+}
+
+.time {
+  margin-left: 0.6rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #002147;
+  background: #edf4f8;
+}
+
+.highlighted .time {
+  color: #fff;
+  background: #e8a735;
 }
 
 .session-topic {
