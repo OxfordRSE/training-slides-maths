@@ -2,6 +2,7 @@
 // Variant of the oxrse `orientation` layout for a two-week course.
 // Sessions with a `week` field are grouped into one column per week;
 // sessions without one (e.g. the introduction) span the full width above.
+// A session's optional `background` colour shades its row, e.g. to group topics.
 const schedule = __EVENT_SCHEDULE__
 const props = defineProps({
   highlight: { type: String, default: '' },
@@ -26,7 +27,7 @@ function day(s) {
   <div class="slidev-layout orientation-weeks">
     <table v-if="fullWidth.length" class="schedule-table full-width">
       <tbody>
-        <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: s.topic === props.highlight }">
+        <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: s.topic === props.highlight, shaded: s.background }" :style="{ background: s.background }">
           <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
           <td class="session-topic">{{ s.topic }}</td>
         </tr>
@@ -37,7 +38,7 @@ function day(s) {
         <h3>Week {{ w.week }}</h3>
         <table class="schedule-table">
           <tbody>
-            <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: s.topic === props.highlight }">
+            <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: s.topic === props.highlight, shaded: s.background }" :style="{ background: s.background }">
               <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
               <td class="session-topic">{{ s.topic }}</td>
             </tr>
@@ -52,6 +53,7 @@ function day(s) {
 .orientation-weeks {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   padding-left: 3rem;
   padding-right: 3rem;
@@ -67,7 +69,7 @@ h3 {
   font-size: 0.85rem;
   font-weight: 600;
   color: #444;
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 0.5rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -75,7 +77,7 @@ h3 {
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .full-width {
@@ -92,7 +94,12 @@ h3 {
 }
 
 .schedule-table td {
-  padding: 0.35rem 0.75rem;
+  padding: 0.55rem 0.75rem;
+}
+
+/* Keep the time chip visible against a shaded row */
+.shaded .time {
+  background: #fff;
 }
 
 .session-when {
@@ -102,7 +109,7 @@ h3 {
 }
 
 .day {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #536277;
@@ -112,7 +119,7 @@ h3 {
   margin-left: 0.6rem;
   padding: 0.1rem 0.4rem;
   border-radius: 0.25rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #002147;
   background: #edf4f8;

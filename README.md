@@ -63,6 +63,9 @@ sessions:
 The orientation slide uses the `orientation-weeks` layout from `addon/layouts`.
 It shows one column per `week`, and sessions without a `week` span the full
 width above them. Each lecture's `highlight` must exactly match a `topic`.
+A session may also set `background: "#eef2f6"` to shade its row, for example
+to group the sessions of one topic. Quote the colour, since `#` starts a YAML
+comment.
 
 The deploy workflow reads `TRAINING_EVENT` from the repository variable of the
 same name (Settings > Secrets and variables > Actions > Variables). Set it
