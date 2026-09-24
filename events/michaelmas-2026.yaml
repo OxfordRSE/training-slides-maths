@@ -2,9 +2,6 @@ year: 2026
 sessions:
   - date: "02 Nov"
     slot: "09:30"
-    topic: Introduction
-  - date: "02 Nov"
-    slot: "09:30"
     topic: Graphs
     week: 1
   - date: "02 Nov"
