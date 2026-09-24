@@ -29,7 +29,7 @@ title: 'train.rse.ox.ac.uk: view course material'
 ---
 
 <div class="h-full w-full flex items-center justify-center">
-  <img src="./img/03_material.webp" alt="Viewing course material at train.rse.ox.ac.uk" class="max-h-full max-w-full object-contain" />
+  <MaterialDemo class="max-w-[42rem]" />
 </div>
 
 ---
