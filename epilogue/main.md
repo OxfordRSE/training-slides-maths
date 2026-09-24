@@ -37,7 +37,7 @@ title: 'train.rse.ox.ac.uk: mark exercises'
 ---
 
 <div class="h-full w-full flex items-center justify-center">
-  <img src="./img/04_mark_exercises.webp" alt="Marking exercises at train.rse.ox.ac.uk" class="max-h-full max-w-full object-contain" />
+  <ExerciseDemo class="max-w-[42rem]" />
 </div>
 
 ---

@@ -1,17 +1,34 @@
 <script setup>
 // A page of course material on train.rse.ox.ac.uk, for SiteDemo scenes. Only
 // the title is real text; everything else is grey bars and an abstract figure,
-// so it suits any course. Extra content (e.g. an exercise) goes in the slot.
+// so it suits any course. Extra content goes in the slot: after the figure at
+// the top of the page, or (with `midPage`) between paragraphs further down,
+// which is where exercises and comments sit.
 //
 // @unocss-ignore: this file uses its own class names, not UnoCSS utilities
 defineProps({
   title: { type: String, default: '' },
+  // Show the page scrolled past its top: paragraphs around the slot content
+  midPage: { type: Boolean, default: false },
 })
 </script>
 
 <template>
   <div class="material-page">
-    <div class="main">
+    <div v-if="midPage" class="main">
+      <div class="para">
+        <span class="bar-text" style="width: 92%" /><span class="bar-text" style="width: 84%" /><span class="bar-text" style="width: 45%" />
+      </div>
+      <slot />
+      <span class="bar-text strong heading-bar" />
+      <div class="para">
+        <span class="bar-text" style="width: 96%" /><span class="bar-text" style="width: 90%" /><span class="bar-text" style="width: 94%" /><span class="bar-text" style="width: 58%" />
+      </div>
+      <div class="para">
+        <span class="bar-text" style="width: 93%" /><span class="bar-text" style="width: 97%" /><span class="bar-text" style="width: 70%" />
+      </div>
+    </div>
+    <div v-else class="main">
       <p data-target="pageHeading" class="page-heading">{{ title }}</p>
       <div class="outcomes">
         <p class="outcomes-title"><span class="check">&#10003;</span> Learning outcomes</p>
@@ -89,6 +106,7 @@ defineProps({
 .outcome { display: flex; align-items: center; gap: 0.5rem; padding-left: 0.6rem; }
 .hourglass { font-size: 0.55rem; color: #4ade80; }
 .figure { width: 70%; align-self: center; }
+.bar-text.strong.heading-bar { width: 35%; height: 0.75rem; margin-top: 0.4rem; }
 
 .toc {
   position: absolute;
