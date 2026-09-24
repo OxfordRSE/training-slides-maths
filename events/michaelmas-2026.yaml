@@ -4,10 +4,12 @@ sessions:
     slot: "09:30"
     topic: Graphs
     week: 1
+    background: "#eef2f6"
   - date: "02 Nov"
     slot: "14:00"
     topic: Indices, logs, and exponentials
     week: 1
+    background: "#eef2f6"
   - date: "03 Nov"
     slot: "09:30"
     topic: Differentiation 1
@@ -24,10 +26,12 @@ sessions:
     slot: "14:00"
     topic: Integration 1
     week: 1
+    background: "#eef2f6"
   - date: "06 Nov"
     slot: "09:30"
     topic: Integration 2
     week: 1
+    background: "#eef2f6"
   - date: "06 Nov"
     slot: "14:00"
     topic: Complex numbers
@@ -36,14 +40,17 @@ sessions:
     slot: "09:30"
     topic: Differential equations 1
     week: 2
+    background: "#eef2f6"
   - date: "09 Nov"
     slot: "14:00"
     topic: Differential equations 2
     week: 2
+    background: "#eef2f6"
   - date: "10 Nov"
     slot: "09:30"
     topic: Differential equations 3
     week: 2
+    background: "#eef2f6"
   - date: "10 Nov"
     slot: "14:00"
     topic: Linear algebra 1
@@ -56,11 +63,14 @@ sessions:
     slot: "14:00"
     topic: Systems of differential equations 1
     week: 2
+    background: "#eef2f6"
   - date: "13 Nov"
     slot: "09:30"
     topic: Systems of differential equations 2
     week: 2
+    background: "#eef2f6"
   - date: "13 Nov"
     slot: "14:00"
     topic: Systems of differential equations 3
     week: 2
+    background: "#eef2f6"
