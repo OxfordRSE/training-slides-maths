@@ -1,6 +1,6 @@
 ---
 theme: oxrse
-title: Complex numbers
+title: Complex numbers (bonus)
 addons:
   - ../addon
 layout: cover
@@ -28,9 +28,9 @@ training-event-only: true
 layout: default
 ---
 
-# Complex numbers
+# Complex numbers (bonus)
 
-Placeholder: content to be ported from `lecture-08-complex-numbers.ipynb`.
+Placeholder: content to be ported from `lecture-08a-bonus-complex-numbers.ipynb`.
 
 ---
 
