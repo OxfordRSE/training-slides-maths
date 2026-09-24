@@ -1,0 +1,36 @@
+---
+theme: oxrse
+title: Indices, logs, and exponentials
+addons:
+  - ../addon
+layout: cover
+highlighter: shiki
+drawings:
+  persist: false
+transition: slide-left
+mdc: true
+---
+
+---
+
+```yaml
+layout: orientation-weeks
+title: Orientation
+highlight: Indices, logs, and exponentials
+training-event-only: true
+```
+
+---
+layout: default
+---
+
+# Indices, logs, and exponentials
+
+Placeholder: content to be ported from `lecture-02-indices-logs.ipynb`.
+
+---
+
+```yaml
+src: ../../epilogue/main.md
+training-event-only: true
+```

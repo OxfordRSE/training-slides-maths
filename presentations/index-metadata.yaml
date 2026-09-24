@@ -1,0 +1,103 @@
+00_intro:
+  number: 0
+  title: Introduction
+  description: "Welcome to the course: who we are, how the sessions run, and how to get the most out of them."
+  audience: Week 1
+01_graphs:
+  number: 1
+  title: Graphs
+  description: "Plotting and reading graphs, and transforming data to reveal linear and non-linear trends."
+  audience: Week 1
+02_indices_logs:
+  number: 2
+  title: Indices, logs, and exponentials
+  description: "The laws of indices and logarithms, log plots, and the exponential function."
+  audience: Week 1
+03_differentiation_1:
+  number: 3
+  title: Differentiation 1
+  description: "Introduction and interpretation: gradients, derivatives from first principles, and curve sketching."
+  audience: Week 1
+04_differentiation_2:
+  number: 4
+  title: Differentiation 2
+  description: "Standard derivatives, and the product, chain and quotient rules."
+  audience: Week 1
+05_differentiation_3:
+  number: 5
+  title: Differentiation 3
+  description: "Differentiating exponentials and logarithms, and partial differentiation."
+  audience: Week 1
+06_integration_1:
+  number: 6
+  title: Integration 1
+  description: "Integration as area, definite and indefinite integrals, and integration by substitution."
+  audience: Week 1
+07_integration_2:
+  number: 7
+  title: Integration 2
+  description: "Integration by parts and by partial fractions."
+  audience: Week 1
+08_complex_numbers:
+  number: 8
+  title: Complex numbers
+  description: "Imaginary and complex numbers, arithmetic, and the polar form."
+  audience: Week 1
+09_differential_equations_1:
+  number: 9
+  title: Differential equations 1
+  description: "What differential equations are, and solving them by separation of variables."
+  audience: Week 2
+10_differential_equations_2:
+  number: 10
+  title: Differential equations 2
+  description: "From words to maths: forming differential equations, and second order equations."
+  audience: Week 2
+11_differential_equations_3:
+  number: 11
+  title: Differential equations 3
+  description: "Steady states, mass action, and solving differential equations numerically."
+  audience: Week 2
+12_linear_algebra_1:
+  number: 12
+  title: Linear algebra 1
+  description: "Introduction to matrices, and solving simultaneous equations."
+  audience: Week 2
+13_linear_algebra_2:
+  number: 13
+  title: Linear algebra 2
+  description: "Singular matrices, null spaces, eigenvalues and eigenvectors."
+  audience: Week 2
+14_systems_1:
+  number: 14
+  title: Systems of differential equations 1
+  description: "Coupled linear systems, solved by elimination and diagonalisation."
+  audience: Week 2
+15_systems_2:
+  number: 15
+  title: Systems of differential equations 2
+  description: "Simplifying systems by rescaling, conservation and quasi-steady states; phase planes."
+  audience: Week 2
+16_systems_3:
+  number: 16
+  title: Systems of differential equations 3
+  description: "Steady states of nonlinear systems and their stability."
+  audience: Week 2
+17_probability_1:
+  number: 17
+  title: Probability 1
+  description: "Deterministic and probabilistic models, events, and permutations and combinations."
+  audience: Probability
+  coreOnly: true
+18_probability_2:
+  number: 18
+  title: Probability 2
+  description: "Conditional probability, probability distributions, expectation and variance."
+  audience: Probability
+  coreOnly: true
+19_probability_3:
+  number: 19
+  title: Probability 3
+  description: "Standard discrete and continuous probability distributions."
+  audience: Probability
+  coreOnly: true
