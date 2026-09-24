@@ -21,7 +21,7 @@ title: 'train.rse.ox.ac.uk: enrol'
 ---
 
 <div class="h-full w-full flex items-center justify-center">
-  <img src="./img/02_enrol.webp" alt="Enrolling on a course at train.rse.ox.ac.uk" class="max-h-full max-w-full object-contain" />
+  <EnrolDemo class="max-w-[50rem]" />
 </div>
 
 ---
