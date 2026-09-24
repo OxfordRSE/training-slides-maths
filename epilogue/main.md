@@ -13,7 +13,7 @@ title: 'train.rse.ox.ac.uk: login'
 ---
 
 <div class="h-full w-full flex items-center justify-center">
-  <img src="./img/01_login.webp" alt="Logging in to train.rse.ox.ac.uk" class="max-h-full max-w-full object-contain" />
+  <LoginDemo class="max-w-[42rem]" />
 </div>
 
 ---
