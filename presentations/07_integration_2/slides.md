@@ -35,6 +35,13 @@ Placeholder: content to be ported from `lecture-07-integration2.ipynb`.
 ---
 
 ```yaml
+layout: questions
+training-event-only: true
+```
+
+---
+
+```yaml
 src: ../../epilogue/main.md
 training-event-only: true
 ```

@@ -35,6 +35,13 @@ Placeholder: content to be ported from `lecture-02-indices-logs.ipynb`.
 ---
 
 ```yaml
+layout: questions
+training-event-only: true
+```
+
+---
+
+```yaml
 src: ../../epilogue/main.md
 training-event-only: true
 ```

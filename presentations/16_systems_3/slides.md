@@ -35,6 +35,13 @@ Placeholder: content to be ported from `lecture-16-systems3.ipynb`.
 ---
 
 ```yaml
+layout: questions
+training-event-only: true
+```
+
+---
+
+```yaml
 src: ../../epilogue/main.md
 training-event-only: true
 ```
