@@ -22,6 +22,16 @@ const logoDest = path.join(logoDir, 'oxrse-logo.svg')
 // Served at /favicon.svg, which is also where every deck's favicon points
 const faviconSource = path.join(repoRoot, 'public', 'favicon.svg')
 const faviconDest = path.join(distDir, 'favicon.svg')
+// Latin subset only: the landing page uses the monospace font just for dates and times
+const monoFontSource = path.join(
+  repoRoot,
+  'node_modules',
+  '@fontsource-variable',
+  'jetbrains-mono',
+  'files',
+  'jetbrains-mono-latin-wght-normal.woff2',
+)
+const monoFontDest = path.join(logoDir, 'jetbrains-mono-latin.woff2')
 
 async function readCourseMetadata() {
   const contents = await fs.readFile(courseMetadataPath, 'utf8')
@@ -70,7 +80,7 @@ async function getPresentationEntries() {
       number: metadata.number,
       title: metadata.title || frontmatter.title || humanize(slug),
       description: metadata.description || 'Course presentation',
-      audience: metadata.audience || 'Presentation',
+      audience: metadata.audience || '',
       href,
       available,
       ctaLabel: available ? 'Open presentation' : 'Slides not available',
@@ -119,26 +129,69 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;')
 }
 
-function renderCards(presentations) {
+// "02 Nov" + year -> "Mon 02 Nov", matching the orientation slide
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+function sessionDay(session, year) {
+  const [day, month] = session.date.split(' ')
+  const date = new Date(Date.UTC(year, MONTHS.indexOf(month), Number(day)))
+  const weekday = date.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })
+  return `${weekday} ${session.date}`
+}
+
+function sessionFor(presentation, eventSchedule) {
+  return eventSchedule?.sessions.find(s => s.topic === presentation.title)
+}
+
+// In an event build, cards whose title matches a session topic show its date and
+// time; the others keep an empty line so that every card is the same height
+function renderWhen(presentation, eventSchedule) {
+  if (!eventSchedule)
+    return ''
+  const session = sessionFor(presentation, eventSchedule)
+  if (!session)
+    return '<p class="card-when card-when-empty" aria-hidden="true"><span class="time">&nbsp;</span></p>'
+  return `<p class="card-when"><span class="day">${escapeHtml(sessionDay(session, eventSchedule.year))}</span><span class="time">${escapeHtml(session.slot)}</span></p>`
+}
+
+function renderCards(presentations, eventSchedule) {
   return presentations.map((presentation) => {
     const tagName = presentation.available && presentation.href ? 'a' : 'div'
     const hrefAttribute = presentation.available && presentation.href ? ` href="${presentation.href}"` : ''
     const availabilityClass = presentation.available ? '' : ' deck-card-unavailable'
     const statusMarkup = presentation.available
-      ? `<span class="card-cta">${escapeHtml(presentation.ctaLabel)}</span>`
+      ? `<span class="card-cta" aria-hidden="true">&rarr;</span>`
       : `<span class="card-cta card-cta-muted">${escapeHtml(presentation.ctaLabel)}</span>`
 
     return `
           <${tagName} class="deck-card${availabilityClass}"${hrefAttribute}>
             <span class="card-index">${presentation.number ?? '?'}</span>
             <div class="card-copy">
-              <p class="card-kicker">${escapeHtml(presentation.audience)}</p>
+              ${renderWhen(presentation, eventSchedule)}
               <h3>${escapeHtml(presentation.title)}</h3>
               <p>${escapeHtml(presentation.description)}</p>
             </div>
             ${statusMarkup}
           </${tagName}>`
   }).join('')
+}
+
+// Groups follow `audience` in metadata order, each headed by its name if set
+function renderGroups(presentations, eventSchedule) {
+  const groups = []
+  for (const presentation of presentations) {
+    const group = groups.find(g => g.name === presentation.audience)
+    if (group)
+      group.presentations.push(presentation)
+    else
+      groups.push({ name: presentation.audience, presentations: [presentation] })
+  }
+
+  return groups.map(group => `
+        <div class="group${group.name ? ' group-named' : ''}">
+          ${group.name ? `<h2 class="group-heading">${escapeHtml(group.name)}</h2>` : ''}
+          <div class="cards">${renderCards(group.presentations, eventSchedule)}
+          </div>
+        </div>`).join('')
 }
 
 function renderHtml(presentations, eventSchedule) {
@@ -153,6 +206,13 @@ function renderHtml(presentations, eventSchedule) {
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <meta name="description" content="Browse the Oxford Research Software Engineering essential maths lectures." />
 ${plausibleSnippet}  <style>
+    @font-face {
+      font-family: "JetBrains Mono";
+      font-weight: 100 800;
+      font-display: swap;
+      src: url("./assets/jetbrains-mono-latin.woff2") format("woff2");
+    }
+
     :root {
       --oxrse-blue: #002147;
       --oxrse-blue-strong: #00152f;
@@ -295,10 +355,69 @@ ${plausibleSnippet}  <style>
       padding: 1rem 1rem 3rem;
     }
 
+    .content .page-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .group-named {
+      padding: 1.1rem 1.1rem 1.2rem;
+      border-radius: calc(var(--oxrse-radius) + 6px);
+      background: rgba(237, 244, 248, 0.75);
+      border: 1px solid var(--oxrse-line);
+    }
+
+    .group-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.1rem 0 0.9rem 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.95rem;
+      color: var(--oxrse-blue);
+    }
+
+    .group-heading::before {
+      content: "";
+      width: 0.3rem;
+      height: 1.1em;
+      border-radius: 999px;
+      background: var(--oxrse-highlight-strong);
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
+      gap: 0.75rem;
+    }
+
+
+    .card-when {
+      margin: 0 0 0.4rem;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: nowrap;
+    }
+
+    .card-when-empty {
+      visibility: hidden;
+    }
+
+    .card-when .day {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--oxrse-muted);
+    }
+
+    .card-when .time {
+      margin-left: 0.6rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--oxrse-blue);
+      background: var(--oxrse-wash);
     }
 
     .deck-card {
@@ -309,7 +428,7 @@ ${plausibleSnippet}  <style>
       gap: 1rem;
       align-items: start;
       min-height: 100%;
-      padding: 1.15rem 1.2rem;
+      padding: 0.85rem 1.2rem;
       border-radius: var(--oxrse-radius);
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
       border: 1px solid var(--oxrse-line);
@@ -336,8 +455,8 @@ ${plausibleSnippet}  <style>
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 2.8rem;
-      height: 2.8rem;
+      min-width: 2.5rem;
+      height: 2.5rem;
       border-radius: 18px;
       background: var(--oxrse-wash);
       color: var(--oxrse-blue);
@@ -345,31 +464,44 @@ ${plausibleSnippet}  <style>
       letter-spacing: 0.04em;
     }
 
+    .card-copy {
+      min-width: 0;
+    }
+
     .card-copy h3 {
-      margin: 0.1rem 0 0.55rem;
+      margin: 0.1rem 0 0.35rem;
       font-size: 1.3rem;
       line-height: 1.2;
       color: var(--oxrse-blue);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .card-copy p {
+    /* Every card reserves exactly two lines of description */
+    .card-copy p:not(.card-when) {
       margin: 0;
       color: var(--oxrse-muted);
-      line-height: 1.6;
-    }
-
-    .card-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.78rem;
-      color: #6b7b90;
+      line-height: 1.45;
+      min-height: 2.9em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .card-cta {
       align-self: center;
       color: var(--oxrse-blue);
+      font-size: 1.4rem;
       font-weight: 700;
       white-space: nowrap;
+      transition: transform 180ms ease;
+    }
+
+    .deck-card:hover .card-cta,
+    .deck-card:focus-visible .card-cta {
+      transform: translateX(4px);
     }
 
     .deck-card-unavailable {
@@ -417,17 +549,6 @@ ${plausibleSnippet}  <style>
         text-align: left;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .deck-card {
-        grid-template-columns: auto 1fr;
-      }
-
-      .card-cta {
-        grid-column: 2;
-      }
     }
 
     @media (max-width: 640px) {
@@ -442,13 +563,12 @@ ${plausibleSnippet}  <style>
         border-radius: 24px;
       }
 
-      .deck-card {
-        grid-template-columns: 1fr;
-      }
-
-      .card-index,
-      .card-cta {
-        grid-column: auto;
+      /* On phones, let titles and descriptions wrap in full instead */
+      .card-copy h3,
+      .card-copy p:not(.card-when) {
+        white-space: normal;
+        min-height: 0;
+        display: block;
       }
     }
   </style>
@@ -470,9 +590,7 @@ ${plausibleSnippet}  <style>
 
     <section class="content">
       <div class="page-shell">
-        <div class="cards">
-${renderCards(presentations)}
-        </div>
+${renderGroups(presentations, eventSchedule)}
       </div>
     </section>
   </main>
@@ -494,6 +612,7 @@ async function main() {
   await fs.mkdir(logoDir, { recursive: true })
   await fs.copyFile(logoSource, logoDest)
   await fs.copyFile(faviconSource, faviconDest)
+  await fs.copyFile(monoFontSource, monoFontDest)
   await fs.writeFile(path.join(distDir, 'index.html'), renderHtml(presentations, eventSchedule))
 }
 
