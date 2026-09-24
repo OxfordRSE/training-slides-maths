@@ -138,9 +138,44 @@ function sessionDay(session, year) {
   return `${weekday} ${session.date}`
 }
 
+// "02 Nov" + "09:30" + year -> "2026-11-02T09:30", compared as a string in the browser
+function sessionStart(session, year) {
+  const [day, month] = session.date.split(' ')
+  const mm = String(MONTHS.indexOf(month) + 1).padStart(2, '0')
+  return `${year}-${mm}-${day.padStart(2, '0')}T${session.slot}`
+}
+
 function sessionFor(presentation, eventSchedule) {
   return eventSchedule?.sessions.find(s => s.topic === presentation.title)
 }
+
+// Highlights the session in progress (the latest one started today, or else
+// today's first) and scrolls to its group. Times are Oxford local time;
+// append ?now=2026-11-05T15:00 to the URL to preview another moment.
+const CURRENT_SESSION_SCRIPT = `
+  <script>
+    (() => {
+      const override = new URLSearchParams(location.search).get('now')
+      const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London', hourCycle: 'h23',
+        year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+      }).formatToParts(new Date()).map(p => [p.type, p.value]))
+      const now = override || \`\${parts.year}-\${parts.month}-\${parts.day}T\${parts.hour}:\${parts.minute}\`
+      const today = now.slice(0, 10)
+
+      const starts = [...new Set([...document.querySelectorAll('[data-start]')].map(c => c.dataset.start))]
+        .filter(start => start.startsWith(today))
+        .sort()
+      if (!starts.length)
+        return
+      const current = starts.filter(start => start <= now).at(-1) ?? starts[0]
+
+      const cards = document.querySelectorAll(\`[data-start="\${current}"]\`)
+      cards.forEach(card => card.classList.add('current'))
+      cards[0].closest('.group').scrollIntoView({ block: 'start' })
+    })()
+  </script>
+`
 
 // In an event build, cards whose title matches a session topic show its date and
 // time; the others keep an empty line so that every card is the same height
@@ -158,12 +193,14 @@ function renderCards(presentations, eventSchedule) {
     const tagName = presentation.available && presentation.href ? 'a' : 'div'
     const hrefAttribute = presentation.available && presentation.href ? ` href="${presentation.href}"` : ''
     const availabilityClass = presentation.available ? '' : ' deck-card-unavailable'
+    const session = sessionFor(presentation, eventSchedule)
+    const startAttribute = session ? ` data-start="${sessionStart(session, eventSchedule.year)}"` : ''
     const statusMarkup = presentation.available
       ? `<span class="card-cta" aria-hidden="true">&rarr;</span>`
       : `<span class="card-cta card-cta-muted">${escapeHtml(presentation.ctaLabel)}</span>`
 
     return `
-          <${tagName} class="deck-card${availabilityClass}"${hrefAttribute}>
+          <${tagName} class="deck-card${availabilityClass}"${hrefAttribute}${startAttribute}>
             <span class="card-index">${presentation.number ?? '?'}</span>
             <div class="card-copy">
               ${renderWhen(presentation, eventSchedule)}
@@ -359,6 +396,20 @@ ${plausibleSnippet}  <style>
       display: flex;
       flex-direction: column;
       gap: 2rem;
+    }
+
+    .group {
+      scroll-margin-top: 1rem;
+    }
+
+    .deck-card.current {
+      outline: 2.5px solid #e8a735;
+      outline-offset: -1px;
+    }
+
+    .deck-card.current .card-when .time {
+      color: #fff;
+      background: #e8a735;
     }
 
     .group-named {
@@ -600,7 +651,7 @@ ${renderGroups(presentations, eventSchedule)}
       <span>Oxford Research Software Engineering Group</span>
     </div>
   </footer>
-</body>
+${eventSchedule ? CURRENT_SESSION_SCRIPT : ''}</body>
 </html>
 `
 }
