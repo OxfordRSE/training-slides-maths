@@ -6,8 +6,7 @@
 // @unocss-ignore: this file uses its own class names, not UnoCSS utilities
 import { createTimeline, enrolmentKey, escapeHtml, eventName, sessions, siteDate } from '../utils/site-demo.js'
 
-const shownSessions = sessions.slice(0, 3)
-const eventDate = shownSessions.length ? siteDate(shownSessions[0]) : ''
+const eventDate = sessions.length ? siteDate(sessions[0]) : ''
 
 const steps = [
   'Click <b>+ Enrol on event</b>',
@@ -52,7 +51,7 @@ const timeline = createTimeline(({ wait, move, click, set, type }) => {
   move('calendar')
   click()
   set({ sidebar: true }, 700)
-  move('sidebarTitle')
+  move('overviewTitle')
   wait(3500)
 })
 </script>
@@ -62,49 +61,7 @@ const timeline = createTimeline(({ wait, move, click, set, type }) => {
     <template #default="{ state }">
       <SiteDemoBar :crumb="state.page === 'events' ? 'Events' : ''" />
 
-      <!-- Home page -->
-      <div v-if="state.page === 'home'" class="page">
-        <p class="site-title"><span class="logo big">OxRSE</span> OxRSE Training</p>
-        <div class="columns">
-          <div class="stack">
-            <div class="card">
-              <div class="card-head">
-                <div>
-                  <p class="card-title">Your Events</p>
-                  <p class="muted small">Your enrolled events.</p>
-                </div>
-                <span data-target="enrolOnEvent" class="button small">+ Enrol on event</span>
-              </div>
-              <div class="inner">
-                <div class="inner-copy">
-                  <span class="bar-text dim" style="width: 55%" />
-                  <span class="bar-text strong" style="width: 85%" />
-                  <span class="bar-text" style="width: 75%" />
-                </div>
-                <span class="btn-outline">Enrol &rarr;</span>
-              </div>
-              <span class="button">Browse all events</span>
-            </div>
-            <div class="card">
-              <p class="card-title">Courses</p>
-              <span class="bar-text" style="width: 70%" />
-            </div>
-          </div>
-          <div class="card">
-            <p class="card-title">Course Material</p>
-            <div class="para">
-              <span class="bar-text" style="width: 96%" /><span class="bar-text" style="width: 92%" /><span class="bar-text" style="width: 40%" />
-            </div>
-            <div class="para">
-              <span class="bar-text" style="width: 94%" /><span class="bar-text" style="width: 97%" /><span class="bar-text" style="width: 90%" /><span class="bar-text" style="width: 55%" />
-            </div>
-            <div class="para">
-              <span class="bar-text" style="width: 95%" /><span class="bar-text" style="width: 93%" /><span class="bar-text" style="width: 70%" />
-            </div>
-            <span class="button wide">View the teaching materials &rarr;</span>
-          </div>
-        </div>
-      </div>
+      <SiteDemoHome v-if="state.page === 'home'" />
 
       <!-- Events page -->
       <div v-else class="page">
@@ -161,27 +118,7 @@ const timeline = createTimeline(({ wait, move, click, set, type }) => {
       </div>
 
       <!-- Event overview, opened from the calendar icon -->
-      <div class="sidebar" :class="{ open: state.sidebar }">
-        <div class="sidebar-head">
-          <span class="change">&#8644; Change Event</span>
-          <span class="sidebar-name">{{ eventName }}</span>
-        </div>
-        <p data-target="sidebarTitle" class="sidebar-title">{{ eventName }}</p>
-        <p class="description"><b>Description:</b> <span class="bar-text inline" style="width: 55%" /></p>
-        <div v-for="(s, i) in shownSessions" :key="i" class="session">
-          <span class="dot" />
-          <p class="muted small">{{ siteDate(s) }}</p>
-          <p class="session-title">{{ s.topic }}</p>
-          <div class="session-body">
-            <p><b>Location:</b> <span class="bar-text inline" style="width: 50%" /></p>
-            <p><b>Material:</b></p>
-            <div v-for="j in 2" :key="j" class="material">
-              <span class="bar-text" :style="{ width: `${j === 1 ? 40 : 52}%` }" />
-              <span class="tag">PYTHON</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <SiteDemoOverview :open="state.sidebar" />
     </template>
   </SiteDemo>
 </template>
@@ -247,45 +184,4 @@ const timeline = createTimeline(({ wait, move, click, set, type }) => {
   padding: 0.7rem 0.9rem;
   border-top: 1px solid #4b5563;
 }
-
-/* Event overview sidebar */
-.sidebar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 36%;
-  padding: 0.55rem 0.8rem;
-  overflow: hidden;
-  background: var(--card);
-  border-right: 1px solid var(--line);
-  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.4);
-  transform: translateX(-105%);
-  transition: transform 0.45s ease-out;
-}
-.sidebar.open { transform: none; }
-.sidebar-head {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding-bottom: 0.4rem;
-  margin-bottom: 0.4rem;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.6rem;
-  white-space: nowrap;
-}
-.change { color: #93c5fd; }
-.sidebar-name { overflow: hidden; text-overflow: ellipsis; color: #cbd5e1; }
-.sidebar-title { font-size: 1rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.3rem; }
-.description { color: var(--muted); margin-bottom: 0.6rem; }
-.description b, .session-body b { color: #cbd5e1; }
-.session {
-  position: relative;
-  padding: 0 0 0.6rem 0.9rem;
-  margin-left: 0.25rem;
-  border-left: 1px solid var(--line);
-}
-.session-title { font-weight: 700; font-size: 0.75rem; margin: 0.1rem 0 0.2rem; }
-.session-body { display: flex; flex-direction: column; gap: 0.25rem; padding-left: 0.5rem; color: var(--muted); }
-.material { display: flex; align-items: center; gap: 0.35rem; padding-left: 0.6rem; }
 </style>

@@ -6,7 +6,7 @@
 export const schedule = typeof __EVENT_SCHEDULE__ === 'undefined' ? {} : __EVENT_SCHEDULE__
 
 // String() so that e.g. `enrolment_key: 2026` in the YAML still works
-export const eventName = String(schedule.name || 'Essential Maths')
+export const eventName = String(schedule.name || 'Your event')
 export const enrolmentKey = String(schedule.enrolment_key || 'enrolment-key')
 export const sessions = Array.isArray(schedule.sessions) ? schedule.sessions : []
 

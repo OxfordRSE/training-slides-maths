@@ -59,7 +59,7 @@ const timeline = createTimeline(({ wait, move, click, set }) => {
                 <p class="card-title">Self-paced Courses</p>
                 <span class="bar-text dim" style="width: 70%" />
                 <div class="inner course">
-                  <p class="course-title">Essential Maths</p>
+                  <span class="bar-text strong" style="width: 38%" />
                   <p><span class="pill blue" /><span class="pill green" /></p>
                 </div>
                 <div class="inner course">
@@ -124,7 +124,6 @@ const timeline = createTimeline(({ wait, move, click, set }) => {
 
 /* Self-paced courses list */
 .inner.course { flex-direction: column; gap: 0.3rem; }
-.course-title { font-weight: 700; font-size: 0.65rem; }
 .pill { display: inline-block; width: 2.2rem; height: 0.45rem; margin-right: 0.25rem; border-radius: 0.3rem; }
 .pill.blue { background: #0ea5e9; }
 .pill.green { background: #22c55e; width: 1.4rem; }

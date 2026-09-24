@@ -412,11 +412,13 @@ const rippleStyle = computed(() => {
   border-radius: 50%;
   background: var(--line);
 }
+/* Tag pill (the site shows e.g. a language); left blank so it suits any course */
 .site-demo .tag {
-  padding: 0 0.3rem;
-  border: 1px solid #c2410c;
+  display: inline-block;
+  align-self: flex-start;
+  width: 1.6rem;
+  height: 0.55rem;
+  border: 1px solid #64748b;
   border-radius: 0.6rem;
-  font-size: 0.45rem;
-  color: #fb923c;
 }
 </style>
