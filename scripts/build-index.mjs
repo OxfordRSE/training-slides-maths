@@ -22,16 +22,12 @@ const logoDest = path.join(logoDir, 'oxrse-logo.svg')
 // Served at /favicon.svg, which is also where every deck's favicon points
 const faviconSource = path.join(repoRoot, 'public', 'favicon.svg')
 const faviconDest = path.join(distDir, 'favicon.svg')
-// Latin subset only: the landing page uses the monospace font just for dates and times
-const monoFontSource = path.join(
-  repoRoot,
-  'node_modules',
-  '@fontsource-variable',
-  'jetbrains-mono',
-  'files',
-  'jetbrains-mono-latin-wght-normal.woff2',
-)
-const monoFontDest = path.join(logoDir, 'jetbrains-mono-latin.woff2')
+// The same bundled fonts as the slides (latin subset only), served from dist/assets
+const fontFiles = [
+  ['noto-sans', 'noto-sans-latin-wght-normal.woff2'],
+  ['noto-sans', 'noto-sans-latin-wght-italic.woff2'],
+  ['jetbrains-mono', 'jetbrains-mono-latin-wght-normal.woff2'],
+]
 
 async function readCourseMetadata() {
   const contents = await fs.readFile(courseMetadataPath, 'utf8')
@@ -247,10 +243,25 @@ function renderHtml(presentations, eventSchedule) {
   <meta name="description" content="Browse the Oxford Research Software Engineering essential maths lectures." />
 ${plausibleSnippet}  <style>
     @font-face {
+      font-family: "Noto Sans";
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("./assets/noto-sans-latin-wght-normal.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Noto Sans";
+      font-style: italic;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("./assets/noto-sans-latin-wght-italic.woff2") format("woff2");
+    }
+
+    @font-face {
       font-family: "JetBrains Mono";
       font-weight: 100 800;
       font-display: swap;
-      src: url("./assets/jetbrains-mono-latin.woff2") format("woff2");
+      src: url("./assets/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
     }
 
     :root {
@@ -274,7 +285,7 @@ ${plausibleSnippet}  <style>
 
     body {
       margin: 0;
-      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-family: "Noto Sans", system-ui, sans-serif;
       color: var(--oxrse-ink);
       background:
         radial-gradient(circle at top left, rgba(120, 179, 207, 0.38), transparent 28rem),
@@ -376,7 +387,6 @@ ${plausibleSnippet}  <style>
 
     .brand strong {
       display: block;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 1.15rem;
       line-height: 1.2;
       margin-top: 0.15rem;
@@ -384,7 +394,6 @@ ${plausibleSnippet}  <style>
 
     .hero-title {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(1.8rem, 3.2vw, 2.8rem);
       line-height: 1.1;
       opacity: 0.92;
@@ -449,7 +458,7 @@ ${plausibleSnippet}  <style>
 
     .card-when {
       margin: 0 0 0.4rem;
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
       white-space: nowrap;
     }
 
@@ -523,9 +532,10 @@ ${plausibleSnippet}  <style>
     }
 
     .card-copy h3 {
-      margin: 0.1rem 0 0.35rem;
+      margin: 0 0 0.2rem;
       font-size: 1.3rem;
-      line-height: 1.2;
+      /* Tall enough that descenders are not clipped by the ellipsis overflow */
+      line-height: 1.45;
       color: var(--oxrse-blue);
       white-space: nowrap;
       overflow: hidden;
@@ -666,7 +676,8 @@ async function main() {
   await fs.mkdir(logoDir, { recursive: true })
   await fs.copyFile(logoSource, logoDest)
   await fs.copyFile(faviconSource, faviconDest)
-  await fs.copyFile(monoFontSource, monoFontDest)
+  for (const [pkg, file] of fontFiles)
+    await fs.copyFile(path.join(repoRoot, 'node_modules', '@fontsource-variable', pkg, 'files', file), path.join(logoDir, file))
   await fs.writeFile(path.join(distDir, 'index.html'), renderHtml(presentations, eventSchedule))
 }
 
