@@ -32,6 +32,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The event-only slides (orientation, epilogue animations) are not in the
+      # generic build, so build every event too, to catch breakage early. This
+      # runs first because the deploy build below starts by clearing dist/.
+      - name: Check event builds
+        shell: bash
+        run: |
+          for event in events/*.yaml; do
+            name="$(basename "$event" .yaml)"
+            echo "::group::Event build: $name"
+            TRAINING_EVENT="$name" ./build_all.sh
+            echo "::endgroup::"
+          done
+
       - name: Build
         shell: bash
         env:
