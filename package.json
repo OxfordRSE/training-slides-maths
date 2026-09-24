@@ -1,0 +1,17 @@
+{
+  "name": "training-slides-maths",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "./build_all.sh",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^53.0.0",
+    "qrcode": "^1.5.4",
+    "slidev-theme-oxrse": "github:OxfordRSE/oxrse-theme-slidev",
+    "vue": "^3.5.22",
+    "yaml": "^2.8.1"
+  }
+}
