@@ -1,69 +1,69 @@
 year: 2026
 sessions:
   - date: "02 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Introduction
   - date: "02 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Graphs
     week: 1
   - date: "02 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Indices, logs, and exponentials
     week: 1
   - date: "03 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Differentiation 1
     week: 1
   - date: "03 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Differentiation 2
     week: 1
   - date: "05 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Differentiation 3
     week: 1
   - date: "05 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Integration 1
     week: 1
   - date: "06 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Integration 2
     week: 1
   - date: "06 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Complex numbers
     week: 1
   - date: "09 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Differential equations 1
     week: 2
   - date: "09 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Differential equations 2
     week: 2
   - date: "10 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Differential equations 3
     week: 2
   - date: "10 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Linear algebra 1
     week: 2
   - date: "12 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Linear algebra 2
     week: 2
   - date: "12 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Systems of differential equations 1
     week: 2
   - date: "13 Nov"
-    slot: morning
+    slot: "09:30"
     topic: Systems of differential equations 2
     week: 2
   - date: "13 Nov"
-    slot: afternoon
+    slot: "14:00"
     topic: Systems of differential equations 3
     week: 2

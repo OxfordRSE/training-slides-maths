@@ -11,6 +11,15 @@ const sessions = schedule.sessions || []
 const fullWidth = sessions.filter(s => s.week === undefined)
 const weeks = [...new Set(sessions.filter(s => s.week !== undefined).map(s => s.week))]
   .map(week => ({ week, sessions: sessions.filter(s => s.week === week) }))
+
+// "02 Nov" + year -> "Mon 02 Nov 09:30"
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+function when(s) {
+  const [day, month] = s.date.split(' ')
+  const date = new Date(Date.UTC(schedule.year, MONTHS.indexOf(month), Number(day)))
+  const weekday = date.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })
+  return `${weekday} ${s.date} ${s.slot}`
+}
 </script>
 
 <template>
@@ -18,7 +27,7 @@ const weeks = [...new Set(sessions.filter(s => s.week !== undefined).map(s => s.
     <table v-if="fullWidth.length" class="schedule-table full-width">
       <tbody>
         <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: s.topic === props.highlight }">
-          <td class="session-time">{{ s.date }} ({{ s.slot }})</td>
+          <td class="session-time">{{ when(s) }}</td>
           <td class="session-topic">{{ s.topic }}</td>
         </tr>
       </tbody>
@@ -29,7 +38,7 @@ const weeks = [...new Set(sessions.filter(s => s.week !== undefined).map(s => s.
         <table class="schedule-table">
           <tbody>
             <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: s.topic === props.highlight }">
-              <td class="session-time">{{ s.date }} ({{ s.slot }})</td>
+              <td class="session-time">{{ when(s) }}</td>
               <td class="session-topic">{{ s.topic }}</td>
             </tr>
           </tbody>
@@ -87,9 +96,11 @@ h3 {
 }
 
 .session-time {
-  width: 40%;
+  width: 1%;
   color: #444;
   white-space: nowrap;
+  font-family: var(--slidev-code-font-family);
+  font-size: 0.75rem;
 }
 
 .session-topic {
