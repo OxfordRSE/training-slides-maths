@@ -21,7 +21,7 @@ title: 'train.rse.ox.ac.uk: enrol'
 ---
 
 <div class="h-full w-full flex items-center justify-center">
-  <EnrolDemo class="max-w-[50rem]" />
+  <EnrolDemo class="max-w-[42rem]" />
 </div>
 
 ---
