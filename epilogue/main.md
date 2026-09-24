@@ -45,5 +45,5 @@ title: 'train.rse.ox.ac.uk: add comments'
 ---
 
 <div class="h-full w-full flex items-center justify-center">
-  <img src="./img/05_comment.webp" alt="Adding comments at train.rse.ox.ac.uk" class="max-h-full max-w-full object-contain" />
+  <CommentDemo class="max-w-[42rem]" />
 </div>
