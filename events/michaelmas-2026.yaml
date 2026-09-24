@@ -1,5 +1,6 @@
 year: 2026
 name: "[MT26] Essential Maths"
+enrolment_key: dtc-maths-26
 sessions:
   - date: "02 Nov"
     slot: "09:30"

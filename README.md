@@ -49,6 +49,8 @@ Microsoft Forms ID or a full URL):
 
 ```yaml
 year: 2026
+name: "[MT26] Essential Maths"
+enrolment_key: dtc-maths-26
 feedback_form: jmJq6KWfMA
 sessions:
   - date: "02 Nov"
@@ -59,6 +61,10 @@ sessions:
     topic: Graphs
     week: 1
 ```
+
+`name` and `enrolment_key` are the event's name and key on train.rse.ox.ac.uk,
+shown in the epilogue's enrolment walkthrough. The key appears on the published
+slides of an event build.
 
 The orientation slide uses the `orientation-weeks` layout from `addon/layouts`.
 It shows one column per `week`, and sessions without a `week` span the full
