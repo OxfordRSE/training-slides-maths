@@ -149,9 +149,10 @@ function sessionFor(presentation, eventSchedule) {
   return eventSchedule?.sessions.find(s => s.topic === presentation.title)
 }
 
-// Highlights the session in progress (the latest one started today, or else
-// today's first) and scrolls to its group. Times are Oxford local time;
-// append ?now=2026-11-05T15:00 to the URL to preview another moment.
+// Highlights the current session and scrolls to its group. A session becomes
+// current an hour before it starts (so early arrivals see it) and stays current
+// until the next one takes over; before that, today's first session is shown.
+// Times are Oxford local time; append ?now=2026-11-05T15:00 to preview a moment.
 const CURRENT_SESSION_SCRIPT = `
   <script>
     (() => {
@@ -168,7 +169,9 @@ const CURRENT_SESSION_SCRIPT = `
         .sort()
       if (!starts.length)
         return
-      const current = starts.filter(start => start <= now).at(-1) ?? starts[0]
+      const minutes = t => Number(t.slice(11, 13)) * 60 + Number(t.slice(14, 16))
+      const LEAD_MINUTES = 60
+      const current = starts.filter(start => minutes(start) - LEAD_MINUTES <= minutes(now)).at(-1) ?? starts[0]
 
       const cards = document.querySelectorAll(\`[data-start="\${current}"]\`)
       cards.forEach(card => card.classList.add('current'))
