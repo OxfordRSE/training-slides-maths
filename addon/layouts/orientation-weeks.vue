@@ -2,6 +2,7 @@
 // Variant of the oxrse `orientation` layout for a two-week course.
 // Sessions with a `week` field are grouped into one column per week;
 // sessions without one (e.g. the introduction) span the full width above.
+// Each row shows the weekday, date and start time together in one label.
 // A session's optional `background` colour shades its row, e.g. to group topics.
 const schedule = __EVENT_SCHEDULE__
 const props = defineProps({
@@ -28,7 +29,7 @@ function day(s) {
     <table v-if="fullWidth.length" class="schedule-table full-width">
       <tbody>
         <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: s.topic === props.highlight, shaded: s.background }" :style="{ background: s.background }">
-          <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
+          <td class="session-when"><span class="when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></span></td>
           <td class="session-topic">{{ s.topic }}</td>
         </tr>
       </tbody>
@@ -39,7 +40,7 @@ function day(s) {
         <table class="schedule-table">
           <tbody>
             <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: s.topic === props.highlight, shaded: s.background }" :style="{ background: s.background }">
-              <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
+              <td class="session-when"><span class="when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></span></td>
               <td class="session-topic">{{ s.topic }}</td>
             </tr>
           </tbody>
@@ -97,37 +98,37 @@ h3 {
   padding: 0.55rem 0.75rem;
 }
 
-/* Keep the time chip visible against a shaded row */
-.shaded .time {
-  background: #fff;
-}
-
 .session-when {
   width: 1%;
   white-space: nowrap;
   font-family: var(--slidev-code-font-family);
 }
 
-.day {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #536277;
-}
-
-.time {
-  margin-left: 0.6rem;
-  padding: 0.1rem 0.4rem;
+/* The weekday, date and time share one label, split by a thin rule */
+.when {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 0.1rem 0.5rem;
   border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #002147;
   background: #edf4f8;
 }
 
-.highlighted .time {
-  color: #fff;
-  background: #e8a735;
+/* Keep the label visible against a shaded row */
+.shaded .when {
+  background: #fff;
+}
+
+.day,
+.time {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #002147;
+}
+
+.time {
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid #c5d3df;
 }
 
 .session-topic {
