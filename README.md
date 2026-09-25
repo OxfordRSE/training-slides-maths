@@ -77,6 +77,35 @@ The deploy workflow reads `TRAINING_EVENT` from the repository variable of the
 same name (Settings > Secrets and variables > Actions > Variables). Set it
 before the course and delete it afterwards, then re-run the deploy workflow.
 
+## Markdown style
+
+CI lints every Markdown file, slides included, with
+[markdownlint](https://github.com/DavidAnson/markdownlint). The rules are in
+`.markdownlint.json`. The ones you are most likely to trip over:
+
+- Leave a blank line before and after every list, fenced code block and table.
+- Give every fenced code block a language, e.g. `python`, `bash` or `console`.
+  Use `text` for output or data that should not be highlighted.
+- Write italics as `_italic_` and bold as `**bold**`.
+- Start and end every table row with a pipe. There is no need to line the
+  columns up.
+- Leave no trailing spaces.
+
+Some rules are switched off because they clash with how slides are written:
+slides may repeat a title, skip heading levels, end a title with punctuation,
+show a `$` prompt before a command, and use bare URLs.
+
+### Checking
+
+Run markdownlint from the repository root before you push:
+
+```console
+npx markdownlint-cli2 "**/*.md" "!node_modules"
+```
+
+Add `--fix` to repair most problems automatically, then review the diff before
+committing. Run it from the root, or it will not find `.markdownlint.json`.
+
 ## Typography
 
 Slide sources should be plain ASCII. Slidev enables markdown-it's `typographer`,
@@ -92,7 +121,7 @@ real character:
 | `(c)`, `(tm)`, `(r)` | copyright, trademark, registered |
 
 Slidev also overrides markdown-it's `quotes` so that quotes stay straight. A
-pasted curly apostrophe therefore renders *differently* from every ASCII
+pasted curly apostrophe therefore renders _differently_ from every ASCII
 apostrophe around it.
 
 These characters almost always arrive by copy-paste from a PDF, Word or a
