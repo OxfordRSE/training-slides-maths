@@ -4,7 +4,10 @@
 // sessions without one (e.g. the introduction) span the full width above.
 // Each row shows the weekday, date and start time together in one label.
 // A session's optional `background` colour shades its row, e.g. to group topics.
-const schedule = __EVENT_SCHEDULE__
+
+// Defined by addon/setup/vite-plugins.ts from the event YAML
+// eslint-disable-next-line no-undef
+const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 const props = defineProps({
   highlight: { type: String, default: '' },
 })

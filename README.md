@@ -44,7 +44,8 @@ The same slides can be built in two ways:
 TRAINING_EVENT='michaelmas-2026' npx slidev --open --entry presentations/00_intro/slides.md
 ```
 
-An event file looks like this (`feedback_form` is optional, and is either a
+An event file is the single source of truth for which lectures the event uses
+and when. It looks like this (`feedback_form` is optional, and is either a
 Microsoft Forms ID or a full URL):
 
 ```yaml
@@ -54,13 +55,22 @@ enrolment_key: dtc-maths-26
 feedback_form: jmJq6KWfMA
 sessions:
   - date: "02 Nov"
-    slot: morning
-    topic: Introduction
+    slot: "09:30"
+    deck: 01_graphs
+    week: 1
   - date: "02 Nov"
-    slot: morning
-    topic: Graphs
+    slot: "14:00"
+    deck: 02_indices_logs
     week: 1
 ```
+
+Each session's `deck` is the name of its directory in `presentations/`. Its
+`topic`, shown on the orientation slide, defaults to the lecture's title as the
+landing page shows it (`title` in `presentations/index-metadata.yaml`, else the
+deck's own `title`). Set `topic` to show something else, or on its own for a
+session without slides, such as a drop-in. `slot` is the start time, as
+`HH:MM`. The build fails if a session names a deck that does not exist, or has
+neither a `deck` nor a `topic`.
 
 `name` and `enrolment_key` are the event's name and key on train.rse.ox.ac.uk,
 shown in the epilogue's enrolment walkthrough. The key appears on the published
