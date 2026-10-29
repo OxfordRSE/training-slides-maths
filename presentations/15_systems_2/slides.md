@@ -16,32 +16,9 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation-weeks
-title: Orientation
-highlight: Systems of differential equations 2
-training-event-only: true
-```
-
----
 layout: default
 ---
 
 # Systems of differential equations 2
 
 Placeholder: content to be ported from `lecture-15-systems2.ipynb`.
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

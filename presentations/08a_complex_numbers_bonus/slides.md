@@ -16,32 +16,9 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation-weeks
-title: Orientation
-highlight: Complex numbers
-training-event-only: true
-```
-
----
 layout: default
 ---
 
 # Complex numbers (bonus)
 
 Placeholder: content to be ported from `lecture-08a-bonus-complex-numbers.ipynb`.
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

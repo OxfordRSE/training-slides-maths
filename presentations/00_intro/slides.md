@@ -5,6 +5,7 @@ addons:
   - ../addon
 layout: cover
 date: first-session
+orientation-slide: false
 authors:
   - Fergus Cooper
 highlighter: shiki
@@ -110,7 +111,6 @@ No lectures on Wednesdays.
 ```yaml
 layout: orientation-weeks
 title: Timetable
-highlight: Introduction
 training-event-only: true
 ```
 
@@ -153,17 +153,3 @@ You will be continuously assessed through the course, based on the following cri
 Please interact regularly with course demonstrators.
 
 At least one question from Week 2 will be submitted and assessed, but more on that next week.
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```
