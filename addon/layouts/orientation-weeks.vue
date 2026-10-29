@@ -2,11 +2,16 @@
 // Variant of the oxrse `orientation` layout for a two-week course.
 // Sessions with a `week` field are grouped into one column per week;
 // sessions without one (e.g. the introduction) span the full width above.
+// The deck's own sessions (`deck`, the deck's slug) are outlined. An event
+// build adds this slide to each deck (see addon/setup/preparser.ts).
 // Each row shows the weekday, date and start time together in one label.
 // A session's optional `background` colour shades its row, e.g. to group topics.
-const schedule = __EVENT_SCHEDULE__
+
+// Defined by addon/setup/vite-plugins.ts from the event YAML
+// eslint-disable-next-line no-undef
+const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 const props = defineProps({
-  highlight: { type: String, default: '' },
+  deck: { type: String, default: '' },
 })
 
 const sessions = schedule.sessions || []
@@ -28,7 +33,7 @@ function day(s) {
   <div class="slidev-layout orientation-weeks">
     <table v-if="fullWidth.length" class="schedule-table full-width">
       <tbody>
-        <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: s.topic === props.highlight, shaded: s.background }" :style="{ background: s.background }">
+        <tr v-for="(s, i) in fullWidth" :key="i" :class="{ highlighted: props.deck && s.deck === props.deck, shaded: s.background }" :style="{ background: s.background }">
           <td class="session-when"><span class="when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></span></td>
           <td class="session-topic">{{ s.topic }}</td>
         </tr>
@@ -39,7 +44,7 @@ function day(s) {
         <h3>Week {{ w.week }}</h3>
         <table class="schedule-table">
           <tbody>
-            <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: s.topic === props.highlight, shaded: s.background }" :style="{ background: s.background }">
+            <tr v-for="(s, i) in w.sessions" :key="i" :class="{ highlighted: props.deck && s.deck === props.deck, shaded: s.background }" :style="{ background: s.background }">
               <td class="session-when"><span class="when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></span></td>
               <td class="session-topic">{{ s.topic }}</td>
             </tr>

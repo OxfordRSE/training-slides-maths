@@ -4,7 +4,8 @@
 import { computed } from 'vue'
 import ThemeCover from 'slidev-theme-oxrse/layouts/cover.vue'
 
-const schedule = __EVENT_SCHEDULE__
+// eslint-disable-next-line no-undef
+const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 const props = defineProps({
   date: { type: String, default: '' },
 })
@@ -12,7 +13,7 @@ const props = defineProps({
 const date = computed(() => {
   if (props.date !== 'first-session')
     return props.date
-  const first = schedule.sessions?.[0]
+  const first = Array.isArray(schedule.sessions) ? schedule.sessions[0] : undefined
   return first ? `${first.date} ${schedule.year}` : ''
 })
 </script>

@@ -16,32 +16,9 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation-weeks
-title: Orientation
-highlight: Linear algebra 2
-training-event-only: true
-```
-
----
 layout: default
 ---
 
 # Linear algebra 2
 
 Placeholder: content to be ported from `lecture-13-linear-algebra-2.ipynb`.
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

@@ -3,12 +3,9 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
-import YAML from 'yaml'
+import { humanize, presentationsDir, readCourseMetadata, readDeckHeadmatter, readEvent, repoRoot } from './events.mjs'
 
-const repoRoot = process.cwd()
 const distDir = path.join(repoRoot, 'dist')
-const presentationsDir = path.join(repoRoot, 'presentations')
-const courseMetadataPath = path.join(repoRoot, 'presentations', 'index-metadata.yaml')
 const logoSource = path.join(
   repoRoot,
   'node_modules',
@@ -29,28 +26,8 @@ const fontFiles = [
   ['jetbrains-mono', 'jetbrains-mono-latin-wght-normal.woff2'],
 ]
 
-async function readCourseMetadata() {
-  const contents = await fs.readFile(courseMetadataPath, 'utf8')
-  const parsed = YAML.parse(contents)
-  return parsed && typeof parsed === 'object' ? parsed : {}
-}
-
-async function readPresentationFrontmatter(slug) {
-  const file = path.join(presentationsDir, slug, 'slides.md')
-  const contents = await fs.readFile(file, 'utf8')
-  const frontmatterMatch = contents.match(/^---\n([\s\S]*?)\n---/)
-  return frontmatterMatch ? (YAML.parse(frontmatterMatch[1]) ?? {}) : {}
-}
-
-function humanize(slug) {
-  return slug
-    .split('_')
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ')
-}
-
 async function getPresentationEntries() {
-  const courseMetadata = await readCourseMetadata()
+  const courseMetadata = readCourseMetadata()
   const dirEntries = await fs.readdir(presentationsDir, { withFileTypes: true })
   const presentationDirs = new Set(
     dirEntries
@@ -64,10 +41,10 @@ async function getPresentationEntries() {
     ...[...presentationDirs].filter(slug => !metadataSlugs.has(slug)).sort(),
   ]
 
-  const entries = await Promise.all(slugs.map(async (slug) => {
+  return slugs.map((slug) => {
     const metadata = courseMetadata?.[slug] ?? {}
     const hasSlides = presentationDirs.has(slug)
-    const frontmatter = hasSlides ? await readPresentationFrontmatter(slug) : {}
+    const frontmatter = hasSlides ? readDeckHeadmatter(slug) : {}
     const href = hasSlides ? `./${slug}/index.html` : (metadata.href || null)
     const available = metadata.available ?? Boolean(href)
 
@@ -80,30 +57,8 @@ async function getPresentationEntries() {
       href,
       available,
       ctaLabel: available ? 'Open presentation' : 'Slides not available',
-      coreOnly: Boolean(metadata.coreOnly),
     }
-  }))
-  return process.env.TRAINING_EVENT ? entries.filter(p => !p.coreOnly) : entries
-}
-
-async function readEventSchedule() {
-  const trainingEvent = process.env.TRAINING_EVENT
-  if (!trainingEvent)
-    return null
-
-  const eventPath = path.join(repoRoot, 'events', `${trainingEvent}.yaml`)
-  try {
-    const contents = await fs.readFile(eventPath, 'utf8')
-    const parsed = YAML.parse(contents)
-    return {
-      name: humanize(trainingEvent.replace(/-/g, '_')),
-      year: parsed?.year,
-      sessions: Array.isArray(parsed?.sessions) ? parsed.sessions : [],
-    }
-  }
-  catch {
-    return null
-  }
+  })
 }
 
 function buildPlausibleSnippet() {
@@ -141,8 +96,9 @@ function sessionStart(session, year) {
   return `${year}-${mm}-${day.padStart(2, '0')}T${session.slot}`
 }
 
+// A deck's session is the first one that names it as its `deck`
 function sessionFor(presentation, eventSchedule) {
-  return eventSchedule?.sessions.find(s => s.topic === presentation.title)
+  return eventSchedule?.sessions.find(s => s.deck === presentation.slug)
 }
 
 // Highlights the current session and scrolls to its group. A session becomes
@@ -176,8 +132,8 @@ const CURRENT_SESSION_SCRIPT = `
   </script>
 `
 
-// In an event build, cards whose title matches a session topic show its date and
-// time; the others keep an empty line so that every card is the same height
+// In an event build, cards for a session's deck show its date and time; the
+// others keep an empty line so that every card is the same height
 function renderWhen(presentation, eventSchedule) {
   if (!eventSchedule)
     return ''
@@ -671,7 +627,7 @@ ${eventSchedule ? CURRENT_SESSION_SCRIPT : ''}</body>
 
 async function main() {
   const presentations = await getPresentationEntries()
-  const eventSchedule = await readEventSchedule()
+  const eventSchedule = readEvent()
 
   await fs.mkdir(logoDir, { recursive: true })
   await fs.copyFile(logoSource, logoDest)

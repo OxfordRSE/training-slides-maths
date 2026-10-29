@@ -16,32 +16,9 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation-weeks
-title: Orientation
-highlight: Differential equations 2
-training-event-only: true
-```
-
----
 layout: default
 ---
 
 # Differential equations 2
 
 Placeholder: content to be ported from `lecture-10-differential-eq2.ipynb`.
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

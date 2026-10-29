@@ -4,9 +4,10 @@
 Each lecture is a single `presentations/<slug>/slides.md`.
 Shared pieces live alongside:
 
-- `addon/`: a local Slidev addon loaded by every lecture. It holds the
-  `training-event-only` hook and shared components such as `FeedbackQr`.
-- `epilogue/`: slides appended to every lecture in an event build.
+- `addon/`: a local Slidev addon loaded by every lecture. It adds the event
+  slides in an event build, and holds shared layouts and components such as
+  `FeedbackQr`.
+- `epilogue/`: closing slides added to a lecture in an event build.
 - `events/`: one YAML file per course run (see below).
 
 ## Slidev build
@@ -34,17 +35,19 @@ To build every presentation and the index page into `dist/`:
 The same slides can be built in two ways:
 
 - **Event build**, for the course itself. Set `TRAINING_EVENT` to the basename of a
-  YAML file in `events/`. Slides marked `training-event-only: true` (the
-  orientation slide and the feedback / epilogue slides) are included, using the
-  dates and feedback form from that file.
+  YAML file in `events/`. Each lecture in that event gets the event's slides
+  (see below), using the dates and feedback form from that file.
 - **Generic build**, for the rest of the year. Leave `TRAINING_EVENT` unset and
-  those slides are dropped.
+  no event slides are added.
+
+Both builds build every lecture.
 
 ```console
 TRAINING_EVENT='michaelmas-2026' npx slidev --open --entry presentations/00_intro/slides.md
 ```
 
-An event file looks like this (`feedback_form` is optional, and is either a
+An event file is the single source of truth for which lectures the event uses
+and when. It looks like this (`feedback_form` is optional, and is either a
 Microsoft Forms ID or a full URL):
 
 ```yaml
@@ -54,22 +57,57 @@ enrolment_key: dtc-maths-26
 feedback_form: jmJq6KWfMA
 sessions:
   - date: "02 Nov"
-    slot: morning
-    topic: Introduction
+    slot: "09:30"
+    deck: 01_graphs
+    week: 1
   - date: "02 Nov"
-    slot: morning
-    topic: Graphs
+    slot: "14:00"
+    deck: 02_indices_logs
     week: 1
 ```
+
+Each session's `deck` is the name of its directory in `presentations/`. Its
+`topic`, shown on the orientation slide, defaults to the lecture's title as the
+landing page shows it (`title` in `presentations/index-metadata.yaml`, else the
+deck's own `title`). Set `topic` to show something else, or on its own for a
+session without slides, such as a drop-in. `slot` is the start time, as
+`HH:MM`. The build fails if a session names a deck that does not exist, or has
+neither a `deck` nor a `topic`.
 
 `name` and `enrolment_key` are the event's name and key on train.rse.ox.ac.uk,
 shown in the epilogue's enrolment walkthrough. The key appears on the published
 slides of an event build.
 
+#### Slides added in an event build
+
+Lectures do not contain any event slides themselves. In an event build, each
+lecture that is one of the event's sessions, or has `date: first-session` (the
+introduction), gets these from `addon/setup/preparser.ts`:
+
+- after the cover, the orientation slide: the event's timetable, with the
+  lecture's own session outlined;
+- at the end, a questions slide (the `questions` layout from `addon/layouts/`),
+  then the feedback slide (`epilogue/feedback.md`), then the animated
+  walkthroughs of train.rse.ox.ac.uk (`epilogue/train-rse.md`).
+
+A lecture leaves any of them out, except the questions slide, with these in
+its headmatter:
+
+```yaml
+orientation-slide: false
+feedback-slide: false
+train-rse-walkthrough: false
+```
+
+The introduction uses `orientation-slide: false` and places its own timetable
+slide after the logistics. A lecture that is not one of the event's sessions,
+such as the bonus complex numbers lecture, gets no event slides. Any other
+slide can be shown only in an event build by giving it
+`training-event-only: true` in its frontmatter.
+
 The orientation slide uses the `orientation-weeks` layout from `addon/layouts`.
 It shows one column per `week`, and sessions without a `week` span the full
-width above them. Each lecture's `highlight` must exactly match a `topic`.
-A session may also set `background: "#eef2f6"` to shade its row, for example
+width above them. A session may also set `background: "#eef2f6"` to shade its row, for example
 to group the sessions of one topic. Quote the colour, since `#` starts a YAML
 comment.
 
