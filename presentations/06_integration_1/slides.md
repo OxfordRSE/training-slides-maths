@@ -18,6 +18,15 @@ fonts:
 ---
 
 ---
+
+# Why integration?
+
+We often know the _rate_ at which something happens (e.g. how quickly a product is made), and want to know the total amount over some time.
+Integration lets us work this out.
+
+It is also how we find the area under a curve, and, as we will see, it reverses differentiation.
+
+---
 layout: exercise
 ---
 
@@ -70,7 +79,7 @@ We can use the same trick as when differentiating: let $\delta x$ tend to $0$:
 
 $$A = \lim_{\delta x \to 0}\sum y(x_i)\,\delta x = \int\limits^{2}_{1} y\,dx$$
 
-$\int$ is the old English `S` and stands for the phrase "Sum Over".
+$\int$ is an elongated S, for the Latin _summa_ (sum).
 
 This process is called **integration**.
 
@@ -84,7 +93,7 @@ This process is called **integration**.
 
 # Calculating the integral
 
-Let us 'invent' a function $F(x)$ that gives the area from $0$ to $x$.
+Let us 'invent' a function $F(x)$ that gives the area from some fixed point to $x$.
 Then $A = F(2) - F(1)$.
 
 With this (imagined) function, we can find the area of one of our tiny steps **exactly**, as
@@ -185,16 +194,16 @@ Consider now the functions:
 
 $$
 \begin{aligned}
-y&=x^2+7 &&\text{(3)} \\
-y&=x^2-100 &&\text{(4)}
+y&=x^2+7 &&\text{(1)} \\
+y&=x^2-100 &&\text{(2)}
 \end{aligned}
 $$
 
-Differentiating (3):
+Differentiating (1):
 
 $$\frac{dy}{dx}=2x$$
 
-Differentiating (4):
+Differentiating (2):
 
 $$\frac{dy}{dx}=2x$$
 
@@ -204,7 +213,7 @@ $$\frac{dy}{dx}=2x$$
 
 This implies that the integral:
 
-$$y=\int 2x\,dx=x^2 + \kappa \qquad \text{where } \kappa \text{ is an unknown constant}$$
+$$y=\int 2x\,dx=x^2 + C \qquad \text{where } C \text{ is an unknown constant}$$
 
 An integral without limits is called an **indefinite integral**.
 
@@ -225,15 +234,15 @@ $$x^{2}$$
 
 Recall that:
 
-$$\frac{d}{dx}\ln x=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln x + \kappa$$
+$$\frac{d}{dx}\ln x=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln |x| + C$$
 
-This constant $\kappa$ can be written as:
+This constant $C$ can be written as:
 
-$$\kappa=\ln B$$
+$$C=\ln B$$
 
 where $B$ is another constant. Thus:
 
-$$\int \frac{1}{x}\,dx = \ln x + \kappa=\ln x +\ln B =\ln (B x)$$
+$$\int \frac{1}{x}\,dx = \ln |x| + C=\ln |x| +\ln B =\ln (B |x|)$$
 
 ---
 
@@ -389,7 +398,7 @@ Integral version of the chain rule.
 
 Consider:
 
-$$\int_{a}^{b} (2x + 3)^4\,dx \qquad \text{(7)}$$
+$$\int_{a}^{b} (2x + 3)^4\,dx \qquad \text{(3)}$$
 
 Multiplying this out and then integrating it would be very tedious.
 Try a substitution instead:
@@ -402,7 +411,7 @@ $$u=2x+3 \quad\Longleftrightarrow\quad x=\frac{1}{2}(u-3)=\frac{u}{2}-\frac{3}{2
 
 <v-click>
 
-Substitute into equation (7) above:
+Substitute into equation (3) above:
 
 $$
 \begin{aligned}
@@ -433,7 +442,7 @@ $$
 
 # Substitution: example 2
 
-$$\int_{a}^{b} (3-4x)^{-5}\,dx \qquad \text{(8)}$$
+$$\int_{a}^{b} (3-4x)^{-5}\,dx \qquad \text{(4)}$$
 
 <v-click>
 
@@ -445,7 +454,7 @@ $$u=3-4x \quad\Longleftrightarrow\quad x=\frac{1}{4}(3-u)=\frac{3}{4}-\frac{u}{4
 
 <v-click>
 
-Substitute into equation (8) above:
+Substitute into equation (4) above:
 
 $$
 \begin{aligned}
