@@ -179,7 +179,7 @@ $$
 
 ---
 
-# Conservation: eliminating $e$
+# Conservation: eliminating e
 
 However the enzyme is recycled: it is used in the complex and then released.
 This means that $e + c = e_{\text{tot}}$ where $e_{\text{tot}}$ is constant.
@@ -262,7 +262,13 @@ $$
 \end{aligned}
 $$
 
-has $x$-nullclines (blue) at $x=0$ and $1-x-y=0$; and $y$-nullclines (orange) at $y=0$ and $2-3x-y=0$.
+has $x$-nullclines (blue) at
+
+$$x=0 \quad\text{and}\quad 1-x-y=0;$$
+
+and $y$-nullclines (orange) at
+
+$$y=0 \quad\text{and}\quad 2-3x-y=0.$$
 
 Nullcline intersections give us the fixed points.
 Nullclines can be annotated to give the direction (and magnitude) of the non-zero derivative.
@@ -275,7 +281,7 @@ Nullclines can be annotated to give the direction (and magnitude) of the non-zer
 
 # Phase plane
 
-<PlotFigure name="phase-plane" :height="440" />
+<PlotFigure name="phase-plane" :height="440" :max-width="460" />
 
 ---
 
