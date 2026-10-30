@@ -4,6 +4,8 @@ title: Indices, logs, and exponentials
 addons:
   - ../addon
 layout: cover
+authors:
+  - Fergus Cooper
 highlighter: shiki
 drawings:
   persist: false

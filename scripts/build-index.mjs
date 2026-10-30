@@ -194,9 +194,9 @@ function renderHtml(presentations, eventSchedule) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oxford RSE Essential Maths</title>
+  <title>Oxford RSE Further Maths</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-  <meta name="description" content="Browse the Oxford Research Software Engineering essential maths lectures." />
+  <meta name="description" content="Browse the Oxford Research Software Engineering further maths lectures." />
 ${plausibleSnippet}  <style>
     @font-face {
       font-family: "Noto Sans";
@@ -601,7 +601,7 @@ ${plausibleSnippet}  <style>
           <img src="./assets/oxrse-logo.svg" alt="Oxford Research Software Engineering Group" />
           <div>
             <span>Oxford Research Software Engineering Group</span>
-            <strong>Essential Maths</strong>
+            <strong>Further Maths</strong>
           </div>
         </div>
         <h1 class="hero-title">Lectures</h1>

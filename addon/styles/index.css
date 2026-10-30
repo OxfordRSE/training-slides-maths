@@ -17,6 +17,12 @@
   opacity: 1;
 }
 
+/* The cover names the lecturer, so leave out the theme's group line under the
+   title (the logo already shows the group) */
+.oxrse-cover-group {
+  display: none;
+}
+
 /* Smaller code for blocks too wide for their column: wrap the block in <div class="code-sm"> */
 .code-sm {
   --slidev-code-font-size: 10px;

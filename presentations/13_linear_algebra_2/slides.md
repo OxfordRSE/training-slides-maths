@@ -4,6 +4,8 @@ title: Linear algebra 2
 addons:
   - ../addon
 layout: cover
+authors:
+  - Fergus Cooper
 highlighter: shiki
 drawings:
   persist: false
