@@ -10,6 +10,13 @@
   column-gap: 2rem;
 }
 
+/* The theme fades the paragraph after a slide's h1 as a subtitle, but the h1 is
+   hidden (it is shown in the header bar), so that paragraph is ordinary content */
+.slidev-layout:not(.cover) h1:first-of-type + p {
+  margin-top: 0;
+  opacity: 1;
+}
+
 /* Smaller code for blocks too wide for their column: wrap the block in <div class="code-sm"> */
 .code-sm {
   --slidev-code-font-size: 10px;

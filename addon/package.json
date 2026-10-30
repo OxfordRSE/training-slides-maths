@@ -1,5 +1,6 @@
 {
   "name": "slidev-addon-oxrse-training-only-slides",
   "version": "0.0.1",
+  "type": "module",
   "description": "Slidev addon for OxRSE training event to toggle 'disabled' flag in the frontmatter"
 }

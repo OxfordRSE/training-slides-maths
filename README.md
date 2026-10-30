@@ -115,6 +115,63 @@ The deploy workflow reads `TRAINING_EVENT` from the repository variable of the
 same name (Settings > Secrets and variables > Actions > Variables). Set it
 before the course and delete it afterwards, then re-run the deploy workflow.
 
+## Figures
+
+Plots are drawn in the browser with [Observable Plot](https://observablehq.com/plot/),
+so each one is a few lines of JavaScript that are easy to change, and can have
+sliders.
+
+Each figure is one file in the deck's `plots/` directory. Its default export is
+a function from parameters to Plot options. Data shared by several figures goes
+in `plots/data/`. For example, a cut-down `presentations/01_graphs/plots/enzyme-trendline.js`:
+
+```js
+import * as Plot from '@observablehq/plot'
+import { blue, dot, line, orange } from '#plots/style.js'
+import data from './data/enzyme.js'
+
+// One slider per parameter, starting at `value`; `color` is the colour of what it moves
+export const controls = {
+  m: { min: 2, max: 4, step: 0.05, value: 3, color: orange },
+  c: { min: 0, max: 10, step: 0.2, value: 5, color: orange },
+}
+
+export default ({ m, c }) => ({
+  title: 'Linear Trend with Trendline',
+  x: { label: 'X = 1/S' },
+  y: { label: 'Y = 1/V' },
+  marks: [
+    Plot.dot(data, { ...dot, x: d => 1 / d.S, y: d => 1 / d.V, fill: blue }),
+    Plot.line([1.25, 5], { ...line, x: X => X, y: X => m * X + c, stroke: orange }),
+  ],
+})
+```
+
+Show it on a slide by name. It fills the width available, and gets a slider
+under its axes for each of its `controls` (add `:sliders="false"` to leave them
+out):
+
+```md
+<PlotFigure name="enzyme-trendline" />
+```
+
+The shared pieces are in `addon/plots/`, imported as `#plots/...`:
+
+- `render.js`: the house style, chosen to read from the back of a lecture room.
+  Change the look of every figure here, not in individual figures.
+- `style.js`: colour-blind-safe colours, and `line`, `dot` and `label` styles to
+  spread into marks.
+- `marks.js`: ready-made marks, such as a line's live equation.
+- `numerics.js` and `random.js`: numpy-like helpers. Random data is seeded, so it
+  comes out the same on every build.
+
+CI draws every figure in Node, at its defaults and at both ends of each slider,
+and fails on any figure that throws, draws NaN or draws nothing. To run it locally:
+
+```console
+npm run check:figures
+```
+
 ## Markdown style
 
 CI lints every Markdown file, slides included, with
