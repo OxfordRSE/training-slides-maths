@@ -19,6 +19,18 @@ fonts:
 
 ---
 
+# Why complex numbers?
+
+Some equations, like $x^2+1=0$, have no solutions among the real numbers.
+Complex numbers give every polynomial a full set of roots.
+
+We will meet them again when we study systems of differential equations.
+There, complex roots tell us that the system oscillates (e.g. populations of predators and prey that rise and fall in turn).
+
+The link is $e^{i\theta}=\cos\theta+i\sin\theta$, which we show at the end of this lecture.
+
+---
+
 # Imaginary numbers
 
 **The imaginary number $i$:**
@@ -60,7 +72,7 @@ layout: two-cols
 # Complex numbers: the complex plane
 
 - We can represent any complex number $z=a+bi$ as the point $(a,b)$ in the complex plane.
-- The coordinates $(a,b)$ are usually called the _cartesian_ coordinates for $z$. (Named after the mathematician and philosopher Rene Descartes).
+- The coordinates $(a,b)$ are usually called the _Cartesian_ coordinates for $z$. (Named after the mathematician and philosopher René Descartes).
 - In this plane, the real numbers lie on the horizontal axis. We usually refer to the horizontal axis of $\mathbb{C}$ as the **real axis**.
 
 ::right::
@@ -71,15 +83,13 @@ layout: two-cols
 
 # Complex conjugates
 
-- The complex plane $\mathbb{C}$ contain **all** of the roots of **every** polynomial.
+- The complex plane $\mathbb{C}$ contains **all** of the roots of **every** polynomial.
 
-E.g.
-
-$$x^2-8x+25 = 0 =ax^2 +bx +c \iff x= \frac{-b \pm\sqrt{b^2-4ac}}{2a}$$
+E.g. for $ax^2+bx+c=0$, $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, so for $x^2-8x+25=0$:
 
 <v-click>
 
-$$=\frac{8\pm\sqrt{64-100}}{2}=\frac{8\pm\sqrt{-36}}{2}=\frac{8\pm 6i}{2}=4\pm3i$$
+$$x=\frac{8\pm\sqrt{64-100}}{2}=\frac{8\pm\sqrt{-36}}{2}=\frac{8\pm 6i}{2}=4\pm3i$$
 
 </v-click>
 
@@ -94,7 +104,7 @@ $$=\frac{8\pm\sqrt{64-100}}{2}=\frac{8\pm\sqrt{-36}}{2}=\frac{8\pm 6i}{2}=4\pm3i
 
 # Complex conjugates in SymPy
 
-We can also use Sympy's `solve` method to solve polynomials:
+We can also use SymPy's `solve` method to solve polynomials:
 
 ```python
 x = sp.symbols('x')
@@ -107,7 +117,7 @@ $$\left[ 4 - 3 i, \  4 + 3 i\right]$$
 
 # Modulus (size) of a complex number
 
-- The distance to a point on the complex plane from 0 is called its **modulus**, and we find this by calculating the hypotenuse of the triange with base $\Re(z)$ and height $\Im(z)$:
+- The distance to a point on the complex plane from 0 is called its **modulus**, and we find this by calculating the hypotenuse of the triangle with base $\Re(z)$ and height $\Im(z)$:
 
 E.g. The modulus of $4\pm3i$ is $\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$
 
@@ -143,7 +153,7 @@ print(f'x = {x}     Re(x) = {x.real}     Im(x) = {x.imag}     |x| = {abs(x)}')
 x = (1+2j)     Re(x) = 1.0     Im(x) = 2.0     |x| = 2.23606797749979
 ```
 
-Complex numbers using `Sympy`:
+Complex numbers using `SymPy`:
 
 ```python
 x = 1 + 2 * sp.I
@@ -204,7 +214,7 @@ print((5 + 6j) - (1 - 1j))
 
 # Multiplication
 
-Multiplication is not quite so convenient in cartesian coordinates:
+Multiplication is not quite so convenient in Cartesian coordinates:
 
 $$
 \begin{aligned}
@@ -238,7 +248,7 @@ print((5 + 6j) * (1 - 1j))
 
 # Division
 
-Division is even more awkward in cartesian coordinates: we have to multiply the numerator and the denominator by the complex conjugate of the denominator.
+Division is even more awkward in Cartesian coordinates: we have to multiply the numerator and the denominator by the complex conjugate of the denominator.
 
 $$
 \begin{aligned}
@@ -260,11 +270,11 @@ $$\frac{-4+7i}{2+3i}=$$
 <v-click>
 
 ```python
-print((-4 + 7*sp.I) / (2 + 3*sp.I))
+print(sp.simplify((-4 + 7*sp.I) / (2 + 3*sp.I)))
 ```
 
 ```text
-(-4 + 7*I)*(2 - 3*I)/13
+1 + 2*I
 ```
 
 </v-click>
@@ -282,7 +292,7 @@ It's often convenient to represent the complex number $z = a + bi$ in terms of i
 layout: two-cols
 ---
 
-# Polar coordinates: cartesian and polar plots
+# Polar coordinates: Cartesian and polar plots
 
 <PlotFigure name="cartesian" />
 
@@ -292,9 +302,9 @@ layout: two-cols
 
 ---
 
-# Connection between cartesian and polar
+# Connection between Cartesian and polar
 
-Let $z=x+iy$. If we are given the polar coordinates of $z$ and want to express the cartesian coordinates use
+Let $z=x+iy$. If we are given the polar coordinates of $z$ and want to express the Cartesian coordinates use
 
 $$
 \begin{gathered}
@@ -306,7 +316,7 @@ $$
 
 <v-click>
 
-If we are given the cartesian coordinates and want to find the polar coordinates use:
+If we are given the Cartesian coordinates and want to find the polar coordinates use:
 
 $$r=\text{mod}(z)=|z|=\sqrt{x^2+y^2}$$
 
@@ -314,10 +324,10 @@ $$r=\text{mod}(z)=|z|=\sqrt{x^2+y^2}$$
 
 ---
 
-# Connection between cartesian and polar
+# Connection between Cartesian and polar
 
 $$
-\theta=\text{arg}(z)=\tan^{-1}\frac{y}{x}=
+\theta=\text{arg}(z)=
 \begin{cases}\pi/2, & \text{if } x=0,y>0 \\
 -\pi/2, & \text{if } x=0,y<0 \\
 \arctan\left(\frac{y}{x}\right), & \text{if } x>0\\
@@ -337,7 +347,7 @@ theta=0 and positive theta goes in an anticlockwise sense around the xy plane.
 
 # Polar coordinates: example 1
 
-- Find the cartesian coordinates for the complex number $z$ with polar coordinates $r=2$ and $\theta=\pi/6$.
+- Find the Cartesian coordinates for the complex number $z$ with polar coordinates $r=2$ and $\theta=\pi/6$.
 
 <v-click>
 
@@ -382,7 +392,7 @@ $$\text{arg}(z)=\theta=\arctan\left(\frac{y}{x}\right)=$$
 
 <v-click>
 
-$$-0.93+\pi \text{ radians}\approx 127^\circ$$
+$$\arctan(-4/3)+\pi = -0.93+\pi \approx 2.21 \text{ radians}\approx 127^\circ$$
 
 </v-click>
 
@@ -472,7 +482,7 @@ Now we compute the imaginary part of $z_1\cdot z_2$:
 $$ {1|1-2|1-3}
 \begin{aligned}
 \Im(z_1\cdot z_2) &= r_1\sin\theta_1\cdot r_2\cos\theta_2 + r_2\sin\theta_2\cdot r_1\cos\theta_1\\
-&=r_1r_2(\sin\theta_1\cos\theta_2 - \sin\theta_2\cos\theta_1)\\
+&=r_1r_2(\sin\theta_1\cos\theta_2 + \sin\theta_2\cos\theta_1)\\
 &=r_1r_2\sin(\theta_1 + \theta_2)
 \end{aligned}
 $$
@@ -497,7 +507,7 @@ It is **multiplicative** in the modulus and **additive** in the argument:
 
 $$
 \begin{aligned}
-|z_1z_2|&= |z_1\cdot |z_2|\\
+|z_1z_2|&= |z_1|\cdot |z_2|\\
 \arg(z_1z_2)&=\arg (z_1)+ \arg( z_2)
 \end{aligned}
 $$
@@ -534,7 +544,7 @@ $$\frac{dz}{d\theta}=iz$$
 
 # A remarkable connection with exponentials
 
-This is a separable differential equation. Thus:
+This is a separable differential equation (we cover differential equations properly in the next lecture). Thus:
 
 $$\int\frac{dz}{iz}=\int d\theta \qquad\Rightarrow\qquad \frac{1}{i}\ln z =\theta +c \qquad\Rightarrow\qquad \ln z =i\theta +ic$$
 
@@ -546,7 +556,7 @@ $$z=e^{i\theta+ic} = e^{i\theta}\,e^{ic} = Ae^{i\theta} \qquad \text{with} \qqua
 
 When $\theta=0$, $z=1$ giving $A=1$, so:
 
-$$z=\cos\theta + i \sin\theta=e^{i\theta} \qquad \text{(1)}$$
+$$z=\cos\theta + i \sin\theta=e^{i\theta} \qquad \text{(3)}$$
 
 </v-click>
 
@@ -554,7 +564,7 @@ $$z=\cos\theta + i \sin\theta=e^{i\theta} \qquad \text{(1)}$$
 
 Similarly we can show that:
 
-$$z=\cos\theta - i \sin\theta=e^{-i\theta} \qquad \text{(2)}$$
+$$z=\cos\theta - i \sin\theta=e^{-i\theta} \qquad \text{(4)}$$
 
 </v-click>
 
@@ -562,7 +572,7 @@ $$z=\cos\theta - i \sin\theta=e^{-i\theta} \qquad \text{(2)}$$
 
 # A remarkable connection with exponentials
 
-Adding (1) and (2) and subtracting (1) and (2) gives:
+Adding (3) and (4) and subtracting (3) and (4) gives:
 
 $$\cos\theta =\frac{e^{i\theta}+ e^{-i\theta}}{2} \qquad\qquad \sin\theta =\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
 
@@ -598,7 +608,7 @@ Other important consequences:
 
 $$\left(e^{i\theta}\right)^n = e^{i\theta n}=e^{i(n\theta)}$$
 
-**5.** This result is known as **DeMoivre's Theorem**. It is usually stated in its cartesian form:
+**5.** This result is known as **de Moivre's theorem**. It is usually stated in its Cartesian form:
 
 $$(\cos\theta + i\sin\theta)^n=\cos(n\theta) + i\sin(n\theta)$$
 
