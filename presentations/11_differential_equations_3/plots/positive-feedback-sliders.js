@@ -14,7 +14,6 @@ const ss = linspace(-0.1, 2, 100)
 const dashed = { stroke: 'gray', strokeWidth: 2, strokeDasharray: '6 4' }
 
 export default ({ k1, k2 }) => ({
-  title: 'Plot of ds/dt vs s',
   x: { label: 's', domain: [-0.1, 2] },
   y: { label: 'ds/dt' },
   marks: [
