@@ -173,7 +173,7 @@ $$
 So, close to the fixed point:
 
 $$
-\left(\begin{array}{c} \dot{x} \\ \dot{y} \end{array}\right)
+\def\arraystretch{1.8}\left(\begin{array}{c} \dot{x} \\ \dot{y} \end{array}\right)
 \approx
 \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right)
 \left(\begin{array}{c} x-x^* \\ y-y^* \end{array}\right).
@@ -183,7 +183,7 @@ This means that (really close to the fixed point) we can approximate with a line
 The eigenvalues $\lambda_1$, $\lambda_2$ of the matrix
 
 $$
-J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right)
+\def\arraystretch{1.8}J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right)
 $$
 
 will determine if a small perturbation away from $(x^*, y^*)$ will decay or grow.
@@ -193,7 +193,7 @@ will determine if a small perturbation away from $(x^*, y^*)$ will decay or grow
 # Steady state classification
 
 $$
-J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right)
+\def\arraystretch{1.8}J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right)
 $$
 
 - $\lambda_1<\lambda_2<0$: stable node
@@ -208,10 +208,10 @@ The presence of negative eigenvalues determines whether a steady state is physic
 
 ---
 
-# Steady state classification: eigenvalues of $J$
+# Steady state classification: eigenvalues of J
 
 $$
-|J-\lambda I| = \left|
+\def\arraystretch{1.8}|J-\lambda I| = \left|
 \begin{array}{cc} \frac{\partial f}{\partial x}-\lambda & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y}-\lambda \end{array}\right|
 = \left(\frac{\partial f}{\partial x}-\lambda\right)\left(\frac{\partial g}{\partial y}-\lambda\right)-\frac{\partial f}{\partial y}\frac{\partial g}{\partial x}
 $$
@@ -232,7 +232,7 @@ $$
 
 # Steady state classification: trace and determinant
 
-![Steady states classified by the trace and determinant of J](./imgs/phase_diagram.svg)
+<img src="./imgs/phase_diagram.svg" alt="Steady states classified by the trace and determinant of J" class="mx-auto" style="max-height: 400px" />
 
 ---
 
@@ -258,7 +258,7 @@ $$
 # Example system: Jacobian at (0, 0)
 
 $$
-J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
+\def\arraystretch{1.8}J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
 $$
 
 <v-click>
@@ -284,7 +284,7 @@ $$
 # Example system: Jacobian at (1/2, 1/2)
 
 $$
-J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
+\def\arraystretch{1.8}J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
 $$
 
 <v-click>
@@ -292,7 +292,7 @@ $$
 At $(1/2,1/2)$:
 
 $$
-J_{(1/2,1/2)} = \left(\begin{array}{cc} -\frac{1}{2} & -\frac{1}{2} \\ -\frac{3}{2} & -\frac{1}{2} \end{array}\right)
+\def\arraystretch{1.8}J_{(1/2,1/2)} = \left(\begin{array}{cc} -\frac{1}{2} & -\frac{1}{2} \\ -\frac{3}{2} & -\frac{1}{2} \end{array}\right)
 $$
 
 </v-click>
@@ -300,7 +300,7 @@ $$
 <v-click>
 
 $$
-\left|\begin{array}{cc} -\frac{1}{2}-\lambda & -\frac{1}{2} \\ -\frac{3}{2} & -\frac{1}{2}-\lambda\end{array}\right|\quad\implies\quad\lambda_\pm = \frac{1}{2} \pm \frac{\sqrt{3}}{2} \qquad\text{(saddle)}
+\def\arraystretch{1.8}\left|\begin{array}{cc} -\frac{1}{2}-\lambda & -\frac{1}{2} \\ -\frac{3}{2} & -\frac{1}{2}-\lambda\end{array}\right|\quad\implies\quad\lambda_\pm = \frac{1}{2} \pm \frac{\sqrt{3}}{2} \qquad\text{(saddle)}
 $$
 
 </v-click>
@@ -310,7 +310,7 @@ $$
 # Example system: Jacobian at (1, 0)
 
 $$
-J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
+\def\arraystretch{1.8}J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
 $$
 
 <v-click>
@@ -336,7 +336,7 @@ $$
 # Example system: Jacobian at (0, 2)
 
 $$
-J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
+\def\arraystretch{1.8}J = \left(\begin{array}{cc} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{cc} -2x-y+1 & -x \\ -3y & -3x-2y+2 \end{array}\right)
 $$
 
 <v-click>
@@ -361,7 +361,7 @@ $$
 
 # Example system: phase plane
 
-<PlotFigure name="phase-plane" :height="440" />
+<PlotFigure name="phase-plane" :height="440" :max-width="460" />
 
 ---
 
