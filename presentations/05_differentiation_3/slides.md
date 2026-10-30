@@ -284,14 +284,36 @@ $$6 x y + 5 y^{2}$$
 
 Given $z = f(x,y)$ there are now four distinct possibilities for the second-order partial derivatives.
 
-1. With respect to $x$ twice:
-   $$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial x}\right) =\frac{\partial^2z}{\partial x^2} =z_{xx}$$
-2. With respect to $y$ twice:
-   $$\frac{\partial}{\partial y}\left(\frac{\partial z}{\partial y}\right) =\frac{\partial^2z}{\partial y^2} =z_{yy}$$
-3. First with respect to $x$, then with respect to $y$:
-   $$\frac{\partial}{\partial y}\left(\frac{\partial z}{\partial x}\right) =\frac{\partial^2z}{\partial y\partial x} =z_{xy}$$
-4. First with respect to $y$, then with respect to $x$:
-   $$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial y}\right) =\frac{\partial^2z}{\partial x\partial y} =z_{yx}$$
+<div class="grid grid-cols-2 gap-x-8">
+<div>
+
+**1.** With respect to $x$ twice:
+
+$$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial x}\right) =\frac{\partial^2z}{\partial x^2} =z_{xx}$$
+
+</div>
+<div>
+
+**2.** With respect to $y$ twice:
+
+$$\frac{\partial}{\partial y}\left(\frac{\partial z}{\partial y}\right) =\frac{\partial^2z}{\partial y^2} =z_{yy}$$
+
+</div>
+<div>
+
+**3.** First with respect to $x$, then with respect to $y$:
+
+$$\frac{\partial}{\partial y}\left(\frac{\partial z}{\partial x}\right) =\frac{\partial^2z}{\partial y\partial x} =z_{xy}$$
+
+</div>
+<div>
+
+**4.** First with respect to $y$, then with respect to $x$:
+
+$$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial y}\right) =\frac{\partial^2z}{\partial x\partial y} =z_{yx}$$
+
+</div>
+</div>
 
 ---
 
