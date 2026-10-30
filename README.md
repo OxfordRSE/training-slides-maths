@@ -165,6 +165,13 @@ The shared pieces are in `addon/plots/`, imported as `#plots/...`:
 - `numerics.js` and `random.js`: numpy-like helpers. Random data is seeded, so it
   comes out the same on every build.
 
+CI draws every figure in Node, at its defaults and at both ends of each slider,
+and fails on any figure that throws, draws NaN or draws nothing. To run it locally:
+
+```console
+npm run check:figures
+```
+
 ## Markdown style
 
 CI lints every Markdown file, slides included, with

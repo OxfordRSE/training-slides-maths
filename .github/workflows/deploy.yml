@@ -32,6 +32,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Draws every figure in Node, at its defaults and at the ends of each
+      # slider, to catch a broken figure before building the decks
+      - name: Check figures
+        run: npm run check:figures
+
       # The event-only slides (orientation, epilogue animations) are not in the
       # generic build, so build every event too, to catch breakage early. This
       # runs first because the deploy build below starts by clearing dist/.
