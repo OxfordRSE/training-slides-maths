@@ -19,7 +19,7 @@ fonts:
 
 # Polynomials on the complex plane
 
-<PlotFigure name="polynomial-roots" />
+<PlotFigure name="polynomial-roots" :height="420" :max-width="400" />
 
 ---
 

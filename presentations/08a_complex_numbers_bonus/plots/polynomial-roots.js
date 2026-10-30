@@ -24,7 +24,8 @@ export default ({ c, p }) => ({
   x: { label: 'Real axis', domain: [-1.5, 1.5] },
   y: { label: 'Imaginary axis', domain: [-1.5, 1.5] },
   // One colour per contour band, whose legend (unlike a continuous one) needs
-  // no canvas; only the whole numbers are labelled, with no tick marks
+  // no canvas; only the whole numbers are labelled, with no tick marks, at the
+  // house legend size (a 12px bar over 16px labels, in the legend's 32px row)
   color: {
     type: 'threshold',
     scheme: 'viridis',
@@ -32,6 +33,11 @@ export default ({ c, p }) => ({
     legend: true,
     tickSize: 0,
     tickFormat: d => Number.isInteger(d) ? d : '',
+    width: 300,
+    height: 32,
+    marginTop: 0,
+    marginBottom: 20,
+    style: { fontSize: '16px' },
   },
   marks: [
     Plot.contour({
