@@ -205,7 +205,8 @@ Keep every lecture consistent:
   ```
 
 - **Code** is a `python` block, followed by its output in a `text` block with no
-  `>>>` prompts. Python blocks get a small Python logo automatically.
+  `>>>` prompts. Python blocks get a "Python" tab with the Python logo
+  automatically.
 - **Reveal on click** (`v-click`, or `v-clicks` for a list): derivations line by
   line, lists that build an argument one item at a time, answers, and a figure
   that follows its lead-in text. Definitions, reference lists, rules and slides

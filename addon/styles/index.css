@@ -23,19 +23,27 @@
   --slidev-code-line-height: 15px;
 }
 
-/* A small Python logo in the corner of every Python code block */
+/* A "Python" tab with the Python logo on the top-left edge of every Python code
+   block, clear of the copy button in the top-right corner */
 .slidev-code:has(> code.language-python) {
   position: relative;
+  overflow: visible;
+  margin-top: 1.4rem;
 }
 
 .slidev-code:has(> code.language-python)::after {
-  content: '';
+  content: 'Python';
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: url('./python-logo.svg') center / contain no-repeat;
+  top: -1.3rem;
+  left: 0;
+  height: 1.3rem;
+  padding: 0 0.5rem 0 1.6rem;
+  border-radius: 4px 4px 0 0;
+  background: #f2f2f2 url('./python-logo.svg') 0.4rem center / 0.9rem no-repeat;
+  font-family: var(--slidev-code-font-family, monospace);
+  font-size: 11px;
+  line-height: 1.3rem;
+  color: #555;
 }
 
 /* A derivation revealed line by line with maths line highlighting, e.g.
