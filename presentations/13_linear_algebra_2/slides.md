@@ -45,21 +45,23 @@ np.linalg.inv(A)
 ```text
 array([[ 0.2       ,  0.13333333,  0.        ],
        [-0.2       ,  0.2       ,  1.        ],
-       [ 0.2       , -0.2       ,  0.        ]])
+       [ 0.2       , -0.2       , -0.        ]])
 ```
 
 </v-click>
 
-<v-click>
+---
+
+# Using SymPy to calculate the inverse
+
+$$A = \left(\begin{matrix}3&0&2\\ 3&0&-3\\ 0&1&1\end{matrix}\right)$$
 
 ```python
 A = sp.Matrix([[3, 0, 2], [3, 0, -3], [0, 1, 1]])
 A.inv()
 ```
 
-$$\left[\begin{matrix}\frac{1}{5} & \frac{2}{15} & 0\\- \frac{1}{5} & \frac{1}{5} & 1\\\frac{1}{5} & - \frac{1}{5} & 0\end{matrix}\right]$$
-
-</v-click>
+$$\def\arraystretch{1.8}\left[\begin{matrix}\frac{1}{5} & \frac{2}{15} & 0\\- \frac{1}{5} & \frac{1}{5} & 1\\\frac{1}{5} & - \frac{1}{5} & 0\end{matrix}\right]$$
 
 ---
 
@@ -67,11 +69,13 @@ $$\left[\begin{matrix}\frac{1}{5} & \frac{2}{15} & 0\\- \frac{1}{5} & \frac{1}{5
 
 Consider the following system
 
-$$\begin{array}{cccccccc}
+$$
+\begin{array}{cccccccc}
 eq1: &  x & + & y & + & z & =  & a \\
 eq2: & 2x & + & 5y & + &  2z &  = & b \\
 eq3: & 7x & +&  10y  & + & 7z &  = &  c
-\end{array}$$
+\end{array}
+$$
 
 <v-click>
 
@@ -197,7 +201,7 @@ scipy.linalg.null_space(A)
 
 ```text
 array([[-7.07106781e-01],
-       [ 0.00000000e+00],
+       [-1.11022302e-16],
        [ 7.07106781e-01]])
 ```
 
@@ -350,7 +354,7 @@ np.linalg.eig(A)[0]
 ```
 
 ```text
-array([-3., -4.])
+array([-3.+0.j, -4.+0.j])
 ```
 
 SymPy:
@@ -403,8 +407,8 @@ np.linalg.eig(A)[1]
 ```
 
 ```text
-array([[0.89442719, 0.70710678],
-       [0.4472136 , 0.70710678]])
+array([[0.89442719+0.j, 0.70710678+0.j],
+       [0.4472136 +0.j, 0.70710678+0.j]])
 ```
 
 SymPy:
@@ -415,7 +419,7 @@ A2 = sp.Matrix([[-2, c], [1, -5]])
 A2.eigenvects()
 ```
 
-$$\left[ \left( - \frac{\sqrt{4 c + 9}}{2} - \frac{7}{2}, \  1, \  \left[ \left[\begin{matrix}\frac{3}{2} - \frac{\sqrt{4 c + 9}}{2}\\1\end{matrix}\right]\right]\right), \  \left( \frac{\sqrt{4 c + 9}}{2} - \frac{7}{2}, \  1, \  \left[ \left[\begin{matrix}\frac{\sqrt{4 c + 9}}{2} + \frac{3}{2}\\1\end{matrix}\right]\right]\right)\right]$$
+$$\def\arraystretch{1.8}\left[ \left( - \frac{\sqrt{4 c + 9}}{2} - \frac{7}{2}, \  1, \  \left[ \left[\begin{matrix}\frac{3}{2} - \frac{\sqrt{4 c + 9}}{2}\\1\end{matrix}\right]\right]\right), \  \left( \frac{\sqrt{4 c + 9}}{2} - \frac{7}{2}, \  1, \  \left[ \left[\begin{matrix}\frac{\sqrt{4 c + 9}}{2} + \frac{3}{2}\\1\end{matrix}\right]\right]\right)\right]$$
 
 ---
 
@@ -444,8 +448,8 @@ np.matmul( np.matmul(v, np.diag(w)) , inv_v )
 ```
 
 ```text
-array([[-2., -2.],
-       [ 1., -5.]])
+array([[-2.+0.j, -2.+0.j],
+       [ 1.+0.j, -5.+0.j]])
 ```
 
 ---
@@ -485,15 +489,15 @@ print(np.dot(v[:,1],v[:,2]))
 ```
 
 ```text
-[[ 0.66666667 -0.33333333  0.66666667]
- [ 0.33333333  0.66666667 -0.66666667]
- [-0.66666667  0.66666667  0.33333333]]
+[[ 0.66666667+0.j -0.66666667+0.j  0.33333333+0.j]
+ [-0.66666667+0.j -0.33333333+0.j  0.66666667+0.j]
+ [ 0.33333333+0.j  0.66666667+0.j  0.66666667+0.j]]
 
 dot products of eigenvectors:
 
-0.0
-0.0
-0.0
+(-1.942890293094024e-16+0j)
+(1.3877787807814457e-16+0j)
+(1.1102230246251565e-16+0j)
 ```
 
 ---
@@ -506,7 +510,7 @@ $$\left(\begin{matrix}x\\ y\\ z\end{matrix}\right),$$
 
 is an eigenvector, then
 
-$$\left(\begin{matrix}\frac{x}{\sqrt{x^2+y^2+z^2}}\\ \frac{y}{\sqrt{x^2+y^2+z^2} }\\ \frac{z}{\sqrt{x^2+y^2+z^2} }\end{matrix}\right)$$
+$$\def\arraystretch{2}\left(\begin{matrix}\frac{x}{\sqrt{x^2+y^2+z^2}}\\ \frac{y}{\sqrt{x^2+y^2+z^2} }\\ \frac{z}{\sqrt{x^2+y^2+z^2} }\end{matrix}\right)$$
 
 is the corresponding normalised vector: a vector of unit length (magnitude).
 
