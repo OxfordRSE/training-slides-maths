@@ -16,9 +16,18 @@ fonts:
 ---
 
 ---
-layout: default
+
+# Polynomials on the complex plane
+
+<PlotFigure name="polynomial-roots" />
+
 ---
 
-# Complex numbers (bonus)
+# Simplifying with SymPy
 
-Placeholder: content to be ported from `lecture-08a-bonus-complex-numbers.ipynb`.
+```python
+x = sp.symbols('x')
+sp.simplify((x**3-1)/(x-1))
+```
+
+$$x^{2} + x + 1$$
