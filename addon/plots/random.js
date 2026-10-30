@@ -20,8 +20,9 @@ export function rng(seed) {
     uniform: (low, high, n) => sample(randomUniform.source(source)(low, high), n),
     binomial: (trials, p, n) => sample(randomBinomial.source(source)(trials, p), n),
     poisson: (lam, n) => sample(randomPoisson.source(source)(lam), n),
-    // The number of failures before the first success, as scipy's geom(p, loc=-1)
-    geometric: (p, n) => sample(randomGeometric.source(source)(p), n),
+    // The number of failures before the first success, as scipy's geom(p, loc=-1);
+    // d3 counts the trials up to and including it, one more
+    geometric: (p, n) => sample(randomGeometric.source(source)(p), n).map(k => k - 1),
     exponential: (scale, n) => sample(randomExponential.source(source)(1 / scale), n),
     gamma: (shape, scale, n) => sample(randomGamma.source(source)(shape, scale), n),
   }
