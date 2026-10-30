@@ -188,7 +188,9 @@ Keep every lecture consistent:
   full sentences end with a full stop.
 - **Maths** on its own line is display maths, `$$ ... $$`; inline maths, `$...$`,
   is only for maths within a sentence, and must not start with a space. Use
-  `\frac`, not `\over`, and `\text{...}`, not `\rm`. Use `\quad` or `\qquad` for
+  `\frac`, not `\over`, and `\text{...}`, not `\rm`. Write derivatives such as
+  $\frac{dy}{dx}$ only in display maths, as inline fractions are squashed; if
+  one must go in a sentence, use $dy/dx$ or $y'$. Use `\quad` or `\qquad` for
   space, not `~` or `\;`. Write a literal "(c)" as `\(c)`, or it becomes a
   copyright sign.
 - **Derivations** of three or more lines go in one `aligned` block, revealed a

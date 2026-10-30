@@ -112,9 +112,11 @@ $$\text{Gradient} \approx \frac{\Delta y}{\Delta x} = \frac{f(x+h) - f(x)}{h}$$
 
 This is called a finite difference approximation to the gradient. The approximation becomes more accurate the smaller h is.
 
-When using the approximation, we denote the changes as $\frac{\Delta y}{\Delta x}$, in the limit as h goes to 0, this becomes $\frac{dy}{dx}$.
+When using the approximation, we denote the changes with $\Delta$. In the limit as h goes to 0, this becomes the derivative:
 
-In this way, $\frac{d}{dx}$ is an operator, acting on $y$.
+$$\frac{\Delta y}{\Delta x} \;\longrightarrow\; \frac{dy}{dx} = \frac{d}{dx}\,y \qquad \text{as } h \to 0$$
+
+In this way, $d/dx$ is an operator, acting on $y$.
 
 Note, the $d$s cannot be cancelled out, as they aren't variables, they denote an infinitely small change.
 
@@ -201,7 +203,9 @@ $$y = x\cdot x = x^2, \quad y' \neq 1$$
 
 # Higher-order derivatives
 
-You can take a derivative of a function multiple times in a row. This is usually denoted either $y''(x)$, $f''(x)$ or $\frac{d^2 y}{dx^2}$ for second-order derivatives (differentiating twice), and similar for higher orders.
+You can take a derivative of a function multiple times in a row. For second-order derivatives (differentiating twice) this is usually denoted in one of these ways, and similar for higher orders:
+
+$$y''(x), \qquad f''(x), \qquad \frac{d^2 y}{dx^2}$$
 
 e.g.
 
@@ -233,9 +237,17 @@ The sign of the first derivative $f'(x)$ tells us how $f(x)$ is growing
 
 Turning points and points of inflection:
 
-1. Local maximum: $\frac{dy}{dx} = 0$, and $\frac{d^2y}{dx^2} < 0$
-2. Local minimum: $\frac{dy}{dx} = 0$, and $\frac{d^2y}{dx^2} > 0$
-3. Inflection: $\frac{d^2y}{dx^2} = 0$
+1. Local maximum:
+
+   $$\frac{dy}{dx} = 0 \quad \text{and} \quad \frac{d^2y}{dx^2} < 0$$
+
+2. Local minimum:
+
+   $$\frac{dy}{dx} = 0 \quad \text{and} \quad \frac{d^2y}{dx^2} > 0$$
+
+3. Inflection:
+
+   $$\frac{d^2y}{dx^2} = 0$$
 
 ---
 
