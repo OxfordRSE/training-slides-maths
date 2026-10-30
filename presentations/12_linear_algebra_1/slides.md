@@ -16,9 +16,344 @@ fonts:
 ---
 
 ---
-layout: default
+
+# Simultaneous equations
+
+Consider 2 simultaneous equations:
+
+$$
+\begin{aligned}
+a_1x+b_1y &= c_1, \quad (1)\\
+a_2x+b_2y &= c_2, \quad (2)
+\end{aligned}
+$$
+
+where the values $x$ and $y$ are to be found, and $a_1$, $b_1$, $a_2$, $b_2$, $c_1$ and $c_2$ are given constants.
+
+<v-click>
+
+$$ {1|1-2|1-3}
+\begin{aligned}
+(1) \times b_2: &\qquad b_2a_1x+b_2b_1y = b_2c_1, \quad (3)\\
+(2) \times b_1: &\qquad b_1a_2x+b_1b_2y = b_1c_2, \quad (4)\\
+(3) - (4): &\qquad b_2a_1x-b_1a_2x = b_2c_1-b_1c_2.
+\end{aligned}
+$$
+
+</v-click>
+
 ---
 
-# Linear algebra 1
+# Simultaneous equations
 
-Placeholder: content to be ported from `lecture-12-linear-algebra-1.ipynb`.
+Thus:
+
+$$x=\frac{b_2c_1-b_1c_2}{b_2a_1-b_1a_2},$$
+
+and similarly:
+
+$$y=\frac{a_1c_2-a_2c_1}{a_1b_2-a_2b_1}.$$
+
+This works, provided that $a_1b_2-a_2b_1\neq 0.$
+
+While the algebraic manipulation is straightforward when solving two equations, it can get really messy when solving large systems.
+
+What we want is a way to be able to easily manipulate **linear** systems, regardless of how big they are.
+
+---
+
+# The matrix
+
+Matrices are a structure that allow us to more easily manipulate linear systems.
+
+Consider the original system
+
+$$
+\begin{aligned}
+a_1x+b_1y &= c_1, \\
+a_2x+b_2y &= c_2.
+\end{aligned}
+$$
+
+We rewrite this, in the form of a matrix as:
+
+$$\left(\begin{matrix}a_1&b_1\\ a_2&b_2\end{matrix}\right) \left(\begin{matrix}x\\y\end{matrix}\right) =\left(\begin{matrix}c_1\\ c_2 \end{matrix}\right).$$
+
+Think about how this form relates to the original linear system.
+
+---
+
+# What is a matrix?
+
+A matrix is an array of numbers such as:
+
+$$\left(\begin{matrix}a&b&c\\ d&e&f\\ g&h&i\end{matrix}\right).$$
+
+$3\times3$ is the **size** of the matrix.
+
+A $3\times3$ matrix is said to be **square** and have **order** (dimension) 3.
+
+---
+
+# Addition, subtraction, and scalar multiplication
+
+We can add or subtract two matrices as long as they have the **same** size:
+
+$$\left(\begin{matrix} 2&1 \\ 3&-4 \end{matrix}\right) +\left(\begin{matrix} 6&-5 \\ 1&-7 \end{matrix}\right)= \left(\begin{matrix} 8&-4 \\ 4&-11\end{matrix}\right).$$
+
+Multiply a matrix by a scalar:
+
+$$5\times\left(\begin{matrix} 2&1\\ 3&-4 \end{matrix}\right) =\left(\begin{matrix}10&5\\ 15&-20\end{matrix}\right).$$
+
+---
+
+# Matrix multiplication
+
+To multiply two matrices, we multiply each **row** in the first matrix by each **column** in the second one, and put the results into a new matrix.
+
+A row and column are multiplied by summing up each element in the row, multiplied by the corresponding element in the column.
+
+$$\left(\begin{matrix} 1&2 \\ 3&4 \end{matrix}\right) \left(\begin{matrix} 5&6\\7&8\end{matrix}\right) = \left(\begin{matrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ 3 \times 5 + 4 \times 7 & 3 \times 6 + 4\times 8\end{matrix}\right) = \left(\begin{matrix} 19&22\\43&46\end{matrix}\right)$$
+
+$$\left(\begin{matrix} 1&2&3&4\\ 5&6&7&8 \end{matrix}\right) \left(\begin{matrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ 10&11&12 \end{matrix}\right) = \left(\begin{matrix} 70&80&90\\ 158&184&210 \end{matrix}\right),$$
+
+---
+
+# Matrix multiplication
+
+$$\left(\begin{matrix} a & b & c \end{matrix}\right) \left(\begin{matrix} p & q \\ r & s \\ v & w \end{matrix}\right) = \left(\begin{matrix} ap+br+cv & aq+bs+cw \end{matrix}\right).$$
+
+If the number of **columns** in the first matrix doesn't match the number of **rows** in the second, they **cannot** be multiplied.
+
+$$\left(\begin{matrix} 2 & 3 & 1 \\ 2 & -1 & 3\end{matrix}\right)\left(\begin{matrix} 1 & 0 \\ -1 & -4\end{matrix}\right) =\;?\;?\;?$$
+
+---
+
+# Matrix multiplication is not commutative
+
+This can be easily seen from the fact that multiplying different sized matrices doesn't always work:
+
+$$
+\begin{aligned}
+(3 \times 2 \text{ matrix}) \times (2 \times 2 \text{ matrix}) &= (3 \times 2 \text{ matrix}) \\
+(2 \times 2 \text{ matrix}) \times (3 \times 2 \text{ matrix}) &= ???
+\end{aligned}
+$$
+
+However, even when sizes match, the product is usually not the same.
+
+---
+layout: exercise
+---
+
+# Example: show that
+
+$$\left(\begin{matrix} 4 & 0 & 2 & 3 \\ 1 & 0 & 5 & 2\end{matrix}\right)\left(\begin{matrix} 6 & 0 \\ 2 & 1 \\ 3 & 0 \\ 3 & 10 \end{matrix}\right) \neq \left(\begin{matrix} 6 & 0 \\ 2 & 1 \\ 3 & 0 \\ 3 & 10 \end{matrix}\right)\left(\begin{matrix} 4 & 0 & 2 & 3 \\ 1 & 0 & 5 & 2\end{matrix}\right)$$
+
+---
+
+# The identity matrix
+
+**I** is the identity matrix, which has the property that:
+
+$$A I = I A = A$$
+
+for a square matrix $A$. It is the matrix equivalent of multiplying by 1.
+
+The 2x2 identity matrix is:
+
+$$I_2 = \left(\begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix}\right).$$
+
+The 3x3 identity matrix is:
+
+$$I_3 = \left(\begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{matrix}\right).$$
+
+and so on for higher dimensions.
+
+---
+
+# The determinant
+
+If
+
+$$A = \left(\begin{matrix} p & q \\ r & s\end{matrix}\right)$$
+
+then the **determinant** of A is:
+
+$$|A| = ps-qr$$
+
+That is, (top left $\times$ bottom right) - (top right $\times$ bottom left).
+
+If $|A| = 0$, A is said to be **singular** (have no inverse).
+
+---
+
+# Inverting 2x2 matrices
+
+If $AB = I$, what is B?
+
+A is called the inverse of B, and vice versa. I.e. $A = B^{-1}, B = A^{-1}$.
+
+If
+
+$$A = \left(\begin{matrix} p & q \\ r & s\end{matrix}\right)$$
+
+then:
+
+$$A^{-1} = \frac{1}{ps-qr} \left(\begin{matrix} s & -q \\ -r & p\end{matrix}\right).$$
+
+---
+
+# Example: inverting a 2x2 matrix
+
+$$A=\left(\begin{matrix}2&-3\\ -2&4\end{matrix}\right).$$
+
+$$|A|=(2\times 4)-(-3\times-2)=8-6=2.$$
+
+so
+
+$$A^{-1}=\frac{1}{2}\left(\begin{matrix}4&3\\ 2&2\end{matrix}\right)$$
+
+---
+
+# Example: inverting a 2x2 matrix
+
+As a check, calculate $A^{-1}A$:
+
+$$ {1|1-2|1-3|1-4}
+\begin{aligned}
+A^{-1}A &= \frac{1}{2}\left(\begin{matrix}4&3\\ 2&2\end{matrix}\right)\left(\begin{matrix}2&-3\\ -2&4\end{matrix}\right) \\
+&= \frac{1}{2}\left(\begin{matrix}2&0\\ 0&2\end{matrix}\right) \\
+&= \left(\begin{matrix}1&0\\ 0&1\end{matrix}\right) \\
+&=I_2.
+\end{aligned}
+$$
+
+---
+
+# The transpose of a matrix
+
+$A^T$ is the transpose of $A$.
+
+Swap elements across the leading diagonal so that $A^T_{ij}= A_{ji}$.
+
+$$A=\left(\begin{matrix}2&1&2\\ 1&4&6\\ 1&-1&2\end{matrix}\right)$$
+
+$$A^T=\left(\begin{matrix}2&1&1\\ 1&4&-1\\ 2&6&2\end{matrix}\right)$$
+
+---
+
+# Solving a linear system using matrices
+
+To solve a matrix system $A \mathbf{x} = \mathbf{b}$ for an unknown left-hand side $\mathbf{x}$.
+
+- If it's of order 2 then use the formula to write $A^{-1}$ and hence $\mathbf{x} = A^{-1}\mathbf{b}$.
+- If it's larger $(3\times3)$ then there's still a formula for $A^{-1}$ (not in this course).
+- Use an analytical method (Gaussian elimination) to find the inverse (not in this course).
+- Use a numerical scheme to find an approximation to $\mathbf{x}$, such as Newton's method (not in this course).
+- Solve using a linear algebra package.
+
+---
+
+# Example: solving a 2x2 system
+
+$$A^{-1}A\mathbf{x}=A^{-1}\mathbf{b}$$
+
+and
+
+$$\mathbf{x}=A^{-1}\mathbf{b}$$
+
+e.g.
+
+$$
+\begin{aligned}
+x+5y &= 11, \\
+-x+5y &= 9.
+\end{aligned}
+$$
+
+---
+
+# Example: solving a 2x2 system
+
+In matrix form, this gives:
+
+$$\left(\begin{matrix}1 &5\\ -1&5\end{matrix}\right) \left(\begin{matrix}x\\ y\end{matrix}\right) = \left(\begin{matrix}11\\ 9\end{matrix}\right)$$
+
+We have:
+
+$$A^{-1}= \frac{1}{10} \left(\begin{matrix}5 &-5\\ 1&1 \end{matrix}\right)$$
+
+<v-click>
+
+Thus:
+
+$$\left(\begin{matrix}x\\ y\end{matrix}\right) = \frac{1}{10}\left(\begin{matrix}5 &-5\\ 1&1\end{matrix}\right)\left(\begin{matrix}11\\ 9\end{matrix}\right) =\frac{1}{10} \left(\begin{matrix}10\\ 20\end{matrix}\right) =\left(\begin{matrix}1\\ 2\end{matrix}\right)$$
+
+Thus $x=1, y=2$
+
+</v-click>
+
+---
+
+# Example: solving a 2x2 system
+
+This process seems like more effort than its worth for small systems.
+
+But it allows for a much more systematic approach when dealing with large systems.
+
+As the size of the matrix grows, this process can be easily performed with Python (or other tools).
+
+---
+
+# Example: solving a 4x4 system in Python
+
+$$
+\begin{aligned}
+x + 5y + 3z - w &= 5,\\
+x - 2y + z + 4w &= 2,\\
+-3x + y -z + 2w &= -5,\\
+x + y + z &= 0.
+\end{aligned}
+$$
+
+This gives
+
+$$\left(\begin{matrix} 1 & 5 & 3 & -1 \\ 1 & -2 & 1 & 4 \\ -3 & 1 & -1 & 2\\ 1 & 1 & 1 & 0 \end{matrix}\right) \left(\begin{matrix} x \\ y \\ z \\ w\end{matrix}\right) = \left(\begin{matrix} 5 \\ 2 \\ -5 \\ 0\end{matrix}\right).$$
+
+---
+
+# Example: solving a 4x4 system in Python
+
+```python
+## In python, we use numpy arrays to store the needed matrices
+## the procedure linalg.solve, solves the system Ax = b
+## We could also calculate the inverse of A (linalg.inv), and then multiply.
+## But this is faster
+A = np.array([[1,5,3,-1],[1,-2,1,4],[-3,1,-1,2],[1,1,1,0]])
+
+b = np.array([5, 2, -5, 0])
+
+x = np.linalg.solve(A,b)
+
+print(x)
+
+print(np.matmul(A,x))
+```
+
+```text
+[-5.94444444 -5.11111111 11.05555556 -3.33333333]
+[ 5.0000000e+00  2.0000000e+00 -5.0000000e+00 -8.8817842e-16]
+```
+
+---
+
+# Example: solving a 4x4 system in SymPy
+
+```python
+A = sp.Matrix([[1,5,3,-1],[1,-2,1,4],[-3,1,-1,2],[1,1,1,0]])
+
+A.inv() * sp.Matrix([5, 2, -5, 0])
+```
+
+$$\def\arraystretch{1.8}\left[\begin{matrix}- \frac{107}{18}\\- \frac{46}{9}\\\frac{199}{18}\\- \frac{10}{3}\end{matrix}\right]$$

@@ -36,6 +36,9 @@ function sizeText(node) {
   const legend = node.querySelector('figure > div')
   if (legend)
     legend.setAttribute('style', `${legend.getAttribute('style') ?? ''}; height: ${rows.legend}px; margin: 0; align-items: center; justify-content: center; font-size: 16px`)
+  // A colour bar's tick lines cross the bar, which Plot does even with tickSize 0
+  for (const tick of node.querySelectorAll('svg[class$="-ramp"] .tick line'))
+    tick.remove()
 }
 
 // Returns the drawn figure (an SVG, or an HTML figure when it has a title or
