@@ -74,7 +74,7 @@ A.eigenvects()
 
 <v-click>
 
-$$\left[ \left( -1, \  1, \  \left[ \left[\begin{matrix}- \frac{1}{2}\\1\end{matrix}\right]\right]\right), \  \left( 2, \  1, \  \left[ \left[\begin{matrix}1\\1\end{matrix}\right]\right]\right)\right]$$
+$$\def\arraystretch{1.8}\left[ \left( -1, \  1, \  \left[ \left[\begin{matrix}- \frac{1}{2}\\1\end{matrix}\right]\right]\right), \  \left( 2, \  1, \  \left[ \left[\begin{matrix}1\\1\end{matrix}\right]\right]\right)\right]$$
 
 </v-click>
 
@@ -167,7 +167,7 @@ $$
 
 ---
 
-# Method 2: eliminate $t$
+# Method 2: eliminate t
 
 We start with
 
@@ -182,7 +182,8 @@ $$
 
 Then, dividing:
 
-$$\frac{dy}{dx}
+$$
+\frac{dy}{dx}
 =
 \frac{dy/dt}{dx/dt}
 \qquad\implies\qquad
@@ -261,7 +262,7 @@ $$\frac{dz_2}{dt} = \lambda_2 z_2 \qquad\implies\qquad z_2(t) = B\,e^{\lambda_2 
 
 ---
 
-# Diagonalisation: back to $x$ and $y$
+# Diagonalisation: back to x and y
 
 Finally, we can substitute $z_1$ and $z_2$ back in terms of $x$ and $y$ to find the solution to the original coupled system.
 We have
