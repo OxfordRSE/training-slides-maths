@@ -18,6 +18,16 @@ fonts:
 ---
 
 ---
+
+# Why more methods?
+
+Not every function can be integrated by reversing a standard derivative, or by substitution.
+
+In this lecture we add two more methods: _integration by parts_, which reverses the product rule, and _partial fractions_, which splits a fraction into simpler ones.
+
+We will need both when we solve differential equations.
+
+---
 layout: exercise
 ---
 
@@ -155,6 +165,8 @@ sp.integrate(sp.log(x),x)
 
 $$x \log{\left(x \right)} - x$$
 
+(SymPy writes $\log$ for the natural logarithm, $\ln$.)
+
 ---
 
 # Integration by parts: example 3
@@ -209,9 +221,9 @@ $$\int\limits^{\infty}_0 6x\,e^{-x}\,dx =-\Big[6x\,e^{-x}\Big]^{\infty}_0 +\int\
 
 <v-click>
 
-$$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\infty}_0=-6e^{-\infty}+6e^0=6$$
+$$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\infty}_0=0+6e^0=6$$
 
-(Since $e^{-\infty}=0$ and $e^0=1$)
+(Since $e^{-x}\to 0$ as $x\to\infty$, and $e^0=1$)
 
 </v-click>
 
@@ -219,12 +231,13 @@ $$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\i
 
 # Integration by parts: example 3
 
-The other terms all go to zero:
+The other terms are all zero, because $x^3e^{-x}$, $3x^2e^{-x}$ and $6x\,e^{-x}$ all tend to $0$ as $x\to\infty$ ($e^{-x}$ shrinks faster than any power of $x$ grows), and all are $0$ at $x=0$:
 
 $$
 \begin{aligned}
--\Big[x^3\,e^{-x}\Big]^{\infty}_0 &=-{\infty}^3\,e^{-\infty} + 0 =0 \\
--\Big[3x^2\,e^{-x}\Big]^{\infty}_0 &=-3{\infty}^2\,e^{-\infty} + 0 =0
+-\Big[x^3\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0 \\
+-\Big[3x^2\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0 \\
+-\Big[6x\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0
 \end{aligned}
 $$
 
@@ -307,13 +320,11 @@ $$\Longrightarrow \quad 2\int\limits^b_a \cos x\,e^{-x}\,dx = \Big[\sin x\, e^{-
 
 # Method 3: partial fractions
 
-**Example 7**
-
 $$\int \frac{dx}{(2x+1)(x-5)} \qquad\text{Let}\qquad \frac{1}{(2x+1)(x-5)}=\frac{A}{2x+1} + \frac{B}{x-5}$$
 
 Multiply both sides by $(2x+1)(x-5)$ to get:
 
-$$A(x-5)+B(2x+1)=1 \qquad\text{so}\qquad Ax-5A+B2x+B=1$$
+$$A(x-5)+B(2x+1)=1 \qquad\text{so}\qquad Ax-5A+2Bx+B=1$$
 
 <v-click>
 
@@ -325,7 +336,7 @@ $$A+2B=0 \qquad\text{thus}\qquad A=-2B \qquad \text{(A)}$$
 
 <v-click>
 
-Equate units (coefficients of $x^0$):
+Equate the constant terms (coefficients of $x^0$):
 
 $$-5A+B=1 \qquad\text{so from (A):}\qquad 10B+B=1, \quad B=\frac{1}{11}, \quad A=-\frac{2}{11}$$
 
@@ -333,7 +344,7 @@ $$-5A+B=1 \qquad\text{so from (A):}\qquad 10B+B=1, \quad B=\frac{1}{11}, \quad A
 
 ---
 
-# Partial fractions: example 7
+# Partial fractions: example
 
 Thus:
 
@@ -349,7 +360,7 @@ $w=x-5$ so $dw/dx=1$ and $dx/dw=1$
 
 $$
 \begin{aligned}
-\int \frac{2\, du}{2 \times 11 \times u} + \int \frac{dw}{11w} &= -\frac{\ln u}{11} + \frac{\ln w}{11} \\
+-\int \frac{2\, du}{2 \times 11 \times u} + \int \frac{dw}{11w} &= -\frac{\ln |u|}{11} + \frac{\ln |w|}{11} \\
 &=-\frac{\ln |2x+1|}{11} + \frac{\ln |x-5|}{11}
 \end{aligned}
 $$
@@ -358,7 +369,7 @@ $$
 
 ---
 
-# Partial fractions: example 7 in SymPy
+# Partial fractions: example in SymPy
 
 ```python
 sp.integrate(1/((2*x + 1)*(x - 5)),x) # answer seems different because of the arbitrary constant!
