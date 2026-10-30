@@ -196,7 +196,7 @@ $$\frac{d}{dx}(x) = \frac{d}{dx}(f^{-1}(y)) = \frac{d}{dy}(f^{-1}(y)) \frac{dy}{
 
 But since $d(x)/dx = 1$
 
-$$\frac{d}{dy}(f^{-1}(y)) = \frac{1}{\frac{dy}{dx}}$$
+$$\frac{d}{dy}(f^{-1}(y)) = \frac{1}{\frac{dy}{dx}} \qquad \text{(where } dy/dx \neq 0\text{)}$$
 
 (This is an example of _implicit differentiation_, where we differentiate both sides of an equation relating $x$ and $y$.)
 
@@ -234,7 +234,7 @@ This means that for small $h$, this expression approximates the derivative. By r
 
 $$f(x + h) \approx f(x) + h f'(x)$$
 
-In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a distance $h$ along the tangent, whose gradient is $f'(x)$.
+In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a horizontal distance $h$ along the tangent, whose gradient is $f'(x)$.
 
 ---
 

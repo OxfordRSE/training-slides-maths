@@ -71,7 +71,7 @@ $$\frac{d}{dx}e^{f(x)}=e^{f(x)}f'(x)$$
 
 # Example with the natural logarithm
 
-$y=\ln\left((a-x)^2\right)=2\ln(a-x)=2\ln u$. Let $u=(a-x)$:
+$y=\ln\left((a-x)^2\right)=2\ln|a-x|=2\ln|u|$. Let $u=(a-x)$:
 
 $$\Rightarrow \frac{du}{dx}=-1 \quad\text{and}\quad \frac{dy}{du}=\frac{2}{u} \quad\text{Thus}\quad \frac{dy}{dx}=\frac{2}{u}\times (-1)=\frac{-2}{a-x}$$
 
@@ -87,7 +87,7 @@ $$\frac{d}{dx}\ln(f(x)) = \frac{f'(x)}{f(x)}$$
 
 # The derivative of a to the power x
 
-By the properties of logarithms and indices we have
+For $a>0$, by the properties of logarithms and indices we have
 
 $$a^x = \left(e^{\ln a}\right)^x=e^{\left(x\cdot\ln a\right)}.$$
 
@@ -114,6 +114,7 @@ $$\frac{d}{dx}a^{f(x)} = a^{f(x)}\cdot \ln a\cdot f'(x)$$
 <v-click>
 
 ```python
+import sympy as sp
 x, a = sp.symbols('x a') # declare the variables x and a
 f = sp.Function('f')     # declare a function dependent on another variable
 sp.diff(a**f(x),x)       # write the expression we wish to evaluate
@@ -129,7 +130,7 @@ $$a^{f{\left(x \right)}} \log{\left(a \right)} \frac{d}{d x} f{\left(x \right)}$
 
 # The derivative of log to base a
 
-Recall the conversion formula $\log_a x = \ln x / \ln a$ and note that $\ln a$ is a constant. Thus:
+For $a>0$, $a\neq 1$, recall the conversion formula $\log_a x = \ln x / \ln a$ and note that $\ln a$ is a constant. Thus:
 
 $$ {1|1-2|1-3|1-4}
 \begin{aligned}
@@ -364,7 +365,7 @@ $$T_y(x,y)=2y-0=2y\qquad\text{so}\qquad T_{yy}(x,y)=2$$
 
 Finally:
 
-$$T_{xx}(x,y)+T_{yy}(x,y) = 2 + (-2) = 0$$
+$$T_{xx}(x,y)+T_{yy}(x,y) = -2 + 2 = 0$$
 
 which proves the result.
 
@@ -391,7 +392,9 @@ $$
 
 Therefore:
 
-$$z_{xx}+z_{yy}=2y-2x\ne 0$$
+$$z_{xx}+z_{yy}=2y-2x$$
+
+which is not zero everywhere.
 
 </v-click>
 

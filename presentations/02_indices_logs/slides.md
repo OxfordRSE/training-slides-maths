@@ -155,6 +155,8 @@ Anything to the power of zero equals one, except $0^0$ which is undefined.
 
 # Indices: fractional (rational) indices
 
+For $a>0$:
+
 $$a^1 = a^{1/2} \times a^{1/2} \quad \text{so} \quad a^{1/2} = \sqrt{a}$$
 
 $$a^{\frac{1}{n}} = \sqrt[n]{a}$$
@@ -204,7 +206,7 @@ a**(3.0/4.0)
 
 i.e. For indices the order in which these mathematical operations are performed
 does not
-matter.
+matter (for $a>0$).
 
 </v-click>
 

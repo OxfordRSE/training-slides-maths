@@ -45,7 +45,7 @@ $$\int_2^4 \frac{1}{\sqrt z}\,dz=$$
 
 ### In general
 
-$$\frac{d(a\, x^{n+1})}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2}$$
+$$\frac{d(a\, x^{n+1})}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2} \qquad (n\neq -1)$$
 
 ### Reminder: method 1, integration by substitution
 
@@ -263,7 +263,7 @@ $$6$$
 
 and in general:
 
-$$\int\limits^{\infty}_0 x^n\,e^{-x}\,dx=n!$$
+$$\int\limits^{\infty}_0 x^n\,e^{-x}\,dx=n! \qquad \text{for } n = 0, 1, 2, \ldots$$
 
 </v-click>
 
@@ -361,7 +361,7 @@ $w=x-5$ so $dw/dx=1$ and $dx/dw=1$
 $$
 \begin{aligned}
 -\int \frac{2\, du}{2 \times 11 \times u} + \int \frac{dw}{11w} &= -\frac{\ln |u|}{11} + \frac{\ln |w|}{11} \\
-&=-\frac{\ln |2x+1|}{11} + \frac{\ln |x-5|}{11}
+&=-\frac{\ln |2x+1|}{11} + \frac{\ln |x-5|}{11} + C
 \end{aligned}
 $$
 
