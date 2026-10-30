@@ -85,7 +85,6 @@ Vital for **dynamic** and **nonlinear** systems
 - Coupled systems of ordinary differential equations
 - Use of Python
 
-
 ---
 
 ```yaml
@@ -144,11 +143,11 @@ training-event-only: true
 
 You will be continuously assessed through the course, based on the following criteria:
 
-- Level of engagement with the material.
-- Quality of written solutions to problem sheets.
-- Ability to confidently manipulate mathematical expressions.
-- Ability to use computational tools.
-- Course attendance.
+- Level of engagement with the material
+- Quality of written solutions to problem sheets
+- Ability to confidently manipulate mathematical expressions
+- Ability to use computational tools
+- Course attendance
 
 Please interact regularly with course demonstrators.
 
