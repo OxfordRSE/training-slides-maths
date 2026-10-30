@@ -40,6 +40,13 @@
   margin-top: calc((var(--flow-gap) - 16px) * 0.5);
 }
 
+/* Slidev eases v-click targets with `transition: all`; easing the gap too would
+   change sizes over several frames and keep flow-gap.js refitting, so only the
+   reveal itself is animated */
+.slidev-layout .slidev-vclick-target {
+  transition-property: opacity, transform, translate, scale;
+}
+
 /* The first block under the (hidden) title starts at the same height on every
    slide, however large the gap */
 .slidev-layout:not(.cover) > h1:first-child + *,

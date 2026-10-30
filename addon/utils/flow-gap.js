@@ -14,7 +14,30 @@ const MAX_GAP = 36
 // Layouts that place their own content
 const SKIP = ['cover', 'exercise', 'section', 'questions', 'orientation', 'orientation-weeks']
 
-const pending = new Set()
+// A slide refitted more often than this in a second is not settling (something
+// keeps changing its size, possibly the fit itself); it keeps its gap until the
+// window is resized, rather than visibly jiggling
+const MAX_FITS_PER_SECOND = 8
+
+// Slides waiting for the next frame to be fitted, and whether to refit even if
+// their content looks unchanged
+const pending = new Map()
+
+// Per slide: the sizes its content had after the last fit, and recent fit times
+const fitted = new WeakMap()
+const fitTimes = new WeakMap()
+
+function blocks(layout) {
+  return layout.querySelectorAll(':scope > *, :scope > .col-left > *, :scope > .col-right > *')
+}
+
+// The sizes of the slide and its blocks that the gap cannot change, so that a
+// resize the fit itself caused is not taken for new content. The gap moves the
+// items of a list apart, so a list's height is left out.
+function signature(layout) {
+  const sizes = [...blocks(layout)].map(el => el.matches('ul, ol') || el.querySelector('ul, ol') ? el.offsetWidth : `${el.offsetWidth}x${el.offsetHeight}`)
+  return [layout.offsetWidth, layout.offsetHeight, ...sizes].join(',')
+}
 
 function applies(layout) {
   return !SKIP.some(name => layout.classList.contains(name))
@@ -50,9 +73,24 @@ function setGap(layout, gap) {
   layout.style.setProperty('--flow-gap', `${gap}px`)
 }
 
-function fit(layout) {
+function fit(layout, force = false) {
   if (!layout.isConnected || !layout.offsetHeight)
     return
+  const sig = signature(layout)
+  if (!force && fitted.get(layout) === sig)
+    return
+  const now = performance.now()
+  const times = (fitTimes.get(layout) ?? []).filter(t => now - t < 1000)
+  if (!force && times.length >= MAX_FITS_PER_SECOND)
+    return
+  fitTimes.set(layout, [...times, now])
+  // How many times this slide has been fitted, to check that it settles
+  layout.dataset.flowFits = String(Number(layout.dataset.flowFits ?? 0) + 1)
+  search(layout)
+  fitted.set(layout, signature(layout))
+}
+
+function search(layout) {
   setGap(layout, MAX_GAP)
   if (fits(layout)) {
     delete layout.dataset.flowOverflow
@@ -77,14 +115,14 @@ function fit(layout) {
   setGap(layout, Math.floor(lo))
 }
 
-function schedule(layout) {
+function schedule(layout, force = false) {
   if (pending.size === 0)
     requestAnimationFrame(() => {
-      for (const l of pending)
-        fit(l)
+      for (const [l, f] of pending)
+        fit(l, f)
       pending.clear()
     })
-  pending.add(layout)
+  pending.set(layout, force || pending.get(layout) === true)
 }
 
 const resized = new ResizeObserver((entries) => {
@@ -97,9 +135,9 @@ function watch(layout) {
     return
   layout.dataset.flowWatched = ''
   resized.observe(layout)
-  for (const child of layout.querySelectorAll(':scope > *, :scope > .col-left > *, :scope > .col-right > *'))
+  for (const child of blocks(layout))
     resized.observe(child)
-  schedule(layout)
+  schedule(layout, true)
 }
 
 export function startFlowGap() {
@@ -113,5 +151,5 @@ export function startFlowGap() {
       m.addedNodes.forEach(node => node.nodeType === 1 && scan(node))
   }).observe(document.body, { childList: true, subtree: true })
   scan(document.body)
-  document.fonts?.ready.then(() => document.querySelectorAll('.slidev-layout[data-flow-watched]').forEach(schedule))
+  document.fonts?.ready.then(() => document.querySelectorAll('.slidev-layout[data-flow-watched]').forEach(l => schedule(l, true)))
 }
