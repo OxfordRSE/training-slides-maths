@@ -23,6 +23,31 @@
   display: none;
 }
 
+/* Every gap between blocks on a slide is --flow-gap, which addon/utils/flow-gap.js
+   sets per slide to spread the content down it. 16px, the floor, is about the
+   spacing Slidev and KaTeX give by default. List items open up by half as much
+   as the gap grows, from nothing at the floor. */
+.slidev-layout {
+  --flow-gap: 16px;
+}
+
+.slidev-layout:not(.cover) :is(p, ul, ol, table, pre, .katex-display) {
+  margin-top: var(--flow-gap);
+  margin-bottom: var(--flow-gap);
+}
+
+.slidev-layout:not(.cover) li + li {
+  margin-top: calc((var(--flow-gap) - 16px) * 0.5);
+}
+
+/* The first block under the (hidden) title starts at the same height on every
+   slide, however large the gap */
+.slidev-layout:not(.cover) > h1:first-child + *,
+.slidev-layout:not(.cover) > h1:first-child + * > :first-child,
+.slidev-layout:not(.cover) > h1:first-child + * > :first-child > :first-child {
+  margin-top: 0;
+}
+
 /* Smaller code for blocks too wide for their column: wrap the block in <div class="code-sm"> */
 .code-sm {
   --slidev-code-font-size: 10px;
@@ -34,7 +59,10 @@
 .slidev-code:has(> code.language-python) {
   position: relative;
   overflow: visible;
-  margin-top: 1.4rem;
+}
+
+.slidev-layout .slidev-code:has(> code.language-python) {
+  margin-top: calc(var(--flow-gap) + 1.3rem);
 }
 
 .slidev-code:has(> code.language-python)::after {
