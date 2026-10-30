@@ -52,8 +52,8 @@ Microsoft Forms ID or a full URL):
 
 ```yaml
 year: 2026
-name: "[MT26] Essential Maths"
-enrolment_key: dtc-maths-26
+name: "2026 DTC Further Maths"
+enrolment_key: dtc-maths
 feedback_form: jmJq6KWfMA
 sessions:
   - date: "02 Nov"
