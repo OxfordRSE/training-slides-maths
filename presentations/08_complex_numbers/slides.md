@@ -111,7 +111,11 @@ x = sp.symbols('x')
 sp.solve(x**2 - 8*x + 25)
 ```
 
+<v-click>
+
 $$\left[ 4 - 3 i, \  4 + 3 i\right]$$
+
+</v-click>
 
 ---
 
@@ -149,9 +153,13 @@ x = 1 + 2j
 print(f'x = {x}     Re(x) = {x.real}     Im(x) = {x.imag}     |x| = {abs(x)}')
 ```
 
+<v-click>
+
 ```text
 x = (1+2j)     Re(x) = 1.0     Im(x) = 2.0     |x| = 2.23606797749979
 ```
+
+</v-click>
 
 Complex numbers using `SymPy`:
 
@@ -160,9 +168,13 @@ x = 1 + 2 * sp.I
 print(f'x = {x}     Re(x) = {sp.re(x)}     Im(x) = {sp.im(x)}     |x| = {sp.Abs(x)}')
 ```
 
+<v-click>
+
 ```text
 x = 1 + 2*I     Re(x) = 1     Im(x) = 2     |x| = sqrt(5)
 ```
+
+</v-click>
 
 ---
 
@@ -190,6 +202,10 @@ Try adding: $(5+6i)+(1-i)=$
 print((5 + 6j) + (1 - 1j))
 ```
 
+</v-click>
+
+<v-click>
+
 ```text
 (6+5j)
 ```
@@ -204,6 +220,10 @@ Try subtracting: $(5+6i)-(1-i)=$
 print((5 + 6j) - (1 - 1j))
 ```
 
+</v-click>
+
+<v-click>
+
 ```text
 (4+7j)
 ```
@@ -216,7 +236,7 @@ print((5 + 6j) - (1 - 1j))
 
 Multiplication is not quite so convenient in Cartesian coordinates:
 
-$$
+$$ {1|1-2|1-3}
 \begin{aligned}
 (a+bi)(c+di)&=ac + adi + bci + bidi \\
 &= ac + adi + bci -bd \\
@@ -237,6 +257,10 @@ Try multiplying: $(5+6i)(1-i)=$
 ```python
 print((5 + 6j) * (1 - 1j))
 ```
+
+</v-click>
+
+<v-click>
 
 ```text
 (11+1j)
@@ -272,6 +296,10 @@ $$\frac{-4+7i}{2+3i}=$$
 ```python
 print(sp.simplify((-4 + 7*sp.I) / (2 + 3*sp.I)))
 ```
+
+</v-click>
+
+<v-click>
 
 ```text
 1 + 2*I
@@ -368,6 +396,10 @@ $$\text{Therefore } z = \sqrt{3} + i$$
 print(cmath.rect(2, np.pi/6))
 ```
 
+</v-click>
+
+<v-click>
+
 ```text
 (1.7320508075688774+0.9999999999999999j)
 ```
@@ -402,6 +434,10 @@ $$\arctan(-4/3)+\pi = -0.93+\pi \approx 2.21 \text{ radians}\approx 127^\circ$$
 print(cmath.polar(-3 + 4j))
 ```
 
+</v-click>
+
+<v-click>
+
 ```text
 (5.0, 2.214297435588181)
 ```
@@ -430,6 +466,10 @@ $$
 ```python
 print(cmath.polar(-2j))
 ```
+
+</v-click>
+
+<v-click>
 
 ```text
 (2.0, -1.5707963267948966)
@@ -590,11 +630,15 @@ $$z=x+iy=r(\cos\theta + i\sin\theta)=r\,e^{i\theta}$$
 
 Several important consequences:
 
+<v-clicks>
+
 1. Any complex number can be written in the polar form $z = re^{i\theta}$ where $r=|z|$ and $\theta=\arg(z)$.
 2. The unit circle in $\mathbb{C}$ consists exactly of those complex numbers with modulus equal to 1, that is the numbers $e^{i\theta}$.
 3. Multiplication on the unit circle $r=1$ can be carried out by adding the angles:
 
    $$e^{i\theta_1}\cdot e^{i\theta_2} = e^{i(\theta_1+\theta_2)}$$
+
+</v-clicks>
 
 ---
 
@@ -608,10 +652,18 @@ Other important consequences:
 
 $$\left(e^{i\theta}\right)^n = e^{i\theta n}=e^{i(n\theta)}$$
 
+<v-click>
+
 **5.** This result is known as **de Moivre's theorem**. It is usually stated in its Cartesian form, for integer $n$:
 
 $$(\cos\theta + i\sin\theta)^n=\cos(n\theta) + i\sin(n\theta)$$
 
+</v-click>
+
+<v-click>
+
 **6.** Finally, the famous identity by Leonhard Euler
 
 $$e^{\pi i}+1=0$$
+
+</v-click>

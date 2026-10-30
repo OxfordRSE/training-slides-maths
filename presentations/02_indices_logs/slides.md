@@ -182,25 +182,37 @@ a = 5.0
 a**(3.0/4.0)
 ```
 
+<v-click>
+
 ```text
 3.34370152488211
 ```
+
+</v-click>
 
 ```python
 (a**3.0)**0.25
 ```
 
+<v-click>
+
 ```text
 3.34370152488211
 ```
+
+</v-click>
 
 ```python
 (a**0.25)**3.0
 ```
 
+<v-click>
+
 ```text
 3.34370152488211
 ```
+
+</v-click>
 
 <v-click>
 
@@ -285,11 +297,15 @@ Here's a graph of $y=\log_{10}x$:
 
 Some physical phenomena use log metrics due to their huge dynamic range:
 
+<v-clicks>
+
 - volume of sound (decibels)
 - pitch (1 octave is doubling of frequency, 2 octaves is quadrupling of
   frequency)
 - earthquakes (Richter scale)
 - pH ($[H^+]$ ion concentration)
+
+</v-clicks>
 
 ---
 
@@ -399,15 +415,23 @@ Logs to base $e$ are called **natural logarithms**.
 The **natural logarithm** of a number is the logarithm of that number taken using the base $e$.
 We usually write $\ln(x)$ for $\log_e(x)$.  Here are some examples:
 
+<v-clicks>
+
 - $\ln(e)=\log_e(e)=1$
 - $\ln(10)=\log_e(10)$ = "The power I need to raise $e$ to in order to get 10"
 - $\ln(10)\approx 2.303$. Which means that $e^{2.303}\approx 10$
 - $\ln(\exp(b)) = \ln e^b  =\log_e e^b = b$
 - $\exp(\ln(b))=e^{\ln(b)}=e^{\log_e b}=b$
 
+</v-clicks>
+
+<v-click>
+
 Note that the last two examples confirm the property that
 the functions  "$\exp$"  and "$\ln$"  are _functional
 inverses_ of one another.
+
+</v-click>
 
 ---
 
@@ -422,11 +446,15 @@ print(np.log10(1000))
 print(np.log2(8))
 ```
 
+<v-click>
+
 ```text
 2.302585092994046
 3.0
 3.0
 ```
+
+</v-click>
 
 <v-click>
 
@@ -435,6 +463,10 @@ For any other base, use the change of base formula, e.g. $\log_3 81 = \ln 81 / \
 ```python
 print(np.log(81)/np.log(3))
 ```
+
+</v-click>
+
+<v-click>
 
 ```text
 4.0

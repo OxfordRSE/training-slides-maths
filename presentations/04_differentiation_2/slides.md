@@ -292,13 +292,21 @@ x = sp.symbols('x') #This creates a variable x, which is symbolically represente
 sp.diff(x**2, x)
 ```
 
+<v-click>
+
 $$2 x$$
+
+</v-click>
 
 <v-click>
 
 ```python
 sp.diff(sp.cos(x), x)
 ```
+
+</v-click>
+
+<v-click>
 
 $$- \sin{\left(x \right)}$$
 
@@ -310,6 +318,10 @@ $$- \sin{\left(x \right)}$$
 f = (x+1)**3 * sp.cos(x**2 - 5)
 sp.diff(f,x)
 ```
+
+</v-click>
+
+<v-click>
 
 $$- 2 x \left(x + 1\right)^{3} \sin{\left(x^{2} - 5 \right)} + 3 \left(x + 1\right)^{2} \cos{\left(x^{2} - 5 \right)}$$
 
@@ -324,6 +336,8 @@ f = (x+1)**3 * (x-2)**2 * (x**2 + 4*x + 1)**4
 sp.diff(f, x)
 ```
 
+<v-click>
+
 $$
 \begin{aligned}
 &\left(x - 2\right)^{2} \left(x + 1\right)^{3} \left(8 x + 16\right) \left(x^{2} + 4 x + 1\right)^{3} \\
@@ -332,11 +346,17 @@ $$
 \end{aligned}
 $$
 
+</v-click>
+
 <v-click>
 
 ```python
 sp.expand(sp.diff(f, x)) # expand out in polynomial form
 ```
+
+</v-click>
+
+<v-click>
 
 $$
 \begin{aligned}

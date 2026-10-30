@@ -154,6 +154,10 @@ x, x1, x2 = sp.symbols('x x_1 x_2')
 sp.integrate(x**6,(x,x1,x2))
 ```
 
+</v-click>
+
+<v-click>
+
 $$- \frac{x_{1}^{7}}{7} + \frac{x_{2}^{7}}{7}$$
 
 </v-click>
@@ -165,6 +169,10 @@ $$\int_{x_1}^{x_2} x^{\frac{3}{2}}\,dx =$$
 ```python
 sp.integrate(x**(sp.sympify(3)/2),(x,x1,x2))
 ```
+
+</v-click>
+
+<v-click>
 
 $$- \frac{2 x_{1}^{\frac{5}{2}}}{5} + \frac{2 x_{2}^{\frac{5}{2}}}{5}$$
 
@@ -181,6 +189,10 @@ $$\int_{x_1}^{x_2} x^{-\frac{1}{2}}\,dx =$$
 ```python
 sp.integrate(x**(-sp.sympify(1)/2),(x,x1,x2))
 ```
+
+</v-click>
+
+<v-click>
 
 $$- 2 \sqrt{x_{1}} + 2 \sqrt{x_{2}}$$
 
@@ -226,7 +238,11 @@ x = sp.symbols('x')
 sp.integrate(2*x,x)
 ```
 
+<v-click>
+
 $$x^{2}$$
+
+</v-click>
 
 ---
 
@@ -264,6 +280,10 @@ $$\int_{0}^{\pi/2} \cos x \, dx =$$
 sp.integrate(sp.cos(x),(x,0,sp.pi/2))
 ```
 
+</v-click>
+
+<v-click>
+
 $$1$$
 
 </v-click>
@@ -281,6 +301,10 @@ $$\int_{0}^{\pi/2} \sin x \, dx =$$
 ```python
 sp.integrate(sp.sin(x),(x,0,sp.pi/2))
 ```
+
+</v-click>
+
+<v-click>
 
 $$1$$
 
@@ -358,6 +382,10 @@ t = sp.Symbol('t')
 sp.integrate(3*sp.sqrt(t),(t,1,4))
 ```
 
+</v-click>
+
+<v-click>
+
 $$14$$
 
 </v-click>
@@ -375,6 +403,10 @@ $$\frac{1}{b-a}\int_a^b\,f'(t)\,dt = \frac{1}{4-1}\int_1^4\,3\sqrt{t}\,dt = \pha
 ```python
 sp.integrate(3*sp.sqrt(t),(t,1,4))/(4-1)
 ```
+
+</v-click>
+
+<v-click>
 
 $$\frac{14}{3}$$
 
@@ -433,12 +465,16 @@ a, b = sp.symbols('a b')
 sp.integrate((2*x + 3)**4,(x,a,b))
 ```
 
+<v-click>
+
 $$
 \begin{aligned}
 &- \frac{16 a^{5}}{5} - 24 a^{4} - 72 a^{3} - 108 a^{2} - 81 a \\
 &+ \frac{16 b^{5}}{5} + 24 b^{4} + 72 b^{3} + 108 b^{2} + 81 b
 \end{aligned}
 $$
+
+</v-click>
 
 ---
 
@@ -475,4 +511,8 @@ $$
 sp.integrate((3 - 4*x)**(-5),(x,a,b))
 ```
 
+<v-click>
+
 $$\frac{1}{4096 b^{4} - 12288 b^{3} + 13824 b^{2} - 6912 b + 1296} - \frac{1}{4096 a^{4} - 12288 a^{3} + 13824 a^{2} - 6912 a + 1296}$$
+
+</v-click>

@@ -120,6 +120,10 @@ f = sp.Function('f')     # declare a function dependent on another variable
 sp.diff(a**f(x),x)       # write the expression we wish to evaluate
 ```
 
+</v-click>
+
+<v-click>
+
 $$a^{f{\left(x \right)}} \log{\left(a \right)} \frac{d}{d x} f{\left(x \right)}$$
 
 (SymPy writes $\log$ for the natural logarithm, $\ln$.)
@@ -162,6 +166,10 @@ $$\frac{d}{dx}\log_a f(x) = \frac{f'(x)}{f(x)(\ln a)}$$
 ```python
 sp.diff(sp.log(f(x),a),x)
 ```
+
+</v-click>
+
+<v-click>
 
 $$\frac{\frac{d}{d x} f{\left(x \right)}}{f{\left(x \right)} \log{\left(a \right)}}$$
 
@@ -290,6 +298,10 @@ x, y = sp.symbols('x y')
 sp.diff(3*x**2*y + 5*x*y**2,x)
 ```
 
+</v-click>
+
+<v-click>
+
 $$6 x y + 5 y^{2}$$
 
 </v-click>
@@ -409,7 +421,13 @@ T1 = y**2 - x**2
 sp.diff(T1, x, x) + sp.diff(T1, y, y)
 ```
 
+<v-click>
+
 $$0$$
+
+</v-click>
+
+<v-click>
 
 and for the second function:
 
@@ -418,7 +436,13 @@ T2 = x**2*y - x*y**2
 sp.diff(T2, x, x) + sp.diff(T2, y, y)
 ```
 
+</v-click>
+
+<v-click>
+
 $$- 2 x + 2 y$$
+
+</v-click>
 
 ---
 

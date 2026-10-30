@@ -163,9 +163,13 @@ x = sp.symbols('x')
 sp.integrate(sp.log(x),x)
 ```
 
+<v-click>
+
 $$x \log{\left(x \right)} - x$$
 
 (SymPy writes $\log$ for the natural logarithm, $\ln$.)
+
+</v-click>
 
 ---
 
@@ -233,7 +237,7 @@ $$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\i
 
 The other terms are all zero, because $x^3e^{-x}$, $3x^2e^{-x}$ and $6x\,e^{-x}$ all tend to $0$ as $x\to\infty$ ($e^{-x}$ shrinks faster than any power of $x$ grows), and all are $0$ at $x=0$:
 
-$$
+$$ {1|1-2|1-3}
 \begin{aligned}
 -\Big[x^3\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0 \\
 -\Big[3x^2\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0 \\
@@ -257,7 +261,11 @@ $$\int\limits^{\infty}_0 x^3\,e^{-x}\,dx=6$$
 sp.integrate(x**3 * sp.exp(-x),(x,0,sp.oo))
 ```
 
+<v-click>
+
 $$6$$
+
+</v-click>
 
 <v-click>
 
@@ -375,4 +383,8 @@ $$
 sp.integrate(1/((2*x + 1)*(x - 5)),x) # answer seems different because of the arbitrary constant!
 ```
 
+<v-click>
+
 $$\frac{\log{\left(x - 5 \right)}}{11} - \frac{\log{\left(x + \frac{1}{2} \right)}}{11}$$
+
+</v-click>
