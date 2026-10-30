@@ -12,7 +12,7 @@ export const controls = {
 }
 
 export default ({ m, c }) => ({
-  title: 'Linear Trend with Trendline',
+  title: 'Linear trend with trendline',
   x: { label: 'X = 1/S' },
   y: { label: 'Y = 1/V' },
   marks: [

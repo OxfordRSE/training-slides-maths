@@ -22,3 +22,32 @@
   --slidev-code-font-size: 10px;
   --slidev-code-line-height: 15px;
 }
+
+/* A "Python" tab with the Python logo on the top-left edge of every Python code
+   block, clear of the copy button in the top-right corner */
+.slidev-code:has(> code.language-python) {
+  position: relative;
+  overflow: visible;
+  margin-top: 1.4rem;
+}
+
+.slidev-code:has(> code.language-python)::after {
+  content: 'Python';
+  position: absolute;
+  top: -1.3rem;
+  left: 0;
+  height: 1.3rem;
+  padding: 0 0.5rem 0 1.6rem;
+  border-radius: 4px 4px 0 0;
+  background: #f2f2f2 url('./python-logo.svg') 0.4rem center / 0.9rem no-repeat;
+  font-family: var(--slidev-code-font-family, monospace);
+  font-size: 11px;
+  line-height: 1.3rem;
+  color: #555;
+}
+
+/* A derivation revealed line by line with maths line highlighting, e.g.
+   `$$ {1|1-2|all}`: lines not reached yet are hidden, not dimmed */
+.slidev-layout .slidev-katex-wrapper .mord.dishonored {
+  opacity: 0;
+}

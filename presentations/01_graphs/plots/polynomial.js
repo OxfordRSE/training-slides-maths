@@ -6,7 +6,6 @@ import { blue, line } from '#plots/style.js'
 const f = x => x ** 5 - 5 * x ** 3 + 4 * x
 
 export default () => ({
-  title: 'Example polynomial',
   x: { label: 'x' },
   y: { label: 'y = x⁵ - 5x³ + 4x' },
   marks: [

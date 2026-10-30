@@ -4,7 +4,6 @@ import { blue, dot } from '#plots/style.js'
 import data from './data/enzyme.js'
 
 export default () => ({
-  title: 'Original data',
   x: { label: 'S' },
   y: { label: 'V' },
   marks: [
