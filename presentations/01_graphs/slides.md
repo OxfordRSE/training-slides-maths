@@ -56,7 +56,7 @@ Interpretation:
 - The gradient of this line (also called its "slope") is given by
   $$m = \frac{y_2-y_1}{x_2 - x_1}$$
   ("change in $y$ divided by change in $x$")
-- The intercept of this line on the $x$ axis is given by $x = -\frac{c}{m}$,
+- The intercept of this line on the $x$ axis is given by $x = -c/m$,
   since at $y=0$ we must have $mx=-c$
 
 </v-clicks>
