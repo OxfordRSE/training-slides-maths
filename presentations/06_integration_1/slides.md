@@ -232,9 +232,11 @@ $$x^{2}$$
 
 # Other integrals
 
-Recall that:
+Recall that $\frac{d}{dx}\ln x = \frac{1}{x}$. In fact, for any $x \neq 0$:
 
-$$\frac{d}{dx}\ln x=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln |x| + C$$
+$$\frac{d}{dx}\ln|x|=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln |x| + C$$
+
+For $x>0$ this is just $\ln x$. For $x<0$, $|x| = -x$, and the chain rule gives $\frac{d}{dx}\ln(-x) = \frac{-1}{-x} = \frac{1}{x}$.
 
 This constant $C$ can be written as:
 
