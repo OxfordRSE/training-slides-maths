@@ -8,10 +8,15 @@ const random = rng(1920)
 const poisson = random.poisson(100, 1000)
 const normal = random.normal(100, 10, 1000)
 
-export default () => sampled({
-  histograms: [
-    { label: 'Poisson (100)', samples: poisson, bins: arange(60, 145, 5) },
-    { label: 'Normal (100, sqrt(100))', samples: normal, bins: arange(62.5, 142.5, 5) },
-  ],
-  x: { label: 'x', domain: [60, 140] },
+// The densities' tick labels (0.025) are wider than most, so the y label sits further out
+export default () => ({
+  ...sampled({
+    histograms: [
+      { label: 'Poisson (100)', samples: poisson, bins: arange(60, 145, 5) },
+      { label: 'Normal (100, sqrt(100))', samples: normal, bins: arange(62.5, 142.5, 5) },
+    ],
+    x: { label: 'x', domain: [60, 140] },
+    y: { labelOffset: 74 },
+  }),
+  marginLeft: 92,
 })
