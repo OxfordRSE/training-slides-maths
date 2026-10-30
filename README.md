@@ -221,7 +221,9 @@ Keep every lecture consistent:
 - **Exercises** for students to do in the lecture use `layout: exercise`, which
   turns the header bar green with a pencil, and spreads the questions evenly down
   the slide (a list's items, below any text before it), so each one has room
-  under it for working on the whiteboard.
+  under it for working on the whiteboard. To keep a question and its hints
+  together at the top, put the lines to be worked after `::work::`: only those
+  are spread.
 
 ## Markdown style
 
