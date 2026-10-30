@@ -19,6 +19,16 @@ fonts:
 
 ---
 
+# Why indices and logs?
+
+- The laws of indices let us simplify and rearrange expressions with powers in them.
+  We will need them throughout the course (e.g. when we cover differentiation).
+- _Taking the logarithm_ undoes _raising to a power_.
+  This means that we can use logarithms to solve for an unknown power, to work with quantities that have a huge dynamic range (e.g. pH), and to turn power laws and exponentials into straight lines.
+- We often want to describe growth and decay in biology, and for this we use the exponential function, $e^x$, and its inverse, the natural logarithm.
+
+---
+
 # Indices: multiplication
 
 <v-click>
@@ -153,13 +163,13 @@ $$a^{\frac{n}{m}} = \left(\sqrt[m]{a}\right)^n \quad \text{or} \quad \sqrt[m]{a^
 
 $$a^{-\frac{n}{m}} = \frac{1}{\left(\sqrt[m]{a}\right)^n} \quad \text{or} \quad \frac{1}{\sqrt[m]{a^n}}$$
 
----
-
-# Indices: fractional indices
+<v-click>
 
 e.g.
 
 $$a^{\frac{3}{4}}=\sqrt[4]{a^3} \quad \text{or} \quad \left(\sqrt[4]{a}\right)^3$$
+
+</v-click>
 
 ---
 
@@ -199,20 +209,6 @@ matter.
 </v-click>
 
 ---
-layout: exercise
----
-
-# Exercises: simplify
-
-$$y=8^{\frac{1}{6}}\times 2^6 \times 2^{-\frac{1}{2}}=$$
-
-<v-click>
-
-$$y= \frac{\left(p^{\frac{1}{3}}\right)^2 \times \left(p^2\right)^{\frac{1}{3}}}{\sqrt[3]{p}}=$$
-
-</v-click>
-
----
 
 # Indices: different bases, same index
 
@@ -229,6 +225,20 @@ $$(a\times b)^x = a^x\times b^x\qquad \text{and}\qquad\Bigl(\frac{a}{b}\Bigr)^x=
 </v-click>
 
 ---
+layout: exercise
+---
+
+# Exercises: simplify
+
+$$y=8^{\frac{1}{6}}\times 2^6 \times 2^{-\frac{1}{2}}=$$
+
+<v-click>
+
+$$y= \frac{\left(p^{\frac{1}{3}}\right)^2 \times \left(p^2\right)^{\frac{1}{3}}}{\sqrt[3]{p}}=$$
+
+</v-click>
+
+---
 
 # Indices: two cautionary remarks
 
@@ -241,8 +251,8 @@ $$(p+q)\cdot(s+t) = ps + pt+qs + qt$$
 
 Three important consequences:
 
-1. $(a+b)^2=(a+b)(a+b)=a^2+2ba+b^2$
-2. $(a-b)^2=(a-b)(a-b)=a^2-2ba+b^2$
+1. $(a+b)^2=(a+b)(a+b)=a^2+2ab+b^2$
+2. $(a-b)^2=(a-b)(a-b)=a^2-2ab+b^2$
 3. $(a+b)(a-b)=a^2-b^2$
 
 ---
@@ -255,8 +265,9 @@ Three important consequences:
 
 In general we write $\quad x = \log_a y \quad \Leftrightarrow \quad y=a^x$.
 
-The base of a logarithm may be any number. Commonly, logarithms either have **base** 10 or **base** $e$.
+The base of a logarithm may be any positive number other than 1. Commonly, logarithms either have **base** 10 or **base** $e$.
 It is almost always a good idea to explicitly state the base, e.g. $\log_3 9=2$ implies $3^2=9$.
+In this course we always write the base, e.g. $\log_{10}$, except for base $e$ (more on this below).
 
 ---
 
@@ -275,9 +286,8 @@ Some physical phenomena use log metrics due to their huge dynamic range:
 - volume of sound (decibels)
 - pitch (1 octave is doubling of frequency, 2 octaves is quadrupling of
   frequency)
-- earth quakes (Richter scale)
+- earthquakes (Richter scale)
 - pH ($[H^+]$ ion concentration)
-- Used a lot in computer programming to improve the speed and/or accuracy of calculations.
 
 ---
 
@@ -295,25 +305,26 @@ $$a^{\log_a\,b}=b$$
 
 ---
 
-# Laws of logarithms
+# Laws of logarithms: from the laws of indices
 
-### Multiplication
+Each law of logarithms comes from a law of indices.
+If $b=a^m$ and $c=a^n$, then $\log_a b = m$ and $\log_a c = n$, so:
 
-$$\log_a (bc) = \log_a b + \log_a c \qquad \text{(add)}$$
+|                | Indices                     | Logarithms                                      |
+| -------------- | --------------------------- | ----------------------------------------------- |
+| Multiplication | $a^m\times a^n=a^{m+n}$     | $\log_a (bc) = \log_a b + \log_a c$ (add)       |
+| Division       | $a^m/a^n=a^{m-n}$           | $\log_a (b/c) = \log_a b - \log_a c$ (subtract) |
+| Powers         | $\left(a^m\right)^r=a^{mr}$ | $\log_a b^r = r \log_a b$ (multiply)            |
 
-### Division
+<v-click>
 
-In a similar way to multiplication,
+This means that the laws of logarithms are the laws of indices written in terms of the powers, with the same (add), (subtract) and (multiply).
 
-$$\log_a \left(\frac{b}{c}\right) = \log_a b - \log_a c \qquad \text{(subtract)}$$
+</v-click>
 
 ---
 
 # Laws of logarithms
-
-### Powers
-
-$$\log_a b^n = n \log_a b \qquad \text{(multiply)}$$
 
 ### Changing the base of a logarithm
 
@@ -333,21 +344,9 @@ $$\log_a b =\frac{\log_b b}{\log_b a}=\frac{1}{\log_b a}$$
 
 $$\log_a a =1$$
 
-### The log of 1 is 0 (unless a=0, in which case it is undefined)
+### The log of 1 is 0
 
 $$\log_a 1 = 0 \quad \text{since} \quad a^0=1$$
-
----
-
-# Laws of logarithms
-
-### Inverse operation
-
-$$\log_a a^x = x$$
-
-### Or
-
-$$a^{\log_a x}=x$$
 
 ### Negative logs
 
@@ -362,8 +361,88 @@ $$\log_a \frac{1}{x} = \log_a1-\log_ax= 0 - \log_a x =-\log_ax$$
 2. Neither can $\log_a x \cdot \log_a y$ or $\dfrac{\log_a x}{\log_a y}$. Leave them as they are.
 
 ---
+layout: two-cols
+---
 
-# Example 1: graphs
+# The exponential function: definition of e
+
+The real number $e$, also known as Euler's number, is that base for which the graph $y=e^x$
+passes through the point $(0, 1)$ with gradient exactly equal to $1$.
+
+::right::
+
+<PlotFigure v-click name="exponential" />
+
+---
+
+# The exponential function
+
+So for the function (called the **exponential function**):
+
+$$y=e^x \quad \text{the gradient at } (0,1) \text{ is } 1 = e^0.$$
+
+This turns out to be true at **any** point on the curve, i.e. the gradient of $y=e^x$ at any point is equal to the value of $e^x$ there.
+This means that the function $y=e^x$ is unchanged when differentiated (more on this when we cover differentiation).
+
+$e$ has been found to arise in many branches of mathematics. It is also used as a **base** for logarithms. e.g.:
+
+$$y=\log_e10=\ln 10 \quad \text{and} \quad y=\log_ex=\ln x$$
+
+Logs to base $e$ are called **natural logarithms**.
+
+---
+
+# Definition of the natural logarithm
+
+The **natural logarithm** of a number is the logarithm of that number taken using the base $e$.
+We usually write $\ln(x)$ for $\log_e(x)$.  Here are some examples:
+
+- $\ln(e)=\log_e(e)=1$
+- $\ln(10)=\log_e(10)$ = "The power I need to raise $e$ to in order to get 10"
+- $\ln(10)\approx 2.303$. Which means that $e^{2.303}\approx 10$
+- $\ln(\exp(b)) = \ln e^b  =\log_e e^b = b$
+- $\exp(\ln(b))=e^{\ln(b)}=e^{\log_e b}=b$
+
+Note that the last two examples confirm the property that
+the functions  "$\exp$"  and "$\ln$"  are _functional
+inverses_ of one another.
+
+---
+
+# Logarithms in Python
+
+In numpy, `np.log` is the natural logarithm, $\ln$.
+For base 10 and base 2 there are `np.log10` and `np.log2`:
+
+```python
+print(np.log(10))
+print(np.log10(1000))
+print(np.log2(8))
+```
+
+```text
+2.302585092994046
+3.0
+3.0
+```
+
+<v-click>
+
+For any other base, use the change of base formula, e.g. $\log_3 81 = \ln 81 / \ln 3$:
+
+```python
+print(np.log(81)/np.log(3))
+```
+
+```text
+4.0
+```
+
+</v-click>
+
+---
+
+# Example 1: power laws
 
 Can the data below be fitted to the form: $y=Ax^n$?
 
@@ -371,20 +450,22 @@ Can the data below be fitted to the form: $y=Ax^n$?
 
 ---
 
-# Example 1: graphs
+# Example 1: power laws
 
-- Take logs of both sides: This is the equation of a straight line (compare to $y=mx+c$)
+Take logs of both sides:
 
-$$\log y =\log Ax^n = \log A + \log x^n= \log A + n \log x$$
+$$\log_{10} y =\log_{10} Ax^n = \log_{10} A + \log_{10} x^n= \log_{10} A + n \log_{10} x$$
 
-<PlotFigure v-click name="power-law-logs" :height="300" />
+This is the equation of a straight line, $Y=mX+c$, with $Y=\log_{10} y$, $X=\log_{10} x$, $m=n$ and $c=\log_{10} A$.
+
+<PlotFigure v-click name="power-law-logs" :height="280" />
 
 ---
 
-# Example 1: graphs
+# Example 1: power laws
 
 ```python
-gradient = (Z[-1] - Z[0])/(W[-1] - W[0])
+gradient = (Y[-1] - Y[0])/(X[-1] - X[0])
 print('gradient =',gradient)
 ```
 
@@ -408,13 +489,80 @@ $$y=3.0\times  x^{0.5}$$
 
 </v-click>
 
+<v-click>
+
+Plotting $\log_{10} y$ against $\log_{10} x$ is the same as plotting $y$ against $x$ on logarithmic axes (called a _log-log_ plot).
+
+</v-click>
+
 ---
 
-# Example 2: pH, part 1
+# Example 2: exponential growth
 
-What is the pH of a 0.011M solution of HCl?
+We often want to know how quickly a population grows.
+Here, a population of bacteria is counted every hour.
+Can the data below be fitted to the form: $N=N_0e^{kt}$?
 
-$$pH = -\log_{10}[H^+]$$
+<PlotFigure v-click name="exponential-growth" :height="360" />
+
+---
+
+# Example 2: exponential growth
+
+Take the natural log of both sides:
+
+$$\ln N = \ln N_0e^{kt} = \ln N_0 + \ln e^{kt} = \ln N_0 + kt$$
+
+This is the equation of a straight line, with $Y=\ln N$, $X=t$, $m=k$ and $c=\ln N_0$.
+Only the $N$ axis is on a log scale, so this is called a _semi-log_ plot.
+
+<PlotFigure v-click name="exponential-growth-logs" :height="280" />
+
+---
+
+# Example 2: exponential growth
+
+```python
+gradient = (Y[-1] - Y[0])/(t[-1] - t[0])
+intercept = Y[0]
+print('gradient =',gradient)
+print('intercept =',intercept)
+```
+
+<v-click>
+
+```text
+gradient = 0.3465735902799727
+intercept = 5.298317366548036
+```
+
+</v-click>
+
+<v-click>
+
+Gradient = 0.35 = $k$ (per hour)
+
+Intercept = $5.3 = \ln N_0$ (the first count is at $t=0$) so $N_0 = e^{5.3} \approx 200$
+
+- Data fit curve of the form:
+
+$$N=200\,e^{0.35t}$$
+
+</v-click>
+
+<v-click>
+
+The population doubles when $e^{kt}=2$, i.e. when $t=\ln 2/k\approx 2$ hours.
+
+</v-click>
+
+---
+
+# Example 3: pH, part 1
+
+What is the pH of a 0.011 M solution of HCl?
+
+$$\text{pH} = -\log_{10}[H^+]$$
 
 <v-click>
 
@@ -435,13 +583,13 @@ pH = 1.958607314841775
 
 ---
 
-# Example 2: pH, part 2
+# Example 3: pH, part 2
 
 What is the H$^+$ concentration of a solution of HCl with a pH of 3?
 
 <v-click>
 
-$$pH = -\log [H^+] = 3 \quad \text{so}$$
+$$\text{pH} = -\log_{10} [H^+] = 3 \quad \text{so} \quad [H^+] = 10^{-3}$$
 
 </v-click>
 
@@ -466,65 +614,18 @@ print('[H+] =',hydrogen,'M')
 layout: exercise
 ---
 
-# Example 3: simplifying logs
+# Example 4: simplifying logs
 
 Write an expression for $x$ without using logarithms
 
-$$\log(x) = \log(p) + 2 \log(q) - \log(k) -3$$
+$$\log_{10}(x) = \log_{10}(p) + 2 \log_{10}(q) - \log_{10}(k) -3$$
 
 1. Use the laws of logarithms (above) to put all terms on the right hand side
-   **within** the logarithm. This means we have to rewrite $3$ as $3\log(10)$.
-2. Raise both sides to the (same) power which will **undo** the logarithm function. (i.e. raise both sides to the power of 10)
+   **within** the logarithm. This means we have to rewrite $3$ as $3\log_{10}(10)$.
+2. Raise 10 to the power of each side, which will **undo** the logarithm function.
 
 ::work::
 
-$$\log(x) =$$
+$$\log_{10}(x) =$$
 
 $$x=$$
-
----
-layout: two-cols
----
-
-# The exponential function: definition of e
-
-The real number $e$, also known as Euler's number, is that base for which the graph $y=e^x$
-passes through the point $(0, 1)$ with gradient exactly equal to $1$.
-
-::right::
-
-<PlotFigure v-click name="exponential" />
-
----
-
-# The exponential function
-
-So for the function (called the **exponential function**):
-
-$$y=e^x \quad \text{the gradient at } (0,1) \text{ is } 1 = e^0.$$
-
-This turns out to be true at **any** point on the curve.
-The function $y=e^x$ is the **only** function that is unchanged when differentiated (more tomorrow).
-
-$e$ has been found to arise in many branches of mathematics. It is also used as a **base** for logarithms. e.g.:
-
-$$y=\log_e10=\ln 10 \quad \text{and} \quad y=\log_ex=\ln x$$
-
-Logs to base $e$ are called **natural logarithms**.
-
----
-
-# Definition of the natural logarithm
-
-The **natural logarithm** of a number is the logarithm of that number taken using the base $e$.
-We usually write $\ln(x)$ for $\log_e(x)$.  Here are some examples:
-
-- $\ln(e)=\log_e(e)=1$
-- $\ln(10)=\log_e(10)$ = "The power I need to raise $e$ to in order to get 10"
-- $\ln(10)\approx 2.303$. Which means that $e^{2.303}\approx 10$
-- $\ln(\exp(b)) = \ln e^b  =\log_e e^b = b$
-- $\exp(\ln(b))=e^{\ln(b)}=e^{\log_e b}=b$
-
-Note that examples (d) and (e) confirm the property that
-the functions  "$\exp$"  and "$\ln$"  are _functional
-inverses_ of one another.
