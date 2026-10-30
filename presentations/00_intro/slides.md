@@ -34,9 +34,7 @@ Some of you **may** feel you don't need to know any maths, but this course will 
 
 ---
 
-# Why maths?
-
-Data analysis
+# Why maths: data analysis
 
 - Interpretation and inference
 - Identify patterns, trends, relationships
@@ -44,9 +42,7 @@ Data analysis
 
 ---
 
-# Why maths?
-
-Describe the behaviour of systems
+# Why maths: describing systems
 
 - Remove ambiguity: explicit assumptions
 - Quantitative hypotheses
@@ -56,7 +52,7 @@ Describe the behaviour of systems
 
 ---
 
-# Why maths?
+# Why maths: dynamic and nonlinear systems
 
 Vital for **dynamic** and **nonlinear** systems
 
@@ -83,6 +79,7 @@ Vital for **dynamic** and **nonlinear** systems
 - Ordinary differential equations
 - Linear algebra (matrices)
 - Coupled systems of ordinary differential equations
+- Probability (online material only)
 - Use of Python
 
 ---
@@ -118,8 +115,6 @@ training-event-only: true
 # Course material
 
 <https://train.rse.ox.ac.uk/>
-
-(Demo)
 
 ---
 
