@@ -461,6 +461,8 @@ print('[H+] =',hydrogen,'M')
 </v-click>
 
 ---
+layout: exercise
+---
 
 # Example 3: simplifying logs
 
@@ -468,13 +470,15 @@ Write an expression for $x$ without using logarithms
 
 $$\log(x) = \log(p) + 2 \log(q) - \log(k) -3$$
 
-$$\log(x) =$$
-
-$$x=$$
-
 1. Use the laws of logarithms (above) to put all terms on the right hand side
    **within** the logarithm. This means we have to rewrite $3$ as $3\log(10)$.
 2. Raise both sides to the (same) power which will **undo** the logarithm function. (i.e. raise both sides to the power of 10)
+
+::work::
+
+$$\log(x) =$$
+
+$$x=$$
 
 ---
 layout: two-cols
