@@ -172,6 +172,52 @@ and fails on any figure that throws, draws NaN or draws nothing. To run it local
 npm run check:figures
 ```
 
+## Slide style
+
+Keep every lecture consistent:
+
+- **Titles** are in sentence case, with no full stop or colon at the end. The
+  header bar shows each slide's `#` title, so a slide that continues a section
+  names its own topic after a colon, e.g. `# Indices: division`, rather than
+  repeating the section and adding a heading in the body. A slide that covers
+  several topics keeps the section title and uses `###` for each topic (`####`
+  inside those). Keep titles short enough to fit the header bar.
+- **Lists** are standard Markdown: `-` for bullets, `1.` `2.` `3.` for numbered
+  items, with no letters such as (a) or (b). Where an answer refers back to a
+  question, start it with the number in bold, e.g. `**1.**`. Only items that are
+  full sentences end with a full stop.
+- **Maths** on its own line is display maths, `$$ ... $$`; inline maths, `$...$`,
+  is only for maths within a sentence, and must not start with a space. Use
+  `\frac`, not `\over`, and `\text{...}`, not `\rm`. Use `\quad` or `\qquad` for
+  space, not `~` or `\;`. Write a literal "(c)" as `\(c)`, or it becomes a
+  copyright sign.
+- **Derivations** of three or more lines go in one `aligned` block, revealed a
+  line at a time with cumulative line highlighting:
+
+  ```md
+  $$ {1|1-2|1-3}
+  \begin{aligned}
+  y &= x^3 \\
+  y' &= 3x^2 \\
+  y'' &= 6x
+  \end{aligned}
+  $$
+  ```
+
+- **Code** is a `python` block, followed by its output in a `text` block with no
+  `>>>` prompts. Python blocks get a small Python logo automatically.
+- **Reveal on click** (`v-click`, or `v-clicks` for a list): derivations line by
+  line, lists that build an argument one item at a time, answers, and a figure
+  that follows its lead-in text. Definitions, reference lists, rules and slides
+  that are just a figure appear all at once.
+- **Figures** are as large as the slide allows. A figure with a line or two of
+  text goes under the text, full width; with more text, use `layout: two-cols`
+  and put the figure on the right. Drop a figure's title where the slide's title
+  already says the same thing.
+- **Exercises** for students to do in the lecture use `layout: exercise`, which
+  turns the header bar green with a pencil. Leave room on the slide for working
+  on the whiteboard.
+
 ## Markdown style
 
 CI lints every Markdown file, slides included, with
