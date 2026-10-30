@@ -165,11 +165,7 @@ $$\Big(\int u\, v'\, dx = [u\, v]-\int v\, u'\, dx\Big)$$
 
 Choose
 
-$$u=x^3\qquad\text{and}\qquad v'=e^{-x}$$
-
-so that:
-
-$$u'=3x^2\qquad\text{and}\qquad v=-e^{-x}$$
+$$u=x^3\qquad\text{and}\qquad v'=e^{-x} \qquad\text{so that}\qquad u'=3x^2\qquad\text{and}\qquad v=-e^{-x}$$
 
 </v-click>
 
@@ -187,11 +183,7 @@ Now apply integration by parts to the right-hand side:
 
 Choose
 
-$$u=3x^2\qquad\text{and}\qquad v'=e^{-x}$$
-
-so that:
-
-$$u'=6x\qquad\text{and}\qquad v=-e^{-x}$$
+$$u=3x^2\qquad\text{and}\qquad v'=e^{-x} \qquad\text{so that}\qquad u'=6x\qquad\text{and}\qquad v=-e^{-x}$$
 
 <v-click>
 
@@ -318,7 +310,8 @@ $$\Longrightarrow \quad 2\int\limits^b_a \cos x\,e^{-x}\,dx = \Big[\sin x\, e^{-
 $$\int \frac{dx}{(2x+1)(x-5)} \qquad\text{Let}\qquad \frac{1}{(2x+1)(x-5)}=\frac{A}{2x+1} + \frac{B}{x-5}$$
 
 Multiply both sides by $(2x+1)(x-5)$ to get:
-$A(x-5)+B(2x+1)=1$ so $Ax-5A+B2x+B=1$
+
+$$A(x-5)+B(2x+1)=1 \qquad\text{so}\qquad Ax-5A+B2x+B=1$$
 
 <v-click>
 
