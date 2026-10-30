@@ -18,6 +18,17 @@ fonts:
 ---
 
 ---
+
+# Why exponentials and partial derivatives?
+
+In this lecture we use the chain rule to differentiate the exponential and logarithmic functions from the lecture on indices and logs.
+We need these whenever a quantity grows or decays (e.g. $e^{-kt}$).
+
+We then look at functions of more than one variable (e.g. the temperature at each point on a plate).
+We often want to know how such a function changes when just one of its variables changes.
+This is called _partial differentiation_, and we will need it when we study systems of differential equations.
+
+---
 layout: exercise
 ---
 
@@ -60,7 +71,7 @@ $$\frac{d}{dx}e^{f(x)}=e^{f(x)}f'(x)$$
 
 # Example with the natural logarithm
 
-$y=\ln(a-x)^2=2\ln(a-x)=2\ln u$. Let $u=(a-x)$:
+$y=\ln\left((a-x)^2\right)=2\ln(a-x)=2\ln u$. Let $u=(a-x)$:
 
 $$\Rightarrow \frac{du}{dx}=-1 \quad\text{and}\quad \frac{dy}{du}=\frac{2}{u} \quad\text{Thus}\quad \frac{dy}{dx}=\frac{2}{u}\times (-1)=\frac{-2}{a-x}$$
 
@@ -94,9 +105,9 @@ $$\frac{d}{dx}a^{f(x)} = a^{f(x)}\cdot \ln a\cdot f'(x)$$
 
 ---
 
-# Sympy example
+# SymPy example
 
-Lets try and use Sympy to prove the rule:
+Let's try and use SymPy to check the rule:
 
 $$\frac{d}{dx}a^{f(x)} = a^{f(x)}\cdot \ln a\cdot f'(x)$$
 
@@ -109,6 +120,8 @@ sp.diff(a**f(x),x)       # write the expression we wish to evaluate
 ```
 
 $$a^{f{\left(x \right)}} \log{\left(a \right)} \frac{d}{d x} f{\left(x \right)}$$
+
+(SymPy writes $\log$ for the natural logarithm, $\ln$.)
 
 </v-click>
 
@@ -137,9 +150,9 @@ $$\frac{d}{dx}\log_a f(x) = \frac{f'(x)}{f(x)(\ln a)}$$
 
 ---
 
-# Sympy example
+# SymPy example
 
-Lets try and use Sympy again to prove the rule:
+Let's try and use SymPy again to check the rule:
 
 $$\frac{d}{dx}\log_a f(x) = \frac{f'(x)}{f(x)(\ln a)}$$
 
@@ -225,7 +238,7 @@ Functions of several variables.
 
 **Definition:** Given a function $z=f(x,y)$ of two variables $x$ and $y$, the **partial derivative of $z$ with respect to $x$** is the function obtained by differentiating $f(x,y)$ with respect to $x$, holding $y$ constant.
 
-We denote this using $\partial$ (the "curly" delta, sometimes pronounced "del") as shown below:
+We denote this using $\partial$ (a "curly" d, sometimes pronounced "del") as shown below:
 
 $$\frac{\partial z}{\partial x}=\frac{\partial}{\partial x}f(x,y) = f_x(x,y)$$
 
@@ -261,13 +274,13 @@ $$\frac{\partial z}{\partial y}=\frac{\partial}{\partial y}\,\left(3x^2y+5xy^2\r
 
 ---
 
-# Partial differentiation: in Sympy
+# Partial differentiation: in SymPy
 
 In the previous slide we had:
 
 $$\frac{\partial}{\partial x}\,\left(3x^2y+5xy^2\right) = 6xy+5y^2$$
 
-Lets redo this in Sympy:
+Let's redo this in SymPy:
 
 <v-click>
 
@@ -321,11 +334,11 @@ $$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial y}\right) =\frac{\
 
 # Example: Laplace's equation
 
-(LaPlace's Equation for Equilibrium Temperature Distribution on a Copper Plate.)
+(Laplace's Equation for Equilibrium Temperature Distribution on a Copper Plate.)
 
 Let $T(x,y)$ give the temperature at the point $(x,y)$.
 
-According to a result of the French mathematician Pierre LaPlace (1749 - 1827), at every point $(x,y)$ the second-order partials of $T$ must satisfy the equation
+According to a result of the French mathematician Pierre-Simon Laplace (1749 - 1827), at every point $(x,y)$ the second-order partials of $T$ must satisfy the equation
 
 $$T_{xx} + T_{yy} = 0$$
 
@@ -333,7 +346,7 @@ $$T_{xx} + T_{yy} = 0$$
 
 # Example: Laplace's equation
 
-The function $T(x,y)=y^2-x^2$ satisfies LaPlace's equation:
+The function $T(x,y)=y^2-x^2$ satisfies Laplace's equation:
 
 First with respect to $x$:
 
@@ -361,7 +374,7 @@ which proves the result.
 
 # Example: Laplace's equation
 
-The function $z=x^2y - xy^2$ does _not_ satisfy LaPlace's equation (and so cannot be a model for thermal equilibrium).
+The function $z=x^2y - xy^2$ does _not_ satisfy Laplace's equation (and so cannot be a model for thermal equilibrium).
 
 First note that
 
@@ -384,9 +397,9 @@ $$z_{xx}+z_{yy}=2y-2x\ne 0$$
 
 ---
 
-# Example: Laplace's equation in Sympy
+# Example: Laplace's equation in SymPy
 
-We can verify this in Sympy like so:
+We can verify this in SymPy like so:
 
 ```python
 T1 = y**2 - x**2
@@ -408,7 +421,7 @@ $$- 2 x + 2 y$$
 
 # A note on the mixed partials
 
-If all of the partials of $f(x,y)$ exist, then $f_{xy}=f_{yx}$ for all $(x,y)$.
+For almost any function you will meet, $f_{xy}=f_{yx}$, so it does not matter in which order we take the partial derivatives.
 
 ---
 
