@@ -1,7 +1,6 @@
 // Lecture 10, cell 10: the leaf growth model dy/dt = k1 y - k2 y^2, solved
 // numerically from y(0) = 0.1; k1 and k2 were sliders in the notebook
 import * as Plot from '@observablehq/plot'
-import { format } from '#plots/controls.js'
 import { linspace, odeint } from '#plots/numerics.js'
 import { blue, line } from '#plots/style.js'
 
@@ -15,7 +14,6 @@ const ts = linspace(0, 10, 100)
 export default ({ k1, k2 }) => {
   const y = odeint(y => k1 * y - k2 * y ** 2, 0.1, ts)
   return {
-    title: `Solution of dy/dt = k₁y - k₂y², k₁ = ${format(k1, controls.k1)}, k₂ = ${format(k2, controls.k2)}`,
     x: { label: 't' },
     y: { label: 'y' },
     marks: [
