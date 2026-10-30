@@ -13,7 +13,6 @@ const f = x => x ** 2
 const width = 0.1
 
 export default ({ start }) => ({
-  title: 'Integration approximation with single rectangle',
   x: { label: 'x', domain: [0.8, 2.2] },
   y: { label: 'f(x)', domain: [0, 5] },
   marks: [

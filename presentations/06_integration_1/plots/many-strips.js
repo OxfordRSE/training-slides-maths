@@ -15,7 +15,6 @@ export default ({ n }) => {
   const width = 1 / n
   const strips = Array.from({ length: n }, (_, i) => 1 + i * width)
   return {
-    title: 'Integration approximation with multiple rectangles',
     x: { label: 'x', domain: [0.8, 2.2] },
     y: { label: 'f(x)', domain: [0, 5] },
     marks: [

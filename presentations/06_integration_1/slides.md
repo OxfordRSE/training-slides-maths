@@ -57,7 +57,7 @@ The area of the strip is $\delta A_i \approx y(x_i)\,\delta x$
 
 ---
 
-# Integration
+# Integration: summing the strips
 
 We can sum up all the strips between $x=1$ and $x=2$ to give an estimate for the total area:
 
@@ -241,7 +241,7 @@ Recall that:
 
 $$\frac{d}{dx}\Big(\sin x\Big)= \cos x \qquad\text{and}\qquad \frac{d}{dx}\Big(\cos x\Big)= -\sin x$$
 
-Example (i):
+Example 1:
 
 $$\int_{0}^{\pi/2} \cos x \, dx =$$
 
@@ -259,7 +259,7 @@ $$1$$
 
 # Integrating trigonometric functions
 
-Example (ii):
+Example 2:
 
 $$\int_{0}^{\pi/2} \sin x \, dx =$$
 
@@ -281,11 +281,11 @@ Recall that:
 
 $$\frac{d}{dx}\Big(\sin x\Big)= \cos x \qquad\text{and}\qquad \frac{d}{dx}\Big(\cos x\Big)= -\sin x$$
 
-Example (i):
+Example 1:
 
 $$\int_{0}^{\pi/2} \cos x \, dx = \Big[\sin x \Big]_0^{\pi/2}=1-0=1$$
 
-Example (ii):
+Example 2:
 
 $$\int_{0}^{\pi/2} \sin x \, dx = \Big[-\cos x \Big]_0^{\pi/2}=0-(-1)=1$$
 
@@ -462,4 +462,4 @@ $$
 sp.integrate((3 - 4*x)**(-5),(x,a,b))
 ```
 
-$$- \frac{1}{4096 a^{4} - 12288 a^{3} + 13824 a^{2} - 6912 a + 1296} + \frac{1}{4096 b^{4} - 12288 b^{3} + 13824 b^{2} - 6912 b + 1296}$$
+$$\frac{1}{4096 b^{4} - 12288 b^{3} + 13824 b^{2} - 6912 b + 1296} - \frac{1}{4096 a^{4} - 12288 a^{3} + 13824 a^{2} - 6912 a + 1296}$$
