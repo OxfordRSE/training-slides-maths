@@ -219,8 +219,9 @@ Keep every lecture consistent:
   and put the figure on the right. Drop a figure's title where the slide's title
   already says the same thing.
 - **Exercises** for students to do in the lecture use `layout: exercise`, which
-  turns the header bar green with a pencil. Leave room on the slide for working
-  on the whiteboard.
+  turns the header bar green with a pencil, and spreads the questions evenly down
+  the slide (a list's items, below any text before it), so each one has room
+  under it for working on the whiteboard.
 
 ## Markdown style
 
