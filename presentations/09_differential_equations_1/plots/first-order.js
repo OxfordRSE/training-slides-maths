@@ -11,7 +11,6 @@ export const controls = {
 const ts = linspace(0, 1, 200)
 
 export default ({ k }) => ({
-  title: 'First order growth and decay',
   x: { label: 't' },
   y: { label: 'A', domain: [0, 7.5] },
   color: { domain: ['First order growth', 'First order decay'], range: [blue, orange], legend: true },

@@ -228,7 +228,8 @@ y_exact = np.sqrt(-2*np.exp(-x)*(1 + x) + c3)
 def dydx(y, x):
     return np.exp(-x) * x / y
 
-y_numerical = scipy.integrate.odeint(dydx, 1e-8, x) # why 1e-8 instead of zero?
+# why 1e-8 instead of zero?
+y_numerical = scipy.integrate.odeint(dydx, 1e-8, x)
 ```
 
 ::right::
@@ -299,7 +300,7 @@ Lets look at this numerically using the original equation:
 
 $$\frac{ds}{dt}=-\frac{V.s}{K+s}$$
 
-<PlotFigure name="michaelis-menten" :height="340" />
+<PlotFigure name="michaelis-menten" :height="300" />
 
 ---
 

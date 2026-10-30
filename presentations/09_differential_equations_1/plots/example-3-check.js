@@ -9,23 +9,18 @@ const xs = linspace(0, 1, 100)
 const exact = xs.map(x => Math.sqrt(-2 * Math.exp(-x) * (1 + x) + 2))
 const numerical = odeint((y, x) => Math.exp(-x) * x / y, 1e-8, xs)
 
+// Each solution's positive and negative branches, drawn as separate lines
 const curves = [
-  ['exact+', exact, 1],
-  ['exact-', exact, -1],
-  ['numerical+', numerical, 1],
-  ['numerical-', numerical, -1],
-].flatMap(([name, ys, sign]) => xs.map((x, i) => ({ x, y: sign * ys[i], name })))
+  ['exact', exact],
+  ['numerical', numerical],
+].flatMap(([line, ys]) => [1, -1].flatMap(sign => xs.map((x, i) => ({ x, y: sign * ys[i], line, branch: `${line}${sign}` }))))
 
 export default () => ({
   x: { label: 'x' },
   y: { label: 'y' },
-  color: {
-    domain: ['exact+', 'exact-', 'numerical+', 'numerical-'],
-    range: [vermillion, vermillion, '#1a1a1a', '#1a1a1a'],
-    legend: true,
-  },
+  color: { domain: ['exact', 'numerical'], range: [vermillion, '#1a1a1a'], legend: true },
   marks: [
-    Plot.line(curves.filter(d => d.name.startsWith('exact')), { ...line, x: 'x', y: 'y', z: 'name', stroke: 'name' }),
-    Plot.line(curves.filter(d => d.name.startsWith('numerical')), { ...line, x: 'x', y: 'y', z: 'name', stroke: 'name', strokeDasharray: '10 6' }),
+    Plot.line(curves.filter(d => d.line === 'exact'), { ...line, x: 'x', y: 'y', z: 'branch', stroke: 'line' }),
+    Plot.line(curves.filter(d => d.line === 'numerical'), { ...line, x: 'x', y: 'y', z: 'branch', stroke: 'line', strokeDasharray: '10 6' }),
   ],
 })

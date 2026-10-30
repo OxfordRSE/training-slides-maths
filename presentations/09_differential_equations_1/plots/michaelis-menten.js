@@ -3,7 +3,6 @@
 // small K gives a zeroth order (straight line) decline, large K a first order
 // (exponential) one.
 import * as Plot from '@observablehq/plot'
-import { format } from '#plots/controls.js'
 import { linspace, odeint } from '#plots/numerics.js'
 import { blue, line } from '#plots/style.js'
 
@@ -17,7 +16,6 @@ const ts = linspace(0, 10, 500)
 export default ({ K }) => {
   const s = odeint(s => -V * s / (K + s), 1, ts)
   return {
-    title: `Solution of ds/dt = -Vs/(K + s), K = ${format(K, controls.K)}`,
     x: { label: 't' },
     y: { label: 's' },
     marks: [
