@@ -181,7 +181,8 @@ Keep every lecture consistent:
   names its own topic after a colon, e.g. `# Indices: division`, rather than
   repeating the section and adding a heading in the body. A slide that covers
   several topics keeps the section title and uses `###` for each topic (`####`
-  inside those). Keep titles short enough to fit the header bar.
+  inside those). Keep titles short enough to fit the header bar. There are no
+  divider slides with only a title: the titles already name each section.
 - **Lists** are standard Markdown: `-` for bullets, `1.` `2.` `3.` for numbered
   items, with no letters such as (a) or (b). Where an answer refers back to a
   question, start it with the number in bold, e.g. `**1.**`. Only items that are
