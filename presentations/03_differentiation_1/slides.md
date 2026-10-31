@@ -38,11 +38,16 @@ Once we have the rate, we can use it to find where a quantity is greatest or sma
 # Gradients: defining the gradient
 
 - The **gradient of a curve** at a point $P$ is the slope of the tangent of the curve at that point.
+
+<v-clicks>
+
 - The **tangent** is the line that "just touches" the curve.
 - The gradient is also known as the **rate of change** or **derivative**, and the process of finding the gradient is called **differentiation**.
 - The gradient of the curve $y = f(x)$ is denoted in a few different ways, the three most common are:
 
-$$y', \quad f'(x), \quad \frac{dy}{dx}.$$
+  $$y', \quad f'(x), \quad \frac{dy}{dx}.$$
+
+</v-clicks>
 
 ---
 
@@ -64,11 +69,15 @@ If we want to find $y'(x)$ for $y = x^3 + 2$:
 
 $$\text{Gradient} = \frac{y_2 - y_1}{x_2-x_1} = \frac{\Delta y}{\Delta x}$$
 
+<v-click>
+
 Try with
 
 $$x_1 = 1.5,\;1.9,\;1.99,\;\ldots$$
 
 $$x_2 = 2.5,\;2.1,\;2.01,\;\ldots$$
+
+</v-click>
 
 ---
 
@@ -101,7 +110,11 @@ for h in [0.5, 0.1, 0.01]:
 
 As the difference between $x_1$ and $x_2$ gets smaller, the gradient stabilises.
 
+<v-click>
+
 The value it converges to is the gradient at the midway point of $x_1$ and $x_2$.
+
+</v-click>
 
 ---
 
@@ -109,19 +122,43 @@ The value it converges to is the gradient at the midway point of $x_1$ and $x_2$
 
 $$\text{Gradient} \approx \frac{\Delta y}{\Delta x} = \frac{f(x+h) - f(x)}{h}$$
 
+<v-click>
+
 This is called a finite difference approximation to the gradient.
+
+</v-click>
+
+<v-click>
 
 The approximation becomes more accurate the smaller $h$ is.
 
+</v-click>
+
+<v-click>
+
 When using the approximation, we denote the changes with $\Delta$.
+
+</v-click>
+
+<v-click>
 
 In the limit as $h$ goes to 0, this becomes the derivative:
 
 $$\frac{dy}{dx} = \frac{d}{dx}\,y = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
 
+</v-click>
+
+<v-click>
+
 In this way, $d/dx$ is an operator, acting on $y$.
 
+</v-click>
+
+<v-click>
+
 Note, the $d$s cannot be cancelled out, as they aren't variables, they denote an infinitely small change.
+
+</v-click>
 
 ---
 
@@ -158,9 +195,13 @@ $$\frac{dy}{dx} = \lim_{h \to 0} \left(3x^2 + 3xh + h^2\right) = 3x^2$$
 
 Using techniques like the one above (which is called differentiation from first principles), one can generalise the connection between powers of $x$ and their derivatives:
 
+<v-click>
+
 If $y = a x^n$, then its **derivative** is
 
 $$\frac{dy}{dx} = y'(x) = a n x^{n-1}$$
+
+</v-click>
 
 ---
 layout: exercise
@@ -179,9 +220,13 @@ layout: exercise
 
 $$(f(x) \pm g(x))' = f'(x) \pm g'(x)$$
 
+<v-click>
+
 e.g.
 
 $$y = x^2 + x^3, \quad y' = 2x + 3x^2$$
+
+</v-click>
 
 ---
 
@@ -189,17 +234,29 @@ $$y = x^2 + x^3, \quad y' = 2x + 3x^2$$
 
 $$(a f(x))' = a f'(x)$$
 
+<v-click>
+
 e.g.
 
 $$y = 6x^3, \quad y' = 6 \cdot 3x^2 = 18 x^2$$
+
+</v-click>
+
+<v-click>
 
 **This only works for scalars**.
 
 In most circumstances $(f(x) g(x))' \neq f'(x) g'(x)$ (more on this in the next lecture)
 
+</v-click>
+
+<v-click>
+
 e.g.
 
 $$y = x\cdot x = x^2, \quad y' \neq 1$$
+
+</v-click>
 
 ---
 
@@ -207,9 +264,15 @@ $$y = x\cdot x = x^2, \quad y' \neq 1$$
 
 You can take a derivative of a function multiple times in a row.
 
+<v-click>
+
 For second-order derivatives (differentiating twice) this is usually denoted in one of these ways, and similar for higher orders:
 
 $$y''(x), \qquad f''(x), \qquad \frac{d^2 y}{dx^2}$$
+
+</v-click>
+
+<v-click>
 
 e.g.
 
@@ -220,6 +283,8 @@ y' &= 3x^2 \\
 y'' &= \frac{d^2 y}{dx^2} = 6 x
 \end{aligned}
 $$
+
+</v-click>
 
 ---
 
@@ -241,6 +306,8 @@ The sign of the first derivative $f'(x)$ tells us how $f(x)$ is growing
 
 Stationary points (where $dy/dx = 0$) and points of inflection:
 
+<v-clicks>
+
 1. Local maximum:
 
    $$\frac{dy}{dx} = 0 \quad \text{and} \quad \frac{d^2y}{dx^2} < 0$$
@@ -252,6 +319,8 @@ Stationary points (where $dy/dx = 0$) and points of inflection:
 3. Inflection:
 
    $$\frac{d^2y}{dx^2} = 0 \quad \text{and} \quad \frac{d^2y}{dx^2} \text{ changes sign}$$
+
+</v-clicks>
 
 <v-click>
 
@@ -265,6 +334,8 @@ If $dy/dx = 0$ and $d^2y/dx^2 = 0$, this test does not tell us which it is (e.g.
 
 Find the stationary points of $y = 2x^3 - 5x^2 - 4x$.
 
+<v-click>
+
 To do this, we need to know both $y'(x)$ and $y''(x)$.
 
 $$
@@ -273,6 +344,8 @@ y'(x) &= 6x^2 - 10x - 4 \\
 y''(x) &= 12x - 10
 \end{aligned}
 $$
+
+</v-click>
 
 <v-click>
 
@@ -320,7 +393,11 @@ Since $y''(x)$ changes sign at $x = 5/6$, this is an **inflection point**
 
 **Note**: Points of inflection do not require that $y'(x) = 0$, only that $y''(x) = 0$ and changes sign.
 
+<v-click>
+
 Points of inflection are important in biology as they define conditions where a response (e.g. reaction rate) is most or least sensitive to a change in conditions (e.g. the concentration of a metabolite).
+
+</v-click>
 
 ---
 
@@ -364,10 +441,18 @@ The number $n$ (in thousands) of bacteria on an agar plate at time $t$ (in days)
 
 $$n = 15.42 + 6t - t^2$$
 
+<v-click>
+
 1. Find the time at which the greatest number of bacteria are present on the plate.
 2. Find the number of bacteria on the plate at this time.
 
+</v-click>
+
+<v-click>
+
 To do this we must find the turning points of the function.
+
+</v-click>
 
 ---
 
@@ -409,12 +494,24 @@ The growth rate $R$ of a cell colony with $N$ cells at time $t$ can be represent
 
 $$R = \frac{d N}{d t} = kN - bN^2$$
 
+<v-click>
+
 For this example take the constants $k$ and $b$ as $k = 3.8$/hr, and $b = 0.01$/cell/hr.
+
+</v-click>
+
+<v-click>
 
 This is called a **logistic** model.
 
+</v-click>
+
+<v-click>
+
 1. What is the equilibrium size of the population?
 2. What population size leads to the largest growth rate?
+
+</v-click>
 
 ---
 
@@ -443,6 +540,8 @@ $$N = \frac{3.8}{0.01} = 380.$$
 
 **2.** To find the largest growth rate, we want the maximal value of $R(N)$.
 
+<v-click>
+
 This means we need to find $R'(N) = 0$.
 
 $$
@@ -451,6 +550,8 @@ R(N) &= 3.8 N - 0.01 N^2 \\
 R'(N) &= 3.8 - 0.02 N
 \end{aligned}
 $$
+
+</v-click>
 
 <v-click>
 
