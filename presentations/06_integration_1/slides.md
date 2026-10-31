@@ -412,14 +412,13 @@ $$\int_{0}^{\pi/2} \sin x \, dx = \Big[-\cos x \Big]_0^{\pi/2}=0-(-1)=1$$
 
 # Summary of integration formulae
 
-$$
-\begin{aligned}
-\int a\,dx &= ax+C \\
-\int ax\,dx &= \frac{1}{2}ax^2+C \\
-\int ax^n\,dx &= \frac{1}{n+1}ax^{n+1}+C \qquad\text{for all } n \text{ except } n=-1 \\
-\int x^{-1}\,dx &= \int \frac{1}{x}\,dx = \ln \vert x\vert +C
-\end{aligned}
-$$
+$$\int a\,dx = ax+C$$
+
+$$\int ax\,dx = \frac{1}{2}ax^2+C$$
+
+$$\int ax^n\,dx = \frac{1}{n+1}ax^{n+1}+C \qquad\text{for all } n \text{ except } n=-1$$
+
+$$\int x^{-1}\,dx = \int \frac{1}{x}\,dx = \ln \vert x\vert +C$$
 
 ---
 
@@ -457,13 +456,13 @@ Let $f(t)$ denote the grams of NaCl produced after $t$ minutes. Then $f'(t)= 3\s
 
 <v-click>
 
-**1.** The rate of production one minute into the process is $f'(1) = 3\sqrt{1} = 3$ grams per minute.
+**Question 1:** The rate of production one minute into the process is $f'(1) = 3\sqrt{1} = 3$ grams per minute.
 
 </v-click>
 
 <v-click>
 
-**2.** The quantity of NaCl produced over the next three minutes is
+**Question 2:** The quantity of NaCl produced over the next three minutes is
 
 $$f(4)-f(1) = \int_1^4\,f'(t)\,dt = \int_1^4\,3\sqrt{t}\,dt = \phantom{\left[2t^{3/2}\right]_1^4 = 2\times(8-1) = 14}$$
 
@@ -488,7 +487,7 @@ $$14$$
 
 # Application: solution
 
-**3.** The mean rate is the constant rate which would give the same overall effect:
+**Question 3:** The mean rate is the constant rate which would give the same overall effect:
 
 $$\frac{1}{b-a}\int_a^b\,f'(t)\,dt = \frac{1}{4-1}\int_1^4\,3\sqrt{t}\,dt = \phantom{\frac{14}{3}}$$
 

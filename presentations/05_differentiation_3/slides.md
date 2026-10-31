@@ -49,13 +49,13 @@ Find $y' = dy/dx$ when $y$ is given by:
 
 # Applying the chain rule to the exponential function
 
-**1.** $y=e^{-ax}$. Let $u=-ax$, so $du/dx=-a$. Thus $y=e^u$ and
+Example 1: $y=e^{-ax}$. Let $u=-ax$, so $du/dx=-a$. Thus $y=e^u$ and
 
 $$\frac{dy}{du}=e^u \quad\Rightarrow\quad \frac{dy}{dx}=\frac{dy}{du}\times\frac{du}{dx}=e^u\times (-a)=-ae^{-ax}.$$
 
 <v-click>
 
-**2.** $y = e^{x^2}$. Then, letting $u = x^2$:
+Example 2: $y = e^{x^2}$. Then, letting $u = x^2$:
 
 $$\frac{d}{dx}e^{x^2}=\frac{dy}{dx}=\frac{dy}{du}\times\frac{du}{dx}=e^u\cdot 2x = e^{x^2}\cdot 2x.$$
 
@@ -185,13 +185,13 @@ $$\frac{\frac{d}{d x} f{\left(x \right)}}{f{\left(x \right)} \log{\left(a \right
 
 # Further examples
 
-**1.** Product rule: let $y = x^2\,e^x$. Then:
+Example 1, product rule: let $y = x^2\,e^x$. Then:
 
 $$\frac{dy}{dx}=\frac{d}{dx}x^2e^x=\frac{d}{dx}x^2\cdot e^x+x^2\cdot\frac{d}{dx}e^x = (2x + x^2)e^x$$
 
 <v-click>
 
-**2.** Quotient rule: let $y = e^x/x$. Then:
+Example 2, quotient rule: let $y = e^x/x$. Then:
 
 $$\frac{dy}{dx}=\frac{\frac{d}{dx}e^x\cdot x - e^x\cdot \frac{d}{dx}x}{x^2}=\frac{e^x\cdot x - e^x\cdot 1}{x^2}=\frac{x - 1}{x^2}e^x$$
 
@@ -201,13 +201,13 @@ $$\frac{dy}{dx}=\frac{\frac{d}{dx}e^x\cdot x - e^x\cdot \frac{d}{dx}x}{x^2}=\fra
 
 # Further examples
 
-**3.** Chain rule: $y = e^{x^2}$. Then, letting $f(x) = x^2$:
+Example 3, chain rule: $y = e^{x^2}$. Then, letting $f(x) = x^2$:
 
 $$\frac{d}{dx}e^{x^2} = e^{f(x)}f'(x) = e^{x^2}\cdot 2x$$
 
 <v-click>
 
-**4.** $y=\ln (x^2 + 1)$. Then, letting $f(x) = x^2+1$:
+Example 4: $y=\ln (x^2 + 1)$. Then, letting $f(x) = x^2+1$:
 
 $$\frac{d}{dx}\ln(x^2+1) = \frac{f'(x)}{f(x)} = \frac{2x}{x^2+1}$$
 
@@ -217,13 +217,13 @@ $$\frac{d}{dx}\ln(x^2+1) = \frac{f'(x)}{f(x)} = \frac{2x}{x^2+1}$$
 
 # Further examples
 
-**5.**
+Example 5:
 
 $$\frac{d}{dx}2^{x^3}=2^{x^3}\cdot\ln 2\cdot 3x^2$$
 
 <v-click>
 
-**6.**
+Example 6:
 
 $$\frac{d}{dx}10^{x^2+1}=10^{x^2+1}\cdot\ln 10\cdot 2x$$
 
@@ -231,7 +231,7 @@ $$\frac{d}{dx}10^{x^2+1}=10^{x^2+1}\cdot\ln 10\cdot 2x$$
 
 <v-click>
 
-**7.**
+Example 7:
 
 $$\frac{d}{dx}\log_{10}(7x+5)=\frac{7}{(7x+5)\cdot \ln10}$$
 
@@ -239,7 +239,7 @@ $$\frac{d}{dx}\log_{10}(7x+5)=\frac{7}{(7x+5)\cdot \ln10}$$
 
 <v-click>
 
-**8.**
+Example 8:
 
 $$\frac{d}{dx}\log_2(3^x+x^4)=\frac{3^x\cdot\ln3 + 4x^3}{\ln 2\cdot(3^x+x^4)}$$
 
@@ -333,28 +333,28 @@ Given $z = f(x,y)$ there are now four distinct possibilities for the second-orde
 <div class="grid grid-cols-2 gap-x-8">
 <div>
 
-**1.** With respect to $x$ twice:
+With respect to $x$ twice:
 
 $$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial x}\right) =\frac{\partial^2z}{\partial x^2} =z_{xx}$$
 
 </div>
 <div>
 
-**2.** With respect to $y$ twice:
+With respect to $y$ twice:
 
 $$\frac{\partial}{\partial y}\left(\frac{\partial z}{\partial y}\right) =\frac{\partial^2z}{\partial y^2} =z_{yy}$$
 
 </div>
 <div>
 
-**3.** First with respect to $x$, then with respect to $y$:
+First with respect to $x$, then with respect to $y$:
 
 $$\frac{\partial}{\partial y}\left(\frac{\partial z}{\partial x}\right) =\frac{\partial^2z}{\partial y\partial x} =z_{xy}$$
 
 </div>
 <div>
 
-**4.** First with respect to $y$, then with respect to $x$:
+First with respect to $y$, then with respect to $x$:
 
 $$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial y}\right) =\frac{\partial^2z}{\partial x\partial y} =z_{yx}$$
 

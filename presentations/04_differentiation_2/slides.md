@@ -139,9 +139,11 @@ While for simple examples the product rule requires more work, as functions get 
 
 # The chain rule: a function of a function
 
-One of the most useful rules is differentiating a function that has another function inside it, $y = f(g(x))$. For this we use the chain rule:
+One of the most useful rules is differentiating a function that has another function inside it, <span class="whitespace-nowrap">$y = f(g(x))$.</span>
 
 <v-click>
+
+For this we use the chain rule:
 
 $$
 \begin{aligned}

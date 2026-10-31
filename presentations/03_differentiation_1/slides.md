@@ -458,7 +458,7 @@ To do this we must find the turning points of the function.
 
 # Example: bacteria on a plate (solution)
 
-**1.** Find the time at which the greatest number of bacteria are present on the plate
+**Question 1:** Find the time at which the greatest number of bacteria are present on the plate
 
 $$ {1|1-2|1-3}
 \begin{aligned}
@@ -478,7 +478,7 @@ Therefore, $n''(t)<0$, for $t = 3$. This means that a maximum occurs at $t = 3$ 
 
 <v-click>
 
-**2.** Find the number of bacteria on the plate at this time
+**Question 2:** Find the number of bacteria on the plate at this time
 
 $$n(3) = 15.42 + 6 \times 3 - 3^2 = 24.42$$
 
@@ -517,7 +517,7 @@ This is called a **logistic** model.
 
 # Example: logistic growth (equilibrium)
 
-**1.** The equilibrium will occur when the population stops changing, i.e. when $R = 0$. Meaning:
+**Question 1:** The equilibrium will occur when the population stops changing, i.e. when $R = 0$. Meaning:
 
 $$
 \begin{aligned}
@@ -538,7 +538,7 @@ $$N = \frac{3.8}{0.01} = 380.$$
 
 # Example: logistic growth (largest growth rate)
 
-**2.** To find the largest growth rate, we want the maximal value of $R(N)$.
+**Question 2:** To find the largest growth rate, we want the maximal value of $R(N)$.
 
 <v-click>
 

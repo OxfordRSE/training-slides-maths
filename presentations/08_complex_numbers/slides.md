@@ -708,24 +708,20 @@ $$z=x+iy=r(\cos\theta + i\sin\theta)=r\,e^{i\theta}$$
 
 Other important consequences:
 
-**4.** Exponentiation on the unit circle $r=1$ can be done by multiplying the angle by the index (for integer $n$):
+<v-clicks at="+0">
 
-$$\left(e^{i\theta}\right)^n = e^{i\theta n}=e^{i(n\theta)}$$
+1. Exponentiation on the unit circle $r=1$ can be done by multiplying the angle by the index (for integer $n$):
 
-</v-click>
+   $$\left(e^{i\theta}\right)^n = e^{i\theta n}=e^{i(n\theta)}$$
 
-<v-click>
+2. This result is known as **de Moivre's theorem**. It is usually stated in its Cartesian form, for integer $n$:
 
-**5.** This result is known as **de Moivre's theorem**. It is usually stated in its Cartesian form, for integer $n$:
+   $$(\cos\theta + i\sin\theta)^n=\cos(n\theta) + i\sin(n\theta)$$
 
-$$(\cos\theta + i\sin\theta)^n=\cos(n\theta) + i\sin(n\theta)$$
+3. Finally, the famous identity by Leonhard Euler
 
-</v-click>
+   $$e^{\pi i}+1=0$$
 
-<v-click>
-
-**6.** Finally, the famous identity by Leonhard Euler
-
-$$e^{\pi i}+1=0$$
+</v-clicks>
 
 </v-click>
