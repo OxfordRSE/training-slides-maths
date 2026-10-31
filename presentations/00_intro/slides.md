@@ -141,11 +141,36 @@ Both of those problems can be solved!
 
 # Use of AI
 
-To follow.
+AI tools can now solve every problem in this course.
 
-<!--
-Placeholder: guidance on using AI tools in this course, to be written.
--->
+<v-click>
+
+We still need to learn the fundamentals ourselves, because:
+
+</v-click>
+
+<v-clicks>
+
+- AI can be confidently wrong, and you are responsible for any result you use
+- You need the concepts to describe your problem to it, and to judge its answer
+- You will read papers and work with collaborators without an AI to explain things to you
+- We learn by working through problems ourselves, not by reading solutions
+
+</v-clicks>
+
+<v-click>
+
+AI can (and should) be used to help you understand. For example, ask it to:
+
+</v-click>
+
+<v-clicks>
+
+- explain a topic in several different ways (e.g. with a picture, a biological example, or step by step)
+- check your working, and say where it goes wrong
+- set you a similar problem to try
+
+</v-clicks>
 
 ---
 
