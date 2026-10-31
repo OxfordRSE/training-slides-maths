@@ -126,7 +126,9 @@ training-event-only: true
 
 Do help your peers, as well as using the demonstrators and lecturers who are here to help!
 
-Please let me know if you are either finding the material far too difficult, or far too easy. Both of those problems can be solved!
+Please let me know if you are either finding the material far too difficult, or far too easy.
+
+Both of those problems can be solved!
 
 ---
 

@@ -40,6 +40,17 @@
   margin-top: calc((var(--flow-gap) - 16px) * 0.5);
 }
 
+/* A list item's own paragraphs stay together, whatever the gap (the doubled
+   class outranks the :is() rule above, whose .katex-display counts as a class) */
+.slidev-layout.slidev-layout:not(.cover) li > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.slidev-layout.slidev-layout:not(.cover) li > p + p {
+  margin-top: 0.5em;
+}
+
 /* Slidev eases v-click targets with `transition: all`; easing the gap too would
    change sizes over several frames and keep flow-gap.js refitting, so only the
    reveal itself is animated */

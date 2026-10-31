@@ -9,7 +9,7 @@
 
 // In px at the slide's own size, before Slidev scales it to the window
 const MIN_GAP = 16
-const MAX_GAP = 36
+const MAX_GAP = 48
 
 // Layouts that place their own content
 const SKIP = ['cover', 'exercise', 'section', 'questions', 'orientation', 'orientation-weeks']

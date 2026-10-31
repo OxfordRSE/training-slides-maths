@@ -84,6 +84,7 @@ An expression involving higher powers of $x$ is called a _polynomial_ in $x$:
 $$y = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2}+\ldots+a_1 x^1 + a_0x^0$$
 
 The highest power, $n$, is its _degree_.
+
 The graph of a polynomial of degree $n$ has at most $n-1$ bends (turning points) in it.
 
 ---
@@ -127,6 +128,7 @@ Then check your sketch by plotting the function in Python.
 # From data to a model
 
 Now for the other direction.
+
 Given some data, which formula describes them, and what are its parameters?
 
 <v-clicks>
@@ -190,11 +192,14 @@ We next add a trendline through these points which we can use to determine the g
 # Example: enzyme kinetics
 
 The rate at which a given enzyme can catalyse a reaction can be dependent upon the substrate concentration.
+
 This is often modelled by the _Michaelis–Menten_ equation:
 
 $$V = \frac{V_{\max}S}{K_m + S}$$
 
-where $V$ is the rate of the reaction, $S$ is the substrate concentration, $V_{\max}$ is the maximum rate, and $K_m$ is the substrate concentration at which the rate is half its maximum.
+where $V$ is the rate of the reaction and $S$ is the substrate concentration.
+
+$V_{\max}$ is the maximum rate, and $K_m$ is the substrate concentration at which the rate is half its maximum.
 
 <v-click>
 

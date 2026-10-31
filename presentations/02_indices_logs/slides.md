@@ -22,9 +22,13 @@ fonts:
 # Why indices and logs?
 
 - The laws of indices let us simplify and rearrange expressions with powers in them.
+
   We will need them throughout the course (e.g. when we cover differentiation).
+
 - _Taking the logarithm_ undoes _raising to a power_.
+
   This means that we can use logarithms to solve for an unknown power, to work with quantities that have a huge dynamic range (e.g. pH), and to turn power laws and exponentials into straight lines.
+
 - We often want to describe growth and decay in biology, and for this we use the exponential function, $e^x$, and its inverse, the natural logarithm.
 
 ---
@@ -280,7 +284,9 @@ Three important consequences:
 In general we write $\quad x = \log_a y \quad \Leftrightarrow \quad y=a^x$.
 
 The base of a logarithm may be any positive number other than 1. Commonly, logarithms either have **base** 10 or **base** $e$.
+
 It is almost always a good idea to explicitly state the base, e.g. $\log_3 9=2$ implies $3^2=9$.
+
 In this course we always write the base, e.g. $\log_{10}$, except for base $e$ (more on this below).
 
 ---
@@ -326,6 +332,7 @@ $$a^{\log_a\,b}=b$$
 # Laws of logarithms: from the laws of indices
 
 Each law of logarithms comes from a law of indices.
+
 If $b=a^m$ and $c=a^n$, then $\log_a b = m$ and $\log_a c = n$, so:
 
 |                | Indices                     | Logarithms                                      |
@@ -400,9 +407,12 @@ So for the function (called the **exponential function**):
 $$y=e^x \quad \text{the gradient at } (0,1) \text{ is } 1 = e^0.$$
 
 This turns out to be true at **any** point on the curve, i.e. the gradient of $y=e^x$ at any point is equal to the value of $e^x$ there.
+
 This means that the function $y=e^x$ is unchanged when differentiated (more on this when we cover differentiation).
 
-$e$ has been found to arise in many branches of mathematics. It is also used as a **base** for logarithms. e.g.:
+$e$ has been found to arise in many branches of mathematics.
+
+It is also used as a **base** for logarithms. e.g.:
 
 $$y=\log_e10=\ln 10 \quad \text{and} \quad y=\log_ex=\ln x$$
 
@@ -413,6 +423,7 @@ Logs to base $e$ are called **natural logarithms**.
 # Definition of the natural logarithm
 
 The **natural logarithm** of a number is the logarithm of that number taken using the base $e$.
+
 We usually write $\ln(x)$ for $\log_e(x)$.  Here are some examples:
 
 <v-clicks>
@@ -438,6 +449,7 @@ inverses_ of one another.
 # Logarithms in Python
 
 In numpy, `np.log` is the natural logarithm, $\ln$.
+
 For base 10 and base 2 there are `np.log10` and `np.log2`:
 
 ```python
@@ -490,9 +502,11 @@ Take logs of both sides:
 
 $$\log_{10} y =\log_{10} Ax^n = \log_{10} A + \log_{10} x^n= \log_{10} A + n \log_{10} x$$
 
-This is the equation of a straight line, $Y=mX+c$, with $Y=\log_{10} y$, $X=\log_{10} x$, $m=n$ and $c=\log_{10} A$.
+This is the equation of a straight line, $Y=mX+c$.
 
-<PlotFigure v-click name="power-law-logs" :height="280" />
+Here $Y=\log_{10} y$, $X=\log_{10} x$, $m=n$ and $c=\log_{10} A$.
+
+<PlotFigure v-click name="power-law-logs" :height="220" />
 
 ---
 
@@ -534,10 +548,12 @@ Plotting $\log_{10} y$ against $\log_{10} x$ is the same as plotting $y$ against
 # Example 2: exponential growth
 
 We often want to know how quickly a population grows.
+
 Here, a population of bacteria is counted every hour.
+
 Can the data below be fitted to the form: $N=N_0e^{kt}$?
 
-<PlotFigure v-click name="exponential-growth" :height="360" />
+<PlotFigure v-click name="exponential-growth" :height="280" />
 
 ---
 
@@ -547,10 +563,13 @@ Take the natural log of both sides:
 
 $$\ln N = \ln N_0e^{kt} = \ln N_0 + \ln e^{kt} = \ln N_0 + kt$$
 
-This is the equation of a straight line, with $Y=\ln N$, $X=t$, $m=k$ and $c=\ln N_0$.
+This is the equation of a straight line, $Y=mX+c$.
+
+Here $Y=\ln N$, $X=t$, $m=k$ and $c=\ln N_0$.
+
 Only the $N$ axis is on a log scale, so this is called a _semi-log_ plot.
 
-<PlotFigure v-click name="exponential-growth-logs" :height="280" />
+<PlotFigure v-click name="exponential-growth-logs" :height="180" />
 
 ---
 
