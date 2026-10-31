@@ -143,11 +143,7 @@ Both of those problems can be solved!
 
 AI tools can now solve every problem in this course.
 
-<v-click>
-
 We still need to learn the fundamentals ourselves, because:
-
-</v-click>
 
 <v-clicks>
 
@@ -162,15 +158,11 @@ We still need to learn the fundamentals ourselves, because:
 
 AI can (and should) be used to help you understand. For example, ask it to:
 
-</v-click>
-
-<v-clicks>
-
 - explain a topic in several different ways (e.g. with a picture, a biological example, or step by step)
 - check your working, and say where it goes wrong
 - set you a similar problem to try
 
-</v-clicks>
+</v-click>
 
 ---
 
