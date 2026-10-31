@@ -44,8 +44,10 @@ function sizeText(node) {
 // Returns the drawn figure (an SVG, or an HTML figure when it has a title or
 // legend) and its left and right margins, so that sliders can line up with
 // its axes. `height` is the figure's overall height, including any title and
-// legend; pass `document` to draw outside a browser.
-export function render(figure, params = {}, { width = 640, height = 400, document } = {}) {
+// legend; pass `document` to draw outside a browser. `axes` gives defaults for
+// the x and y options under the figure's own, e.g. wider tick spacing for the
+// course-material images (scripts/export-figures.mjs).
+export function render(figure, params = {}, { width = 640, height = 400, document, axes: axisDefaults = {} } = {}) {
   const options = { ...margins, ...figure.default({ ...defaults(figure.controls), ...params }) }
   const node = Plot.plot({
     width,
@@ -57,8 +59,8 @@ export function render(figure, params = {}, { width = 640, height = 400, documen
     style: { fontFamily: 'inherit', fontSize: '16px', color: '#1a1a1a', overflow: 'visible' },
     ...(document && { document }),
     ...options,
-    x: { ...x, ...options.x },
-    y: { ...y, ...options.y },
+    x: { ...x, ...axisDefaults.x, ...options.x },
+    y: { ...y, ...axisDefaults.y, ...options.y },
     color: options.color && { swatchSize: 16, ...options.color },
     marks: options.grid === false
       ? [...options.marks, ...axes]
