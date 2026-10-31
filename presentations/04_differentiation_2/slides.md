@@ -88,7 +88,11 @@ While differentiating sums, and scalar multiples is straightforward, differentia
 
 $$(f(x) g(x) )' \neq f'(x) g'(x)$$
 
+<v-click>
+
 $$(f(x) g(x) )' = f'(x) g(x) + g'(x) f(x)$$
+
+</v-click>
 
 ---
 
@@ -96,9 +100,17 @@ $$(f(x) g(x) )' = f'(x) g(x) + g'(x) f(x)$$
 
 To illustrate that this works, consider $y = (2x^3 - 1)(3x^3 + 2x)$
 
+<v-click>
+
 If we expand this out, we have that $y = 6x^6 + 4x^4 - 3x^3 - 2x$
 
+</v-click>
+
+<v-click>
+
 From this, clearly, $y' = 36 x^5 + 16x^3 - 9 x^2 - 2$
+
+</v-click>
 
 ---
 
@@ -129,6 +141,8 @@ While for simple examples the product rule requires more work, as functions get 
 
 One of the most useful rules is differentiating a function that has another function inside it, $y = f(g(x))$. For this we use the chain rule:
 
+<v-click>
+
 $$
 \begin{aligned}
 y &= f(g(x)) \\
@@ -136,11 +150,15 @@ y'(x) &= f'(g(x))\; g'(x) = \frac{df}{dg} \frac{dg}{dx}
 \end{aligned}
 $$
 
+</v-click>
+
 ---
 
 # The chain rule: example 1
 
 $$y = (5x^2 + 2)^4$$
+
+<v-click>
 
 We can write this as $y = g^4$, where $g = 5x^2 + 2$. Given this, we have that
 
@@ -151,6 +169,8 @@ $$ {1|1-2|1-3}
 \frac{dy}{dx} &= \frac{dy}{dg} \frac{dg}{dx} = 4 (5x^2 + 2)^3 10 x = 40 x (5x^2 + 2)^3
 \end{aligned}
 $$
+
+</v-click>
 
 <v-click>
 
@@ -166,7 +186,11 @@ $$\frac{d}{dx}\,a(b(c(x))) = \frac{da}{db} \frac{d}{dx}\,b(c(x)) = \frac{da}{db}
 
 If $y(x) = f(x)/g(x)$, then by using the product and chain rules on $f(x)\,(g(x))^{-1}$, we can show that
 
+<v-click>
+
 $$y'(x) = \frac{f'g - g'f}{g^2}$$
+
+</v-click>
 
 ---
 
@@ -191,9 +215,13 @@ For any function $y = f(x)$, with a well defined inverse $f^{-1}(x)$ (not to be 
 
 $$x = f^{-1}(f(x)) = f^{-1}(y).$$
 
+<v-click>
+
 This means that we can apply the chain rule
 
 $$\frac{d}{dx}(x) = \frac{d}{dx}(f^{-1}(y)) = \frac{d}{dy}(f^{-1}(y)) \frac{dy}{dx}$$
+
+</v-click>
 
 <v-click>
 
@@ -211,11 +239,19 @@ $$\frac{d}{dy}(f^{-1}(y)) = \frac{1}{\frac{dy}{dx}} \qquad \text{(where } dy/dx 
 
 $$y = \ln(x)$$
 
+<v-click>
+
 If $y = \ln(x)$, this means that $f^{-1}(y) = e^y = x$
+
+</v-click>
+
+<v-click>
 
 Since $e^y$ is unchanged when differentiated, $\frac{d}{dy}(f^{-1}(y)) = e^y$. This means that
 
 $$\frac{d}{dx}(\ln(x)) = \frac{1}{\frac{d}{dy}(f^{-1}(y))} = \frac{1}{e^y}$$
+
+</v-click>
 
 <v-click>
 
@@ -233,11 +269,19 @@ By definition, the derivative of a function $f(x)$ is
 
 $$f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}$$
 
+<v-click>
+
 This means that for small $h$, this expression approximates the derivative. By rearranging this, we have
 
 $$f(x + h) \approx f(x) + h f'(x)$$
 
+</v-click>
+
+<v-click>
+
 In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a horizontal distance $h$ along the tangent, whose gradient is $f'(x)$.
+
+</v-click>
 
 ---
 
@@ -245,13 +289,25 @@ In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a 
 
 Estimate $\sqrt{5218}$
 
+<v-click>
+
 To do this, we first need an $f(x)$ that is easy to calculate, and close to 5218.
 
+</v-click>
+
+<v-click>
+
 For this we can take that $70^2 = 4900$.
+
+</v-click>
+
+<v-click>
 
 To calculate the approximation, we need $f'(x)$, where $f(x) = \sqrt{x}$.
 
 $$f'(x) = \frac{1}{2 \sqrt{x}}$$
+
+</v-click>
 
 ---
 
@@ -259,7 +315,13 @@ $$f'(x) = \frac{1}{2 \sqrt{x}}$$
 
 $$f'(x) = \frac{1}{2 \sqrt{x}}$$
 
+<v-click>
+
 Since 5218 = 4900 + 318, we can set $x = 4900$ and $h = 318$.
+
+</v-click>
+
+<v-click>
 
 Using the approximation, we have:
 
@@ -269,6 +331,8 @@ f(5218) &\approx f(4900) + 318 \times f'(4900) \\
 f(5218) &\approx 70 + 318 \times \frac{1}{140} \approx 72.27
 \end{aligned}
 $$
+
+</v-click>
 
 <v-click>
 
@@ -282,7 +346,11 @@ $\sqrt{5218} = 72.2357252$ - not a bad approximation!
 
 In Python, there is a special package for calculating derivatives symbolically, called SymPy.
 
+<v-click>
+
 This can quickly and easily calculate derivatives (as well as do all sorts of other analytic calculations).
+
+</v-click>
 
 ---
 

@@ -49,11 +49,19 @@ $$\frac{d}{dt} e^{4t} =$$
 
 **Calculating the area under a curve**
 
+<v-click>
+
 If we want to find the area under a curve, we can divide the area into strips, calculate the area of each strip, and sum these areas together.
+
+</v-click>
+
+<v-click>
 
 e.g. find the area of
 
 $$y = f(x) = x^2\qquad\text{between}\qquad x=1\text{ and }x=2$$
+
+</v-click>
 
 ---
 
@@ -75,15 +83,31 @@ We can sum up all the strips between $x=1$ and $x=2$ to give an estimate for the
 
 $$A \approx \sum \delta A_i = \sum y(x_i)\,\delta x.$$
 
+<v-click>
+
 This becomes more accurate as $\delta x$ becomes smaller.
+
+</v-click>
+
+<v-click>
 
 We can use the same trick as when differentiating: let $\delta x$ tend to $0$:
 
 $$A = \lim_{\delta x \to 0}\sum y(x_i)\,\delta x = \int\limits^{2}_{1} y\,dx$$
 
+</v-click>
+
+<v-click>
+
 $\int$ is an elongated S, for the Latin _summa_ (sum).
 
+</v-click>
+
+<v-click>
+
 This process is called **integration**.
+
+</v-click>
 
 ---
 
@@ -98,9 +122,15 @@ This process is called **integration**.
 Let us 'invent' a function $F(x)$ that gives the area from some fixed point to $x$.
 Then $A = F(2) - F(1)$.
 
+<v-click>
+
 With this (imagined) function, we can find the area of one of our tiny steps **exactly**, as
 
 $$F(x + \delta x) - F(x)$$
+
+</v-click>
+
+<v-click>
 
 Remember we approximated this as $y\,\delta x = f(x)\,\delta x$, so:
 
@@ -110,6 +140,8 @@ F(x + \delta x) - F(x) &\approx f(x)\delta x \\
 f(x) &\approx \frac{F(x+\delta x)-F(x)}{\delta x}
 \end{aligned}
 $$
+
+</v-click>
 
 ---
 
@@ -121,11 +153,19 @@ $$f(x) = \lim_{\delta x\to 0} \frac{F(x+\delta x)-F(x)}{\delta x} = F'(x)$$
 
 (recalling the definition of the derivative).
 
+<v-click>
+
 In other words, for our example,
 
 $$A(x) = \int\limits^{x}_{1} y(t)\,dt\qquad\text{then}\qquad y(x) = A'(x)$$
 
+</v-click>
+
+<v-click>
+
 **Integration reverses the process of differentiation**.
+
+</v-click>
 
 ---
 
@@ -135,13 +175,21 @@ We know that:
 
 $$\frac{d \left(x^2\right)}{dx}= 2 x \qquad\Rightarrow\qquad \Big[x^2\Big]_{x_1}^{x_2} = \int_{x_1}^{x_2} 2 x\,dx$$
 
+<v-click>
+
 Likewise:
 
 $$\frac{d\left(\frac{x^3}{3}\right)}{dx}= x^2 \qquad\Rightarrow\qquad \int_{x=1}^{x=2} x^2\,dx = \Big[\frac{1}{3}x^3\Big]_{x=1}^{x=2}=\frac{8}{3}-\frac{1}{3}= \frac{7}{3}$$
 
+</v-click>
+
+<v-click>
+
 **In general:**
 
 $$\frac{d\left(a\, x^{n+1}\right)}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2} \qquad (n\neq -1)$$
+
+</v-click>
 
 ---
 
@@ -167,6 +215,10 @@ $$- \frac{x_{1}^{7}}{7} + \frac{x_{2}^{7}}{7}$$
 <v-click>
 
 $$\int_{x_1}^{x_2} x^{\frac{3}{2}}\,dx =$$
+
+</v-click>
+
+<v-click>
 
 ```python
 sp.integrate(x**(sp.sympify(3)/2),(x,x1,x2))
@@ -213,13 +265,21 @@ y&=x^2-100 &&\text{(2)}
 \end{aligned}
 $$
 
+<v-click>
+
 Differentiating (1):
 
 $$\frac{dy}{dx}=2x$$
 
+</v-click>
+
+<v-click>
+
 Differentiating (2):
 
 $$\frac{dy}{dx}=2x$$
+
+</v-click>
 
 ---
 
@@ -229,7 +289,11 @@ This implies that the integral:
 
 $$y=\int 2x\,dx=x^2 + C \qquad \text{where } C \text{ is an unknown constant}$$
 
+<v-click>
+
 An integral without limits is called an **indefinite integral**.
+
+</v-click>
 
 ---
 
@@ -254,15 +318,27 @@ Recall that $\frac{d}{dx}\ln x = \frac{1}{x}$. In fact, for any $x \neq 0$:
 
 $$\frac{d}{dx}\ln|x|=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln |x| + C$$
 
+<v-click>
+
 For $x>0$ this is just $\ln x$. For $x<0$, $|x| = -x$, and the chain rule gives $\frac{d}{dx}\ln(-x) = \frac{-1}{-x} = \frac{1}{x}$.
+
+</v-click>
+
+<v-click>
 
 This constant $C$ can be written as:
 
 $$C=\ln B$$
 
+</v-click>
+
+<v-click>
+
 where $B$ is another constant. Thus:
 
 $$\int \frac{1}{x}\,dx = \ln |x| + C=\ln |x| +\ln B =\ln (B |x|)$$
+
+</v-click>
 
 ---
 
@@ -272,9 +348,13 @@ Recall that:
 
 $$\frac{d}{dx}\Big(\sin x\Big)= \cos x \qquad\text{and}\qquad \frac{d}{dx}\Big(\cos x\Big)= -\sin x$$
 
+<v-click>
+
 Example 1:
 
 $$\int_{0}^{\pi/2} \cos x \, dx =$$
+
+</v-click>
 
 <v-click>
 
@@ -349,7 +429,11 @@ Recall that $f'(t)$ gives the rate at which $f(t)$ changes at time $t$. Integrat
 
 $$\int_a^b f'(t) \, dt = \Big[f(t)\Big]_a^b = f(b)-f(a)$$
 
+<v-click>
+
 Therefore, the definite integral from $a$ to $b$ of $f'(t)$ with respect to $t$ will always give the **net** change that $f(t)$ has undergone as the parameter $t$ moves from $a$ to $b$.
+
+</v-click>
 
 ---
 
@@ -357,9 +441,13 @@ Therefore, the definite integral from $a$ to $b$ of $f'(t)$ with respect to $t$ 
 
 A chemical process produces NaCl at the rate of $3\sqrt{t}$ grams per minute. We ask three questions:
 
+<v-click>
+
 1. What is the rate of production one minute into the process?
 2. What is the quantity of NaCl produced over the next three minutes?
 3. What is the mean rate of NaCl production over this interval?
+
+</v-click>
 
 ---
 
@@ -367,7 +455,11 @@ A chemical process produces NaCl at the rate of $3\sqrt{t}$ grams per minute. We
 
 Let $f(t)$ denote the grams of NaCl produced after $t$ minutes. Then $f'(t)= 3\sqrt{t}$.
 
+<v-click>
+
 **1.** The rate of production one minute into the process is $f'(1) = 3\sqrt{1} = 3$ grams per minute.
+
+</v-click>
 
 <v-click>
 
@@ -422,11 +514,15 @@ Suppose we wish to integrate:
 
 $$I=\int f(g(x))\,dx \qquad \text{e.g.} \quad \int_{a}^{b} (3-4x)^{-5}\,dx$$
 
+<v-click>
+
 In general, for $g(x)=u$, we can write:
 
 $$\int_{x_1}^{x_2} f(g(x))\,dx = \int_{u_1}^{u_2} f(u) \frac{dx}{du}\, du$$
 
 Integral version of the chain rule.
+
+</v-click>
 
 ---
 
@@ -436,10 +532,10 @@ Consider:
 
 $$\int_{a}^{b} (2x + 3)^4\,dx \qquad \text{(3)}$$
 
+<v-click>
+
 Multiplying this out and then integrating it would be very tedious.
 Try a substitution instead:
-
-<v-click>
 
 $$u=2x+3 \quad\Longleftrightarrow\quad x=\frac{1}{2}(u-3)=\frac{u}{2}-\frac{3}{2} \quad\Longleftrightarrow\quad \frac{dx}{du}=\frac{1}{2}$$
 

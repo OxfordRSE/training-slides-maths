@@ -37,12 +37,20 @@ The link is $e^{i\theta}=\cos\theta+i\sin\theta$, which we show at the end of th
 
 **The imaginary number $i$:**
 
+<v-clicks>
+
 - The polynomial $x^2-1=0$ has two real roots: $1$ and $-1$
 - The polynomial $x^2+1=0$ has **no** real roots.
+
+</v-clicks>
+
+<v-click>
 
 Consider solving:
 
 $$x^2 = 1\qquad\text{and}\qquad x^2 = -1$$
+
+</v-click>
 
 <v-click>
 
@@ -64,6 +72,10 @@ $$\mathbb{C}=\left\{a + bi \;\vert\; a,\ b \in\mathbb{R}\right\}$$
 
 For $z=a+bi\in\mathbb{C}$ we define the _real_ and _imaginary_ parts of $z$ to be $\Re(z) = a$ and $\Im(z)=b$.
 
+</v-click>
+
+<v-click>
+
 The imaginary number $i$ has no home on the real number line.
 
 Instead, we locate it on the **complex plane** at the point $(0,1)$.
@@ -77,8 +89,13 @@ layout: two-cols
 # Complex numbers: the complex plane
 
 - We can represent any complex number $z=a+bi$ as the point $(a,b)$ in the complex plane.
+
+<v-clicks>
+
 - The coordinates $(a,b)$ are usually called the _Cartesian_ coordinates for $z$. (Named after the mathematician and philosopher René Descartes).
 - In this plane, the real numbers lie on the horizontal axis. We usually refer to the horizontal axis of $\mathbb{C}$ as the **real axis**.
+
+</v-clicks>
 
 ::right::
 
@@ -90,15 +107,15 @@ layout: two-cols
 
 - The complex plane $\mathbb{C}$ contains **all** of the roots of **every** polynomial.
 
-E.g. for $ax^2+bx+c=0$, $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, so for $x^2-8x+25=0$:
-
 <v-click>
+
+E.g. for $ax^2+bx+c=0$, $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, so for $x^2-8x+25=0$:
 
 $$x=\frac{8\pm\sqrt{64-100}}{2}=\frac{8\pm\sqrt{-36}}{2}=\frac{8\pm 6i}{2}=4\pm3i$$
 
 </v-click>
 
-<v-click>
+<v-clicks>
 
 - Note that these two roots are reflections of one another through the real axis.
 
@@ -106,7 +123,7 @@ $$x=\frac{8\pm\sqrt{64-100}}{2}=\frac{8\pm\sqrt{-36}}{2}=\frac{8\pm 6i}{2}=4\pm3
 
 - In general, let $z=a + bi$. The **conjugate** of $z$ is the complex number $\bar{z}=a-bi$.
 
-</v-click>
+</v-clicks>
 
 ---
 
@@ -131,26 +148,25 @@ $$\left[ 4 - 3 i, \  4 + 3 i\right]$$
 
 - The distance to a point on the complex plane from 0 is called its **modulus**, and we find this by calculating the hypotenuse of the triangle with base $\Re(z)$ and height $\Im(z)$:
 
+<v-click>
+
 E.g. The modulus of $4\pm3i$ is $\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$
 
-<v-click>
+</v-click>
+
+<v-clicks>
 
 - In general, the **modulus** of $z=a+bi$ is the real number $|z|=\sqrt{a^2+b^2}$.
-
-</v-click>
-
-<v-click>
-
 - The **modulus** is connected to the **conjugate** by means of the formula $z\cdot \bar{z}=|z|^2$. Indeed:
 
-$$
-\begin{aligned}
-z\cdot\bar{z}&=(a+bi)(a-bi)=a^2-(bi)^2=a^2-b^2\cdot i^2\\
-&=a^2-b^2(-1)=a^2+b^2=|z|^2
-\end{aligned}
-$$
+  $$
+  \begin{aligned}
+  z\cdot\bar{z}&=(a+bi)(a-bi)=a^2-(bi)^2=a^2-b^2\cdot i^2\\
+  &=a^2-b^2(-1)=a^2+b^2=|z|^2
+  \end{aligned}
+  $$
 
-</v-click>
+</v-clicks>
 
 ---
 
@@ -169,12 +185,16 @@ x = (1+2j)     Re(x) = 1.0     Im(x) = 2.0     |x| = 2.23606797749979
 
 </v-click>
 
+<v-click>
+
 Complex numbers using `SymPy`:
 
 ```python
 x = 1 + 2 * sp.I
 print(f'x = {x}     Re(x) = {sp.re(x)}     Im(x) = {sp.im(x)}     |x| = {sp.Abs(x)}')
 ```
+
+</v-click>
 
 <v-click>
 
@@ -192,9 +212,13 @@ Addition and subtraction of complex numbers work as you would expect:
 
 $$(a+bi)\pm(c+di)=(a\pm c) + (b\pm d)i$$
 
+<v-click>
+
 and
 
 $$-(a+bi)=-a-bi$$
+
+</v-click>
 
 ---
 layout: exercise
@@ -321,8 +345,12 @@ print(sp.simplify((-4 + 7*sp.I) / (2 + 3*sp.I)))
 
 It's often convenient to represent the complex number $z = a + bi$ in terms of its polar coordinates $\langle r,\theta \rangle$.
 
+<v-clicks>
+
 - The angle $\theta$ is called the _argument_ of $z$.
 - The real number $r=|z|$ is sometimes denoted mod$(z)$.
+
+</v-clicks>
 
 ---
 layout: two-cols
@@ -342,6 +370,8 @@ layout: two-cols
 
 Let $z=x+iy$.
 
+<v-click>
+
 If we are given the polar coordinates of $z$ and want to express the Cartesian coordinates use
 
 $$
@@ -351,6 +381,8 @@ y=r\sin\theta\\
 z=r\cos\theta + ri\sin\theta=r(\cos\theta + i\sin\theta)
 \end{gathered}
 $$
+
+</v-click>
 
 <v-click>
 
@@ -430,7 +462,11 @@ $$\sqrt{(-3)^2+4^2}=\sqrt{25}=5$$
 
 </v-click>
 
+<v-click>
+
 $$\text{arg}(z)=\theta=\arctan\left(\frac{y}{x}\right)=$$
+
+</v-click>
 
 <v-click>
 
@@ -507,6 +543,8 @@ $$
 
 Now let $z_1=r_1\cos\theta_1+ir_1\sin\theta_1$ and $z_2=r_2\cos\theta_2+ir_2\sin\theta_2$.
 
+<v-click>
+
 We first compute the real part of the product $z_1\cdot z_2$:
 
 $$ {1|1-2|1-3}
@@ -516,6 +554,8 @@ $$ {1|1-2|1-3}
 &=r_1r_2\cos(\theta_1 + \theta_2)
 \end{aligned}
 $$
+
+</v-click>
 
 <v-click>
 
@@ -562,6 +602,10 @@ $$
 \end{aligned}
 $$
 
+</v-click>
+
+<v-click>
+
 This means that when we multiply by $z$, we are **rotating** through the angle $\arg(z)$ and **radially stretching** by a factor of $|z|$.
 
 </v-click>
@@ -598,9 +642,13 @@ This is a separable differential equation (we cover differential equations prope
 
 $$\int\frac{dz}{iz}=\int d\theta \qquad\Rightarrow\qquad \frac{1}{i}\ln z =\theta +c \qquad\Rightarrow\qquad \ln z =i\theta +ic$$
 
+<v-click>
+
 In exponential form:
 
 $$z=e^{i\theta+ic} = e^{i\theta}\,e^{ic} = Ae^{i\theta} \qquad \text{with} \qquad A=e^{ic}$$
+
+</v-click>
 
 <v-click>
 
@@ -656,11 +704,15 @@ Several important consequences:
 
 $$z=x+iy=r(\cos\theta + i\sin\theta)=r\,e^{i\theta}$$
 
+<v-click>
+
 Other important consequences:
 
 **4.** Exponentiation on the unit circle $r=1$ can be done by multiplying the angle by the index (for integer $n$):
 
 $$\left(e^{i\theta}\right)^n = e^{i\theta n}=e^{i(n\theta)}$$
+
+</v-click>
 
 <v-click>
 

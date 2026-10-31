@@ -93,9 +93,13 @@ For $a>0$, by the properties of logarithms and indices we have
 
 $$a^x = \left(e^{\ln a}\right)^x=e^{\left(x\cdot\ln a\right)}.$$
 
+<v-click>
+
 Thus, as we saw above we have:
 
 $$\frac{d}{dx}a^x = \frac{d}{dx}e^{\left(x\cdot\ln a\right)} = e^{\left(x\cdot\ln a\right)}\frac{d}{dx}\left(x\cdot\ln a\right) =a^x\cdot\ln a$$
+
+</v-click>
 
 <v-click>
 
@@ -247,11 +251,19 @@ $$\frac{d}{dx}\log_2(3^x+x^4)=\frac{3^x\cdot\ln3 + 4x^3}{\ln 2\cdot(3^x+x^4)}$$
 
 Functions of several variables.
 
+<v-click>
+
 **Definition:** Given a function $z=f(x,y)$ of two variables $x$ and $y$, the **partial derivative of $z$ with respect to $x$** is the function obtained by differentiating $f(x,y)$ with respect to $x$, holding $y$ constant.
+
+</v-click>
+
+<v-click>
 
 We denote this using $\partial$ (a "curly" d, sometimes pronounced "del") as shown below:
 
 $$\frac{\partial z}{\partial x}=\frac{\partial}{\partial x}f(x,y) = f_x(x,y)$$
+
+</v-click>
 
 ---
 
@@ -259,7 +271,11 @@ $$\frac{\partial z}{\partial x}=\frac{\partial}{\partial x}f(x,y) = f_x(x,y)$$
 
 $$f(x,y)=z=x^2-2y^2$$
 
+<v-click>
+
 $$f_x=\frac{\partial z}{\partial x}=2x\qquad\text{and}\qquad f_y=\frac{\partial z}{\partial y}=-4y$$
+
+</v-click>
 
 ---
 
@@ -291,9 +307,9 @@ In the previous slide we had:
 
 $$\frac{\partial}{\partial x}\,\left(3x^2y+5xy^2\right) = 6xy+5y^2$$
 
-Let's redo this in SymPy:
-
 <v-click>
+
+Let's redo this in SymPy:
 
 ```python
 x, y = sp.symbols('x y')
@@ -351,11 +367,19 @@ $$\frac{\partial}{\partial x}\left(\frac{\partial z}{\partial y}\right) =\frac{\
 
 (Laplace's Equation for Equilibrium Temperature Distribution on a Copper Plate.)
 
+<v-click>
+
 Let $T(x,y)$ give the temperature at the point $(x,y)$.
+
+</v-click>
+
+<v-click>
 
 According to a result of the French mathematician Pierre-Simon Laplace (1749 - 1827), at every point $(x,y)$ the second-order partials of $T$ must satisfy the equation
 
 $$T_{xx} + T_{yy} = 0$$
+
+</v-click>
 
 ---
 
@@ -363,9 +387,13 @@ $$T_{xx} + T_{yy} = 0$$
 
 The function $T(x,y)=y^2-x^2$ satisfies Laplace's equation:
 
+<v-click>
+
 First with respect to $x$:
 
 $$T_x(x,y)=0-2x=-2x\qquad\text{so}\qquad T_{xx}(x,y)=-2$$
+
+</v-click>
 
 <v-click>
 
@@ -391,6 +419,8 @@ which proves the result.
 
 The function $z=x^2y - xy^2$ does _not_ satisfy Laplace's equation (and so cannot be a model for thermal equilibrium).
 
+<v-click>
+
 First note that
 
 $$ {1|1-2|1-3|1-4}
@@ -401,6 +431,8 @@ z_y &= x^2 - 2xy \\
 z_{yy} &= -2x
 \end{aligned}
 $$
+
+</v-click>
 
 <v-click>
 
@@ -458,9 +490,13 @@ For almost any function you will meet, $f_{xy}=f_{yx}$, so it does not matter in
 
 Let $z = x^2y^3+3x^2-2y^4$. Then $z_x=2xy^3+6x$ and $z_y = 3x^2y^2-8y^3$.
 
+<v-click>
+
 Taking the partial of $z_x$ with respect to $y$ we get
 
 $$z_{xy}=\frac{\partial}{\partial y}\left(2xy^3+6x\right)=6xy^2$$
+
+</v-click>
 
 <v-click>
 

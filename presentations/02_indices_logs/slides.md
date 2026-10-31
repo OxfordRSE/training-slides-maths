@@ -143,11 +143,23 @@ For $a>0$:
 
 $$a^1 = a^{1/2} \times a^{1/2} \quad \text{so} \quad a^{1/2} = \sqrt{a}$$
 
+<v-click>
+
 $$a^{\frac{1}{n}} = \sqrt[n]{a}$$
+
+</v-click>
+
+<v-click>
 
 $$a^{\frac{n}{m}} = \left(\sqrt[m]{a}\right)^n \quad \text{or} \quad \sqrt[m]{a^n}$$
 
+</v-click>
+
+<v-click>
+
 $$a^{-\frac{n}{m}} = \frac{1}{\left(\sqrt[m]{a}\right)^n} \quad \text{or} \quad \frac{1}{\sqrt[m]{a^n}}$$
+
+</v-click>
 
 <v-click>
 
@@ -234,34 +246,70 @@ $$y= \frac{\left(p^{\frac{1}{3}}\right)^2 \times \left(p^2\right)^{\frac{1}{3}}}
 
 # Indices: two cautionary remarks
 
+<v-clicks at="+0">
+
 1. Powers of sums are **not** pretty:  $(a+b)^x \ne a^x + b^x$
 2. Powers of differences are **not** pretty: $(a-b)^x \ne a^x - b^x$
+
+</v-clicks>
+
+<v-click>
 
 A useful formula for products of sums:
 
 $$(p+q)\cdot(s+t) = ps + pt+qs + qt$$
 
+</v-click>
+
+<v-click>
+
 Three important consequences:
+
+<v-clicks at="+0">
 
 1. $(a+b)^2=(a+b)(a+b)=a^2+2ab+b^2$
 2. $(a-b)^2=(a-b)(a-b)=a^2-2ab+b^2$
 3. $(a+b)(a-b)=a^2-b^2$
 
+</v-clicks>
+
+</v-click>
+
 ---
 
 # Logarithms
+
+<v-clicks at="+0">
 
 1. If $y=a^x$, $x$ is the **power** to which the **base** $a$ must be raised to give
    $y$, OR
 2. $x$ is the **logarithm** which, with **base** $a$, gives $y$.
 
+</v-clicks>
+
+<v-click>
+
 In general we write $\quad x = \log_a y \quad \Leftrightarrow \quad y=a^x$.
+
+</v-click>
+
+<v-click>
 
 The base of a logarithm may be any positive number other than 1. Commonly, logarithms either have **base** 10 or **base** $e$.
 
+</v-click>
+
+<v-click>
+
 It is almost always a good idea to explicitly state the base, e.g. $\log_3 9=2$ implies $3^2=9$.
 
+</v-click>
+
+<v-click>
+
 In this course we always write the base, e.g. $\log_{10}$, except for base $e$ (more on this below).
+
+</v-click>
 
 ---
 
@@ -269,7 +317,7 @@ In this course we always write the base, e.g. $\log_{10}$, except for base $e$ (
 
 Here's a graph of $y=\log_{10}x$:
 
-<PlotFigure v-click name="log10" :height="360" />
+<PlotFigure name="log10" :height="360" />
 
 ---
 
@@ -293,19 +341,25 @@ Some physical phenomena use log metrics due to their huge dynamic range:
 
 Using the same base $a$ for both operations:
 
+<v-clicks>
+
 - _Taking the logarithm_ undoes _raising to a power_:
 
-$$\log_a\,a^r=r$$
+  $$\log_a\,a^r=r$$
 
 - _Raising to a power_ undoes _taking the logarithm_:
 
-$$a^{\log_a\,b}=b$$
+  $$a^{\log_a\,b}=b$$
+
+</v-clicks>
 
 ---
 
 # Laws of logarithms: from the laws of indices
 
 Each law of logarithms comes from a law of indices.
+
+<v-click>
 
 If $b=a^m$ and $c=a^n$, then $\log_a b = m$ and $\log_a c = n$, so:
 
@@ -314,6 +368,8 @@ If $b=a^m$ and $c=a^n$, then $\log_a b = m$ and $\log_a c = n$, so:
 | Multiplication | $a^m\times a^n=a^{m+n}$     | $\log_a (bc) = \log_a b + \log_a c$ (add)       |
 | Division       | $a^m/a^n=a^{m-n}$           | $\log_a (b/c) = \log_a b - \log_a c$ (subtract) |
 | Powers         | $\left(a^m\right)^r=a^{mr}$ | $\log_a b^r = r \log_a b$ (multiply)            |
+
+</v-click>
 
 <v-click>
 
@@ -329,11 +385,15 @@ This means that the laws of logarithms are the laws of indices written in terms 
 
 $$\log_a c = \frac{\log_b c}{\log_b a}$$
 
+<v-click>
+
 ### Special case
 
 If $b$ and $c$ are the same, the change of base reduces to
 
 $$\log_a b =\frac{\log_b b}{\log_b a}=\frac{1}{\log_b a}$$
+
+</v-click>
 
 ---
 
@@ -343,21 +403,33 @@ $$\log_a b =\frac{\log_b b}{\log_b a}=\frac{1}{\log_b a}$$
 
 $$\log_a a =1$$
 
+<v-click>
+
 ### The log of 1 is 0
 
 $$\log_a 1 = 0 \quad \text{since} \quad a^0=1$$
+
+</v-click>
+
+<v-click>
 
 ### Negative logs
 
 $$\log_a \frac{1}{x} = \log_a1-\log_ax= 0 - \log_a x =-\log_ax$$
 
+</v-click>
+
 ---
 
 # Laws of logarithms: two cautionary remarks
 
+<v-clicks at="+0">
+
 1. $\log_a (x + y)$ and $\log_a (x-y)$ cannot be simplified any further, and should be left as they are.
 
 2. Neither can $\log_a x \cdot \log_a y$ or $\dfrac{\log_a x}{\log_a y}$. Leave them as they are.
+
+</v-clicks>
 
 ---
 layout: two-cols
@@ -367,9 +439,17 @@ layout: two-cols
 
 The real number $e$ is also known as Euler's number.
 
+<v-click>
+
 It is that base for which the graph $y=e^x$ passes through the point $(0, 1)$ with gradient exactly equal to $1$.
 
+</v-click>
+
+<v-click>
+
 The tangent at $(0, 1)$ is the line $y = x + 1$.
+
+</v-click>
 
 ::right::
 
@@ -383,11 +463,25 @@ So for the function (called the **exponential function**):
 
 $$y=e^x \quad \text{the gradient at } (0,1) \text{ is } 1 = e^0.$$
 
+<v-click>
+
 This turns out to be true at **any** point on the curve, i.e. the gradient of $y=e^x$ at any point is equal to the value of $e^x$ there.
+
+</v-click>
+
+<v-click>
 
 This means that the function $y=e^x$ is unchanged when differentiated (more on this when we cover differentiation).
 
+</v-click>
+
+<v-click>
+
 $e$ has been found to arise in many branches of mathematics.
+
+</v-click>
+
+<v-click>
 
 It is also used as a **base** for logarithms. e.g.:
 
@@ -395,15 +489,19 @@ $$y=\log_e10=\ln 10 \quad \text{and} \quad y=\log_ex=\ln x$$
 
 Logs to base $e$ are called **natural logarithms**.
 
+</v-click>
+
 ---
 
 # Definition of the natural logarithm
 
 The **natural logarithm** of a number is the logarithm of that number taken using the base $e$.
 
+<v-click>
+
 We usually write $\ln(x)$ for $\log_e(x)$.  Here are some examples:
 
-<v-clicks>
+<v-clicks at="+0">
 
 - $\ln(e)=\log_e(e)=1$
 - $\ln(10)=\log_e(10)$ = "The power I need to raise $e$ to in order to get 10"
@@ -412,6 +510,8 @@ We usually write $\ln(x)$ for $\log_e(x)$.  Here are some examples:
 - $\exp(\ln(b))=e^{\ln(b)}=e^{\log_e b}=b$
 
 </v-clicks>
+
+</v-click>
 
 <v-click>
 
@@ -427,6 +527,8 @@ inverses_ of one another.
 
 In numpy, `np.log` is the natural logarithm, $\ln$.
 
+<v-click>
+
 For base 10 and base 2 there are `np.log10` and `np.log2`:
 
 ```python
@@ -434,6 +536,8 @@ print(np.log(10))
 print(np.log10(1000))
 print(np.log2(8))
 ```
+
+</v-click>
 
 <v-click>
 
@@ -479,9 +583,17 @@ Take logs of both sides:
 
 $$\log_{10} y =\log_{10} Ax^n = \log_{10} A + \log_{10} x^n= \log_{10} A + n \log_{10} x$$
 
+<v-click>
+
 This is the equation of a straight line, $Y=mX+c$.
 
+</v-click>
+
+<v-click>
+
 Here $Y=\log_{10} y$, $X=\log_{10} x$, $m=n$ and $c=\log_{10} A$.
+
+</v-click>
 
 <PlotFigure v-click name="power-law-logs" :height="220" />
 
@@ -529,9 +641,17 @@ Plotting $\log_{10} y$ against $\log_{10} x$ is the same as plotting $y$ against
 
 We often want to know how quickly a population grows.
 
+<v-click>
+
 Here, a population of bacteria is counted every hour.
 
+</v-click>
+
+<v-click>
+
 Can the data below be fitted to the form: $N=N_0e^{kt}$?
+
+</v-click>
 
 <PlotFigure v-click name="exponential-growth" :height="280" />
 
@@ -543,11 +663,23 @@ Take the natural log of both sides:
 
 $$\ln N = \ln N_0e^{kt} = \ln N_0 + \ln e^{kt} = \ln N_0 + kt$$
 
+<v-click>
+
 This is the equation of a straight line, $Y=mX+c$.
+
+</v-click>
+
+<v-click>
 
 Here $Y=\ln N$, $X=t$, $m=k$ and $c=\ln N_0$.
 
+</v-click>
+
+<v-click>
+
 Only the $N$ axis is on a log scale, so this is called a _semi-log_ plot.
+
+</v-click>
 
 <PlotFigure v-click name="exponential-growth-logs" :height="180" />
 
@@ -595,7 +727,11 @@ The population doubles when $e^{kt}=2$, i.e. when $t=\ln 2/k\approx 2$ hours.
 
 What is the pH of a 0.011 M solution of HCl?
 
+<v-click>
+
 $$\text{pH} = -\log_{10}[H^+]$$
+
+</v-click>
 
 <v-click>
 

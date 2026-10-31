@@ -67,11 +67,19 @@ Recall that:
 
 $$\frac{d}{dx}f(x)\,g(x)=f(x)\,g'(x)+ g(x)\,f'(x)$$
 
+<v-click>
+
 Integrate and rearrange to get:
 
 $$\int\limits_a^b f(x)\,g'(x)\,dx=\Big[f(x)\,g(x)\Big]_a^b-\int\limits_a^b g(x)\,f'(x)\,dx$$
 
+</v-click>
+
+<v-click>
+
 This is known as the formula for **'integrating by parts'**
+
+</v-click>
 
 ---
 
@@ -81,11 +89,15 @@ This can also be written:
 
 $$\int\limits_a^b u\,\frac{dv}{dx}\,dx = \Big[uv\Big]^b_a-\int\limits_a^b v\,\frac{du}{dx}\,dx$$
 
+<v-click>
+
 or
 
 $$\int\limits_a^b u\,v'\,dx = \Big[uv\Big]^b_a-\int\limits_a^b v\,u'\,dx$$
 
 with $f(x) \equiv u$ and $g(x) \equiv v$
+
+</v-click>
 
 ---
 
@@ -126,10 +138,18 @@ If we choose the other option for $u$ and $v'$, we get:
 
 $$\Big[(x+1)^{1/2}\,\frac{x^2}{2}\Big]_a^b - \int\limits_a^b \frac{1}{2}\,\frac{1}{\sqrt{(x+1)}}\,\frac{x^2}{2}\,dx$$
 
+<v-click>
+
 The second term is **worse** than the integral we started with!
+
+</v-click>
+
+<v-click>
 
 It's important to choose $u$ and $v$ carefully.
 This comes with practice.
+
+</v-click>
 
 ---
 
@@ -200,9 +220,13 @@ $$\int\limits^{\infty}_0 x^3\,e^{-x}\,dx=-\Big[x^3\,e^{-x}\Big]^{\infty}_0 +\int
 
 Now apply integration by parts to the right-hand side:
 
+<v-click>
+
 Choose
 
 $$u=3x^2\qquad\text{and}\qquad v'=e^{-x} \qquad\text{so that}\qquad u'=6x\qquad\text{and}\qquad v=-e^{-x}$$
+
+</v-click>
 
 <v-click>
 
@@ -289,9 +313,13 @@ $$
 \end{aligned}
 $$
 
+<v-click>
+
 Let's try to calculate:
 
 $$\int\limits^b_a \cos x\,e^{-x}\,dx = I$$
+
+</v-click>
 
 ---
 
@@ -301,7 +329,11 @@ Choose
 
 $$u=\cos x\qquad\text{and}\qquad v'=e^{-x} \qquad\text{so that}\qquad u'=-\sin x\qquad\text{and}\qquad v=-e^{-x}$$
 
+<v-click>
+
 $$I =\Big[-\cos x\, e^{-x}\Big]^b_a -\int\limits^b_a (-)\sin x\,(-)e^{-x}\,dx$$
+
+</v-click>
 
 <v-click>
 
@@ -331,9 +363,13 @@ $$\Longrightarrow \quad 2\int\limits^b_a \cos x\,e^{-x}\,dx = \Big[\sin x\, e^{-
 
 $$\int \frac{dx}{(2x+1)(x-5)} \qquad\text{Let}\qquad \frac{1}{(2x+1)(x-5)}=\frac{A}{2x+1} + \frac{B}{x-5}$$
 
+<v-click>
+
 Multiply both sides by $(2x+1)(x-5)$ to get:
 
 $$A(x-5)+B(2x+1)=1 \qquad\text{so}\qquad Ax-5A+2Bx+B=1$$
+
+</v-click>
 
 <v-click>
 
@@ -359,11 +395,15 @@ Thus:
 
 $$\int \frac{dx}{(2x+1)(x-5)}=-\int \frac{2\, dx}{11(2x+1)} + \int \frac{dx}{11(x-5)}$$
 
+<v-click>
+
 Now use method of substitution on this:
 
 $u=2x+1$ and $du/dx=2$ so $dx/du=1/2$
 
 $w=x-5$ so $dw/dx=1$ and $dx/dw=1$
+
+</v-click>
 
 <v-click>
 
