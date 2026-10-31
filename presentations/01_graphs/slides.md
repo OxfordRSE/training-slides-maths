@@ -187,9 +187,10 @@ We next add a trendline through these points which we can use to determine the g
 
 # Linearising: conclusion
 
+- We find $(X,Y)$ lie along a straight line with slope 5 and $Y$-intercept 87.
+
 <v-clicks>
 
-- We find $(X,Y)$ lie along a straight line with slope 5 and $Y$-intercept 87.
 - This means that $Y=5X+87$, so $a = 5$ and $b = 87$.
 - So, $y$ and $x$ can be modelled by the polynomial equation $y=5x^2+87$.
 
@@ -256,9 +257,10 @@ We next add a trendline through these points which we can use to determine the g
 
 # Enzyme kinetics: conclusion
 
+- We find $(X,Y)$ lie along a straight line with slope 3 and $Y$-intercept 5.
+
 <v-clicks>
 
-- We find $(X,Y)$ lie along a straight line with slope 3 and $Y$-intercept 5.
 - This means that $Y=3X+5$, so $V_{\max} = 1/c = 0.2$ and $K_m = m/c = 0.6$.
 - So, $V$ and $S$ can be modelled by the equation $V = 0.2S/(0.6+S)$.
 
@@ -268,9 +270,10 @@ We next add a trendline through these points which we can use to determine the g
 
 # Linearising in practice
 
+- Note, transforming the data also transforms any noise in it. Taking $1/V$ magnifies the errors in small values of $V$, and these points then have the most influence on the trendline.
+
 <v-clicks>
 
-- Note, transforming the data also transforms any noise in it. Taking $1/V$ magnifies the errors in small values of $V$, and these points then have the most influence on the trendline.
 - In practice, it is usually better to fit the nonlinear model directly, e.g. using `scipy.optimize.curve_fit`.
 - Plotting in straight-line form is still a good way to check a model visually, and you will see these plots in many papers (e.g. Lineweaver–Burk, Arrhenius).
 - Logarithms, which we cover next, let us do the same for exponentials and power laws.

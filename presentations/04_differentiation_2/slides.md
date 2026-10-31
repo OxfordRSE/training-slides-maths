@@ -24,6 +24,7 @@ fonts:
 In the last lecture we found the derivative of $ax^n$.
 
 Most functions we meet are built from simpler ones, by multiplying them, dividing them, or putting one inside another (e.g. $\sqrt{1+x^2}$).
+
 In this lecture we find a rule for each of these, so that we can differentiate any function built from the standard ones.
 
 We also use the derivative to approximate a function close to a point we know.
@@ -116,7 +117,9 @@ $$
 
 <v-click>
 
-So both rules produce the same result. While for simple examples the product rule requires more work, as functions get more complex it saves a lot of time.
+So both rules produce the same result.
+
+While for simple examples the product rule requires more work, as functions get more complex it saves a lot of time.
 
 </v-click>
 
@@ -242,7 +245,9 @@ In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a 
 
 Estimate $\sqrt{5218}$
 
-To do this, we first need an $f(x)$ that is easy to calculate, and close to 5218. For this we can take that $70^2 = 4900$.
+To do this, we first need an $f(x)$ that is easy to calculate, and close to 5218.
+
+For this we can take that $70^2 = 4900$.
 
 To calculate the approximation, we need $f'(x)$, where $f(x) = \sqrt{x}$.
 

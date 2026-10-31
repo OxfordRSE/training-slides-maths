@@ -22,6 +22,7 @@ fonts:
 # Why integration?
 
 We often know the _rate_ at which something happens (e.g. how quickly a product is made), and want to know the total amount over some time.
+
 Integration lets us work this out.
 
 It is also how we find the area under a curve, and, as we will see, it reverses differentiation.
@@ -75,6 +76,7 @@ We can sum up all the strips between $x=1$ and $x=2$ to give an estimate for the
 $$A \approx \sum \delta A_i = \sum y(x_i)\,\delta x.$$
 
 This becomes more accurate as $\delta x$ becomes smaller.
+
 We can use the same trick as when differentiating: let $\delta x$ tend to $0$:
 
 $$A = \lim_{\delta x \to 0}\sum y(x_i)\,\delta x = \int\limits^{2}_{1} y\,dx$$

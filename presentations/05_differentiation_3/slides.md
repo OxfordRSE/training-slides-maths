@@ -22,9 +22,11 @@ fonts:
 # Why exponentials and partial derivatives?
 
 In this lecture we use the chain rule to differentiate the exponential and logarithmic functions from the lecture on indices and logs.
+
 We need these whenever a quantity grows or decays (e.g. $e^{-kt}$).
 
 We then look at functions of more than one variable (e.g. the temperature at each point on a plate).
+
 We often want to know how such a function changes when just one of its variables changes.
 This is called _partial differentiation_, and we will need it when we study systems of differential equations.
 

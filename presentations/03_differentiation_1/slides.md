@@ -30,6 +30,7 @@ Examples:
 4. How quickly an epidemic is growing.
 
 Differentiation gives us this rate exactly, as a formula.
+
 Once we have the rate, we can use it to find where a quantity is greatest or smallest (e.g. the time at which the most bacteria are on a plate), and to sketch its graph.
 
 ---
@@ -98,7 +99,9 @@ for h in [0.5, 0.1, 0.01]:
 
 # Gradients
 
-As the difference between $x_1$ and $x_2$ gets smaller, the gradient stabilises. The value it converges to is the gradient at the midway point of $x_1$ and $x_2$.
+As the difference between $x_1$ and $x_2$ gets smaller, the gradient stabilises.
+
+The value it converges to is the gradient at the midway point of $x_1$ and $x_2$.
 
 ---
 
@@ -106,9 +109,13 @@ As the difference between $x_1$ and $x_2$ gets smaller, the gradient stabilises.
 
 $$\text{Gradient} \approx \frac{\Delta y}{\Delta x} = \frac{f(x+h) - f(x)}{h}$$
 
-This is called a finite difference approximation to the gradient. The approximation becomes more accurate the smaller $h$ is.
+This is called a finite difference approximation to the gradient.
 
-When using the approximation, we denote the changes with $\Delta$. In the limit as $h$ goes to 0, this becomes the derivative:
+The approximation becomes more accurate the smaller $h$ is.
+
+When using the approximation, we denote the changes with $\Delta$.
+
+In the limit as $h$ goes to 0, this becomes the derivative:
 
 $$\frac{dy}{dx} = \frac{d}{dx}\,y = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
 
@@ -198,7 +205,9 @@ $$y = x\cdot x = x^2, \quad y' \neq 1$$
 
 # Higher-order derivatives
 
-You can take a derivative of a function multiple times in a row. For second-order derivatives (differentiating twice) this is usually denoted in one of these ways, and similar for higher orders:
+You can take a derivative of a function multiple times in a row.
+
+For second-order derivatives (differentiating twice) this is usually denoted in one of these ways, and similar for higher orders:
 
 $$y''(x), \qquad f''(x), \qquad \frac{d^2 y}{dx^2}$$
 
@@ -283,13 +292,9 @@ $$
 
 # Stationary points: example
 
-<v-click>
-
 At $x = -1/3$: $\quad y''(-1/3) = 12 \times -1/3 - 10 = -14 < 0$
 
 So this point is a **maximum**.
-
-</v-click>
 
 <v-click>
 
@@ -380,7 +385,9 @@ $$
 
 <v-click>
 
-To show this is a maximum, we need to check $n''(t) = -2$. Therefore, $n''(t)<0$, for $t = 3$. This means that a maximum occurs at $t = 3$ days.
+To show this is a maximum, we need to check $n''(t) = -2$.
+
+Therefore, $n''(t)<0$, for $t = 3$. This means that a maximum occurs at $t = 3$ days.
 
 </v-click>
 
@@ -402,7 +409,9 @@ The growth rate $R$ of a cell colony with $N$ cells at time $t$ can be represent
 
 $$R = \frac{d N}{d t} = kN - bN^2$$
 
-For this example take the constants $k$ and $b$ as $k = 3.8$/hr, and $b = 0.01$/cell/hr. This is called a **logistic** model.
+For this example take the constants $k$ and $b$ as $k = 3.8$/hr, and $b = 0.01$/cell/hr.
+
+This is called a **logistic** model.
 
 1. What is the equilibrium size of the population?
 2. What population size leads to the largest growth rate?
@@ -432,7 +441,9 @@ $$N = \frac{3.8}{0.01} = 380.$$
 
 # Example: logistic growth (largest growth rate)
 
-**2.** To find the largest growth rate, we want the maximal value of $R(N)$. This means we need to find $R'(N) = 0$.
+**2.** To find the largest growth rate, we want the maximal value of $R(N)$.
+
+This means we need to find $R'(N) = 0$.
 
 $$
 \begin{aligned}

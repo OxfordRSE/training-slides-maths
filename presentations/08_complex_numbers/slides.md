@@ -22,9 +22,11 @@ fonts:
 # Why complex numbers?
 
 Some equations, like $x^2+1=0$, have no solutions among the real numbers.
+
 Complex numbers give every polynomial a full set of roots.
 
 We will meet them again when we study systems of differential equations.
+
 There, complex roots tell us that the system oscillates (e.g. populations of predators and prey that rise and fall in turn).
 
 The link is $e^{i\theta}=\cos\theta+i\sin\theta$, which we show at the end of this lecture.
@@ -44,7 +46,9 @@ $$x^2 = 1\qquad\text{and}\qquad x^2 = -1$$
 
 <v-click>
 
-- We introduce an "imaginary" number $i$ so that there are two solutions to $x^2 = -1$: $i$ and $-i$. That is, $i$ is a number with the property that $i^2=-1$.
+- We introduce an "imaginary" number $i$ so that there are two solutions to $x^2 = -1$: $i$ and $-i$.
+
+  That is, $i$ is a number with the property that $i^2=-1$.
 
 </v-click>
 
@@ -61,6 +65,7 @@ $$\mathbb{C}=\left\{a + bi \;\vert\; a,\ b \in\mathbb{R}\right\}$$
 For $z=a+bi\in\mathbb{C}$ we define the _real_ and _imaginary_ parts of $z$ to be $\Re(z) = a$ and $\Im(z)=b$.
 
 The imaginary number $i$ has no home on the real number line.
+
 Instead, we locate it on the **complex plane** at the point $(0,1)$.
 
 </v-click>
@@ -95,7 +100,10 @@ $$x=\frac{8\pm\sqrt{64-100}}{2}=\frac{8\pm\sqrt{-36}}{2}=\frac{8\pm 6i}{2}=4\pm3
 
 <v-click>
 
-- Note that these two roots are reflections of one another through the real axis. They are _conjugates_ of one another.
+- Note that these two roots are reflections of one another through the real axis.
+
+  They are _conjugates_ of one another.
+
 - In general, let $z=a + bi$. The **conjugate** of $z$ is the complex number $\bar{z}=a-bi$.
 
 </v-click>
@@ -332,7 +340,9 @@ layout: two-cols
 
 # Connection between Cartesian and polar
 
-Let $z=x+iy$. If we are given the polar coordinates of $z$ and want to express the Cartesian coordinates use
+Let $z=x+iy$.
+
+If we are given the polar coordinates of $z$ and want to express the Cartesian coordinates use
 
 $$
 \begin{gathered}

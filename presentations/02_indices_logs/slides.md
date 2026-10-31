@@ -35,13 +35,9 @@ fonts:
 
 # Indices: multiplication
 
-<v-click>
-
 Let's look at:
 
 $$5^3 = 5\times 5 \times 5 = 125$$
-
-</v-click>
 
 <v-click>
 
@@ -63,13 +59,9 @@ $$a^m\times a^n=a^{m+n} \qquad \text{(add)}$$
 
 # Indices: division
 
-<v-click>
-
 Let's look at:
 
 $$\frac{5^3}{5^2} = \frac{5\times 5 \times 5}{5\times 5} = 5$$
-
-</v-click>
 
 <v-click>
 
@@ -83,13 +75,9 @@ $$\frac{a^n}{a^m}=a^{n-m} \qquad \text{(subtract)}$$
 
 # Indices: powers
 
-<v-click>
-
 Let's look at:
 
 $$(5^3)^4 = 5^3 \times 5^3 \times 5^3 \times 5^3$$
-
-</v-click>
 
 <v-click>
 
@@ -111,13 +99,9 @@ $$(a^n)^m=a^{nm} \qquad \text{(multiply)}$$
 
 # Indices: negative indices
 
-<v-click>
-
 Let's look at:
 
 $$\frac{a^3}{a^5} = \frac{a\times a \times a}{a\times a \times a\times a\times a} = \frac{1}{a^2}$$
-
-</v-click>
 
 <v-click>
 
@@ -141,13 +125,9 @@ where $n$ is a positive integer
 
 # Indices: zero index
 
-<v-click>
-
 A special case:
 
 $$\frac{a^3}{a^3} = a^{3-3} = a^0 = 1$$
-
-</v-click>
 
 <v-click>
 
@@ -228,11 +208,7 @@ So, the order of these operations does not matter (for $a>0$).
 
 # Indices: different bases, same index
 
-<v-click>
-
 $$(a\times b)^3 = (a\times b)\times (a\times b) \times (a\times b) = (a\times a \times a) \times (b\times b \times b) = a^3\times b^3$$
-
-</v-click>
 
 <v-click>
 

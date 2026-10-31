@@ -127,6 +127,7 @@ If we choose the other option for $u$ and $v'$, we get:
 $$\Big[(x+1)^{1/2}\,\frac{x^2}{2}\Big]_a^b - \int\limits_a^b \frac{1}{2}\,\frac{1}{\sqrt{(x+1)}}\,\frac{x^2}{2}\,dx$$
 
 The second term is **worse** than the integral we started with!
+
 It's important to choose $u$ and $v$ carefully.
 This comes with practice.
 

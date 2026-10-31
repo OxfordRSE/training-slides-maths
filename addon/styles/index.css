@@ -40,6 +40,16 @@
   margin-top: calc((var(--flow-gap) - 16px) * 0.5);
 }
 
+/* A list split in two, so that its first item shows at once and the rest come
+   on clicks, keeps the spacing of one list */
+.slidev-layout.slidev-layout:not(.cover) :is(ul, ol):has(+ :is(ul, ol)) {
+  margin-bottom: 0;
+}
+
+.slidev-layout.slidev-layout:not(.cover) :is(ul, ol) + :is(ul, ol) {
+  margin-top: calc((var(--flow-gap) - 16px) * 0.5);
+}
+
 /* A list item's own paragraphs stay together, whatever the gap (the doubled
    class outranks the :is() rule above, whose .katex-display counts as a class) */
 .slidev-layout.slidev-layout:not(.cover) li > p {
