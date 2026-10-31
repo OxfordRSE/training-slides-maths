@@ -4,7 +4,6 @@ import { blue, dot } from '#plots/style.js'
 import data from './data/enzyme.js'
 
 export default () => ({
-  title: 'Linear trend',
   x: { label: 'X = 1/S' },
   y: { label: 'Y = 1/V' },
   marks: [

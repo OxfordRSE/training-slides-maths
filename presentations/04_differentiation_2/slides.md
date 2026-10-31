@@ -4,6 +4,8 @@ title: Differentiation 2
 addons:
   - ../addon
 layout: cover
+authors:
+  - Fergus Cooper
 highlighter: shiki
 drawings:
   persist: false
@@ -14,6 +16,18 @@ fonts:
   mono: JetBrains Mono Variable
   provider: none
 ---
+
+---
+
+# Why these rules?
+
+In the last lecture we found the derivative of $ax^n$.
+
+Most functions we meet are built from simpler ones, by multiplying them, dividing them, or putting one inside another (e.g. $\sqrt{1+x^2}$).
+
+In this lecture we find a rule for each of these, so that we can differentiate any function built from the standard ones.
+
+We also use the derivative to approximate a function close to a point we know.
 
 ---
 layout: exercise
@@ -31,55 +45,6 @@ When $y = ax^n$, $y' = a n x^{n-1}$. So find $y'(x)$, when:
 
 ---
 
-# Linear approximation and the derivative
-
-By definition, the derivative of a function $f(x)$ is
-
-$$f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}$$
-
-This means that for small $h$, this expression approximates the derivative. By rearranging this, we have
-
-$$f(x + h) \approx f(x) + h f'(x)$$
-
-In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a distance $h$ along the tangent $f'(x)$.
-
----
-
-# Linear approximation: example
-
-Estimate $\sqrt{5218}$
-
-To do this, we first need an $f(x)$ that is easy to calculate, and close to 5218. For this we can take that $70^2 = 4900$.
-
-To calculate the approximation, we need $f'(x)$, where $f(x) = \sqrt{x}$.
-
-$$f'(x) = \frac{1}{2 \sqrt{x}}$$
-
----
-
-# Linear approximation: example
-
-$$f'(x) = \frac{1}{2 \sqrt{x}}$$
-
-Since 5218 = 4900 + 318, we can set $x = 4900$ and $h = 318$.
-
-Using the approximation, we have:
-
-$$
-\begin{aligned}
-f(5218) &\approx f(4900) + 318 \times f'(4900) \\
-f(5218) &\approx 70 + 318 \times \frac{1}{140} \approx 72.27
-\end{aligned}
-$$
-
-<v-click>
-
-$\sqrt{5218} = 72.2357252$ - not a bad appriximation!
-
-</v-click>
-
----
-
 # Standard derivatives
 
 It's useful to know the derivatives of all the standard functions, and some basic rules.
@@ -89,9 +54,12 @@ $$
 \frac{d}{dx} (x^n) &= n x^{n-1} \\
 \frac{d}{dx} (\sin x) &= \cos x \\
 \frac{d}{dx} (\cos x) &= -\sin x \\
-\frac{d}{dx} (e^x) &= e^x
+\frac{d}{dx} (e^x) &= e^x \\
+\frac{d}{dx} (\ln x) &= \frac{1}{x}
 \end{aligned}
 $$
+
+For $\sin$ and $\cos$, $x$ must be in radians. We show the derivative of $\ln x$ later in this lecture.
 
 To understand the derivative of sin and cos, consider their graphs, and when they are changing positively (increasing), negatively (decreasing) or not at all (no rate of change).
 
@@ -120,7 +88,11 @@ While differentiating sums, and scalar multiples is straightforward, differentia
 
 $$(f(x) g(x) )' \neq f'(x) g'(x)$$
 
+<v-click>
+
 $$(f(x) g(x) )' = f'(x) g(x) + g'(x) f(x)$$
+
+</v-click>
 
 ---
 
@@ -128,9 +100,17 @@ $$(f(x) g(x) )' = f'(x) g(x) + g'(x) f(x)$$
 
 To illustrate that this works, consider $y = (2x^3 - 1)(3x^3 + 2x)$
 
+<v-click>
+
 If we expand this out, we have that $y = 6x^6 + 4x^4 - 3x^3 - 2x$
 
+</v-click>
+
+<v-click>
+
 From this, clearly, $y' = 36 x^5 + 16x^3 - 9 x^2 - 2$
+
+</v-click>
 
 ---
 
@@ -149,7 +129,9 @@ $$
 
 <v-click>
 
-So both rules produce the same result. While for simple examples the product rule requires more work, as functions get more complex it saves a lot of time.
+So both rules produce the same result.
+
+While for simple examples the product rule requires more work, as functions get more complex it saves a lot of time.
 
 </v-click>
 
@@ -157,7 +139,11 @@ So both rules produce the same result. While for simple examples the product rul
 
 # The chain rule: a function of a function
 
-One of the most useful rules is differentiating a function that has another function inside it, $y = f(g(x))$. For this we use the chain rule:
+One of the most useful rules is differentiating a function that has another function inside it, <span class="whitespace-nowrap">$y = f(g(x))$.</span>
+
+<v-click>
+
+For this we use the chain rule:
 
 $$
 \begin{aligned}
@@ -166,11 +152,15 @@ y'(x) &= f'(g(x))\; g'(x) = \frac{df}{dg} \frac{dg}{dx}
 \end{aligned}
 $$
 
+</v-click>
+
 ---
 
 # The chain rule: example 1
 
 $$y = (5x^2 + 2)^4$$
+
+<v-click>
 
 We can write this as $y = g^4$, where $g = 5x^2 + 2$. Given this, we have that
 
@@ -182,11 +172,13 @@ $$ {1|1-2|1-3}
 \end{aligned}
 $$
 
+</v-click>
+
 <v-click>
 
-This extends infinitely to nested functions, meaning
+This extends to any number of nested functions, meaning
 
-$$\frac{d}{dx}(a(b(c)) = \frac{d a}{d b} \frac{d}{dx} (b(c)) = \frac{d a}{db} \frac{d b}{dc}\frac{dc}{dx}$$
+$$\frac{d}{dx}\,a(b(c(x))) = \frac{da}{db} \frac{d}{dx}\,b(c(x)) = \frac{da}{db} \frac{db}{dc}\frac{dc}{dx}$$
 
 </v-click>
 
@@ -194,9 +186,13 @@ $$\frac{d}{dx}(a(b(c)) = \frac{d a}{d b} \frac{d}{dx} (b(c)) = \frac{d a}{db} \f
 
 # The quotient rule: the ratio of two functions
 
-If $y(x) = f(x)/g(x)$, then by using the product rule, and setting $h(x) = (g(x))^{-1}$, we can show that
+If $y(x) = f(x)/g(x)$, then by using the product and chain rules on $f(x)\,(g(x))^{-1}$, we can show that
+
+<v-click>
 
 $$y'(x) = \frac{f'g - g'f}{g^2}$$
+
+</v-click>
 
 ---
 
@@ -206,8 +202,8 @@ $$y = \frac{3x-1}{4x + 2}$$
 
 $$ {1|1-2|1-3|1-4}
 \begin{aligned}
-f &= 3x - 1, \rightarrow f' = 3 \\
-g &= 4x + 2, \rightarrow g' = 4 \\
+f &= 3x - 1, \quad f' = 3 \\
+g &= 4x + 2, \quad g' = 4 \\
 y' &= \frac{f'g - g'f}{g^2} = \frac{3(4x+2) - 4(3x-1)}{(4x+2)^2} \\
 y' &= \frac{12x + 6 - 12 x + 4}{(4x+2)^2} = \frac{10}{(4x+2)^2}
 \end{aligned}
@@ -215,35 +211,49 @@ $$
 
 ---
 
-# Implicit differentiation
+# Differentiating inverse functions
 
-For any function $y = f(x)$, with a well defined inverse $f^{-1}(x)$ (not to be confused with $(f(x))^{-1})$), we have by definition that
+For any function $y = f(x)$, with a well defined inverse $f^{-1}(x)$ (not to be confused with $(f(x))^{-1}$), we have by definition that
 
 $$x = f^{-1}(f(x)) = f^{-1}(y).$$
+
+<v-click>
 
 This means that we can apply the chain rule
 
 $$\frac{d}{dx}(x) = \frac{d}{dx}(f^{-1}(y)) = \frac{d}{dy}(f^{-1}(y)) \frac{dy}{dx}$$
 
+</v-click>
+
 <v-click>
 
 But since $d(x)/dx = 1$
 
-$$\frac{d}{dy}(f^{-1}(y)) = \frac{1}{\frac{dy}{dx}}$$
+$$\frac{d}{dy}(f^{-1}(y)) = \frac{1}{\frac{dy}{dx}} \qquad \text{(where } dy/dx \neq 0\text{)}$$
+
+(This is an example of _implicit differentiation_, where we differentiate both sides of an equation relating $x$ and $y$.)
 
 </v-click>
 
 ---
 
-# Implicit differentiation: example
+# Differentiating inverse functions: example
 
 $$y = \ln(x)$$
 
+<v-click>
+
 If $y = \ln(x)$, this means that $f^{-1}(y) = e^y = x$
 
-By definition ($f^{-1}(y))' = e^y$, as $e^y$ doesn't change under differentiation. This means that
+</v-click>
+
+<v-click>
+
+Since $e^y$ is unchanged when differentiated, $\frac{d}{dy}(f^{-1}(y)) = e^y$. This means that
 
 $$\frac{d}{dx}(\ln(x)) = \frac{1}{\frac{d}{dy}(f^{-1}(y))} = \frac{1}{e^y}$$
+
+</v-click>
 
 <v-click>
 
@@ -255,15 +265,98 @@ $$\frac{d}{dx}(\ln(x)) = \frac{1}{e^{\ln(x)}} = \frac{1}{x}$$
 
 ---
 
-# Example: differentiating using sympy
+# Linear approximation and the derivative
 
-In Python, there is a special package for calculating derivatives symbolically, called sympy.
+By definition, the derivative of a function $f(x)$ is
 
-This can quickly and easily calculate derivatives (as well as do all sorts of other analytic calculations).
+$$f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}$$
+
+<v-click>
+
+This means that for small $h$, this expression approximates the derivative. By rearranging this, we have
+
+$$f(x + h) \approx f(x) + h f'(x)$$
+
+</v-click>
+
+<v-click>
+
+In other words, $f(x+h)$ can be approximated by starting at $f(x)$ and moving a horizontal distance $h$ along the tangent, whose gradient is $f'(x)$.
+
+</v-click>
 
 ---
 
-# Example: differentiating using sympy
+# Linear approximation: example
+
+Estimate $\sqrt{5218}$
+
+<v-click>
+
+To do this, we first need an $f(x)$ that is easy to calculate, and close to 5218.
+
+</v-click>
+
+<v-click>
+
+For this we can take that $70^2 = 4900$.
+
+</v-click>
+
+<v-click>
+
+To calculate the approximation, we need $f'(x)$, where $f(x) = \sqrt{x}$.
+
+$$f'(x) = \frac{1}{2 \sqrt{x}}$$
+
+</v-click>
+
+---
+
+# Linear approximation: example
+
+$$f'(x) = \frac{1}{2 \sqrt{x}}$$
+
+<v-click>
+
+Since 5218 = 4900 + 318, we can set $x = 4900$ and $h = 318$.
+
+</v-click>
+
+<v-click>
+
+Using the approximation, we have:
+
+$$
+\begin{aligned}
+f(5218) &\approx f(4900) + 318 \times f'(4900) \\
+f(5218) &\approx 70 + 318 \times \frac{1}{140} \approx 72.27
+\end{aligned}
+$$
+
+</v-click>
+
+<v-click>
+
+$\sqrt{5218} = 72.2357252$ - not a bad approximation!
+
+</v-click>
+
+---
+
+# Example: differentiating using SymPy
+
+In Python, there is a special package for calculating derivatives symbolically, called SymPy.
+
+<v-click>
+
+This can quickly and easily calculate derivatives (as well as do all sorts of other analytic calculations).
+
+</v-click>
+
+---
+
+# Example: differentiating using SymPy
 
 ```python
 import sympy as sp
@@ -274,13 +367,21 @@ x = sp.symbols('x') #This creates a variable x, which is symbolically represente
 sp.diff(x**2, x)
 ```
 
+<v-click>
+
 $$2 x$$
+
+</v-click>
 
 <v-click>
 
 ```python
 sp.diff(sp.cos(x), x)
 ```
+
+</v-click>
+
+<v-click>
 
 $$- \sin{\left(x \right)}$$
 
@@ -293,18 +394,24 @@ f = (x+1)**3 * sp.cos(x**2 - 5)
 sp.diff(f,x)
 ```
 
+</v-click>
+
+<v-click>
+
 $$- 2 x \left(x + 1\right)^{3} \sin{\left(x^{2} - 5 \right)} + 3 \left(x + 1\right)^{2} \cos{\left(x^{2} - 5 \right)}$$
 
 </v-click>
 
 ---
 
-# Example: differentiating using sympy
+# Example: differentiating using SymPy
 
 ```python
 f = (x+1)**3 * (x-2)**2 * (x**2 + 4*x + 1)**4
 sp.diff(f, x)
 ```
+
+<v-click>
 
 $$
 \begin{aligned}
@@ -314,11 +421,17 @@ $$
 \end{aligned}
 $$
 
+</v-click>
+
 <v-click>
 
 ```python
 sp.expand(sp.diff(f, x)) # expand out in polynomial form
 ```
+
+</v-click>
+
+<v-click>
 
 $$
 \begin{aligned}
@@ -331,10 +444,10 @@ $$
 
 ---
 
-# Example: differentiating using sympy
+# Example: differentiating using SymPy
 
-You can look at the documentation for Sympy to see many other possibilities (e.g. we will use Sympy to do symbolic integration later on in this course)
+You can look at the documentation for SymPy to see many other possibilities (e.g. we will use SymPy to do symbolic integration later on in this course)
 
 - <https://docs.sympy.org/latest/index.html>
 
-Try out Sympy to verify your pen & paper answers to the problem sheets
+Try out SymPy to verify your pen & paper answers to the problem sheets

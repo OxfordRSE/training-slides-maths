@@ -4,6 +4,8 @@ title: Integration 1
 addons:
   - ../addon
 layout: cover
+authors:
+  - Fergus Cooper
 highlighter: shiki
 drawings:
   persist: false
@@ -14,6 +16,16 @@ fonts:
   mono: JetBrains Mono Variable
   provider: none
 ---
+
+---
+
+# Why integration?
+
+We often know the _rate_ at which something happens (e.g. how quickly a product is made), and want to know the total amount over some time.
+
+Integration lets us work this out.
+
+It is also how we find the area under a curve, and, as we will see, it reverses differentiation.
 
 ---
 layout: exercise
@@ -37,11 +49,19 @@ $$\frac{d}{dt} e^{4t} =$$
 
 **Calculating the area under a curve**
 
+<v-click>
+
 If we want to find the area under a curve, we can divide the area into strips, calculate the area of each strip, and sum these areas together.
+
+</v-click>
+
+<v-click>
 
 e.g. find the area of
 
 $$y = f(x) = x^2\qquad\text{between}\qquad x=1\text{ and }x=2$$
+
+</v-click>
 
 ---
 
@@ -63,14 +83,31 @@ We can sum up all the strips between $x=1$ and $x=2$ to give an estimate for the
 
 $$A \approx \sum \delta A_i = \sum y(x_i)\,\delta x.$$
 
+<v-click>
+
 This becomes more accurate as $\delta x$ becomes smaller.
+
+</v-click>
+
+<v-click>
+
 We can use the same trick as when differentiating: let $\delta x$ tend to $0$:
 
 $$A = \lim_{\delta x \to 0}\sum y(x_i)\,\delta x = \int\limits^{2}_{1} y\,dx$$
 
-$\int$ is the old English `S` and stands for the phrase "Sum Over".
+</v-click>
+
+<v-click>
+
+$\int$ is an elongated S, for the Latin _summa_ (sum).
+
+</v-click>
+
+<v-click>
 
 This process is called **integration**.
+
+</v-click>
 
 ---
 
@@ -82,12 +119,18 @@ This process is called **integration**.
 
 # Calculating the integral
 
-Let us 'invent' a function $F(x)$ that gives the area from $0$ to $x$.
+Let us 'invent' a function $F(x)$ that gives the area from some fixed point to $x$.
 Then $A = F(2) - F(1)$.
+
+<v-click>
 
 With this (imagined) function, we can find the area of one of our tiny steps **exactly**, as
 
 $$F(x + \delta x) - F(x)$$
+
+</v-click>
+
+<v-click>
 
 Remember we approximated this as $y\,\delta x = f(x)\,\delta x$, so:
 
@@ -97,6 +140,8 @@ F(x + \delta x) - F(x) &\approx f(x)\delta x \\
 f(x) &\approx \frac{F(x+\delta x)-F(x)}{\delta x}
 \end{aligned}
 $$
+
+</v-click>
 
 ---
 
@@ -108,11 +153,19 @@ $$f(x) = \lim_{\delta x\to 0} \frac{F(x+\delta x)-F(x)}{\delta x} = F'(x)$$
 
 (recalling the definition of the derivative).
 
+<v-click>
+
 In other words, for our example,
 
 $$A(x) = \int\limits^{x}_{1} y(t)\,dt\qquad\text{then}\qquad y(x) = A'(x)$$
 
+</v-click>
+
+<v-click>
+
 **Integration reverses the process of differentiation**.
+
+</v-click>
 
 ---
 
@@ -122,13 +175,21 @@ We know that:
 
 $$\frac{d \left(x^2\right)}{dx}= 2 x \qquad\Rightarrow\qquad \Big[x^2\Big]_{x_1}^{x_2} = \int_{x_1}^{x_2} 2 x\,dx$$
 
+<v-click>
+
 Likewise:
 
 $$\frac{d\left(\frac{x^3}{3}\right)}{dx}= x^2 \qquad\Rightarrow\qquad \int_{x=1}^{x=2} x^2\,dx = \Big[\frac{1}{3}x^3\Big]_{x=1}^{x=2}=\frac{8}{3}-\frac{1}{3}= \frac{7}{3}$$
 
+</v-click>
+
+<v-click>
+
 **In general:**
 
-$$\frac{d\left(a\, x^{n+1}\right)}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2}$$
+$$\frac{d\left(a\, x^{n+1}\right)}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2} \qquad (n\neq -1)$$
+
+</v-click>
 
 ---
 
@@ -143,6 +204,10 @@ x, x1, x2 = sp.symbols('x x_1 x_2')
 sp.integrate(x**6,(x,x1,x2))
 ```
 
+</v-click>
+
+<v-click>
+
 $$- \frac{x_{1}^{7}}{7} + \frac{x_{2}^{7}}{7}$$
 
 </v-click>
@@ -151,9 +216,17 @@ $$- \frac{x_{1}^{7}}{7} + \frac{x_{2}^{7}}{7}$$
 
 $$\int_{x_1}^{x_2} x^{\frac{3}{2}}\,dx =$$
 
+</v-click>
+
+<v-click>
+
 ```python
 sp.integrate(x**(sp.sympify(3)/2),(x,x1,x2))
 ```
+
+</v-click>
+
+<v-click>
 
 $$- \frac{2 x_{1}^{\frac{5}{2}}}{5} + \frac{2 x_{2}^{\frac{5}{2}}}{5}$$
 
@@ -171,6 +244,10 @@ $$\int_{x_1}^{x_2} x^{-\frac{1}{2}}\,dx =$$
 sp.integrate(x**(-sp.sympify(1)/2),(x,x1,x2))
 ```
 
+</v-click>
+
+<v-click>
+
 $$- 2 \sqrt{x_{1}} + 2 \sqrt{x_{2}}$$
 
 </v-click>
@@ -183,18 +260,26 @@ Consider now the functions:
 
 $$
 \begin{aligned}
-y&=x^2+7 &&\text{(3)} \\
-y&=x^2-100 &&\text{(4)}
+y&=x^2+7 &&\text{(1)} \\
+y&=x^2-100 &&\text{(2)}
 \end{aligned}
 $$
 
-Differentiating (3):
+<v-click>
+
+Differentiating (1):
 
 $$\frac{dy}{dx}=2x$$
 
-Differentiating (4):
+</v-click>
+
+<v-click>
+
+Differentiating (2):
 
 $$\frac{dy}{dx}=2x$$
+
+</v-click>
 
 ---
 
@@ -202,9 +287,13 @@ $$\frac{dy}{dx}=2x$$
 
 This implies that the integral:
 
-$$y=\int 2x\,dx=x^2 + \kappa \qquad \text{where } \kappa \text{ is an unknown constant}$$
+$$y=\int 2x\,dx=x^2 + C \qquad \text{where } C \text{ is an unknown constant}$$
+
+<v-click>
 
 An integral without limits is called an **indefinite integral**.
+
+</v-click>
 
 ---
 
@@ -215,23 +304,41 @@ x = sp.symbols('x')
 sp.integrate(2*x,x)
 ```
 
+<v-click>
+
 $$x^{2}$$
+
+</v-click>
 
 ---
 
 # Other integrals
 
-Recall that:
+Recall that $\frac{d}{dx}\ln x = \frac{1}{x}$. In fact, for any $x \neq 0$:
 
-$$\frac{d}{dx}\ln x=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln x + \kappa$$
+$$\frac{d}{dx}\ln|x|=\frac{1}{x} \qquad\Rightarrow\qquad \int\frac{1}{x}\,dx=\ln |x| + C$$
 
-This constant $\kappa$ can be written as:
+<v-click>
 
-$$\kappa=\ln B$$
+For $x>0$ this is just $\ln x$. For $x<0$, $|x| = -x$, and the chain rule gives $\frac{d}{dx}\ln(-x) = \frac{-1}{-x} = \frac{1}{x}$.
+
+</v-click>
+
+<v-click>
+
+This constant $C$ can be written as:
+
+$$C=\ln B$$
+
+</v-click>
+
+<v-click>
 
 where $B$ is another constant. Thus:
 
-$$\int \frac{1}{x}\,dx = \ln x + \kappa=\ln x +\ln B =\ln (B x)$$
+$$\int \frac{1}{x}\,dx = \ln |x| + C=\ln |x| +\ln B =\ln (B |x|)$$
+
+</v-click>
 
 ---
 
@@ -241,15 +348,23 @@ Recall that:
 
 $$\frac{d}{dx}\Big(\sin x\Big)= \cos x \qquad\text{and}\qquad \frac{d}{dx}\Big(\cos x\Big)= -\sin x$$
 
+<v-click>
+
 Example 1:
 
 $$\int_{0}^{\pi/2} \cos x \, dx =$$
+
+</v-click>
 
 <v-click>
 
 ```python
 sp.integrate(sp.cos(x),(x,0,sp.pi/2))
 ```
+
+</v-click>
+
+<v-click>
 
 $$1$$
 
@@ -268,6 +383,10 @@ $$\int_{0}^{\pi/2} \sin x \, dx =$$
 ```python
 sp.integrate(sp.sin(x),(x,0,sp.pi/2))
 ```
+
+</v-click>
+
+<v-click>
 
 $$1$$
 
@@ -293,14 +412,13 @@ $$\int_{0}^{\pi/2} \sin x \, dx = \Big[-\cos x \Big]_0^{\pi/2}=0-(-1)=1$$
 
 # Summary of integration formulae
 
-$$
-\begin{aligned}
-\int a\,dx &= ax+C \\
-\int ax\,dx &= \frac{1}{2}ax^2+C \\
-\int ax^n\,dx &= \frac{1}{n+1}ax^{n+1}+C \qquad\text{for all } n \text{ except } n=-1 \\
-\int x^{-1}\,dx &= \int \frac{1}{x}\,dx = \ln \vert x\vert +C
-\end{aligned}
-$$
+$$\int a\,dx = ax+C$$
+
+$$\int ax\,dx = \frac{1}{2}ax^2+C$$
+
+$$\int ax^n\,dx = \frac{1}{n+1}ax^{n+1}+C \qquad\text{for all } n \text{ except } n=-1$$
+
+$$\int x^{-1}\,dx = \int \frac{1}{x}\,dx = \ln \vert x\vert +C$$
 
 ---
 
@@ -310,7 +428,11 @@ Recall that $f'(t)$ gives the rate at which $f(t)$ changes at time $t$. Integrat
 
 $$\int_a^b f'(t) \, dt = \Big[f(t)\Big]_a^b = f(b)-f(a)$$
 
+<v-click>
+
 Therefore, the definite integral from $a$ to $b$ of $f'(t)$ with respect to $t$ will always give the **net** change that $f(t)$ has undergone as the parameter $t$ moves from $a$ to $b$.
+
+</v-click>
 
 ---
 
@@ -318,9 +440,13 @@ Therefore, the definite integral from $a$ to $b$ of $f'(t)$ with respect to $t$ 
 
 A chemical process produces NaCl at the rate of $3\sqrt{t}$ grams per minute. We ask three questions:
 
+<v-click>
+
 1. What is the rate of production one minute into the process?
 2. What is the quantity of NaCl produced over the next three minutes?
 3. What is the mean rate of NaCl production over this interval?
+
+</v-click>
 
 ---
 
@@ -328,11 +454,15 @@ A chemical process produces NaCl at the rate of $3\sqrt{t}$ grams per minute. We
 
 Let $f(t)$ denote the grams of NaCl produced after $t$ minutes. Then $f'(t)= 3\sqrt{t}$.
 
-**1.** The rate of production one minute into the process is $f'(1) = 3\sqrt{1} = 3$ grams per minute.
+<v-click>
+
+**Question 1:** The rate of production one minute into the process is $f'(1) = 3\sqrt{1} = 3$ grams per minute.
+
+</v-click>
 
 <v-click>
 
-**2.** The quantity of NaCl produced over the next three minutes is
+**Question 2:** The quantity of NaCl produced over the next three minutes is
 
 $$f(4)-f(1) = \int_1^4\,f'(t)\,dt = \int_1^4\,3\sqrt{t}\,dt = \phantom{\left[2t^{3/2}\right]_1^4 = 2\times(8-1) = 14}$$
 
@@ -345,6 +475,10 @@ t = sp.Symbol('t')
 sp.integrate(3*sp.sqrt(t),(t,1,4))
 ```
 
+</v-click>
+
+<v-click>
+
 $$14$$
 
 </v-click>
@@ -353,7 +487,7 @@ $$14$$
 
 # Application: solution
 
-**3.** The mean rate is the constant rate which would give the same overall effect:
+**Question 3:** The mean rate is the constant rate which would give the same overall effect:
 
 $$\frac{1}{b-a}\int_a^b\,f'(t)\,dt = \frac{1}{4-1}\int_1^4\,3\sqrt{t}\,dt = \phantom{\frac{14}{3}}$$
 
@@ -362,6 +496,10 @@ $$\frac{1}{b-a}\int_a^b\,f'(t)\,dt = \frac{1}{4-1}\int_1^4\,3\sqrt{t}\,dt = \pha
 ```python
 sp.integrate(3*sp.sqrt(t),(t,1,4))/(4-1)
 ```
+
+</v-click>
+
+<v-click>
 
 $$\frac{14}{3}$$
 
@@ -375,11 +513,15 @@ Suppose we wish to integrate:
 
 $$I=\int f(g(x))\,dx \qquad \text{e.g.} \quad \int_{a}^{b} (3-4x)^{-5}\,dx$$
 
+<v-click>
+
 In general, for $g(x)=u$, we can write:
 
 $$\int_{x_1}^{x_2} f(g(x))\,dx = \int_{u_1}^{u_2} f(u) \frac{dx}{du}\, du$$
 
 Integral version of the chain rule.
+
+</v-click>
 
 ---
 
@@ -387,12 +529,12 @@ Integral version of the chain rule.
 
 Consider:
 
-$$\int_{a}^{b} (2x + 3)^4\,dx \qquad \text{(7)}$$
+$$\int_{a}^{b} (2x + 3)^4\,dx \qquad \text{(3)}$$
+
+<v-click>
 
 Multiplying this out and then integrating it would be very tedious.
 Try a substitution instead:
-
-<v-click>
 
 $$u=2x+3 \quad\Longleftrightarrow\quad x=\frac{1}{2}(u-3)=\frac{u}{2}-\frac{3}{2} \quad\Longleftrightarrow\quad \frac{dx}{du}=\frac{1}{2}$$
 
@@ -400,7 +542,7 @@ $$u=2x+3 \quad\Longleftrightarrow\quad x=\frac{1}{2}(u-3)=\frac{u}{2}-\frac{3}{2
 
 <v-click>
 
-Substitute into equation (7) above:
+Substitute into equation (3) above:
 
 $$
 \begin{aligned}
@@ -420,6 +562,8 @@ a, b = sp.symbols('a b')
 sp.integrate((2*x + 3)**4,(x,a,b))
 ```
 
+<v-click>
+
 $$
 \begin{aligned}
 &- \frac{16 a^{5}}{5} - 24 a^{4} - 72 a^{3} - 108 a^{2} - 81 a \\
@@ -427,11 +571,13 @@ $$
 \end{aligned}
 $$
 
+</v-click>
+
 ---
 
 # Substitution: example 2
 
-$$\int_{a}^{b} (3-4x)^{-5}\,dx \qquad \text{(8)}$$
+$$\int_{a}^{b} (3-4x)^{-5}\,dx \qquad \text{(4)}$$
 
 <v-click>
 
@@ -443,7 +589,7 @@ $$u=3-4x \quad\Longleftrightarrow\quad x=\frac{1}{4}(3-u)=\frac{3}{4}-\frac{u}{4
 
 <v-click>
 
-Substitute into equation (8) above:
+Substitute into equation (4) above:
 
 $$
 \begin{aligned}
@@ -462,4 +608,8 @@ $$
 sp.integrate((3 - 4*x)**(-5),(x,a,b))
 ```
 
+<v-click>
+
 $$\frac{1}{4096 b^{4} - 12288 b^{3} + 13824 b^{2} - 6912 b + 1296} - \frac{1}{4096 a^{4} - 12288 a^{3} + 13824 a^{2} - 6912 a + 1296}$$
+
+</v-click>

@@ -4,7 +4,6 @@ import { blue, dot } from '#plots/style.js'
 import data from './data/quadratic.js'
 
 export default () => ({
-  title: 'Nonlinear trend',
   x: { label: 'X = x' },
   y: { label: 'Y = y' },
   marks: [

@@ -25,28 +25,27 @@ fonts:
 
 Maths is the language we use to quantitatively describe the world.
 
-You are going into research, and you
+Useful for **doing** and **reading** research, as you
 
 - **may** need to be proficient in maths as a tool for describing what you work on
 - **will** have to read and understand papers that use maths
 
-Some of you **may** feel you don't need to know any maths, but this course will be useful to you even if you never have to write down a system of differential equations yourself.
+Even if you never write down a system of differential equations yourself, this course will help you to follow, question and discuss the maths in the work around you.
 
 ---
 
-# Why maths?
+# Why maths: data analysis
 
-Data analysis
+Vital for **analysing** and **interpreting** data
 
-- Interpretation and inference
-- Identify patterns, trends, relationships
-- Deal robustly with uncertainty and variation
+- Interpretation and inference: what your data do, and do not, tell you
+- Identify patterns, trends and relationships (e.g. how a response depends on a dose)
+- Deal robustly with uncertainty and variation (e.g. between replicates)
+- Understand the statistical and computational tools you use, rather than treating them as black boxes
 
 ---
 
-# Why maths?
-
-Describe the behaviour of systems
+# Why maths: describing systems
 
 - Remove ambiguity: explicit assumptions
 - Quantitative hypotheses
@@ -56,7 +55,7 @@ Describe the behaviour of systems
 
 ---
 
-# Why maths?
+# Why maths: dynamic and nonlinear systems
 
 Vital for **dynamic** and **nonlinear** systems
 
@@ -83,6 +82,7 @@ Vital for **dynamic** and **nonlinear** systems
 - Ordinary differential equations
 - Linear algebra (matrices)
 - Coupled systems of ordinary differential equations
+- Probability (online material only)
 - Use of Python
 
 ---
@@ -115,11 +115,13 @@ training-event-only: true
 
 ---
 
+```yaml
+layout: center
+```
+
 # Course material
 
 <https://train.rse.ox.ac.uk/>
-
-(Demo)
 
 ---
 
@@ -131,7 +133,36 @@ training-event-only: true
 
 Do help your peers, as well as using the demonstrators and lecturers who are here to help!
 
-Please let me know if you are either finding the material far too difficult, or far too easy. Both of those problems can be solved!
+Please let me know if you are either finding the material far too difficult, or far too easy.
+
+Both of those problems can be solved!
+
+---
+
+# Use of AI
+
+AI tools can now solve every problem in this course.
+
+We still need to learn the fundamentals ourselves, because:
+
+<v-clicks>
+
+- AI can be confidently wrong, and you are responsible for any result you use
+- You need the concepts to describe your problem to it, and to judge its answer
+- You will read papers and work with collaborators without an AI to explain things to you
+- We learn by working through problems ourselves, not by reading solutions
+
+</v-clicks>
+
+<v-click>
+
+AI can (and should) be used to help you understand. For example, ask it to:
+
+- explain a topic in several different ways (e.g. with a picture, a biological example, or step by step)
+- check your working, and say where it goes wrong
+- set you a similar problem to try
+
+</v-click>
 
 ---
 

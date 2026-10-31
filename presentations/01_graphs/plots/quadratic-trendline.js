@@ -14,7 +14,6 @@ export const controls = {
 const ys = data.map(d => d.y)
 
 export default ({ m, c }) => ({
-  title: 'Linear trend with trendline',
   x: { label: 'X = x²', domain: [0, 64] },
   y: { label: 'Y = y', domain: [Math.min(...ys) - 10, Math.max(...ys) + 10] },
   marks: [

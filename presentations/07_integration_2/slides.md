@@ -4,6 +4,8 @@ title: Integration 2
 addons:
   - ../addon
 layout: cover
+authors:
+  - Fergus Cooper
 highlighter: shiki
 drawings:
   persist: false
@@ -14,6 +16,16 @@ fonts:
   mono: JetBrains Mono Variable
   provider: none
 ---
+
+---
+
+# Why more methods?
+
+Not every function can be integrated by reversing a standard derivative, or by substitution.
+
+In this lecture we add two more methods: _integration by parts_, which reverses the product rule, and _partial fractions_, which splits a fraction into simpler ones.
+
+We will need both when we solve differential equations.
 
 ---
 layout: exercise
@@ -33,7 +45,7 @@ $$\int_2^4 \frac{1}{\sqrt z}\,dz=$$
 
 ### In general
 
-$$\frac{d(a\, x^{n+1})}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2}$$
+$$\frac{d(a\, x^{n+1})}{dx}=(n+1)a\, x^n \qquad \Rightarrow \qquad \int_{x_1}^{x_2} a\, x^n\,dx = \Big[\frac{a}{n+1}\, x^{n+1}\Big]_{x_1}^{x_2} \qquad (n\neq -1)$$
 
 ### Reminder: method 1, integration by substitution
 
@@ -55,11 +67,19 @@ Recall that:
 
 $$\frac{d}{dx}f(x)\,g(x)=f(x)\,g'(x)+ g(x)\,f'(x)$$
 
+<v-click>
+
 Integrate and rearrange to get:
 
 $$\int\limits_a^b f(x)\,g'(x)\,dx=\Big[f(x)\,g(x)\Big]_a^b-\int\limits_a^b g(x)\,f'(x)\,dx$$
 
+</v-click>
+
+<v-click>
+
 This is known as the formula for **'integrating by parts'**
+
+</v-click>
 
 ---
 
@@ -69,11 +89,15 @@ This can also be written:
 
 $$\int\limits_a^b u\,\frac{dv}{dx}\,dx = \Big[uv\Big]^b_a-\int\limits_a^b v\,\frac{du}{dx}\,dx$$
 
+<v-click>
+
 or
 
 $$\int\limits_a^b u\,v'\,dx = \Big[uv\Big]^b_a-\int\limits_a^b v\,u'\,dx$$
 
 with $f(x) \equiv u$ and $g(x) \equiv v$
+
+</v-click>
 
 ---
 
@@ -114,9 +138,18 @@ If we choose the other option for $u$ and $v'$, we get:
 
 $$\Big[(x+1)^{1/2}\,\frac{x^2}{2}\Big]_a^b - \int\limits_a^b \frac{1}{2}\,\frac{1}{\sqrt{(x+1)}}\,\frac{x^2}{2}\,dx$$
 
+<v-click>
+
 The second term is **worse** than the integral we started with!
+
+</v-click>
+
+<v-click>
+
 It's important to choose $u$ and $v$ carefully.
 This comes with practice.
+
+</v-click>
 
 ---
 
@@ -151,7 +184,13 @@ x = sp.symbols('x')
 sp.integrate(sp.log(x),x)
 ```
 
+<v-click>
+
 $$x \log{\left(x \right)} - x$$
+
+(SymPy writes $\log$ for the natural logarithm, $\ln$.)
+
+</v-click>
 
 ---
 
@@ -181,9 +220,13 @@ $$\int\limits^{\infty}_0 x^3\,e^{-x}\,dx=-\Big[x^3\,e^{-x}\Big]^{\infty}_0 +\int
 
 Now apply integration by parts to the right-hand side:
 
+<v-click>
+
 Choose
 
 $$u=3x^2\qquad\text{and}\qquad v'=e^{-x} \qquad\text{so that}\qquad u'=6x\qquad\text{and}\qquad v=-e^{-x}$$
+
+</v-click>
 
 <v-click>
 
@@ -207,9 +250,9 @@ $$\int\limits^{\infty}_0 6x\,e^{-x}\,dx =-\Big[6x\,e^{-x}\Big]^{\infty}_0 +\int\
 
 <v-click>
 
-$$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\infty}_0=-6e^{-\infty}+6e^0=6$$
+$$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\infty}_0=0+6e^0=6$$
 
-(Since $e^{-\infty}=0$ and $e^0=1$)
+(Since $e^{-x}\to 0$ as $x\to\infty$, and $e^0=1$)
 
 </v-click>
 
@@ -217,12 +260,13 @@ $$\Longrightarrow \int\limits^{\infty}_0 6\,e^{-x}\,dx= -\Big[6\,e^{-x}\Big]^{\i
 
 # Integration by parts: example 3
 
-The other terms all go to zero:
+The other terms are all zero, because $x^3e^{-x}$, $3x^2e^{-x}$ and $6x\,e^{-x}$ all tend to $0$ as $x\to\infty$ ($e^{-x}$ shrinks faster than any power of $x$ grows), and all are $0$ at $x=0$:
 
-$$
+$$ {1|1-2|1-3}
 \begin{aligned}
--\Big[x^3\,e^{-x}\Big]^{\infty}_0 &=-{\infty}^3\,e^{-\infty} + 0 =0 \\
--\Big[3x^2\,e^{-x}\Big]^{\infty}_0 &=-3{\infty}^2\,e^{-\infty} + 0 =0
+-\Big[x^3\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0 \\
+-\Big[3x^2\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0 \\
+-\Big[6x\,e^{-x}\Big]^{\infty}_0 &= 0 - 0 = 0
 \end{aligned}
 $$
 
@@ -242,13 +286,17 @@ $$\int\limits^{\infty}_0 x^3\,e^{-x}\,dx=6$$
 sp.integrate(x**3 * sp.exp(-x),(x,0,sp.oo))
 ```
 
+<v-click>
+
 $$6$$
+
+</v-click>
 
 <v-click>
 
 and in general:
 
-$$\int\limits^{\infty}_0 x^n\,e^{-x}\,dx=n!$$
+$$\int\limits^{\infty}_0 x^n\,e^{-x}\,dx=n! \qquad \text{for } n = 0, 1, 2, \ldots$$
 
 </v-click>
 
@@ -265,9 +313,13 @@ $$
 \end{aligned}
 $$
 
+<v-click>
+
 Let's try to calculate:
 
 $$\int\limits^b_a \cos x\,e^{-x}\,dx = I$$
+
+</v-click>
 
 ---
 
@@ -277,7 +329,11 @@ Choose
 
 $$u=\cos x\qquad\text{and}\qquad v'=e^{-x} \qquad\text{so that}\qquad u'=-\sin x\qquad\text{and}\qquad v=-e^{-x}$$
 
+<v-click>
+
 $$I =\Big[-\cos x\, e^{-x}\Big]^b_a -\int\limits^b_a (-)\sin x\,(-)e^{-x}\,dx$$
+
+</v-click>
 
 <v-click>
 
@@ -305,13 +361,15 @@ $$\Longrightarrow \quad 2\int\limits^b_a \cos x\,e^{-x}\,dx = \Big[\sin x\, e^{-
 
 # Method 3: partial fractions
 
-**Example 7**
-
 $$\int \frac{dx}{(2x+1)(x-5)} \qquad\text{Let}\qquad \frac{1}{(2x+1)(x-5)}=\frac{A}{2x+1} + \frac{B}{x-5}$$
+
+<v-click>
 
 Multiply both sides by $(2x+1)(x-5)$ to get:
 
-$$A(x-5)+B(2x+1)=1 \qquad\text{so}\qquad Ax-5A+B2x+B=1$$
+$$A(x-5)+B(2x+1)=1 \qquad\text{so}\qquad Ax-5A+2Bx+B=1$$
+
+</v-click>
 
 <v-click>
 
@@ -323,7 +381,7 @@ $$A+2B=0 \qquad\text{thus}\qquad A=-2B \qquad \text{(A)}$$
 
 <v-click>
 
-Equate units (coefficients of $x^0$):
+Equate the constant terms (coefficients of $x^0$):
 
 $$-5A+B=1 \qquad\text{so from (A):}\qquad 10B+B=1, \quad B=\frac{1}{11}, \quad A=-\frac{2}{11}$$
 
@@ -331,11 +389,13 @@ $$-5A+B=1 \qquad\text{so from (A):}\qquad 10B+B=1, \quad B=\frac{1}{11}, \quad A
 
 ---
 
-# Partial fractions: example 7
+# Partial fractions: example
 
 Thus:
 
 $$\int \frac{dx}{(2x+1)(x-5)}=-\int \frac{2\, dx}{11(2x+1)} + \int \frac{dx}{11(x-5)}$$
+
+<v-click>
 
 Now use method of substitution on this:
 
@@ -343,12 +403,14 @@ $u=2x+1$ and $du/dx=2$ so $dx/du=1/2$
 
 $w=x-5$ so $dw/dx=1$ and $dx/dw=1$
 
+</v-click>
+
 <v-click>
 
 $$
 \begin{aligned}
-\int \frac{2\, du}{2 \times 11 \times u} + \int \frac{dw}{11w} &= -\frac{\ln u}{11} + \frac{\ln w}{11} \\
-&=-\frac{\ln |2x+1|}{11} + \frac{\ln |x-5|}{11}
+-\int \frac{2\, du}{2 \times 11 \times u} + \int \frac{dw}{11w} &= -\frac{\ln |u|}{11} + \frac{\ln |w|}{11} \\
+&=-\frac{\ln |2x+1|}{11} + \frac{\ln |x-5|}{11} + C
 \end{aligned}
 $$
 
@@ -356,10 +418,14 @@ $$
 
 ---
 
-# Partial fractions: example 7 in SymPy
+# Partial fractions: example in SymPy
 
 ```python
 sp.integrate(1/((2*x + 1)*(x - 5)),x) # answer seems different because of the arbitrary constant!
 ```
 
+<v-click>
+
 $$\frac{\log{\left(x - 5 \right)}}{11} - \frac{\log{\left(x + \frac{1}{2} \right)}}{11}$$
+
+</v-click>

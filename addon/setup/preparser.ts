@@ -9,6 +9,9 @@ import { eventDecks, readEvent, repoRoot } from '../../scripts/events.mjs'
 // train.rse.ox.ac.uk walkthroughs. A deck leaves out the orientation slide, the
 // feedback slide or the walkthroughs with `orientation-slide: false`,
 // `feedback-slide: false` or `train-rse-walkthrough: false` in its headmatter.
+// Extra space between the rows of a stacked derivation
+const ROW_GAP = '0.4em'
+
 export default definePreparserSetup(({ filepath, headmatter }) => {
   const event = readEvent()
   const deck = path.basename(path.dirname(filepath))
@@ -44,10 +47,14 @@ export default definePreparserSetup(({ filepath, headmatter }) => {
         lines.push('', '---', ...frontmatter, '---', '')
     },
 
-    // Slides marked `training-event-only: true` appear only in an event build
+    // Slides marked `training-event-only: true` appear only in an event build.
+    // The rows of a stacked derivation (aligned, gathered) get a little more
+    // space than KaTeX gives, so that fractions on adjacent rows don't crowd;
+    // a row break that already sets its own space is left alone.
     transformSlide(content, frontmatter) {
       if (frontmatter['training-event-only'] && !process.env.TRAINING_EVENT)
         frontmatter.disabled = true
+      return content.replace(/\\begin\{(aligned|gathered)\}[\s\S]*?\\end\{\1\}/g, block => block.replace(/\\\\(?!\s*\[)/g, `\\\\[${ROW_GAP}]`))
     },
   }]
 })

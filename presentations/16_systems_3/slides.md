@@ -4,6 +4,8 @@ title: Systems of differential equations 3
 addons:
   - ../addon
 layout: cover
+authors:
+  - Fergus Cooper
 highlighter: shiki
 drawings:
   persist: false
