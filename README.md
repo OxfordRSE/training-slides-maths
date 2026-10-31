@@ -234,9 +234,9 @@ original doesn't cover the point, and model it on one of the original's
 patterns:
 
 - **A teacher walking through it**, as "we": "We next add a trendline through
-  these points…", "To do this we must find the turning points".
-- **Steps spelled out** with plain connectives: "This means that…", "So,…",
-  "Therefore,…", "In other words,…", "Note,…".
+  these points...", "To do this we must find the turning points".
+- **Steps spelled out** with plain connectives: "This means that...", "So,...",
+  "Therefore,...", "In other words,...", "Note,...".
 - **Plain statements**, not slogans: "An expression involving higher powers of
   $x$ is called a _polynomial_ in $x$." Avoid punchy contrasts ("Curves are
   hard; lines are easy") and semicolons joining two short clauses.
@@ -244,11 +244,11 @@ patterns:
   a straight line".
 - **Motivation through what we want to know**, with concrete biology: "We often
   want to know about the _rate_ at which one quantity changes over time", "Points
-  of inflection are important in biology as they define…".
+  of inflection are important in biology as they define...".
 - **Imperatives for steps**: "Take logs of both sides", "First, plot the
   original data", "Look at the limit behaviour as $x\to\pm\infty$".
 - **Light informality** is fine: "There's a definite curve", "It's useful to
-  know…", "(more on this when we cover differentiation)".
+  know...", "(more on this when we cover differentiation)".
 - **Parentheses for asides**, e.g. "(also called its "slope")". Use a colon only
   to introduce a list or an equation.
 

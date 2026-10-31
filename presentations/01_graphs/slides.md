@@ -216,7 +216,7 @@ The rate at which a given enzyme can catalyse a reaction can be dependent upon t
 
 <v-click>
 
-This is often modelled by the _Michaelis–Menten_ equation:
+This is often modelled by the _Michaelis--Menten_ equation:
 
 $$V = \frac{V_{\max}S}{K_m + S}$$
 
@@ -252,7 +252,7 @@ $$\frac{1}{V} = \frac{K_m + S}{V_{\max}S} = \frac{K_m}{V_{\max}}\cdot\frac{1}{S}
 
 <v-clicks>
 
-- We can derive a straight line graph from the above formula by plotting $Y=1/V$ against $X=1/S$ (this is called the _Lineweaver–Burk_ plot)
+- We can derive a straight line graph from the above formula by plotting $Y=1/V$ against $X=1/S$ (this is called the _Lineweaver--Burk_ plot)
 - It will have gradient $m = K_m/V_{\max}$ and ordinate intercept $c = 1/V_{\max}$
 
 </v-clicks>
@@ -261,7 +261,7 @@ $$\frac{1}{V} = \frac{K_m + S}{V_{\max}S} = \frac{K_m}{V_{\max}}\cdot\frac{1}{S}
 
 # Enzyme kinetics: transformed data
 
-If the Michaelis–Menten model holds, plotting $Y=1/V$ against $X=1/S$ should result in a straight line.
+If the Michaelis--Menten model holds, plotting $Y=1/V$ against $X=1/S$ should result in a straight line.
 
 <PlotFigure v-click name="enzyme-transformed" :height="350" />
 
@@ -295,7 +295,7 @@ We next add a trendline through these points which we can use to determine the g
 <v-clicks>
 
 - In practice, it is usually better to fit the nonlinear model directly, e.g. using `scipy.optimize.curve_fit`.
-- Plotting in straight-line form is still a good way to check a model visually, and you will see these plots in many papers (e.g. Lineweaver–Burk, Arrhenius).
+- Plotting in straight-line form is still a good way to check a model visually, and you will see these plots in many papers (e.g. Lineweaver--Burk, Arrhenius).
 - Logarithms, which we cover next, let us do the same for exponentials and power laws.
 
 </v-clicks>
