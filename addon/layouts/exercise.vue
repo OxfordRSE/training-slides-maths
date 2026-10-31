@@ -6,8 +6,9 @@
 // a list's items are spread evenly below any text before it, and otherwise each
 // block (e.g. an equation) is spread evenly. To keep some content together at
 // the top, e.g. a question and its hints, put what is to be worked after
-// `::work::`; only that part is spread. Everything sits on the left, displayed
-// maths included, so the right of the slide stays clear for the working.
+// `::work::`; only that part is spread. What is to be worked sits on the left,
+// displayed maths included, so the right of the slide stays clear for the
+// working: the whole slide, or with `::work::` just that part.
 </script>
 
 <template>
@@ -43,7 +44,7 @@
   justify-content: flex-start;
 }
 
-.slidev-layout.exercise > *,
+.slidev-layout.exercise:not(.exercise-with-work) > *,
 .slidev-layout.exercise .exercise-work {
   max-width: 60%;
 }

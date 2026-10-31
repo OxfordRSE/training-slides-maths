@@ -77,6 +77,14 @@ Interpretation:
 
 ---
 
+# Equation of a straight line: an example
+
+For example, $y = \frac{1}{2}x + 1$, so $m = \frac{1}{2}$ and $c = 1$:
+
+<PlotFigure name="straight-line" :height="350" />
+
+---
+
 # Graphs of polynomials
 
 An expression involving higher powers of $x$ is called a _polynomial_ in $x$:

@@ -25,20 +25,23 @@ fonts:
 
 Maths is the language we use to quantitatively describe the world.
 
-You are going into research, and you
+Useful for **doing** and **reading** research, as you
 
 - **may** need to be proficient in maths as a tool for describing what you work on
 - **will** have to read and understand papers that use maths
 
-Some of you **may** feel you don't need to know any maths, but this course will be useful to you even if you never have to write down a system of differential equations yourself.
+Even if you never write down a system of differential equations yourself, this course will help you to follow, question and discuss the maths in the work around you.
 
 ---
 
 # Why maths: data analysis
 
-- Interpretation and inference
-- Identify patterns, trends, relationships
-- Deal robustly with uncertainty and variation
+Vital for **analysing** and **interpreting** data
+
+- Interpretation and inference: what your data do, and do not, tell you
+- Identify patterns, trends and relationships (e.g. how a response depends on a dose)
+- Deal robustly with uncertainty and variation (e.g. between replicates)
+- Understand the statistical and computational tools you use, rather than treating them as black boxes
 
 ---
 
@@ -112,6 +115,10 @@ training-event-only: true
 
 ---
 
+```yaml
+layout: center
+```
+
 # Course material
 
 <https://train.rse.ox.ac.uk/>
@@ -129,6 +136,16 @@ Do help your peers, as well as using the demonstrators and lecturers who are her
 Please let me know if you are either finding the material far too difficult, or far too easy.
 
 Both of those problems can be solved!
+
+---
+
+# Use of AI
+
+To follow.
+
+<!--
+Placeholder: guidance on using AI tools in this course, to be written.
+-->
 
 ---
 

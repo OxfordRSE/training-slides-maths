@@ -11,13 +11,21 @@ const dash = {
   },
 }
 
+// A legend in the top-left corner of the plot, one row per line: a short stroke
+// in the line's colour (and dash pattern, if any) in front of its text
+export function legend(items) {
+  return items.flatMap(({ text, color, dasharray }, i) => {
+    const at = { frameAnchor: 'top-left', dy: 14 + 28 * i }
+    return [
+      // A little lower than the text's anchor, level with the middle of its digits
+      Plot.dot([text], { ...at, dx: 24, dy: at.dy + 4, symbol: dash, r: 10, fill: 'none', stroke: color, strokeWidth: line.strokeWidth, strokeLinecap: 'round', strokeDasharray: dasharray }),
+      Plot.text([text], { ...label, ...at, dx: 42, textAnchor: 'start' }),
+    ]
+  })
+}
+
 // A line's live equation in the top-left corner of the plot, with a short
 // stroke in the line's colour in front of it, so it is clear which line it is
 export function equation(text, color) {
-  const at = { frameAnchor: 'top-left', dy: 14 }
-  return [
-    // A little lower than the text's anchor, level with the middle of its digits
-    Plot.dot([text], { ...at, dx: 24, dy: at.dy + 4, symbol: dash, r: 10, fill: 'none', stroke: color, strokeWidth: line.strokeWidth, strokeLinecap: 'round' }),
-    Plot.text([text], { ...label, ...at, dx: 42, textAnchor: 'start' }),
-  ]
+  return legend([{ text, color }])
 }

@@ -220,9 +220,7 @@ a**(3.0/4.0)
 
 <v-click>
 
-i.e. For indices the order in which these mathematical operations are performed
-does not
-matter (for $a>0$).
+So, the order of these operations does not matter (for $a>0$).
 
 </v-click>
 
@@ -391,8 +389,11 @@ layout: two-cols
 
 # The exponential function: definition of e
 
-The real number $e$, also known as Euler's number, is that base for which the graph $y=e^x$
-passes through the point $(0, 1)$ with gradient exactly equal to $1$.
+The real number $e$ is also known as Euler's number.
+
+It is that base for which the graph $y=e^x$ passes through the point $(0, 1)$ with gradient exactly equal to $1$.
+
+The tangent at $(0, 1)$ is the line $y = x + 1$.
 
 ::right::
 
@@ -513,23 +514,26 @@ Here $Y=\log_{10} y$, $X=\log_{10} x$, $m=n$ and $c=\log_{10} A$.
 # Example 1: power laws
 
 ```python
-gradient = (Y[-1] - Y[0])/(X[-1] - X[0])
+# Fit the best straight line through the points
+gradient, intercept = np.polyfit(X, Y, 1)
 print('gradient =',gradient)
+print('intercept =',intercept)
 ```
 
 <v-click>
 
 ```text
-gradient = 0.5
+gradient = 0.505264797790789
+intercept = 0.47080411584219156
 ```
 
 </v-click>
 
 <v-click>
 
-Gradient = 0.5 = $n$
+Gradient $\approx 0.5 = n$
 
-Intercept = $0.48 = \log_{10}A$ so $A=3.0$
+Intercept $\approx 0.47 = \log_{10}A$ so $A\approx 3.0$
 
 - Data fit curve of the form:
 
@@ -576,8 +580,8 @@ Only the $N$ axis is on a log scale, so this is called a _semi-log_ plot.
 # Example 2: exponential growth
 
 ```python
-gradient = (Y[-1] - Y[0])/(t[-1] - t[0])
-intercept = Y[0]
+# Fit the best straight line through the points
+gradient, intercept = np.polyfit(t, Y, 1)
 print('gradient =',gradient)
 print('intercept =',intercept)
 ```
@@ -585,17 +589,17 @@ print('intercept =',intercept)
 <v-click>
 
 ```text
-gradient = 0.3465735902799727
-intercept = 5.298317366548036
+gradient = 0.3480313382093428
+intercept = 5.294429813364659
 ```
 
 </v-click>
 
 <v-click>
 
-Gradient = 0.35 = $k$ (per hour)
+Gradient $\approx 0.35 = k$ (per hour)
 
-Intercept = $5.3 = \ln N_0$ (the first count is at $t=0$) so $N_0 = e^{5.3} \approx 200$
+Intercept $\approx 5.3 = \ln N_0$ so $N_0 = e^{5.3} \approx 200$
 
 - Data fit curve of the form:
 
