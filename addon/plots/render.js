@@ -41,24 +41,51 @@ function sizeText(node) {
     tick.remove()
 }
 
+// A figure can ask for one unit to be as long on x as on y (so that circles
+// are round) with `aspectRatio: 1`, but Plot only uses that to choose a
+// height, and ours is always given. So instead centre the plot in the space,
+// widening the margins on whichever side has room to spare.
+function fitAspect(options, width, height, inset) {
+  const span = d => Math.abs(d[1] - d[0])
+  const w = width - options.marginLeft - options.marginRight - 2 * inset
+  const h = height - options.marginTop - options.marginBottom - 2 * inset
+  const unitsWide = span(options.x.domain) * options.aspectRatio
+  const unitsHigh = span(options.y.domain)
+  const scale = Math.min(w / unitsWide, h / unitsHigh)
+  const padX = (w - scale * unitsWide) / 2
+  const padY = (h - scale * unitsHigh) / 2
+  return {
+    marginLeft: options.marginLeft + padX,
+    marginRight: options.marginRight + padX,
+    marginTop: options.marginTop + padY,
+    marginBottom: options.marginBottom + padY,
+  }
+}
+
 // Returns the drawn figure (an SVG, or an HTML figure when it has a title or
 // legend) and its left and right margins, so that sliders can line up with
 // its axes. `height` is the figure's overall height, including any title and
-// legend; pass `document` to draw outside a browser.
-export function render(figure, params = {}, { width = 640, height = 400, document } = {}) {
-  const options = { ...margins, ...figure.default({ ...defaults(figure.controls), ...params }) }
+// legend; pass `document` to draw outside a browser. `axes` gives defaults for
+// the x and y options under the figure's own, e.g. wider tick spacing for the
+// course-material images (scripts/export-figures.mjs).
+export function render(figure, params = {}, { width = 640, height = 400, document, axes: axisDefaults = {} } = {}) {
+  const { aspectRatio, ...options } = { ...margins, ...figure.default({ ...defaults(figure.controls), ...params }) }
+  const inset = 8
+  const plotHeight = height
+    - (options.title ? rows.title : 0)
+    - (options.color?.legend ? rows.legend : 0)
+  if (aspectRatio)
+    Object.assign(options, fitAspect({ ...options, aspectRatio }, width, plotHeight, inset))
   const node = Plot.plot({
     width,
-    height: height
-      - (options.title ? rows.title : 0)
-      - (options.color?.legend ? rows.legend : 0),
-    inset: 8,
+    height: plotHeight,
+    inset,
     clip: true,
     style: { fontFamily: 'inherit', fontSize: '16px', color: '#1a1a1a', overflow: 'visible' },
     ...(document && { document }),
     ...options,
-    x: { ...x, ...options.x },
-    y: { ...y, ...options.y },
+    x: { ...x, ...axisDefaults.x, ...options.x },
+    y: { ...y, ...axisDefaults.y, ...options.y },
     color: options.color && { swatchSize: 16, ...options.color },
     marks: options.grid === false
       ? [...options.marks, ...axes]
