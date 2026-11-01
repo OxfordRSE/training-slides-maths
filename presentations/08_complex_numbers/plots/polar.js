@@ -20,6 +20,7 @@ const grid = { stroke: '#000', strokeOpacity: 0.18 }
 export default () => ({
   title: 'Polar plot',
   grid: false,
+  aspectRatio: 1,
   x: { domain: [-rMax * 1.25, rMax * 1.25], axis: null },
   y: { domain: [-rMax * 1.25, rMax * 1.25], axis: null },
   marks: [
