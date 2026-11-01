@@ -9,7 +9,7 @@
 // is drawn at the slides' sizes but WIDTH px wide, then scaled down to
 // OUTPUT_WIDTH, so its text and lines come out smaller than on a slide, as suits
 // a page read on screen. A title (Plot draws it in HTML) is redrawn inside the
-// SVG, and the image has a white background, so it reads in a dark theme too.
+// SVG, and the image has its own background, white or dark to match the page.
 
 import fs from 'node:fs'
 import path from 'node:path'
@@ -24,6 +24,30 @@ const WIDTH = 800
 const HEIGHT = 500
 const OUTPUT_WIDTH = 680
 const FONT = '\'Noto Sans\', \'Helvetica Neue\', Arial, sans-serif'
+
+// Dark mode. An SVG shown with <img> can't see the page's styles, but its own
+// prefers-color-scheme media query follows the page's color-scheme, which
+// gutenberg (next-themes) sets with its theme toggle. So each image carries
+// its colours for both modes: the light ones as attributes, from the slides,
+// and here the dark ones, matched to gutenberg's dark background. Text halos
+// and point outlines (white) take the background colour.
+const DARK = {
+  background: 'oklch(0.208 0.042 265.755)',
+  ink: '#e2e8f0',
+  grid: '#fff',
+  colours: { '#0072B2': '#56B4E9' },
+}
+const STYLE = `<style>
+@media (prefers-color-scheme: dark) {
+  svg { color: ${DARK.ink} }
+  .background, [fill="white"] { fill: ${DARK.background} }
+  [stroke="white"] { stroke: ${DARK.background} }
+  [stroke="#000"] { stroke: ${DARK.grid} }
+  [fill="black"], [fill="#1a1a1a"] { fill: ${DARK.ink} }
+  [stroke="black"], [stroke="#1a1a1a"] { stroke: ${DARK.ink} }
+${Object.entries(DARK.colours).map(([light, dark]) => `  [fill="${light}"] { fill: ${dark} }\n  [stroke="${light}"] { stroke: ${dark} }`).join('\n')}
+}
+</style>`
 
 // Plot spaces ticks by pixels, so the larger canvas would double them; space
 // them out to about as many as on a slide
@@ -72,7 +96,8 @@ for (const entry of exports) {
   const scale = OUTPUT_WIDTH / WIDTH
   const svg = [
     `<svg xmlns="http://www.w3.org/2000/svg" width="${OUTPUT_WIDTH}" height="${Math.round(HEIGHT * scale)}" viewBox="0 0 ${WIDTH} ${HEIGHT}" font-family="${FONT}">`,
-    `<rect width="${WIDTH}" height="${HEIGHT}" fill="white"/>`,
+    STYLE,
+    `<rect class="background" width="${WIDTH}" height="${HEIGHT}" fill="white"/>`,
     ...parts,
     '</svg>',
   ].join('\n')
