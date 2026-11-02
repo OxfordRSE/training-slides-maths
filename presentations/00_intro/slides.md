@@ -1,6 +1,6 @@
 ---
 theme: oxrse
-title: Introduction
+title: DTC Further Maths 2026
 addons:
   - ../addon
 layout: cover
