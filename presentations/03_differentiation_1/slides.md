@@ -434,6 +434,8 @@ $$y = 2x^3 - 5x^2 - 4x$$
 <PlotFigure v-click name="stationary-points" />
 
 ---
+layout: exercise
+---
 
 # Example: bacteria on a plate
 
@@ -486,6 +488,8 @@ The greatest number of bacteria on the plate is **24,420**.
 
 </v-click>
 
+---
+layout: exercise
 ---
 
 # Example: logistic growth
