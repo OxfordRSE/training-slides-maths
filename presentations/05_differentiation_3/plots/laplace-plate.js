@@ -14,7 +14,9 @@ const bands = [-1, ...thresholds].map(t => diverging.apply(t + step / 2))
 
 const labelled = new Set([-0.5, 0, 0.5])
 
-const extent = { x1: -1, x2: 1, y1: -1, y2: 1, width: 100, height: 100 }
+// Sampled a little beyond the plate, and clipped to it, so that the colour
+// reaches its edges (the grid's samples sit at the middles of its cells)
+const extent = { x1: -1.02, x2: 1.02, y1: -1.02, y2: 1.02, width: 102, height: 102 }
 
 export default () => ({
   aspectRatio: 1,
@@ -39,7 +41,7 @@ export default () => ({
   marks: [
     // Each band outlined in its own colour, to hide any hairline gaps between
     // them. A contour fills only where T is above its lowest threshold, so
-    // the coldest band needs one just below T = -1.
-    Plot.contour({ ...extent, value: T, fill: 'value', stroke: 'value', strokeWidth: 1, thresholds: [-1.001, ...thresholds] }),
+    // the coldest band needs one below the coldest sample (about -1.04).
+    Plot.contour({ ...extent, value: T, fill: 'value', stroke: 'value', strokeWidth: 1, thresholds: [-1.1, ...thresholds] }),
   ],
 })

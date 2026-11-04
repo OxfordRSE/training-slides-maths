@@ -16,7 +16,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { parseHTML } from 'linkedom'
-import { render, rows } from '../addon/plots/render.js'
+import { defaults, render, rows } from '../addon/plots/render.js'
 import exports from './figure-exports.mjs'
 import { presentationsDir } from './events.mjs'
 
@@ -35,7 +35,9 @@ const DARK = {
   background: 'oklch(0.208 0.042 265.755)',
   ink: '#e2e8f0',
   grid: '#fff',
-  colours: { '#0072B2': '#56B4E9' },
+  // Blue lightened, and a wireframe's dark front and light back lines swapped
+  // round, so the front ones stay the stronger
+  colours: { '#0072B2': '#56B4E9', '#444': '#cbd5e1', '#bbb': '#475569' },
 }
 const STYLE = `<style>
 @media (prefers-color-scheme: dark) {
@@ -66,22 +68,36 @@ const escape = text => text.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;'
 // One figure as SVG markup, `width` by `height`, placed at (x, 0)
 async function panel(deck, name, params, x, width) {
   const figure = await import(pathToFileURL(path.join(presentationsDir, deck, 'plots', `${name}.js`)))
-  const { node } = render(figure, params, { width, height: HEIGHT, document, axes: AXES })
-  const svg = node.tagName.toLowerCase() === 'svg' ? node : node.querySelector('svg')
-  const title = node.tagName.toLowerCase() === 'svg' ? '' : node.querySelector('h2')?.textContent ?? ''
-  const top = title ? rows.title : 0
-  svg.setAttribute('x', String(x))
-  svg.setAttribute('y', String(top))
+  // A colour bar's label sits just above the bar, outside its box, so leave
+  // room for it at the top of the image
+  const keyed = figure.default({ ...defaults(figure.controls), ...params }).color?.legend
+  const headroom = keyed ? 20 : 0
+  const { node } = render(figure, params, { width, height: HEIGHT - headroom, document, axes: AXES })
+  const isSvg = node.tagName.toLowerCase() === 'svg'
+  // A figure with a title or a colour bar is an HTML figure, holding the bar
+  // (an SVG whose class ends in -ramp) above the plot's own SVG
+  const svgs = isSvg ? [node] : [...node.querySelectorAll('svg')]
+  const ramp = svgs.find(s => /-ramp$/.test(s.getAttribute('class') ?? ''))
+  const svg = svgs.find(s => s !== ramp)
+  const title = isSvg ? '' : node.querySelector('h2')?.textContent ?? ''
+  const top = (title ? rows.title : 0) + headroom
   // The slides' text size, font and colour are in a style attribute, which an
   // image viewer may ignore, so give them as attributes instead
-  svg.removeAttribute('style')
-  svg.removeAttribute('font-family')
-  svg.setAttribute('font-size', '16')
-  svg.setAttribute('color', '#1a1a1a')
+  const place = (el, at, y) => {
+    el.setAttribute('x', String(at))
+    el.setAttribute('y', String(y))
+    el.removeAttribute('style')
+    el.removeAttribute('font-family')
+    el.setAttribute('font-size', '16')
+    el.setAttribute('color', '#1a1a1a')
+    return el.outerHTML
+  }
   const heading = title
     ? `<text x="${x + width / 2}" y="${rows.title - 8}" text-anchor="middle" font-size="20" font-weight="600" fill="#1a1a1a">${escape(title)}</text>`
     : ''
-  return heading + svg.outerHTML
+  // The colour bar centred over the plot, in the legend's row
+  const bar = ramp ? place(ramp, x + (width - Number(ramp.getAttribute('width'))) / 2, top) : ''
+  return heading + bar + place(svg, x, top + (ramp ? rows.legend : 0))
 }
 
 let written = 0

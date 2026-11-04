@@ -33,6 +33,10 @@ export default [
 
   { file: '04_01_sin_cos.svg', deck: '04_differentiation_2', figure: 'sin-cos' },
 
+  { file: '05_01_a_to_the_x.svg', deck: '05_differentiation_3', figure: 'power-tangent', params: { a: 2 } },
+  { file: '05_02_partial_slice.svg', deck: '05_differentiation_3', panels: ['partial-surface', 'partial-slice'], params: { y0: 1, x0: 1, turn: 30 } },
+  { file: '05_03_laplace_plate.svg', deck: '05_differentiation_3', figure: 'laplace-plate' },
+
   { file: '06_01_single_rect.svg', deck: '06_integration_1', figure: 'one-strip' },
   { file: '06_02_coarse.svg', deck: '06_integration_1', figure: 'many-strips', params: { n: 5 } },
   { file: '06_03_fine.svg', deck: '06_integration_1', figure: 'many-strips', params: { n: 30 } },
