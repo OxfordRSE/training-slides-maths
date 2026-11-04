@@ -185,13 +185,25 @@ $$\frac{\frac{d}{d x} f{\left(x \right)}}{f{\left(x \right)} \log{\left(a \right
 
 # Further examples
 
-Example 1, product rule: let $y = x^2\,e^x$. Then:
-
-$$\frac{dy}{dx}=\frac{d}{dx}x^2e^x=\frac{d}{dx}x^2\cdot e^x+x^2\cdot\frac{d}{dx}e^x = (2x + x^2)e^x$$
+Example 1: $y = x^2\,e^x$
 
 <v-click>
 
-Example 2, quotient rule: let $y = e^x/x$. Then:
+Using the product rule:
+
+$$\frac{dy}{dx}=\frac{d}{dx}x^2e^x=\frac{d}{dx}x^2\cdot e^x+x^2\cdot\frac{d}{dx}e^x = (2x + x^2)e^x$$
+
+</v-click>
+
+<v-click>
+
+Example 2: $y = e^x/x$
+
+</v-click>
+
+<v-click>
+
+Using the quotient rule:
 
 $$\frac{dy}{dx}=\frac{\frac{d}{dx}e^x\cdot x - e^x\cdot \frac{d}{dx}x}{x^2}=\frac{e^x\cdot x - e^x\cdot 1}{x^2}=\frac{x - 1}{x^2}e^x$$
 
@@ -201,13 +213,25 @@ $$\frac{dy}{dx}=\frac{\frac{d}{dx}e^x\cdot x - e^x\cdot \frac{d}{dx}x}{x^2}=\fra
 
 # Further examples
 
-Example 3, chain rule: $y = e^{x^2}$. Then, letting $f(x) = x^2$:
-
-$$\frac{d}{dx}e^{x^2} = e^{f(x)}f'(x) = e^{x^2}\cdot 2x$$
+Example 3: $y = e^{x^2}$
 
 <v-click>
 
-Example 4: $y=\ln (x^2 + 1)$. Then, letting $f(x) = x^2+1$:
+Using the chain rule, with $f(x) = x^2$:
+
+$$\frac{d}{dx}e^{x^2} = e^{f(x)}f'(x) = e^{x^2}\cdot 2x$$
+
+</v-click>
+
+<v-click>
+
+Example 4: $y=\ln (x^2 + 1)$
+
+</v-click>
+
+<v-click>
+
+Using the chain rule, with $f(x) = x^2+1$:
 
 $$\frac{d}{dx}\ln(x^2+1) = \frac{f'(x)}{f(x)} = \frac{2x}{x^2+1}$$
 
@@ -217,13 +241,21 @@ $$\frac{d}{dx}\ln(x^2+1) = \frac{f'(x)}{f(x)} = \frac{2x}{x^2+1}$$
 
 # Further examples
 
-Example 5:
-
-$$\frac{d}{dx}2^{x^3}=2^{x^3}\cdot\ln 2\cdot 3x^2$$
+Example 5: $y = 2^{x^3}$
 
 <v-click>
 
-Example 6:
+$$\frac{d}{dx}2^{x^3}=2^{x^3}\cdot\ln 2\cdot 3x^2$$
+
+</v-click>
+
+<v-click>
+
+Example 6: $y = 10^{x^2+1}$
+
+</v-click>
+
+<v-click>
 
 $$\frac{d}{dx}10^{x^2+1}=10^{x^2+1}\cdot\ln 10\cdot 2x$$
 
@@ -231,7 +263,11 @@ $$\frac{d}{dx}10^{x^2+1}=10^{x^2+1}\cdot\ln 10\cdot 2x$$
 
 <v-click>
 
-Example 7:
+Example 7: $y = \log_{10}(7x+5)$
+
+</v-click>
+
+<v-click>
 
 $$\frac{d}{dx}\log_{10}(7x+5)=\frac{7}{(7x+5)\cdot \ln10}$$
 
@@ -239,7 +275,11 @@ $$\frac{d}{dx}\log_{10}(7x+5)=\frac{7}{(7x+5)\cdot \ln10}$$
 
 <v-click>
 
-Example 8:
+Example 8: $y = \log_2(3^x+x^4)$
+
+</v-click>
+
+<v-click>
 
 $$\frac{d}{dx}\log_2(3^x+x^4)=\frac{3^x\cdot\ln3 + 4x^3}{\ln 2\cdot(3^x+x^4)}$$
 
