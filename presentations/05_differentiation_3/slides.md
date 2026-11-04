@@ -111,6 +111,12 @@ $$\frac{d}{dx}a^{f(x)} = a^{f(x)}\cdot \ln a\cdot f'(x)$$
 
 ---
 
+# The derivative of a to the power x
+
+<PlotFigure name="power-tangent" />
+
+---
+
 # SymPy example
 
 Let's try and use SymPy to check the rule:
