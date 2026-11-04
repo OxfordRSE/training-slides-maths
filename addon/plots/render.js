@@ -39,6 +39,9 @@ function sizeText(node) {
   // A colour bar's tick lines cross the bar, which Plot does even with tickSize 0
   for (const tick of node.querySelectorAll('svg[class$="-ramp"] .tick line'))
     tick.remove()
+  // A colour bar sits centred over the plot, like a legend of lines
+  for (const ramp of node.querySelectorAll('svg[class$="-ramp"]'))
+    ramp.setAttribute('style', `${ramp.getAttribute('style') ?? ''}; display: block; margin: 0 auto`)
 }
 
 // A figure can ask for one unit to be as long on x as on y (so that circles

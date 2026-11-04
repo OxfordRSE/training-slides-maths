@@ -473,6 +473,14 @@ which proves the result.
 
 # Example: Laplace's equation
 
+The temperature $T(x,y)=y^2-x^2$ on a square plate:
+
+<PlotFigure name="laplace-plate" :height="380" />
+
+---
+
+# Example: Laplace's equation
+
 The function $z=x^2y - xy^2$ does _not_ satisfy Laplace's equation (and so cannot be a model for thermal equilibrium).
 
 <v-click>
