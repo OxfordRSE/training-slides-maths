@@ -307,6 +307,22 @@ $$\frac{\partial z}{\partial x}=\frac{\partial}{\partial x}f(x,y) = f_x(x,y)$$
 
 ---
 
+# Partial differentiation: holding y constant
+
+<script setup>
+import { reactive } from 'vue'
+
+// The two figures share their sliders
+const cut = reactive({})
+</script>
+
+<div class="grid grid-cols-2 gap-4">
+<PlotFigure name="partial-surface" :state="cut" :height="410" />
+<PlotFigure name="partial-slice" :state="cut" :sliders="false" :height="358" />
+</div>
+
+---
+
 # Partial differentiation: example 1
 
 $$f(x,y)=z=x^2-2y^2$$

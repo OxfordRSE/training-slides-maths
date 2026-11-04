@@ -2,7 +2,9 @@
 // Shows a figure from the deck's `plots/` directory on a slide, by name, e.g.
 // <PlotFigure name="enzyme-trendline" />. If the figure exports `controls`, a
 // slider for each one sits under the plot's axes (`:sliders="false"` hides
-// them); `params` can drive the figure too, e.g. from clicks. The figure fills
+// them); `params` can drive the figure too, e.g. from clicks. Two figures can
+// share their slider values by passing the same reactive object as `state`,
+// e.g. one with sliders and one with `:sliders="false"`. The figure fills
 // the width of its container, up to `maxWidth`. `height` is for the whole
 // figure, including its title, legend and sliders; the default fits a slide
 // under the header bar. The drawing itself is in addon/plots/render.js.
@@ -16,6 +18,7 @@ const figures = import.meta.glob('/plots/*.js', { eager: true })
 const props = defineProps({
   name: { type: String, required: true },
   params: { type: Object, default: () => ({}) },
+  state: { type: Object, default: undefined },
   sliders: { type: Boolean, default: true },
   maxWidth: { type: Number, default: 680 },
   height: { type: Number, default: 400 },
@@ -27,8 +30,11 @@ if (!figure)
 
 const controls = computed(() => props.sliders ? figure.controls : undefined)
 
-// Each slider's current value, starting from the notebook's default
-const values = reactive(defaults(figure.controls))
+// Each slider's current value, starting from the notebook's default, kept in
+// the shared `state` if there is one (where values already set are kept)
+const values = props.state ?? reactive({})
+for (const [name, value] of Object.entries(defaults(figure.controls)))
+  values[name] ??= value
 
 // How far along its track a slider is, to fill the track up to the thumb
 const fill = (name, c) => `${100 * (values[name] - c.min) / (c.max - c.min)}%`

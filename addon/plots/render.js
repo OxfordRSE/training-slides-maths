@@ -69,7 +69,10 @@ function fitAspect(options, width, height, inset) {
 // the x and y options under the figure's own, e.g. wider tick spacing for the
 // course-material images (scripts/export-figures.mjs).
 export function render(figure, params = {}, { width = 640, height = 400, document, axes: axisDefaults = {} } = {}) {
-  const { aspectRatio, ...options } = { ...margins, ...figure.default({ ...defaults(figure.controls), ...params }) }
+  // `frame: false` drops the axis lines, for a figure that draws its own axes,
+  // such as a 3D view
+  const { aspectRatio, frame = true, ...options } = { ...margins, ...figure.default({ ...defaults(figure.controls), ...params }) }
+  const frames = frame ? axes : []
   const inset = 8
   const plotHeight = height
     - (options.title ? rows.title : 0)
@@ -88,8 +91,8 @@ export function render(figure, params = {}, { width = 640, height = 400, documen
     y: { ...y, ...axisDefaults.y, ...options.y },
     color: options.color && { swatchSize: 16, ...options.color },
     marks: options.grid === false
-      ? [...options.marks, ...axes]
-      : [Plot.gridX(grid), Plot.gridY(grid), ...options.marks, ...axes],
+      ? [...options.marks, ...frames]
+      : [Plot.gridX(grid), Plot.gridY(grid), ...options.marks, ...frames],
   })
   sizeText(node)
   return { node, marginLeft: options.marginLeft, marginRight: options.marginRight }
