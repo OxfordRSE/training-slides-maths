@@ -435,6 +435,8 @@ Therefore, the definite integral from $a$ to $b$ of $f'(t)$ with respect to $t$ 
 </v-click>
 
 ---
+layout: exercise
+---
 
 # Application: example
 
