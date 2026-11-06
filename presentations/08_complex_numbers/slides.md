@@ -348,6 +348,7 @@ It's often convenient to represent the complex number $z = a + bi$ in terms of i
 <v-clicks>
 
 - The angle $\theta$ is called the _argument_ of $z$.
+- We take $\theta$ in the range $(-\pi, \pi]$, so that each non-zero $z$ has exactly one argument. A round bracket leaves out its end point and a square bracket includes it: $\theta=\pi$ is allowed, but $\theta=-\pi$ is not.
 - The real number $r=|z|$ is sometimes denoted mod$(z)$.
 
 </v-clicks>
@@ -414,10 +415,14 @@ theta=0 and positive theta goes in an anticlockwise sense around the xy plane.
 -->
 
 ---
+layout: exercise
+---
 
 # Polar coordinates: example 1
 
-- Find the Cartesian coordinates for the complex number $z$ with polar coordinates $r=2$ and $\theta=\pi/6$.
+Find the Cartesian coordinates for the complex number $z$ with polar coordinates $r=2$ and $\theta=\pi/6$.
+
+::work::
 
 <v-click>
 
@@ -449,28 +454,29 @@ print(cmath.rect(2, np.pi/6))
 </v-click>
 
 ---
+layout: exercise
+---
 
 # Polar coordinates: example 2
 
-- Find the polar coordinates for the complex number $z= -3+4i$.
+Find the polar coordinates for the complex number $z= -3+4i$.
 
-$$|z|=r =$$
+::work::
 
 <v-click>
 
-$$\sqrt{(-3)^2+4^2}=\sqrt{25}=5$$
+$$|z|=r=\sqrt{(-3)^2+4^2}=\sqrt{25}=5$$
 
 </v-click>
 
 <v-click>
 
-$$\text{arg}(z)=\theta=\arctan\left(\frac{y}{x}\right)=$$
-
-</v-click>
-
-<v-click>
-
-$$\arctan(-4/3)+\pi = -0.93+\pi \approx 2.21 \text{ radians}\approx 127^\circ$$
+$$
+\begin{aligned}
+\text{arg}(z)=\theta&=\arctan\left(\frac{y}{x}\right)+\pi \qquad \text{(as } x<0,\ y\geq 0\text{)}\\
+&=\arctan(-4/3)+\pi = -0.93+\pi \approx 2.21 \text{ radians}\approx 127^\circ
+\end{aligned}
+$$
 
 </v-click>
 
@@ -491,10 +497,14 @@ print(cmath.polar(-3 + 4j))
 </v-click>
 
 ---
+layout: exercise
+---
 
 # Polar coordinates: example 3
 
-- Find the polar coordinates for the complex number $z= -2i$.
+Find the polar coordinates for the complex number $z= -2i$.
+
+::work::
 
 <v-click>
 
@@ -598,7 +608,7 @@ It is **multiplicative** in the modulus and **additive** in the argument:
 $$
 \begin{aligned}
 |z_1z_2|&= |z_1|\cdot |z_2|\\
-\arg(z_1z_2)&=\arg (z_1)+ \arg( z_2) \qquad \text{(up to a multiple of } 2\pi\text{)}
+\arg(z_1z_2)&=\arg (z_1)+ \arg( z_2) \qquad \text{(adding or subtracting } 2\pi \text{ if needed, to stay in } (-\pi, \pi]\text{)}
 \end{aligned}
 $$
 
@@ -654,29 +664,13 @@ $$z=e^{i\theta+ic} = e^{i\theta}\,e^{ic} = Ae^{i\theta} \qquad \text{with} \qqua
 
 When $\theta=0$, $z=1$ giving $A=1$, so:
 
-$$z=\cos\theta + i \sin\theta=e^{i\theta} \qquad \text{(3)}$$
+$$\cos\theta + i \sin\theta=e^{i\theta} \qquad \text{(3)}$$
 
 </v-click>
 
 <v-click>
 
-Similarly we can show that:
-
-$$z=\cos\theta - i \sin\theta=e^{-i\theta} \qquad \text{(4)}$$
-
-</v-click>
-
----
-
-# A remarkable connection with exponentials
-
-Adding (3) and (4) and subtracting (3) and (4) gives:
-
-$$\cos\theta =\frac{e^{i\theta}+ e^{-i\theta}}{2} \qquad\qquad \sin\theta =\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
-
-<v-click>
-
-Thus **any complex number** can now be written:
+Putting (3) into the polar form $r(\cos\theta + i\sin\theta)$, **any complex number** can now be written:
 
 $$z=x+iy=r(\cos\theta + i\sin\theta)=r\,e^{i\theta}$$
 
@@ -704,24 +698,20 @@ Several important consequences:
 
 $$z=x+iy=r(\cos\theta + i\sin\theta)=r\,e^{i\theta}$$
 
-<v-click>
-
 Other important consequences:
 
-<v-clicks at="+0">
+<v-clicks>
 
-1. Exponentiation on the unit circle $r=1$ can be done by multiplying the angle by the index (for integer $n$):
+1. Exponentiation on the unit circle $r=1$ can be done by multiplying the angle by the index (for integer $n$). Written with cos and sin, this is known as **de Moivre's theorem**.
 
    $$\left(e^{i\theta}\right)^n = e^{i\theta n}=e^{i(n\theta)}$$
 
-2. This result is known as **de Moivre's theorem**. It is usually stated in its Cartesian form, for integer $n$:
+2. This makes powers quick. For example, $1+i=\sqrt{2}\,e^{i\pi/4}$, so:
 
-   $$(\cos\theta + i\sin\theta)^n=\cos(n\theta) + i\sin(n\theta)$$
+   $$(1+i)^8=\left(\sqrt{2}\right)^8\left(e^{i\pi/4}\right)^8=16\,e^{2\pi i}=16$$
 
 3. Finally, the famous identity by Leonhard Euler
 
    $$e^{\pi i}+1=0$$
 
 </v-clicks>
-
-</v-click>
