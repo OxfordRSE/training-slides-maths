@@ -29,3 +29,23 @@ export function legend(items) {
 export function equation(text, color) {
   return legend([{ text, color }])
 }
+
+// Arrows along the horizontal axis (y = 0) of a plot of ds/dt against s, for
+// ds/dt = f(s): one in each interval between the steady states `steady`, within
+// the plot's s range [lo, hi], pointing the way s moves there (right where
+// ds/dt > 0, left where it is negative). So they point towards a stable steady
+// state and away from an unstable one.
+export function phaseArrows(f, steady, [lo, hi]) {
+  const edges = [lo, ...steady.filter(s => s > lo && s < hi).sort((a, b) => a - b), hi]
+  const arrows = []
+  for (let i = 0; i < edges.length - 1; i++) {
+    const [a, b] = [edges[i], edges[i + 1]]
+    const mid = (a + b) / 2
+    const sign = Math.sign(f(mid))
+    // Skip an interval too narrow to hold a visible arrow
+    if (sign === 0 || b - a < (hi - lo) * 0.03) continue
+    const half = Math.min((b - a) * 0.3, (hi - lo) * 0.08)
+    arrows.push({ x1: mid - sign * half, x2: mid + sign * half })
+  }
+  return Plot.arrow(arrows, { x1: 'x1', x2: 'x2', y1: 0, y2: 0, stroke: '#1a1a1a', strokeWidth: 3, headLength: 14 })
+}

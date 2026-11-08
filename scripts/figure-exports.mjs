@@ -53,4 +53,11 @@ export default [
 
   { file: '10_01_solution.svg', deck: '10_differential_equations_2', figure: 'leaf-growth' },
   { file: '10_02_solution.svg', deck: '10_differential_equations_2', figure: 'tumour-volume' },
+
+  { file: '11_01_solution_vs_gradient.svg', deck: '11_differential_equations_3', figure: 'decay' },
+  { file: '11_02_linear_ss.svg', deck: '11_differential_equations_3', figure: 'mass-action' },
+  { file: '11_03_quadratic_ss.svg', deck: '11_differential_equations_3', figure: 'positive-feedback' },
+  { file: '11_04_logistic_ss.svg', deck: '11_differential_equations_3', figure: 'logistic', params: { r: 1, K: 1 } },
+  { file: '11_05_relaxation.svg', deck: '11_differential_equations_3', figure: 'relaxation', params: { k1: 1, k2: 1 } },
+  { file: '11_06_logistic_solutions.svg', deck: '11_differential_equations_3', figure: 'logistic-solutions', params: { r: 1, K: 1 } },
 ]
