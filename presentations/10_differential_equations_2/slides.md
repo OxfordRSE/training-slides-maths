@@ -28,6 +28,33 @@ Turning that description into an equation is the first step in building a model,
 In this lecture we form differential equations from words, solve them with the methods of lecture 9 and partial fractions, and meet our first second order equations.
 
 ---
+
+# What does "proportional to" mean?
+
+$y$ is **proportional to** $x$ if $y = kx$ for some constant $k$, called the _constant of proportionality_.
+We write $y \propto x$.
+
+<v-click>
+
+e.g. if a leaf absorbs water at a rate proportional to its length $y$, then the rate is $k_1y$, for some constant $k_1$.
+
+</v-click>
+
+<v-click>
+
+A quantity can also be proportional to a power of another, e.g. the area of a circle is proportional to the square of its radius: $A = \pi r^2$, so $A \propto r^2$.
+
+</v-click>
+
+<v-click>
+
+If $y \propto w$, then their rates of change are proportional too:
+
+$$y = kw \qquad\Rightarrow\qquad \frac{dy}{dt} = k\frac{dw}{dt}$$
+
+</v-click>
+
+---
 layout: exercise
 ---
 
@@ -50,7 +77,7 @@ Form a differential equation to describe the growth of the leaf.
 1. Assume the length of the leaf is $y$ cm at time $t$ days after it was first observed.
 2. Let the rate the leaf receives water be $k_1y$ where $k_1$ is a positive constant.
 3. Area of leaf at time $t$ days is proportional to $y^2$ since it maintains its shape, so the leaf is losing water at a rate of $k_2y^2$ where $k_2$ is another positive constant.
-4. The length is proportional to the amount of water, so the rate of growth, $dy/dt$, is proportional to the rate at which the leaf gains water, less the rate at which it loses it (we can take the constant of proportionality into $k_1$ and $k_2$).
+4. The length is proportional to the amount of water, so the rate of growth, $dy/dt$, is proportional to the rate at which the leaf gains water, less the rate at which it loses it.
 
 </v-clicks>
 
@@ -309,6 +336,7 @@ $$y = -\ln(x+A) + B$$
 <v-click>
 
 How do we determine $A$ and $B$?
+There are two constants, so we need two pieces of information.
 
 </v-click>
 
@@ -316,21 +344,27 @@ How do we determine $A$ and $B$?
 
 # Second order differential equations: case 1
 
-At $x=0$, $dy/dx = -1$ and $y=0$.
+Maybe we know that at $x=0$, $dy/dx = -1$ and $y=0$.
 
 <v-click>
 
-We substitute the first condition into
+Substitute the first condition into $dy/dx = -1/(x+A)$:
 
-$$\frac{dy}{dx} = -\frac{1}{x+A}$$
-
-to obtain $A=1$.
+$$-1 = -\frac{1}{0+A} \qquad\text{so}\qquad A=1$$
 
 </v-click>
 
 <v-click>
 
-Then substitute $A$ and the second condition into the eventual solution to find $B=0$.
+Then substitute $A=1$ and the second condition into $y = -\ln(x+A) + B$:
+
+$$0 = -\ln 1 + B \qquad\text{so}\qquad B=0$$
+
+</v-click>
+
+<v-click>
+
+So the solution is $y = -\ln(x+1)$.
 
 </v-click>
 
@@ -338,18 +372,50 @@ Then substitute $A$ and the second condition into the eventual solution to find 
 
 # Second order differential equations: case 2
 
-$y(0)=0$ and $y(e-1)=-1$.
+Maybe instead we know that $y(0)=0$ and $y(e-1)=-1$: two values of $y$, and no value of $dy/dx$.
 
 <v-click>
 
-This time both conditions can be substituted into the solution:
+This time both conditions go into the solution $y = -\ln(x+A) + B$.
+The first, $y(0)=0$, gives:
 
-$$ {1|1-2|1-3}
+$$0 = -\ln A + B \qquad\text{so}\qquad B=\ln A$$
+
+</v-click>
+
+<v-click>
+
+Then substitute $B = \ln A$ and the second condition, $y(e-1)=-1$:
+
+$$-1 = -\ln(e-1+A) + \ln A = \ln\left(\frac{A}{e-1+A}\right)$$
+
+</v-click>
+
+---
+
+# Second order differential equations: case 2
+
+We had
+
+$$-1 = \ln\left(\frac{A}{e-1+A}\right)$$
+
+<v-click>
+
+Take the exponential of both sides, and solve for $A$:
+
+$$ {1|1-2|1-3|1-4}
 \begin{aligned}
-y(0)=0 &\Rightarrow 0=B-\ln A \Rightarrow B=\ln A \\
-y(e-1)=-1 &\Rightarrow -1=\ln A-\ln(e-1+A) = \ln\left(\frac{A}{e-1+A}\right) \\
-&\Rightarrow eA = e-1+A \Rightarrow A=1, \quad B=0
+e^{-1} &= \frac{A}{e-1+A} \\
+e-1+A &= eA \\
+e-1 &= (e-1)A \\
+A &= 1
 \end{aligned}
 $$
+
+</v-click>
+
+<v-click>
+
+So $B = \ln 1 = 0$, and $y = -\ln(x+1)$: the same solution as in case 1.
 
 </v-click>
