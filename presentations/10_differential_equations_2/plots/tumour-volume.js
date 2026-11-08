@@ -14,7 +14,8 @@ export const controls = {
 }
 
 const ts = linspace(0, 10, 200)
-const names = ['through the surface', 'exponential']
+// The legend gives each curve's formula
+const names = ['V = (∛V₀ + kt/3)³', 'V = V₀ exp(rt), r = k/∛V₀']
 
 export default ({ k, V0 }) => {
   const c = 3 * Math.cbrt(V0)
