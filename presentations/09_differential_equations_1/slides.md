@@ -302,6 +302,37 @@ $$\int \frac{1}{y}\frac{dy}{dx}\, dx = \int 5x^{\frac{3}{2}}\,dx \quad \Rightarr
 
 ---
 
+# Aside: why we can separate the variables
+
+Suppose $dy/dx = f(x)\,g(y)$.
+Divide by $g(y)$, and integrate both sides with respect to $x$:
+
+$$\int \frac{1}{g(y)}\frac{dy}{dx}\,dx = \int f(x)\,dx$$
+
+<v-click>
+
+If $H$ is an antiderivative of $1/g$, so that $H'(y) = 1/g(y)$, then by the chain rule
+
+$$\frac{d}{dx}H(y) = H'(y)\frac{dy}{dx} = \frac{1}{g(y)}\frac{dy}{dx}$$
+
+</v-click>
+
+<v-click>
+
+So the left-hand side is just $H(y) + C$, i.e. the integral of $1/g(y)$ with respect to $y$ (this is integration by substitution):
+
+$$\int \frac{1}{g(y)}\,dy = \int f(x)\,dx$$
+
+</v-click>
+
+<v-click>
+
+This means that we can treat $dy/dx$ as if it were a fraction, and the chain rule makes sure we get the right answer.
+
+</v-click>
+
+---
+
 # Separation of variables: example 2
 
 Now integrate on each side:
