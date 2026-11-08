@@ -43,4 +43,11 @@ export default [
 
   { file: '08_01_complex_number.svg', deck: '08_complex_numbers', figure: 'complex-plane', params: { a: 18, b: 12 } },
   { file: '08_02_polar.svg', deck: '08_complex_numbers', panels: ['cartesian', 'polar'] },
+
+  { file: '09_01_solution.svg', deck: '09_differential_equations_1', figure: 'example-1-check' },
+  { file: '09_02_solution.svg', deck: '09_differential_equations_1', figure: 'example-3-check' },
+  { file: '09_03_k02.svg', deck: '09_differential_equations_1', figure: 'michaelis-menten', params: { Km: 0.2 } },
+  { file: '09_04_k10.svg', deck: '09_differential_equations_1', figure: 'michaelis-menten', params: { Km: 1 } },
+  { file: '09_05_k2.svg', deck: '09_differential_equations_1', figure: 'first-order', params: { k: 2 } },
+  { file: '09_06_euler.svg', deck: '09_differential_equations_1', figure: 'euler', params: { h: 1 } },
 ]
