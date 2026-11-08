@@ -78,7 +78,10 @@ async function panel(deck, name, params, x, width) {
   // (an SVG whose class ends in -ramp) above the plot's own SVG
   const svgs = isSvg ? [node] : [...node.querySelectorAll('svg')]
   const ramp = svgs.find(s => /-ramp$/.test(s.getAttribute('class') ?? ''))
-  const svg = svgs.find(s => s !== ramp)
+  // A legend of lines is a row of swatches (each a small SVG before its label);
+  // the plot's own SVG comes after them
+  const swatches = isSvg ? [] : [...node.querySelectorAll('[class$="-swatch"]')]
+  const svg = svgs.filter(s => s !== ramp).at(-1)
   const title = isSvg ? '' : node.querySelector('h2')?.textContent ?? ''
   const top = (title ? rows.title : 0) + headroom
   // The slides' text size, font and colour are in a style attribute, which an
@@ -97,7 +100,23 @@ async function panel(deck, name, params, x, width) {
     : ''
   // The colour bar centred over the plot, in the legend's row
   const bar = ramp ? place(ramp, x + (width - Number(ramp.getAttribute('width'))) / 2, top) : ''
-  return heading + bar + place(svg, x, top + (ramp ? rows.legend : 0))
+  const key = swatchRow(swatches, x + width / 2, top + rows.legend / 2)
+  return heading + bar + key + place(svg, x, top + (ramp || swatches.length ? rows.legend : 0))
+}
+
+// A legend of lines redrawn in SVG (Plot draws it in HTML): a square of each
+// colour before its label, the row centred on `centre` and its middle at `y`.
+// The label widths are estimated, at about 9px a character.
+function swatchRow(swatches, centre, y) {
+  const items = swatches.map(s => ({ fill: s.querySelector('svg').getAttribute('fill'), text: s.textContent.trim() }))
+  const widths = items.map(item => 16 + 8 + 9 * item.text.length)
+  let at = centre - (widths.reduce((a, b) => a + b, 0) + 16 * (items.length - 1)) / 2
+  return items.map((item, i) => {
+    const markup = `<rect x="${at}" y="${y - 8}" width="16" height="16" fill="${item.fill}"/>`
+      + `<text x="${at + 24}" y="${y}" dy="0.35em" font-size="16" fill="#1a1a1a">${escape(item.text)}</text>`
+    at += widths[i] + 16
+    return markup
+  }).join('')
 }
 
 let written = 0

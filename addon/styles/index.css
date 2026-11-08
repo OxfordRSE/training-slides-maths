@@ -76,6 +76,29 @@
   margin-top: 0;
 }
 
+/* A slide with a single block (e.g. a code listing) can centre it in the space
+   under the title, with `class: centred` in the slide's frontmatter. Slidev sets
+   a code block's margin with !important, so these must be too. */
+.slidev-layout.centred:not(.cover) {
+  display: flex;
+  flex-direction: column;
+}
+
+.slidev-layout.centred:not(.cover) > h1:first-child + * {
+  margin-top: auto !important;
+}
+
+.slidev-layout.centred:not(.cover) > :last-child {
+  margin-bottom: auto !important;
+}
+
+/* A centred code block's own gaps would offset it, so keep just the room for
+   its "Python" tab */
+.slidev-layout.centred:not(.cover) .slidev-code:has(> code) {
+  margin-top: 1.3rem;
+  margin-bottom: 0;
+}
+
 /* Smaller code for blocks too wide for their column: wrap the block in <div class="code-sm"> */
 .code-sm {
   --slidev-code-font-size: 10px;

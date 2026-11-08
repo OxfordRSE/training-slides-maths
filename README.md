@@ -224,6 +224,10 @@ Keep every lecture consistent:
   under it for working on the whiteboard. To keep a question and its hints
   together at the top, put the lines to be worked after `::work::`: only those
   are spread.
+  Only what is to be worked is kept to the left 60% of the slide, so an exercise worked on the following slides (nothing to write under it) ends with an empty `::work::`, which keeps its text full width.
+- **Asides**, things worth knowing that are not really part of the lecture (e.g. why a method works), use `layout: aside`, which turns the header bar purple with an information icon.
+  The content is laid out as on an ordinary slide.
+- **A slide with a single block**, such as a code listing, can centre it in the space under the title with `class: centred` in the slide's frontmatter.
 
 ## Voice
 

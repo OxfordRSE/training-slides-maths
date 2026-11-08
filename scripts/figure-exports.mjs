@@ -43,4 +43,21 @@ export default [
 
   { file: '08_01_complex_number.svg', deck: '08_complex_numbers', figure: 'complex-plane', params: { a: 18, b: 12 } },
   { file: '08_02_polar.svg', deck: '08_complex_numbers', panels: ['cartesian', 'polar'] },
+
+  { file: '09_01_solution.svg', deck: '09_differential_equations_1', figure: 'example-1-check' },
+  { file: '09_02_solution.svg', deck: '09_differential_equations_1', figure: 'example-3-check' },
+  { file: '09_03_k02.svg', deck: '09_differential_equations_1', figure: 'michaelis-menten', params: { Km: 0.2 } },
+  { file: '09_04_k10.svg', deck: '09_differential_equations_1', figure: 'michaelis-menten', params: { Km: 1 } },
+  { file: '09_05_k2.svg', deck: '09_differential_equations_1', figure: 'first-order', params: { k: 2 } },
+  { file: '09_06_euler.svg', deck: '09_differential_equations_1', figure: 'euler', params: { h: 1 } },
+
+  { file: '10_01_solution.svg', deck: '10_differential_equations_2', figure: 'leaf-growth' },
+  { file: '10_02_solution.svg', deck: '10_differential_equations_2', figure: 'tumour-volume' },
+
+  { file: '11_01_solution_vs_gradient.svg', deck: '11_differential_equations_3', figure: 'decay' },
+  { file: '11_02_linear_ss.svg', deck: '11_differential_equations_3', figure: 'mass-action' },
+  { file: '11_03_quadratic_ss.svg', deck: '11_differential_equations_3', figure: 'positive-feedback' },
+  { file: '11_04_logistic_ss.svg', deck: '11_differential_equations_3', figure: 'logistic', params: { r: 1, K: 1 } },
+  { file: '11_05_relaxation.svg', deck: '11_differential_equations_3', figure: 'relaxation', params: { k1: 1, k2: 1 } },
+  { file: '11_06_logistic_solutions.svg', deck: '11_differential_equations_3', figure: 'logistic-solutions', params: { r: 1, K: 1 } },
 ]
