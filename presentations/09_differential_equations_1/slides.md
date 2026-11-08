@@ -178,6 +178,8 @@ So, the smaller the step, the more accurate the answer (but the more steps we ne
 </v-click>
 
 ---
+class: centred
+---
 
 # Euler's method in Python
 
@@ -187,37 +189,29 @@ c = 1.0
 def dydx(x, y):
     return 2*x + c
 
-def euler(dydx, x0, y0, x1, h):
-    n = round((x1 - x0) / h)  # number of steps
-    x = x0 + h * np.arange(n + 1)
-    y = np.zeros(n + 1)
-    y[0] = y0
-    for i in range(n):
-        y[i + 1] = y[i] + h * dydx(x[i], y[i])
-    return x, y
+h = 1.0    # the step size
+n = 9      # the number of steps, from x = 1 to x = 10
+
+x = 1.0    # start at x = 1,
+y = c      # where y(1) = c
+
+for step in range(n):
+    y = y + h * dydx(x, y)    # a step along the tangent
+    x = x + h
 ```
 
 ---
 
 # Euler's method: smaller steps
 
-We solve example 1 from $x = 1$ to $x = 10$, with smaller and smaller steps:
+At the end of the loop, `y` holds our estimate of $y(10)$.
+Running the code with smaller steps (and more of them) gives, to two decimal places:
 
-```python
-for h in [1.0, 0.1, 0.01]:
-    x, y = euler(dydx, 1.0, c, 10.0, h)
-    print(f'h = {h}: y(10) is about {y[-1]:.2f}')
-```
-
-<v-click>
-
-```text
-h = 1.0: y(10) is about 100.00
-h = 0.1: y(10) is about 108.10
-h = 0.01: y(10) is about 108.91
-```
-
-</v-click>
+| Step size $h$ | Number of steps $n$ | $y(10)$ |
+| :-: | :-: | :-: |
+| 1 | 9 | 100.00 |
+| 0.1 | 90 | 108.10 |
+| 0.01 | 900 | 108.91 |
 
 <v-click>
 
@@ -301,6 +295,8 @@ $$\int \frac{1}{y}\frac{dy}{dx}\, dx = \int 5x^{\frac{3}{2}}\,dx \quad \Rightarr
 </v-click>
 
 ---
+layout: aside
+---
 
 # Aside: why we can separate the variables
 
@@ -335,9 +331,17 @@ This means that we can treat $dy/dx$ as if it were a fraction, and the chain rul
 
 # Separation of variables: example 2
 
+We had separated the variables in $dy/dx = 5x^{3/2}y$ to get
+
+$$\int \frac{1}{y}\,dy = \int 5x^{\frac{3}{2}}\, dx$$
+
+<v-click>
+
 Now integrate on each side:
 
 $$\ln|y| + A = \frac{5x^{\frac{5}{2}}}{5/2} + B = 2x^{\frac{5}{2}} + B$$
+
+</v-click>
 
 <v-click>
 
@@ -418,6 +422,7 @@ x0 = 0.0
 x1 = 1.0
 x = np.linspace(x0, x1, 100)
 
+# the positive solution
 y_exact = np.sqrt(-2*np.exp(-x)*(1 + x) + c3)
 
 def dydx(x, y):
@@ -456,6 +461,8 @@ The equation of growth is:
 $$\frac{dN}{dt} = kN$$
 
 </v-click>
+
+::work::
 
 ---
 

@@ -8,7 +8,7 @@ import { legend } from '#plots/marks.js'
 import { blue, dot, label, line, vermillion } from '#plots/style.js'
 
 export const controls = {
-  h: { min: 0.1, max: 3, step: 0.1, value: 1, color: blue },
+  h: { min: 0.1, max: 3, step: 0.1, value: 3, color: blue },
 }
 
 const c = 1

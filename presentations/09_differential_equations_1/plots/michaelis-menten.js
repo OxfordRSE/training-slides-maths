@@ -17,7 +17,7 @@ export default ({ Km }) => {
   const s = odeint(s => -Vmax * s / (Km + s), 1, ts)
   return {
     x: { label: 't' },
-    y: { label: 's' },
+    y: { label: 's', domain: [0, 1] },
     marks: [
       Plot.line(ts, { ...line, x: t => t, y: (_, i) => s[i], stroke: blue }),
     ],
