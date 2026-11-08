@@ -50,4 +50,7 @@ export default [
   { file: '09_04_k10.svg', deck: '09_differential_equations_1', figure: 'michaelis-menten', params: { Km: 1 } },
   { file: '09_05_k2.svg', deck: '09_differential_equations_1', figure: 'first-order', params: { k: 2 } },
   { file: '09_06_euler.svg', deck: '09_differential_equations_1', figure: 'euler', params: { h: 1 } },
+
+  { file: '10_01_solution.svg', deck: '10_differential_equations_2', figure: 'leaf-growth' },
+  { file: '10_02_solution.svg', deck: '10_differential_equations_2', figure: 'tumour-volume' },
 ]
