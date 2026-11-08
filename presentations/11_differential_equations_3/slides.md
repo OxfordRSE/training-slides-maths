@@ -25,7 +25,7 @@ Often we don't need the full solution of a differential equation: we want to kno
 
 These long-run states are the _steady states_, and we can find them, and decide whether they are stable, without solving the equation.
 
-In this lecture we find the steady states of models from biology and chemistry, written down using the law of mass action, and recap how to solve equations numerically.
+In this lecture we find the steady states of models from biology and chemistry, written down using the law of mass action.
 
 ---
 
@@ -79,18 +79,52 @@ N = solution.y[0]
 
 # Steady states: radioactive decay
 
-<v-clicks at="+0">
+Here the steady state occurs when $N=0$, and is 'reached' after infinite time.
 
-- Here the steady state occurs when $N=0$, and is 'reached' after infinite time.
-- If $N$ moves away from $0$, then $dN/dt = -\lambda N$ has the opposite sign to $N$: negative when $N$ is positive, and positive when $N$ is negative.
-- So $N$ always moves back towards $0$, and the steady state is stable.
+<v-click>
 
-</v-clicks>
+If $N$ moves away from $0$, then $dN/dt = -\lambda N$ has the opposite sign to $N$: negative when $N$ is positive, and positive when $N$ is negative.
+
+</v-click>
+
+<v-click>
+
+So $N$ always moves back towards $0$, and the steady state is stable.
+
+</v-click>
+
+---
+
+# Steady states: production and degradation
+
+Radioactive decay only loses $N$, but most quantities in biology are also produced.
+Consider a simple model of the production and degradation of a protein $S$, with concentration $s=[S]$:
+
+$$\xrightarrow{\;v_1\;} S \xrightarrow{\;v_2\;}$$
+
+where $v_1$ and $v_2$ are the rates of production and degradation.
+
+<v-click>
+
+We can represent the change in concentration of the protein by
+
+$$\frac{ds}{dt} = v_1 - v_2$$
+
+so the steady state occurs when $v_1 = v_2$.
+
+</v-click>
+
+<v-click>
+
+To go further, we need to know how $v_1$ and $v_2$ depend on the concentrations.
+
+</v-click>
 
 ---
 
 # Chemical reactions to equations: mass action
 
+The law of mass action tells us how to write down the rates of reactions.
 Under the law of mass action, we assume that:
 
 <v-clicks>
@@ -127,41 +161,37 @@ $$
 
 # Mass action: more examples
 
-<v-clicks at="+0">
+Predation of R by W:
 
-- Predation of R by W:
-
-  $$R+W\underset{k}{\rightarrow} W \qquad\qquad \frac{dR}{dt} = -kRW$$
-
-- Constant production (zeroth order):
-
-  $$0 \underset{k}{\rightarrow} A \qquad\qquad \frac{d[A]}{dt} = k$$
-
-- Degradation/death:
-
-  $$C \underset{k}{\rightarrow} 0 \qquad\qquad \frac{d[C]}{dt} = -k[C]$$
-
-</v-clicks>
-
----
-
-# Steady states: production and degradation
-
-Consider a simple model of the production and degradation of a protein, shown by the reaction chain $\overset{v_1}{\rightarrow}S\overset{v_2}{\rightarrow}$ where $v_1$ and $v_2$ are reaction rates, and let $s=[S]$.
+$$R+W\underset{k}{\rightarrow} W \qquad\qquad \frac{dR}{dt} = -kRW$$
 
 <v-click>
 
-We can represent the change in concentration of the protein by
+Constant production (zeroth order):
 
-$$\frac{ds}{dt} = v_1 - v_2$$
-
-so the steady state occurs when $v_1 = v_2$.
+$$0 \underset{k}{\rightarrow} A \qquad\qquad \frac{d[A]}{dt} = k$$
 
 </v-click>
 
 <v-click>
 
-Under mass action, constant production and degradation give $v_1=k_1$ and $v_2=k_2 s$, so
+Degradation/death:
+
+$$C \underset{k}{\rightarrow} 0 \qquad\qquad \frac{d[C]}{dt} = -k[C]$$
+
+</v-click>
+
+---
+
+# Steady states: production and degradation
+
+Back to our protein: with constant production and degradation,
+
+$$\xrightarrow{\;k_1\;} S \xrightarrow{\;k_2\;}$$
+
+<v-click>
+
+mass action gives $v_1=k_1$ and $v_2=k_2 s$, so
 
 $$\frac{ds}{dt} = k_1 - k_2 s.$$
 
@@ -198,12 +228,10 @@ $$ {1|1-2|1-3|1-4}
 \begin{aligned}
 \int \frac{1}{k_1 - k_2 s}\,ds &= \int dt \\
 -\frac{1}{k_2}\ln|k_1 - k_2 s| &= t + c \\
-k_1 - k_2 s &= Ae^{-k_2 t} \\
-s(t) &= Be^{-k_2 t} + \frac{k_1}{k_2}
+k_1 - k_2 s &= Ae^{-k_2 t} &&\text{where } A = \pm e^{-k_2c} \\
+s(t) &= Be^{-k_2 t} + \frac{k_1}{k_2} &&\text{where } B = -A/k_2
 \end{aligned}
 $$
-
-where $A = \pm e^{-k_2c}$ and $B = -A/k_2$ are constants.
 
 <v-click>
 
@@ -249,12 +277,17 @@ We can plot $ds/dt$ versus $s$ to see if they are stable or unstable:
 
 $$\frac{ds}{dt} = k_1s - k_2 s^2$$
 
-<v-clicks>
+<v-click>
 
-- When $s$ is small (and positive, since it is a concentration) $s\gg s^2$, so the derivative $k_1 s - k_2 s^2$ will be positive, making $s=0$ an unstable steady state.
-- For the other steady state, consider small deviations by $\varepsilon$ from the steady state, e.g. $s=k_1/k_2 + \varepsilon$.
+When $s$ is small (and positive, since it is a concentration) $s\gg s^2$, so the derivative $k_1 s - k_2 s^2$ will be positive, making $s=0$ an unstable steady state.
 
-</v-clicks>
+</v-click>
+
+<v-click>
+
+For the other steady state, consider small deviations by $\varepsilon$ from the steady state, e.g. $s=k_1/k_2 + \varepsilon$.
+
+</v-click>
 
 ---
 
@@ -346,12 +379,13 @@ This is positive feedback with $k_1 = r$ and $k_2 = r/K$: the same equation as l
 
 # The logistic equation: stability
 
-<v-clicks at="+0">
+For small positive $N$, $rN>0$ and $N<K$, so $dN/dt>0$ and the population size will increase, meaning that $N=0$ is an unstable steady state.
 
-- For small positive $N$, $rN>0$ and $N<K$, so $dN/dt>0$ and the population size will increase, meaning that $N=0$ is an unstable steady state.
-- In fact the growth rate is positive for $0<N<K$ and negative for $N>K$, making $N=K$ a stable steady state.
+<v-click>
 
-</v-clicks>
+In fact the growth rate is positive for $0<N<K$ and negative for $N>K$, making $N=K$ a stable steady state.
+
+</v-click>
 
 ---
 
@@ -372,40 +406,6 @@ $$N(t) = \frac{K N_0 e^{rt}}{K + N_0(e^{rt}-1)}$$
 # The logistic equation: solution
 
 <PlotFigure name="logistic-solutions" />
-
----
-
-# Numerically solving differential equations
-
-What if we can't solve the differential equation?
-
-$$\frac{dy}{dt} = \sin\left(\frac{y\ln(t\cos(y))}{\sqrt{1+y/e^t}}\right) + 3$$
-
-<v-click>
-
-(or we just don't want to)
-
-</v-click>
-
----
-
-# Euler's method: a recap
-
-In lecture 9 we solved $dy/dt = f(t, y)$ numerically with Euler's method: from $y_0$ at $t_0$, take steps of size $h$ along the tangent,
-
-$$y_{n+1} = y_n + h\,f(t_n, y_n)$$
-
-<v-click>
-
-The smaller the step, the more accurate the answer, but the more steps we need.
-
-</v-click>
-
-<v-click>
-
-In practice we use SciPy's `solve_ivp`, which uses a more sophisticated method and chooses the step size for us.
-
-</v-click>
 
 ---
 
