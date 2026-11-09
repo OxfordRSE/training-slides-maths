@@ -12,7 +12,10 @@ export const controls = {
   a: { min: -2, max: 2, step: 0.05, value: -1, color: vermillion },
 }
 
-const xs = linspace(-4, 12, 2)
+// Zoomed out, so the crossing point can be followed a long way as the lines
+// turn towards parallel (x = 20 at a = 0.9)
+const [x0, x1] = [-10, 30]
+const xs = linspace(x0, x1, 2)
 
 export default ({ a: raw }) => {
   const a = +raw.toFixed(2)
@@ -20,11 +23,11 @@ export default ({ a: raw }) => {
   const meets = Math.abs(det) > 1e-9
   const x = meets ? 2 / (1 - a) : NaN
   const y = (11 - x) / 5
-  const shown = meets && x >= -4 && x <= 12
+  const shown = meets && x >= x0 && x <= x1
   const coef = a === 1 ? '' : a === -1 ? '-' : `${a}`
   return {
-    x: { label: 'x', domain: [-4, 12] },
-    y: { label: 'y', domain: [-1, 4] },
+    x: { label: 'x', domain: [x0, x1] },
+    y: { label: 'y', domain: [-5, 6] },
     marks: [
       ...legend([
         { text: 'x + 5y = 11', color: blue },

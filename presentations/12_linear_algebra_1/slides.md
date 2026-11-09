@@ -193,20 +193,24 @@ To multiply two matrices, we multiply each **row** in the first matrix by each *
 
 A row and column are multiplied by summing up each element in the row, multiplied by the corresponding element in the column.
 
-<v-switch>
-<template #1>
+<div v-click="1" class="grid">
+<div v-click.hide="2" class="col-start-1 row-start-1">
 
 $$\left(\begin{matrix} 1&2 \\ 3&4 \end{matrix}\right) \left(\begin{matrix} 5&6\\7&8\end{matrix}\right) = \left(\begin{matrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ 3 \times 5 + 4 \times 7 & 3 \times 6 + 4\times 8\end{matrix}\right) = \left(\begin{matrix} 19&22\\43&50\end{matrix}\right)$$
 
-</template>
-<template #2-99>
+</div>
+<div v-click="2" class="col-start-1 row-start-1">
 
-$$\left(\begin{matrix} 1&2 \\ {\color{#D55E00}3}&{\color{#D55E00}4} \end{matrix}\right) \left(\begin{matrix} {\color{#0072B2}5}&6\\{\color{#0072B2}7}&8\end{matrix}\right) = \left(\begin{matrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ {\color{#D55E00}3} \times {\color{#0072B2}5} + {\color{#D55E00}4} \times {\color{#0072B2}7} & 3 \times 6 + 4\times 8\end{matrix}\right) = \left(\begin{matrix} 19&22\\\mathbf{43}&50\end{matrix}\right)$$
+$$\left(\begin{matrix} 1&2 \\ {\color{#D55E00}3}&{\color{#D55E00}4} \end{matrix}\right) \left(\begin{matrix} {\color{#0072B2}5}&6\\{\color{#0072B2}7}&8\end{matrix}\right) = \left(\begin{matrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ {\color{#D55E00}3} \times {\color{#0072B2}5} + {\color{#D55E00}4} \times {\color{#0072B2}7} & 3 \times 6 + 4\times 8\end{matrix}\right) = \left(\begin{matrix} 19&22\\{\color{#009E73}43}&50\end{matrix}\right)$$
+
+</div>
+</div>
+
+<v-click at="2">
 
 Row 2 of the first matrix times column 1 of the second gives the element in row 2, column 1.
 
-</template>
-</v-switch>
+</v-click>
 
 <v-click at="3">
 
@@ -413,7 +417,7 @@ If $\det A = 0$, the square is squashed flat: different points end up in the sam
 </div>
 <div>
 
-<PlotFigure name="transformation" :height="330" />
+<PlotFigure name="transformation" :height="395" />
 
 </div>
 </div>

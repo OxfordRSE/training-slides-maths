@@ -26,7 +26,7 @@ export default (params) => {
   return {
     aspectRatio: 1,
     // wider than y, with equal units, so the four sliders below get room
-    x: { label: 'x', domain: [-5.5, 5.5] },
+    x: { label: 'x', domain: [-4.5, 4.5] },
     y: { label: 'y', domain: [-3.2, 3.2] },
     marks: [
       Plot.ruleX([0], { stroke: '#1a1a1a', strokeWidth: 1.5 }),
