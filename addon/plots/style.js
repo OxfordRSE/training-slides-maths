@@ -18,3 +18,15 @@ export const dot = { r: 5, stroke: 'white', strokeWidth: 1 }
 // Text on a plot, e.g. a live equation: dark, with a white halo to stand out
 // from grid lines and data. Don't colour it orange, which is too faint for text.
 export const label = { fontSize: 18, fill: '#1a1a1a', stroke: 'white', strokeWidth: 6, paintOrder: 'stroke' }
+
+// Monospaced font for live numbers on a plot, so their width doesn't change as
+// a slider moves (the decks' code font, then the system's)
+export const mono = '"JetBrains Mono Variable", ui-monospace, monospace'
+
+// A number in a fixed format for live text: `decimals` places, right-aligned in
+// `width` characters with figure spaces (U+2007, as wide as a digit in a
+// monospaced font; plain spaces would be collapsed in SVG text)
+export function fixed(value, decimals, width) {
+  const s = (Math.abs(value) < 0.5 * 10 ** -decimals ? 0 : value).toFixed(decimals)
+  return s.padStart(width, ' ')
+}

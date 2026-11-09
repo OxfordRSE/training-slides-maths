@@ -6,10 +6,10 @@
 import * as Plot from '@observablehq/plot'
 import { legend } from '#plots/marks.js'
 import { linspace } from '#plots/numerics.js'
-import { blue, dot, label, line, vermillion } from '#plots/style.js'
+import { blue, dot, fixed, label, line, mono, vermillion } from '#plots/style.js'
 
 export const controls = {
-  a: { min: -2, max: 2, step: 0.05, value: -1, color: vermillion },
+  a: { min: -2, max: 2, step: 0.01, value: -1, color: vermillion },
 }
 
 // Zoomed out, so the crossing point can be followed a long way as the lines
@@ -24,19 +24,22 @@ export default ({ a: raw }) => {
   const x = meets ? 2 / (1 - a) : NaN
   const y = (11 - x) / 5
   const shown = meets && x >= x0 && x <= x1
-  const coef = a === 1 ? '' : a === -1 ? '-' : `${a}`
+  // Fixed formats in a monospaced font, so the text keeps its width as a moves
+  const first = `${fixed(1, 2, 5)}x + 5y = 11`
+  const second = `${fixed(a, 2, 5)}x + 5y = 9`
+  const detText = `det = 5 - 5a = ${fixed(det, 2, 5)}`
   return {
     x: { label: 'x', domain: [x0, x1] },
     y: { label: 'y', domain: [-5, 6] },
     marks: [
       ...legend([
-        { text: 'x + 5y = 11', color: blue },
-        { text: a === 0 ? '5y = 9' : `${coef}x + 5y = 9`, color: vermillion },
+        { text: first, color: blue, fontFamily: mono },
+        { text: second, color: vermillion, fontFamily: mono },
       ]),
       Plot.line(xs, { ...line, x: t => t, y: t => (11 - t) / 5, stroke: blue, clip: true }),
       Plot.line(xs, { ...line, x: t => t, y: t => (9 - a * t) / 5, stroke: vermillion, clip: true }),
       shown ? Plot.dot([{ x, y }], { ...dot, x: 'x', y: 'y', r: 8, fill: '#1a1a1a' }) : null,
-      Plot.text([meets ? `determinant 5 - 5a = ${det.toFixed(2)}` : 'determinant 0: the lines are parallel'], { ...label, frameAnchor: 'bottom-right', dx: -8, dy: -8, textAnchor: 'end' }),
+      Plot.text([detText], { ...label, fontFamily: mono, frameAnchor: 'bottom-right', dx: -8, dy: -8, textAnchor: 'end' }),
     ],
   }
 }
