@@ -193,13 +193,22 @@ To multiply two matrices, we multiply each **row** in the first matrix by each *
 
 A row and column are multiplied by summing up each element in the row, multiplied by the corresponding element in the column.
 
-<v-click>
+<v-switch>
+<template #1>
 
 $$\left(\begin{matrix} 1&2 \\ 3&4 \end{matrix}\right) \left(\begin{matrix} 5&6\\7&8\end{matrix}\right) = \left(\begin{matrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ 3 \times 5 + 4 \times 7 & 3 \times 6 + 4\times 8\end{matrix}\right) = \left(\begin{matrix} 19&22\\43&50\end{matrix}\right)$$
 
-</v-click>
+</template>
+<template #2-99>
 
-<v-click>
+$$\left(\begin{matrix} 1&2 \\ {\color{#D55E00}3}&{\color{#D55E00}4} \end{matrix}\right) \left(\begin{matrix} {\color{#0072B2}5}&6\\{\color{#0072B2}7}&8\end{matrix}\right) = \left(\begin{matrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ {\color{#D55E00}3} \times {\color{#0072B2}5} + {\color{#D55E00}4} \times {\color{#0072B2}7} & 3 \times 6 + 4\times 8\end{matrix}\right) = \left(\begin{matrix} 19&22\\\mathbf{43}&50\end{matrix}\right)$$
+
+Row 2 of the first matrix times column 1 of the second gives the element in row 2, column 1.
+
+</template>
+</v-switch>
+
+<v-click at="3">
 
 $$\left(\begin{matrix} 1&2&3&4\\ 5&6&7&8 \end{matrix}\right) \left(\begin{matrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ 10&11&12 \end{matrix}\right) = \left(\begin{matrix} 70&80&90\\ 158&184&210 \end{matrix}\right)$$
 
@@ -371,6 +380,43 @@ For our two equations, the determinant of the matrix of coefficients is $a_1b_2-
 When it is zero, the two lines are parallel, and there is no single solution.
 
 </v-click>
+
+---
+layout: aside
+---
+
+# Aside: the determinant as an area
+
+<div class="grid grid-cols-[2fr_3fr] gap-8">
+<div>
+
+Multiplying by a $2\times 2$ matrix $A$ moves every point of the plane.
+
+<v-click>
+
+The unit square goes to a parallelogram, whose sides are the columns of $A$ (the arrows).
+
+</v-click>
+
+<v-click>
+
+Its area is $\lvert\det A\rvert$, and a negative determinant flips the square over.
+
+</v-click>
+
+<v-click>
+
+If $\det A = 0$, the square is squashed flat: different points end up in the same place, so the transformation can't be undone, and $A$ has no inverse.
+
+</v-click>
+
+</div>
+<div>
+
+<PlotFigure name="transformation" :height="330" />
+
+</div>
+</div>
 
 ---
 layout: exercise

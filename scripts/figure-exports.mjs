@@ -62,4 +62,5 @@ export default [
   { file: '11_06_logistic_solutions.svg', deck: '11_differential_equations_3', figure: 'logistic-solutions', params: { r: 1, K: 1 } },
 
   { file: '12_01_two_lines.svg', deck: '12_linear_algebra_1', figure: 'two-lines', params: { a: -1 } },
+  { file: '12_02_transformation.svg', deck: '12_linear_algebra_1', figure: 'transformation', params: { p: 2, q: 1, r: 1, s: 2 } },
 ]
