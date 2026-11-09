@@ -60,4 +60,10 @@ export default [
   { file: '11_04_logistic_ss.svg', deck: '11_differential_equations_3', figure: 'logistic', params: { r: 1, K: 1 } },
   { file: '11_05_relaxation.svg', deck: '11_differential_equations_3', figure: 'relaxation', params: { k1: 1, k2: 1 } },
   { file: '11_06_logistic_solutions.svg', deck: '11_differential_equations_3', figure: 'logistic-solutions', params: { r: 1, K: 1 } },
+
+  { file: '12_01_two_lines.svg', deck: '12_linear_algebra_1', figure: 'two-lines', params: { a: -1 } },
+  { file: '12_02_transformation.svg', deck: '12_linear_algebra_1', figure: 'transformation', params: { p: 2, q: 1, r: 1, s: 2 } },
+
+  { file: '13_01_eigen_directions.svg', deck: '13_linear_algebra_2', figure: 'eigen-directions', params: { k: 3 } },
+  { file: '13_02_eigen_directions_pi_4.svg', deck: '13_linear_algebra_2', figure: 'eigen-directions', params: { k: 6 } },
 ]

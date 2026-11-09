@@ -13,13 +13,15 @@ const dash = {
 
 // A legend in the top-left corner of the plot, one row per line: a short stroke
 // in the line's colour (and dash pattern, if any) in front of its text
+// An item's optional `fontFamily` (e.g. `mono` from style.js) sets its text's
+// font, so that live numbers keep a fixed width as they change.
 export function legend(items) {
-  return items.flatMap(({ text, color, dasharray }, i) => {
+  return items.flatMap(({ text, color, dasharray, fontFamily }, i) => {
     const at = { frameAnchor: 'top-left', dy: 14 + 28 * i }
     return [
       // A little lower than the text's anchor, level with the middle of its digits
       Plot.dot([text], { ...at, dx: 24, dy: at.dy + 4, symbol: dash, r: 10, fill: 'none', stroke: color, strokeWidth: line.strokeWidth, strokeLinecap: 'round', strokeDasharray: dasharray }),
-      Plot.text([text], { ...label, ...at, dx: 42, textAnchor: 'start' }),
+      Plot.text([text], { ...label, ...at, dx: 42, textAnchor: 'start', ...(fontFamily && { fontFamily }) }),
     ]
   })
 }

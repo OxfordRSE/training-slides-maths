@@ -136,3 +136,9 @@
 .slidev-layout .slidev-katex-wrapper .mord.dishonored {
   opacity: 0;
 }
+
+/* Inline maths and the punctuation after it, wrapped by setup/preparser.ts so
+   that a line never starts with the full stop or comma */
+.math-nobr {
+  white-space: nowrap;
+}

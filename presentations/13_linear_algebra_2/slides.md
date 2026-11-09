@@ -19,15 +19,13 @@ fonts:
 
 ---
 
-# Recap from part I
+# Why eigenvalues?
 
-- Matrix representation of simultaneous equations
-- Matrix-vector multiplication
-- Matrix-matrix multiplication
-- Determinant ($2\times2$ matrices)
-- Inverting matrices
-- Transpose
-- Python
+In lecture 12 we wrote systems of linear equations as $A\mathbf{x} = \mathbf{b}$, and solved them by inverting $A$, as long as $A$ is not singular.
+
+In this lecture we look more closely at singular matrices, and then at the **eigenvalues** and **eigenvectors** of a matrix: the special directions that the matrix only stretches.
+
+In lectures 14 to 16, eigenvalues let us solve systems of differential equations, and decide whether their steady states are stable.
 
 ---
 
@@ -52,6 +50,12 @@ array([[ 0.2       ,  0.13333333,  0.        ],
 
 </v-click>
 
+<v-click>
+
+The $-0.$ is a tiny negative rounding error, like the ones in lecture 12: the exact value is $0$.
+
+</v-click>
+
 ---
 
 # Using SymPy to calculate the inverse
@@ -63,7 +67,11 @@ A = sp.Matrix([[3, 0, 2], [3, 0, -3], [0, 1, 1]])
 A.inv()
 ```
 
+<v-click>
+
 $$\def\arraystretch{1.8}\left[\begin{matrix}\frac{1}{5} & \frac{2}{15} & 0\\- \frac{1}{5} & \frac{1}{5} & 1\\\frac{1}{5} & - \frac{1}{5} & 0\end{matrix}\right]$$
+
+</v-click>
 
 ---
 
@@ -87,8 +95,14 @@ np.linalg.inv(A)
 ```
 
 ```text
-LinAlgError: Singular matrix
+numpy.linalg.LinAlgError: Singular matrix
 ```
+
+</v-click>
+
+<v-click>
+
+The left-hand side of $eq3$ is $5\times eq1 + eq2$, so $eq3$ tells us nothing new: really there are only two equations for three unknowns.
 
 </v-click>
 
@@ -96,45 +110,49 @@ LinAlgError: Singular matrix
 
 # Singular matrices
 
-The **rank** of an $n\times n$ matrix $A$ is the number of linearly independent rows in $A$ (rows not combinations of other rows).
+The **rank** of an $n\times n$ matrix $A$ is the number of linearly independent rows in $A$ (rows that are not combinations of other rows).
 
-When $\text{rank}(A) < n$ then
+When $\text{rank}(A) < n$:
 
-- The system $A\mathbf{x} = \mathbf{b}$ has _fewer_ equations than unknowns
-- The matrix is said to be singular
+<v-clicks at="+0">
+
+- the system $A\mathbf{x} = \mathbf{b}$ has fewer _independent_ equations than unknowns
+- the matrix is said to be singular
 - $A$ has no inverse
-- The determinant of $A$ is 0
-- The equation $A\mathbf{u} = \mathbf{0}$ has non-trivial solutions (solutions where $\mathbf{u} \neq \mathbf{0}$)
+- the determinant of $A$ is 0
+- the equation $A\mathbf{u} = \mathbf{0}$ has non-trivial solutions (solutions where $\mathbf{u} \neq \mathbf{0}$)
+
+</v-clicks>
 
 ---
 
 # Singular matrix example
 
-An underdetermined system (fewer equations than unknowns) may mean that there are **many solutions** or that there are **no solutions**.
-
-An example with many solutions is
-
-$$
-\begin{aligned}
-x+y &= 1,\\
-2x+2y &= 2,
-\end{aligned}
-$$
-
-has infinitely many solutions (x=0, y=1; x=-89.3, y=90.3...)
+With too few independent equations, there may be **many solutions** or **no solutions**.
 
 <v-click>
 
-An example with no solutions is
+$$
+\begin{aligned}
+x+y &= 1,\\
+2x+2y &= 2
+\end{aligned}
+$$
+
+The second equation is twice the first: they are the same line, so there are infinitely many solutions (e.g. $x=0$, $y=1$, or $x=2$, $y=-1$).
+
+</v-click>
+
+<v-click>
 
 $$
 \begin{aligned}
 x+y &= 1,\\
-2x+2y &= 0,
+2x+2y &= 0
 \end{aligned}
 $$
 
-where the second equation is inconsistent with the first.
+The second equation is inconsistent with the first: they are parallel lines, so there are no solutions.
 
 </v-click>
 
@@ -142,34 +160,44 @@ where the second equation is inconsistent with the first.
 
 # Singular matrix example
 
-These examples use the matrix
+Both examples use the matrix
 
 $$\left(\begin{matrix}1&1\\ 2&2\end{matrix}\right),$$
 
-which has rank 1.
+which has rank 1, and determinant $1\times 2 - 1\times 2 = 0$.
+
+<v-click>
+
+Whether there are many solutions or none depends on the right-hand side, but there is never exactly one.
+
+</v-click>
 
 ---
 
 # Null space
 
 When a matrix is singular we can find non-trivial solutions to $A\mathbf{u} = \mathbf{0}$.
+These vectors form the **null space** of $A$.
 
-These are vectors which form the **null space** for $A$.
+<v-click>
 
 Any vector in the null space makes no difference to the effect that $A$ is having:
 
 $$A(\mathbf{x} + \mathbf{u}) = A\mathbf{x} + A\mathbf{u} = A\mathbf{x} + \mathbf{0} = A\mathbf{x}.$$
 
+</v-click>
+
 <v-click>
 
-Note that any combination or scaling of vectors in the null space is also in the null space.
-That is, if $A\mathbf{u} = \mathbf{0}$ and $A\mathbf{v} = \mathbf{0}$ then
+Any combination or scaling of vectors in the null space is also in the null space: if $A\mathbf{u} = \mathbf{0}$ and $A\mathbf{v} = \mathbf{0}$ then $A(\alpha\mathbf{u} + \beta\mathbf{v}) = \mathbf{0}$.
 
-$$A(\alpha\mathbf{u} + \beta\mathbf{v}) = \mathbf{0}$$
+</v-click>
 
-The number of linearly independent vectors in the null space is denoted $\text{null}(A)$ and
+<v-click>
 
-$$\text{null}(A) + \text{rank}(A) = \text{order}(A).$$
+The number of linearly independent vectors in the null space is denoted $\text{null}(A)$, and for an $n\times n$ matrix
+
+$$\text{null}(A) + \text{rank}(A) = n.$$
 
 </v-click>
 
@@ -177,11 +205,33 @@ $$\text{null}(A) + \text{rank}(A) = \text{order}(A).$$
 
 # Null space example
 
-Previous example of a singular system:
+Our singular system has
 
-$$A = \left(\begin{matrix} 1& 1& 1\\ 2& 5& 2\\ 7& 10&7 \end{matrix}\right)$$
+$$A = \left(\begin{matrix} 1& 1& 1\\ 2& 5& 2\\ 7& 10&7 \end{matrix}\right).$$
 
 <v-click>
+
+To find its null space, solve $A\mathbf{u} = \mathbf{0}$ with $\mathbf{u} = (x, y, z)^T$, using the first two rows (the third adds nothing new):
+
+$$ {1|1-2|1-3}
+\begin{aligned}
+x + y + z &= 0, \qquad 2x + 5y + 2z = 0 \\
+3y &= 0 \qquad \text{(second minus twice the first)} \\
+y &= 0, \qquad x = -z
+\end{aligned}
+$$
+
+</v-click>
+
+<v-click>
+
+So the null space is all the multiples of $(1, 0, -1)^T$: $\text{rank}(A) = 2$ and $\text{null}(A) = 1$.
+
+</v-click>
+
+---
+
+# Null space example in Python
 
 ```python
 A = np.array([[1, 1, 1], [2, 5, 2], [7, 10, 7]])
@@ -192,12 +242,11 @@ print(np.linalg.matrix_rank(A))
 2
 ```
 
-</v-click>
-
 <v-click>
 
 ```python
 import scipy.linalg
+
 scipy.linalg.null_space(A)
 ```
 
@@ -209,20 +258,26 @@ array([[-7.07106781e-01],
 
 </v-click>
 
+<v-click>
+
+This is $(-1, 0, 1)^T/\sqrt{2}$, a multiple of $(1, 0, -1)^T$ with length 1; the $-1.1\times 10^{-16}$ is rounding error.
+
+</v-click>
+
 ---
 
 # Null space example
 
-Remember, scaled vectors in the null space are also in the null space, for example, $x=1, y=0, z=-1$ is in the null space.
+Scaled vectors in the null space are also in the null space, so e.g. $x=-1000$, $y=0$, $z=1000$ is in it too.
 
 Try it:
 
-$$\left(\begin{matrix} 1& 1& 1\\ 2& 5& 2\\ 7& 11&7 \end{matrix}\right) \left(\begin{matrix} -1000\\ 0 \\ 1000 \end{matrix}\right) = \quad ?$$
+$$\left(\begin{matrix} 1& 1& 1\\ 2& 5& 2\\ 7& 10&7 \end{matrix}\right) \left(\begin{matrix} -1000\\ 0 \\ 1000 \end{matrix}\right) = \quad ?$$
 
 <v-click>
 
 ```python
-np.matmul(A,np.array([-1000,0,1000]))
+A @ np.array([-1000, 0, 1000])
 ```
 
 ```text
@@ -232,48 +287,99 @@ array([0, 0, 0])
 </v-click>
 
 ---
+layout: two-cols
+---
 
 # Eigenvectors: motivation
 
-The **eigenvalues** and **eigenvectors** give an indication of how much effect the matrix has, and in what direction.
+Multiplying a vector by a matrix usually changes its direction as well as its length.
 
-$$A=\left(\begin{matrix} \cos(45)&-\sin(45)\\ \sin(45)&\cos(45)\end{matrix}\right)\qquad\text{has no scaling effect.}$$
+<v-click>
 
-$$B=\left(\begin{matrix} 2& 0 \\ 0&\frac{1}{2}\end{matrix}\right)\qquad\qquad\text{doubles in } x \text{, but halves in } y\text{.}$$
+Here $A = \left(\begin{matrix} 2& 1 \\ 1&2\end{matrix}\right)$: as $\mathbf{v}$ turns, $A\mathbf{v}$ mostly points a different way.
 
-Repeated applications of $A$ stay the same distance from the origin, but repeated applications of $B$ move towards $(\infty, 0).$
+</v-click>
+
+<v-click>
+
+But along two special directions, $A\mathbf{v}$ is just a multiple of $\mathbf{v}$: these are the **eigenvectors** of $A$, and the multiples ($3$ and $1$) are its **eigenvalues**.
+
+</v-click>
+
+::right::
+
+<PlotFigure name="eigen-directions" :height="370" />
 
 ---
 
 # Eigenvectors: motivation
 
-- Transitions with probability
-- Markov chains
-- Designing bridges
-- Solution of systems of linear ODEs
-- Stability of systems of nonlinear ODEs
+The eigenvalues and eigenvectors give an indication of how much effect the matrix has, and in what direction.
+
+<v-click>
+
+$$B=\left(\begin{matrix} 2& 0 \\ 0&\frac{1}{2}\end{matrix}\right)\qquad\text{doubles in } x \text{, but halves in } y\text{.}$$
+
+Its eigenvectors are along the axes, with eigenvalues $2$ and $\frac{1}{2}$, and repeated applications of $B$ move points towards $(\pm\infty, 0)$.
+
+</v-click>
+
+<v-click>
+
+$$R=\left(\begin{matrix} \cos \frac{\pi}{4}&-\sin \frac{\pi}{4}\\ \sin \frac{\pi}{4}&\cos \frac{\pi}{4}\end{matrix}\right)\qquad\text{rotates by } \frac{\pi}{4}\text{ radians.}$$
+
+It leaves no direction unchanged, so it has no real eigenvectors: its eigenvalues are complex, and we will meet them again in lecture 16.
+
+</v-click>
+
+---
+
+# Where eigenvalues are used
+
+In lectures 14 to 16, eigenvalues and eigenvectors let us solve systems of linear differential equations, and decide whether the steady states of nonlinear ones are stable.
+
+<v-click>
+
+The long-term growth rate of a population with several age classes is the largest eigenvalue of its (Leslie) matrix.
+
+</v-click>
+
+<v-click>
+
+The long-term state of a Markov chain, e.g. a model of a molecule switching between conformations, is an eigenvector of its matrix of transition probabilities.
+
+</v-click>
+
+<v-click>
+
+Principal component analysis finds the directions of greatest variation in data, such as gene expression measurements, as eigenvectors.
+
+</v-click>
 
 ---
 
 # Eigenvectors and eigenvalues
 
-$A$ is a matrix, $\mathbf{v}$ is a **non-zero** vector, $\lambda$ is a scalar,
-
+$A$ is a square matrix, $\mathbf{v}$ is a **non-zero** vector, and $\lambda$ is a scalar.
 If
 
 $$A \mathbf{v} = \lambda \mathbf{v}$$
 
 then $\mathbf{v}$ is called an **eigenvector** and $\lambda$ is the corresponding **eigenvalue**.
 
-Note that if $\mathbf{v}$ is a solution, then so is a scaling $a\mathbf{v}$:
+<v-click>
 
-$$A (a \mathbf{v}) = \lambda (a \mathbf{v}).$$
+If $\mathbf{v}$ is an eigenvector, then so is any scaling $a\mathbf{v}$ (with $a \neq 0$):
+
+$$A (a \mathbf{v}) = a A\mathbf{v} = a\lambda\mathbf{v} = \lambda (a \mathbf{v}).$$
+
+</v-click>
 
 ---
 
 # Finding eigenvalues
 
-Another way to write previous equation:
+Rearranging $A \mathbf{v} = \lambda \mathbf{v}$:
 
 $$ {1|1-2|1-3}
 \begin{aligned}
@@ -283,56 +389,45 @@ A \mathbf{v} - \lambda I \mathbf{v} &= \mathbf{0},\\
 \end{aligned}
 $$
 
----
+<v-click>
 
-# Finding eigenvalues
+If $A - \lambda I$ had an inverse, then $\mathbf{v} = (A - \lambda I)^{-1}\mathbf{0} = \mathbf{0}$; but $\mathbf{v} \neq \mathbf{0}$, so $A - \lambda I$ must be singular:
 
-Consider the equation $B\mathbf{x}=\mathbf{0}$, where $B$ is a matrix and $\mathbf{x}$ is a non-zero column vector.
+$$|A-\lambda I|=0.$$
 
-Assume $B$ is nonsingular:
-
-$$B^{-1}(B\mathbf{x})=B^{-1}\mathbf{0}=\mathbf{0}$$
+</v-click>
 
 <v-click>
 
-But:
-
-$$B^{-1}(B\mathbf{x})=(B^{-1}B)\mathbf{x}=I\mathbf{x}=\mathbf{x}$$
-
-This means that:
-
-$$B^{-1}(B\mathbf{x})=\mathbf{0}=\mathbf{x}$$
-
-but we stated above that $\mathbf{x}\neq\mathbf{0}$ so our assumption that $B$ is nonsingular must be false: $B$ is singular.
+This equation gives the eigenvalues. (In the picture from lecture 12, $A - \lambda I$ squashes the plane flat.)
 
 </v-click>
 
 ---
+layout: exercise
+---
 
-# Finding eigenvalues
+# Finding eigenvalues: example
 
-We can state that:
+What are the eigenvalues of this matrix?
 
-$$(A-\lambda I)\mathbf{v} = \mathbf{0} \quad \text{with} \quad \mathbf{v}\neq \mathbf{0},$$
+$$A=\left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right)$$
 
-so $(A-\lambda I)$ must be singular:
-
-$$|A-\lambda I|=0.$$
+::work::
 
 ---
 
 # Finding eigenvalues: example
 
-What are the eigenvalues for this matrix?
-
 $$A=\left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right)$$
 
 <v-click>
 
-$$ {1|1-2}
+$$ {1|1-2|1-3}
 \begin{aligned}
 |A-\lambda I| &=\left\vert\begin{matrix}-2-\lambda&-2\\ 1&-5-\lambda\end{matrix}\right\vert=(-2-\lambda)(-5-\lambda)-(-2) \\
-&=10+5\lambda+\lambda^2+2\lambda+2=\lambda^2+7\lambda+12=(\lambda+3)(\lambda+4)=0
+&=10+5\lambda+2\lambda+\lambda^2+2 \\
+&=\lambda^2+7\lambda+12=(\lambda+3)(\lambda+4)=0
 \end{aligned}
 $$
 
@@ -348,64 +443,110 @@ So the eigenvalues are $\lambda_1=-3$ and $\lambda_2=-4$.
 
 # Eigenvalues using Python
 
-Numpy:
+NumPy finds the eigenvalues and eigenvectors together:
 
 ```python
 A = np.array([[-2, -2], [1, -5]])
-np.linalg.eig(A)[0]
+eigenvalues, eigenvectors = np.linalg.eig(A)
+eigenvalues
 ```
+
+<v-click>
 
 ```text
 array([-3.+0.j, -4.+0.j])
 ```
 
+</v-click>
+
+<v-click>
+
 SymPy:
 
 ```python
-A2 = sp.Matrix([[-2, -2], [1, -5]])
-A2.eigenvals()
+A = sp.Matrix([[-2, -2], [1, -5]])
+A.eigenvals()
 ```
 
 $$\left\{ -4 : 1, \  -3 : 1\right\}$$
 
+(each eigenvalue, and how many times it is repeated)
+
+</v-click>
+
+---
+layout: exercise
 ---
 
-# Finding eigenvectors
+# Finding eigenvectors: example
 
-For an eigenvalue, the corresponding vector comes from substitution into $A \mathbf{v} = \lambda \mathbf{v}$:
-
-### Example
-
-What are the eigenvectors for
+What are the eigenvectors of
 
 $$A=\left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right)?$$
+
+The eigenvalues are $\lambda_1=-3$ and $\lambda_2=-4$.
+
+::work::
 
 ---
 
 # Finding eigenvectors: example
 
-The eigenvalues are $\lambda_1=-3$ and $\lambda_2=-4.$
-The eigenvectors are $\mathbf{v}_1$ and $\mathbf{v}_2$ where:
+For each eigenvalue, substitute into $A \mathbf{v} = \lambda \mathbf{v}$, with $\mathbf{v} = (x, y)^T$.
 
-$$A\mathbf{v}_1=\lambda_1 \mathbf{v}_1.$$
+<v-click>
 
 $$ {1|1-2|1-3}
 \begin{aligned}
-\left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right) \left(\begin{matrix}u_1\\ v_1\end{matrix}\right) &= \left(\begin{matrix}-3u_1\\ -3v_1\end{matrix}\right),\\
-u_1 &= 2v_1. \quad \text{(from the top or bottom equation)}\\
-\left(\begin{matrix}u_1\\ v_1\end{matrix}\right) &= \left(\begin{matrix}2 \\ 1\end{matrix}\right), \left(\begin{matrix}1 \\ 0.5\end{matrix}\right), \left(\begin{matrix}-4.4 \\ -2.2\end{matrix}\right), \left(\begin{matrix}2\alpha \\ \alpha\end{matrix}\right)\ldots
+\lambda_1 = -3: \qquad \left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right) \left(\begin{matrix}x\\ y\end{matrix}\right) &= \left(\begin{matrix}-3x\\ -3y\end{matrix}\right) \\
+-2x - 2y = -3x \quad &\Rightarrow \quad x = 2y \qquad \text{(the bottom row gives the same)} \\
+\mathbf{v}_1 &= \left(\begin{matrix}2 \\ 1\end{matrix}\right), \left(\begin{matrix}1 \\ 0.5\end{matrix}\right), \left(\begin{matrix}-4.4 \\ -2.2\end{matrix}\right), \left(\begin{matrix}2\alpha \\ \alpha\end{matrix}\right)\ldots
 \end{aligned}
 $$
+
+</v-click>
+
+<v-click>
+
+$$
+\begin{aligned}
+\lambda_2 = -4: \qquad -2x - 2y = -4x \quad &\Rightarrow \quad x = y \\
+\mathbf{v}_2 &= \left(\begin{matrix}1 \\ 1\end{matrix}\right) \text{ or any multiple}
+\end{aligned}
+$$
+
+</v-click>
+
+---
+
+# Normalised eigenvectors
+
+The length (magnitude) of a vector $\mathbf{v} = (x, y, z)^T$ is
+
+$$\lVert\mathbf{v}\rVert = \sqrt{x^2+y^2+z^2}.$$
+
+<v-click>
+
+Dividing by it gives the **normalised** vector, of length 1:
+
+$$\frac{\mathbf{v}}{\lVert\mathbf{v}\rVert} = \frac{1}{\sqrt{x^2+y^2+z^2}}\left(\begin{matrix}x\\ y\\ z\end{matrix}\right)$$
+
+</v-click>
+
+<v-click>
+
+e.g. $\mathbf{v}_1 = (2, 1)^T$ has length $\sqrt{5}$, so normalised it is $(2, 1)^T/\sqrt{5} = (0.894, 0.447)^T$.
+
+</v-click>
 
 ---
 
 # Eigenvectors in Python
 
-Numpy:
+NumPy gives the eigenvectors as the columns of a matrix, normalised:
 
 ```python
-A = np.array([[-2, -2], [1, -5]])
-np.linalg.eig(A)[1]
+eigenvectors
 ```
 
 ```text
@@ -413,135 +554,188 @@ array([[0.89442719+0.j, 0.70710678+0.j],
        [0.4472136 +0.j, 0.70710678+0.j]])
 ```
 
-SymPy:
+<v-click>
+
+These are $(2, 1)^T/\sqrt{5}$ and $(1, 1)^T/\sqrt{2}$, in the same order as the eigenvalues $-3$ and $-4$.
+
+</v-click>
+
+<v-click>
+
+SymPy gives each eigenvalue, how many times it is repeated, and its eigenvectors:
 
 ```python
-c = sp.symbols('c')
-A2 = sp.Matrix([[-2, c], [1, -5]])
-A2.eigenvects()
+A.eigenvects()
 ```
 
-$$\def\arraystretch{1.8}\left[ \left( - \frac{\sqrt{4 c + 9}}{2} - \frac{7}{2}, \  1, \  \left[ \left[\begin{matrix}\frac{3}{2} - \frac{\sqrt{4 c + 9}}{2}\\1\end{matrix}\right]\right]\right), \  \left( \frac{\sqrt{4 c + 9}}{2} - \frac{7}{2}, \  1, \  \left[ \left[\begin{matrix}\frac{\sqrt{4 c + 9}}{2} + \frac{3}{2}\\1\end{matrix}\right]\right]\right)\right]$$
+$$\left[ \left( -4, \  1, \  \left[ \left[\begin{matrix}1\\1\end{matrix}\right]\right]\right), \  \left( -3, \  1, \  \left[ \left[\begin{matrix}2\\1\end{matrix}\right]\right]\right)\right]$$
+
+</v-click>
 
 ---
 
 # Diagonalising matrices
 
-Any nonsingular matrix $A$ can be rewritten as a product of eigenvectors and eigenvalues.
+Suppose an $n\times n$ matrix $A$ has $n$ linearly independent eigenvectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$, with eigenvalues $\lambda_1, \ldots, \lambda_n$.
+With the eigenvectors in the columns of $P$, and the eigenvalues on the diagonal of $D$,
 
-If $A$ has eigenvalues $\lambda_1$ and $\lambda_2$ with corresponding eigenvectors $(u_1, v_1)^T$ and $(u_2, v_2)^T$ then
+$$A = P D P^{-1}.$$
 
-$$A = \left(\begin{matrix}u_1 & u_2\\v_1 & v_2\end{matrix}\right) \left(\begin{matrix}\lambda_1 & 0\\0 & \lambda_2\end{matrix}\right) \left(\begin{matrix}u_1 & u_2\\v_1 & v_2\end{matrix}\right)^{-1}.$$
+<v-click>
 
-This is like a scaling surrounded by rotations and separates how much effect the matrix has $(\lambda_i)$ from the directions $(\mathbf{v}_i).$
+For our example:
+
+$$\left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right) = \left(\begin{matrix}2&1\\ 1&1\end{matrix}\right) \left(\begin{matrix}-3&0\\ 0&-4\end{matrix}\right) \left(\begin{matrix}1&-1\\ -1&2\end{matrix}\right)$$
+
+</v-click>
+
+<v-click>
+
+This separates how much effect the matrix has (the $\lambda_i$) from the directions it acts in (the $\mathbf{v}_i$).
+
+</v-click>
 
 ---
 
-# Diagonalising matrices: example
+# Why diagonalise?
 
-$$A=\left(\begin{matrix}-2&-2\\ 1&-5\end{matrix}\right)$$
+Powers of $A$ become easy, because the $P^{-1}P$ in the middle cancel:
+
+$$A^k = (PDP^{-1})(PDP^{-1})\cdots(PDP^{-1}) = PD^kP^{-1}, \qquad D^k = \left(\begin{matrix}\lambda_1^k&0\\ 0&\lambda_2^k\end{matrix}\right)$$
+
+<v-click>
+
+In lecture 14 the same idea uncouples a system of differential equations into separate equations we can solve one at a time.
+
+</v-click>
+
+<v-click>
+
+Not every matrix can be diagonalised: e.g. $\left(\begin{matrix}1&1\\ 0&1\end{matrix}\right)$ has only one eigenvector direction, $(1, 0)^T$.
+
+</v-click>
+
+---
+
+# Diagonalising in Python
 
 ```python
-A = np.array([[-2, -2], [1, -5]])
-w, v = np.linalg.eig(A)
-inv_v = np.linalg.inv(v)
-
-np.matmul( np.matmul(v, np.diag(w)) , inv_v )
+P = eigenvectors
+D = np.diag(eigenvalues)
+P @ D @ np.linalg.inv(P)
 ```
+
+<v-click>
 
 ```text
 array([[-2.+0.j, -2.+0.j],
        [ 1.+0.j, -5.+0.j]])
 ```
 
----
+</v-click>
 
-# Orthogonal eigenvectors
+<v-click>
 
-If $\mathbf{x}_1$ and $\mathbf{x}_2$ are perpendicular or **orthogonal** vectors, then the scalar/dot product is zero.
+This gives back $A$. NumPy's $P$ has normalised columns, so it is not the same as our $P$, but any scaling of the eigenvectors works.
 
-$$\mathbf{x}_1.\mathbf{x}_2=0$$
-
-e.g.
-
-$$\mathbf{x}_1.\mathbf{x}_2=\left(\begin{matrix}2\\ -1\\ 3\end{matrix}\right).\left(\begin{matrix}2\\ 7\\ 1\end{matrix}\right)=2\times 2+(-1\times 7)+(3\times1)=4-7+3=0.$$
-
-Since this dot product is zero, the vectors $\mathbf{x}_1$ and $\mathbf{x}_2$ are orthogonal.
+</v-click>
 
 ---
 
-# Symmetric matricies
+# Orthogonal vectors
 
-Symmetric matricies have orthogonal eigenvectors, e.g.
+The **dot** (or scalar) product of two vectors multiplies them element by element and adds up the results:
+
+$$\mathbf{x}_1\cdot\mathbf{x}_2=\left(\begin{matrix}2\\ -1\\ 3\end{matrix}\right)\cdot\left(\begin{matrix}2\\ 7\\ 1\end{matrix}\right)=2\times 2+(-1\times 7)+(3\times1)=4-7+3=0.$$
+
+<v-click>
+
+If the dot product is zero, the vectors are perpendicular, or **orthogonal**: so $\mathbf{x}_1$ and $\mathbf{x}_2$ are orthogonal.
+
+</v-click>
+
+<v-click>
+
+The dot product of a vector with itself is its length squared: $\mathbf{v}\cdot\mathbf{v} = \lVert\mathbf{v}\rVert^2$.
+
+</v-click>
+
+---
+
+# Symmetric matrices
+
+A matrix is **symmetric** if $A^T = A$.
+
+<v-click>
+
+Symmetric matrices have real eigenvalues, and orthogonal eigenvectors, e.g.
 
 $$A=\left(\begin{matrix}19&20&-16\\ 20&13&4 \\ -16&4&31\end{matrix}\right)$$
 
+</v-click>
+
+<v-click>
+
+For a symmetric matrix, NumPy has `np.linalg.eigh`, which is faster and more accurate than `eig`, and gives the eigenvalues in increasing order.
+
+</v-click>
+
 ---
 
-# Symmetric matricies
+# Symmetric matrices in Python
 
 ```python
 A = np.array([[19, 20, -16], [20, 13, 4], [-16, 4, 31]])
-w, v = np.linalg.eig(A)
-print(v)
-print('\ndot products of eigenvectors:\n')
-print(np.dot(v[:,0],v[:,1]))
-print(np.dot(v[:,0],v[:,2]))
-print(np.dot(v[:,1],v[:,2]))
+eigenvalues, P = np.linalg.eigh(A)
+print(eigenvalues)
+print(P)
+
+# The eigenvectors are orthogonal and normalised, so P^T P = I
+print(np.round(P.T @ P, 12))
 ```
+
+<v-click>
 
 ```text
-[[ 0.66666667+0.j -0.66666667+0.j  0.33333333+0.j]
- [-0.66666667+0.j -0.33333333+0.j  0.66666667+0.j]
- [ 0.33333333+0.j  0.66666667+0.j  0.66666667+0.j]]
-
-dot products of eigenvectors:
-
-(-1.942890293094024e-16+0j)
-(1.3877787807814457e-16+0j)
-(1.1102230246251565e-16+0j)
+[-9. 27. 45.]
+[[ 0.66666667 -0.33333333  0.66666667]
+ [-0.66666667 -0.66666667  0.33333333]
+ [ 0.33333333 -0.66666667 -0.66666667]]
+[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
 ```
 
----
-
-# Normalised eigenvectors
-
-If
-
-$$\left(\begin{matrix}x\\ y\\ z\end{matrix}\right),$$
-
-is an eigenvector, then
-
-$$\def\arraystretch{2}\left(\begin{matrix}\frac{x}{\sqrt{x^2+y^2+z^2}}\\ \frac{y}{\sqrt{x^2+y^2+z^2} }\\ \frac{z}{\sqrt{x^2+y^2+z^2} }\end{matrix}\right)$$
-
-is the corresponding normalised vector: a vector of unit length (magnitude).
+</v-click>
 
 ---
 
 # Orthogonal matrices
 
-A matrix is orthogonal if its columns are normalised orthogonal vectors.
-One can prove that if $M$ is orthogonal then:
+A matrix is **orthogonal** if its columns are normalised, orthogonal vectors.
+Then $M^TM=I$, so
 
-$$M^TM=I\qquad M^T=M^{-1}$$
+$$M^{-1} = M^T.$$
 
-Note that if the eigenvectors are written in orthogonal form then the diagonalising equation is simplified:
+<v-click>
 
-$$
-\begin{aligned}
-A &= \left(\begin{matrix}u_1 & u_2\\v_1 & v_2\end{matrix}\right) \left(\begin{matrix}\lambda_1 & 0\\0 & \lambda_2\end{matrix}\right) \left(\begin{matrix}u_1 & u_2\\v_1 & v_2\end{matrix}\right)^{-1} \\
-&= \left(\begin{matrix}u_1 & u_2\\v_1 & v_2\end{matrix}\right) \left(\begin{matrix}\lambda_1 & 0\\0 & \lambda_2\end{matrix}\right) \left(\begin{matrix}u_1 & v_1\\u_2 & v_2\end{matrix}\right).
-\end{aligned}
-$$
+For a symmetric matrix, we can choose normalised eigenvectors, so $P$ is orthogonal, and the diagonalising equation is simplified:
+
+$$A = PDP^{-1} = PDP^T.$$
+
+</v-click>
 
 ---
 
 # Summary
 
-- Matrix representation of simultaneous equations
-- Matrix-vector and matrix-matrix multiplication
-- Determinant, inverse and transpose
-- Null space of singular matrices
-- Finding eigenvalues and eigenvectors
-- Python for solving systems, finding inverse, null space and eigenvalues/vectors
-- Diagonalising matrices (we will use this for systems of differential equations)
+<v-clicks at="+0">
+
+1. A singular matrix has rank less than its size: some equations are combinations of others, and $A\mathbf{x} = \mathbf{b}$ has many solutions or none.
+2. The null space of $A$ is the set of solutions of $A\mathbf{u} = \mathbf{0}$.
+3. An eigenvector of $A$ is a non-zero vector with $A\mathbf{v} = \lambda\mathbf{v}$: find the eigenvalues from $|A - \lambda I| = 0$, then each eigenvector by substitution.
+4. A matrix with a full set of eigenvectors can be diagonalised, $A = PDP^{-1}$; we will use this for systems of differential equations.
+5. Symmetric matrices have orthogonal eigenvectors, and $A = PDP^T$.
+6. In Python: `np.linalg.inv`, `matrix_rank`, `scipy.linalg.null_space`, `np.linalg.eig` and `eigh`, and SymPy's `inv`, `eigenvals` and `eigenvects`.
+
+</v-clicks>
