@@ -1,21 +1,25 @@
 // Lecture 13: eigenvectors as the directions a matrix only stretches. A unit
-// vector v at an angle (slider, in degrees) and its image Av, for A = (2 1; 1 2),
-// the matrix of lecture 12's determinant aside. Av usually points a different
-// way from v (the dotted line extends v); at 45 degrees Av = 3v and at 135
-// degrees Av = v, the two eigenvectors. For a unit v, v x Av = cos(2 angle), so
-// they line up exactly at those whole-degree angles.
+// vector v at an angle and its image Av, for A = (2 1; 1 2), the matrix of
+// lecture 12's determinant aside. The slider is k, for an angle of k pi/24
+// radians (shown as a fraction of pi), from 0 to pi. Av usually points a
+// different way from v (the dotted line extends v); at pi/4 Av = 3v and at 3pi/4
+// Av = v, the two eigenvectors. For a unit v, v x Av = cos(2 angle), so they
+// line up exactly at those two angles, which are whole multiples of pi/24.
 import * as Plot from '@observablehq/plot'
+import { piFraction } from '#plots/controls.js'
 import { legend } from '#plots/marks.js'
 import { blue, label, line, vermillion } from '#plots/style.js'
 
+const n = 24
+
 export const controls = {
-  angle: { min: 0, max: 180, step: 1, value: 20, color: blue },
+  k: { label: 'angle', min: 0, max: n, step: 1, value: 3, color: blue, format: k => piFraction(k, n) },
 }
 
 const A = [[2, 1], [1, 2]]
 
-export default ({ angle }) => {
-  const t = angle * Math.PI / 180
+export default ({ k }) => {
+  const t = k * Math.PI / n
   const v = [Math.cos(t), Math.sin(t)]
   const Av = [A[0][0] * v[0] + A[0][1] * v[1], A[1][0] * v[0] + A[1][1] * v[1]]
   const aligned = Math.abs(v[0] * Av[1] - v[1] * Av[0]) < 1e-9

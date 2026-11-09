@@ -12,6 +12,21 @@ import { eventDecks, readEvent, repoRoot } from '../../scripts/events.mjs'
 // Extra space between the rows of a stacked derivation
 const ROW_GAP = '0.4em'
 
+// Inline maths followed by punctuation, e.g. `$D$.` or `$x$,`. KaTeX draws
+// inline maths as inline-blocks, and a browser may break a line between one and
+// the text after it, leaving a line that starts with the full stop (a word
+// joiner doesn't stop it, next to an inline-block). Wrapping the two in a
+// no-wrap span keeps them together. Display maths (`$$`) and escaped `\$` are
+// left alone.
+const MATH_THEN_PUNCTUATION = /(?<![$\\])\$(?!\$)([^$\n]+?)(?<!\\)\$([.,;:!?)]+)/g
+
+// Applies `fix` to the parts of a slide outside fenced code blocks and inline code
+function outsideCode(content: string, fix: (text: string) => string) {
+  return content.split(/(^```[\s\S]*?^```|`[^`\n]*`)/m)
+    .map((part, i) => (i % 2 ? part : fix(part)))
+    .join('')
+}
+
 export default definePreparserSetup(({ filepath, headmatter }) => {
   const event = readEvent()
   const deck = path.basename(path.dirname(filepath))
@@ -51,10 +66,12 @@ export default definePreparserSetup(({ filepath, headmatter }) => {
     // The rows of a stacked derivation (aligned, gathered) get a little more
     // space than KaTeX gives, so that fractions on adjacent rows don't crowd;
     // a row break that already sets its own space is left alone.
+    // Inline maths and the punctuation after it are kept on one line.
     transformSlide(content, frontmatter) {
       if (frontmatter['training-event-only'] && !process.env.TRAINING_EVENT)
         frontmatter.disabled = true
-      return content.replace(/\\begin\{(aligned|gathered)\}[\s\S]*?\\end\{\1\}/g, block => block.replace(/\\\\(?!\s*\[)/g, `\\\\[${ROW_GAP}]`))
+      const spaced = content.replace(/\\begin\{(aligned|gathered)\}[\s\S]*?\\end\{\1\}/g, block => block.replace(/\\\\(?!\s*\[)/g, `\\\\[${ROW_GAP}]`))
+      return outsideCode(spaced, text => text.replace(MATH_THEN_PUNCTUATION, '<span class="math-nobr">$$$1$$$2</span>'))
     },
   }]
 })

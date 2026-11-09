@@ -326,7 +326,7 @@ Its eigenvectors are along the axes, with eigenvalues $2$ and $\frac{1}{2}$, and
 
 <v-click>
 
-$$R=\left(\begin{matrix} \cos 45^\circ&-\sin 45^\circ\\ \sin 45^\circ&\cos 45^\circ\end{matrix}\right)\qquad\text{rotates by } 45^\circ\text{.}$$
+$$R=\left(\begin{matrix} \cos \frac{\pi}{4}&-\sin \frac{\pi}{4}\\ \sin \frac{\pi}{4}&\cos \frac{\pi}{4}\end{matrix}\right)\qquad\text{rotates by } \frac{\pi}{4}\text{ radians.}$$
 
 It leaves no direction unchanged, so it has no real eigenvectors: its eigenvalues are complex, and we will meet them again in lecture 16.
 
@@ -577,7 +577,7 @@ $$\left[ \left( -4, \  1, \  \left[ \left[\begin{matrix}1\\1\end{matrix}\right]\
 # Diagonalising matrices
 
 Suppose an $n\times n$ matrix $A$ has $n$ linearly independent eigenvectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$, with eigenvalues $\lambda_1, \ldots, \lambda_n$.
-Put the eigenvectors in the columns of a matrix $P$, and the eigenvalues on the diagonal of $D$. Then
+With the eigenvectors in the columns of $P$, and the eigenvalues on the diagonal of $D$,
 
 $$A = P D P^{-1}.$$
 
