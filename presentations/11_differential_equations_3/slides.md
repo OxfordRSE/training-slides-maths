@@ -210,13 +210,18 @@ The steady state is $s = k_1/k_2$, where $ds/dt = 0$.
 <v-click at="2">
 
 Below it, $ds/dt > 0$, so $s$ increases; above it, $ds/dt < 0$, so $s$ decreases.
+
+</v-click>
+
+<v-click at="3">
+
 Either way, $s$ moves back towards $k_1/k_2$ (the arrows), so the steady state is stable.
 
 </v-click>
 
 ::right::
 
-<PlotFigure v-click="1" name="mass-action" />
+<PlotFigure v-click="1" name="mass-action" :params="{ arrows: $clicks >= 3 }" />
 
 ---
 
@@ -269,7 +274,11 @@ Then the system will be at steady state when $k_1 s = k_2 s^2$, i.e. $s=0$ or $s
 
 We can plot $ds/dt$ versus $s$ to see if they are stable or unstable:
 
-<PlotFigure v-click name="positive-feedback" :height="360" />
+<PlotFigure v-click="1" name="positive-feedback" :height="360" :params="{ arrows: $clicks >= 2 }" />
+
+<!-- The arrows appear on this click, once the class has had a go -->
+<div v-click="2" />
+
 
 ---
 
@@ -373,7 +382,10 @@ This is positive feedback with $k_1 = r$ and $k_2 = r/K$: the same equation as l
 
 # The logistic equation: stability
 
-<PlotFigure name="logistic" />
+<PlotFigure name="logistic" :params="{ arrows: $clicks >= 1 }" />
+
+<!-- The arrows appear on this click, once the class has had a go -->
+<div v-click="1" />
 
 ---
 
