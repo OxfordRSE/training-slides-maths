@@ -2,7 +2,9 @@
 // with the steady states N = 0 and N = K marked, and arrows showing which way N
 // moves. (The notebook's slider figure here plotted the positive feedback
 // equation; the logistic is the same with k1 = r and k2 = r/K.) The axes are
-// fixed so that the sliders visibly move the curve.
+// fixed so that the sliders visibly move the curve. The slide passes
+// `arrows: false` until its last click, so the class can work out the stability
+// first; exports leave it out, and get the arrows.
 import * as Plot from '@observablehq/plot'
 import { format } from '#plots/controls.js'
 import { phaseArrows } from '#plots/marks.js'
@@ -18,7 +20,7 @@ const range = [-0.1, 2.2]
 const Ns = linspace(...range, 200)
 const dashed = { stroke: 'gray', strokeWidth: 2, strokeDasharray: '6 4' }
 
-export default ({ r, K }) => {
+export default ({ r, K, arrows = true }) => {
   const f = N => r * N * (1 - N / K)
   return {
     x: { label: 'N', domain: range },
@@ -27,7 +29,7 @@ export default ({ r, K }) => {
       Plot.ruleX([0, K], dashed),
       Plot.ruleY([0], dashed),
       Plot.line(Ns, { ...line, x: N => N, y: f, stroke: blue, clip: true }),
-      phaseArrows(f, [0, K], range),
+      arrows ? phaseArrows(f, [0, K], range) : null,
       Plot.text([`N = K = ${format(K, { step: 0.01 })}`], { ...label, frameAnchor: 'top-right', textAnchor: 'end', dx: -12, dy: 14 }),
     ],
   }
