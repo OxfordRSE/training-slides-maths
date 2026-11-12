@@ -66,4 +66,7 @@ export default [
 
   { file: '13_01_eigen_directions.svg', deck: '13_linear_algebra_2', figure: 'eigen-directions', params: { k: 3 } },
   { file: '13_02_eigen_directions_pi_4.svg', deck: '13_linear_algebra_2', figure: 'eigen-directions', params: { k: 6 } },
+
+  { file: '14_01_ellipses.svg', deck: '14_systems_1', figure: 'ellipses', params: { C: 4, k: 3 } },
+  { file: '14_02_trajectories.svg', deck: '14_systems_1', figure: 'trajectories', params: { t: 0 } },
 ]
