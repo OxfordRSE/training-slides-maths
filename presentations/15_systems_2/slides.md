@@ -58,7 +58,14 @@ We substitute
 
 $$N=\theta n, \qquad P=\phi p, \qquad T=\tau t,$$
 
-where $n$, $p$ and $t$ are nondimensional, and $\theta$, $\phi$ and $\tau$ are constants: typical values of $N$, $P$ and $T$, which we will choose later.
+where $\theta$, $\phi$ and $\tau$ are constants: typical values of $N$, $P$ and $T$, which we will choose later.
+
+<v-click>
+
+The new variables $n$, $p$ and $t$ are **nondimensional**: they have no units.
+For example, if $N$ and $\theta$ are both numbers of prey per km$^2$, then $n = N/\theta$ is a plain number, such as $0.5$ for half the typical population.
+
+</v-click>
 
 <v-click>
 
@@ -353,7 +360,7 @@ The arrows can only cross the $x$-nullclines vertically, and the $y$-nullclines 
 
 <v-click>
 
-By following the arrows, we can sketch the behaviour of solutions (green lines, from the stars).
+By following the arrows, we can sketch the behaviour of solutions (green lines, from the green dots).
 
 </v-click>
 

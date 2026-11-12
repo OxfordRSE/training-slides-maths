@@ -32,6 +32,24 @@ export function equation(text, color) {
   return legend([{ text, color }])
 }
 
+// The direction field of x' = f([x, y])[0], y' = f([x, y])[1]: a short grey
+// arrow at each grid point (xs by ys), pointing the way solutions move there.
+// Each arrow is drawn between two points in data coordinates, so it points the
+// right way whatever the plot's aspect ratio (Plot.vector's `rotate` is in
+// screen space, so an angle computed from (x', y') is only right with equal
+// units on both axes). Its length is `length` times the plot's width or height
+// (between the two, depending on its direction), from the axis domains.
+export function directionField(f, xs, ys, xDomain, yDomain, { length = 0.035, stroke = '#c4c4c4' } = {}) {
+  const [sx, sy] = [xDomain[1] - xDomain[0], yDomain[1] - yDomain[0]]
+  const arrows = xs.flatMap(x => ys.map((y) => {
+    const [dx, dy] = f([x, y])
+    const [u, v] = [dx / sx, dy / sy]
+    const norm = Math.hypot(u, v)
+    return norm === 0 ? null : { x1: x, y1: y, x2: x + length * sx * u / norm, y2: y + length * sy * v / norm }
+  })).filter(Boolean)
+  return Plot.arrow(arrows, { x1: 'x1', y1: 'y1', x2: 'x2', y2: 'y2', stroke, strokeWidth: 1.5, headLength: 6, clip: true })
+}
+
 // Arrows along the horizontal axis (y = 0) of a plot of ds/dt against s, for
 // ds/dt = f(s): one in each interval between the steady states `steady`, within
 // the plot's s range [lo, hi], pointing the way s moves there (right where
