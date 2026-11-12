@@ -98,20 +98,23 @@ We have three methods of analysing them mathematically:
 </v-clicks>
 
 ---
-layout: exercise
+class: centred
 ---
 
 # Example
 
-Solve
+Solve the system on the left, subject to the initial conditions on the right:
+
+<div class="text-2xl">
 
 $$
-\frac{dx}{dt} = x+y, \qquad \frac{dy}{dt} = 2x,
+\begin{aligned}
+\frac{dx}{dt} &= x+y, &\qquad\qquad x(0) &= 0,\\
+\frac{dy}{dt} &= 2x, & y(0) &= 3.
+\end{aligned}
 $$
 
-subject to $x(0) = 0$ and $y(0) = 3$.
-
-::work::
+</div>
 
 ---
 
@@ -331,13 +334,23 @@ $$A = \left(\begin{matrix} 1 & 1\\2 & 0 \end{matrix}\right).$$
 
 Substitute $A = PDP^{-1}$:
 
-$$ {1|1-2|1-3}
-\begin{aligned}
-\frac{d\mathbf{x}}{dt} &= PDP^{-1}\mathbf{x} \\
-P^{-1}\frac{d\mathbf{x}}{dt} &= DP^{-1}\mathbf{x} &&\qquad\text{multiply on the left by } P^{-1} \\
-\frac{d}{dt}\left(P^{-1}\mathbf{x}\right) &= D\left(P^{-1}\mathbf{x}\right) &&\qquad P^{-1} \text{ is a matrix of constants}
-\end{aligned}
-$$
+$$\frac{d\mathbf{x}}{dt} = PDP^{-1}\mathbf{x}.$$
+
+<v-click>
+
+Multiply both sides on the left by $P^{-1}$:
+
+$$P^{-1}\frac{d\mathbf{x}}{dt} = DP^{-1}\mathbf{x}.$$
+
+</v-click>
+
+<v-click>
+
+$P^{-1}$ is a matrix of constants, so it can move inside the derivative:
+
+$$\frac{d}{dt}\left(P^{-1}\mathbf{x}\right) = D\left(P^{-1}\mathbf{x}\right).$$
+
+</v-click>
 
 ---
 
