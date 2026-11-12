@@ -8,6 +8,9 @@
 // the width of its container, up to `maxWidth`. `height` is for the whole
 // figure, including its title, legend and sliders; the default fits a slide
 // under the header bar. The drawing itself is in addon/plots/render.js.
+// A figure may also export `presets`, a list of { label, values }: buttons
+// under the sliders that set the sliders to `values`, e.g. to jump to good
+// examples. The button whose values match the sliders is highlighted.
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watchEffect } from 'vue'
 import { format } from '../plots/controls.js'
 import { defaults, render } from '../plots/render.js'
@@ -42,6 +45,19 @@ const fill = (name, c) => `${100 * (values[name] - c.min) / (c.max - c.min)}%`
 // Height of the row of sliders, taken out of the figure's overall height
 const sliderRow = 52
 
+// Preset buttons, in rows of `presetColumns`, each row `presetRow` high
+const presets = computed(() => (props.sliders ? figure.presets : undefined) ?? [])
+const presetColumns = 4
+const presetRow = 32
+const presetHeight = computed(() => presets.value.length ? 8 + presetRow * Math.ceil(presets.value.length / presetColumns) : 0)
+
+function applyPreset(preset, event) {
+  Object.assign(values, preset.values)
+  event.currentTarget.blur()
+}
+
+const isActive = preset => Object.entries(preset.values).every(([name, v]) => Math.abs(values[name] - v) < 1e-9)
+
 const el = ref(null)
 const available = ref(0)
 let drawn
@@ -62,7 +78,7 @@ watchEffect(() => {
   if (!el.value || !available.value)
     return
   const width = Math.min(available.value, props.maxWidth)
-  const height = props.height - (controls.value ? sliderRow : 0)
+  const height = props.height - (controls.value ? sliderRow : 0) - presetHeight.value
   const { node, marginLeft, marginRight } = render(figure, { ...values, ...props.params }, { width, height })
   el.value.querySelector('.plot-canvas').replaceChildren(node)
   drawn = node
@@ -116,6 +132,25 @@ onBeforeUnmount(() => {
           <span class="name">{{ c.label ?? name }}</span> = <span class="value">{{ format(values[name], c) }}</span>
         </span>
       </label>
+    </div>
+    <div
+      v-if="presets.length"
+      class="plot-presets"
+      :style="{
+        width: `${axesBox.width}px`,
+        gridTemplateColumns: `repeat(${presetColumns}, 1fr)`,
+        gridAutoRows: `${presetRow - 6}px`,
+      }"
+    >
+      <button
+        v-for="preset in presets"
+        :key="preset.label"
+        type="button"
+        :class="{ active: isActive(preset) }"
+        @click="applyPreset(preset, $event)"
+      >
+        {{ preset.label }}
+      </button>
     </div>
   </div>
 </template>
@@ -219,5 +254,36 @@ onBeforeUnmount(() => {
   outline: 2px solid var(--color);
   outline-offset: 4px;
   border-radius: 4px;
+}
+
+/* Preset buttons: small outlined pills in a grid under the sliders, across the
+   figure's full width (wider than the axes, for their labels), the one
+   matching the sliders filled in navy */
+.plot-presets {
+  display: grid;
+  gap: 6px;
+  box-sizing: border-box;
+  padding-top: 8px;
+}
+
+.plot-presets button {
+  padding: 0 4px;
+  border: 1px solid #002147;
+  border-radius: 13px;
+  background: white;
+  color: #002147;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.plot-presets button:hover {
+  background: #e8edf3;
+}
+
+.plot-presets button.active {
+  background: #002147;
+  color: white;
 }
 </style>
