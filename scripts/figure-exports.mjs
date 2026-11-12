@@ -73,4 +73,8 @@ export default [
   { file: '15_01_nullclines.svg', deck: '15_systems_2', figure: 'nullclines' },
   { file: '15_02_phase_plane.svg', deck: '15_systems_2', figure: 'phase-plane', params: { extra: false } },
   { file: '15_03_predator_prey.svg', deck: '15_systems_2', figure: 'predator-prey', params: { v1: 1, v2: 2 } },
+
+  { file: '16_01_phase_plane.svg', deck: '16_systems_3', figure: 'phase-plane', params: { stability: false, extra: false } },
+  { file: '16_03_linear_portrait.svg', deck: '16_systems_3', figure: 'linear-portrait' },
+  { file: '16_04_phase_plane_stability.svg', deck: '16_systems_3', figure: 'phase-plane', params: { extra: false } },
 ]
