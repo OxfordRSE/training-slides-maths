@@ -345,7 +345,7 @@ So, from the trace and determinant alone:
 
 # Steady state classification: the trace-determinant plane
 
-<img src="./imgs/phase_diagram.svg" alt="Steady states classified by the trace and determinant of J" class="mx-auto" style="max-height: 400px" />
+<PlotFigure name="trace-determinant" :height="430" />
 
 ---
 
