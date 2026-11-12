@@ -69,4 +69,8 @@ export default [
 
   { file: '14_01_ellipses.svg', deck: '14_systems_1', figure: 'ellipses', params: { C: 4, k: 3 } },
   { file: '14_02_trajectories.svg', deck: '14_systems_1', figure: 'trajectories', params: { t: 0 } },
+
+  { file: '15_01_nullclines.svg', deck: '15_systems_2', figure: 'nullclines' },
+  { file: '15_02_phase_plane.svg', deck: '15_systems_2', figure: 'phase-plane', params: { extra: false } },
+  { file: '15_03_predator_prey.svg', deck: '15_systems_2', figure: 'predator-prey', params: { v1: 1, v2: 2 } },
 ]
