@@ -79,28 +79,37 @@ function portrait({ M, at, starts }, r) {
 
 const ring = (n, radius = 0.9, phase = 0.4) => linspace(0, 2 * Math.PI, n + 1).slice(0, n).map(t => [radius * Math.cos(t + phase), radius * Math.sin(t + phase)])
 
+// Each label has a second line, smaller and grey, saying what the eigenvalues
+// are; `below: false` puts the pair above that point instead (the second line
+// still under the first)
 const r = 0.95
 const examples = [
-  { text: 'saddle', M: [1, 1, 2, 0], at: [-2.2, 2.2], starts: ring(4, 0.9, 0.9), labelAt: [-2.2, 0.8] },
-  { text: 'unstable node', M: [2, 1, 1, 2], at: [1.0, 3.7], starts: ring(4, 0.9, 0), labelAt: [1.0, 5.1] },
-  { text: 'stable node', M: [-2, 1, 1, -2], at: [1.0, -3.7], starts: ring(4, 0.9, 0), labelAt: [1.0, -5.1] },
-  { text: 'unstable spiral', M: [0.2, 1, -1, 0.2], at: [4.6, 2.3], starts: [[0.95, 0]], labelAt: [4.6, 0.85] },
-  { text: 'stable spiral', M: [-0.2, 1, -1, -0.2], at: [4.6, -2.3], starts: [[0.95, 0]], labelAt: [4.6, -0.85] },
-  { text: 'centre', M: [0, 1, -1, 0], at: [7.0, 0], starts: [[0.45, 0], [0.9, 0]], labelAt: [7.0, -1.45] },
+  { text: 'saddle', detail: 'λ₁ < 0 < λ₂', M: [1, 1, 2, 0], at: [-2.2, 2.5], starts: ring(4, 0.9, 0.9), labelAt: [-2.2, 1.2] },
+  { text: 'unstable node', detail: 'λ₁, λ₂ > 0', M: [2, 1, 1, 2], at: [1.0, 3.55], r: 0.85, starts: ring(4, 0.9, 0), labelAt: [1.0, 5.2] },
+  { text: 'stable node', detail: 'λ₁, λ₂ < 0', M: [-2, 1, 1, -2], at: [1.0, -3.55], r: 0.85, starts: ring(4, 0.9, 0), labelAt: [1.0, -4.75] },
+  { text: 'unstable spiral', detail: 'complex, Re(λ) > 0', M: [0.2, 1, -1, 0.2], at: [3.9, 2.5], starts: [[0.95, 0]], labelAt: [3.9, 1.2] },
+  { text: 'stable spiral', detail: 'complex, Re(λ) < 0', M: [-0.2, 1, -1, -0.2], at: [3.9, -2.0], starts: [[0.95, 0]], labelAt: [3.9, -0.55] },
+  { text: 'centre', detail: 'imaginary', M: [0, 1, -1, 0], at: [7.0, 0], starts: [[0.45, 0], [0.9, 0]], labelAt: [7.0, -1.4] },
 ]
 
 const parabola = linspace(-5.5, 5.5, 200).map(tau => [tau * tau / 4, tau])
 
+// The second lines' grey, which the course-material export lightens in dark mode
+const grey = '#444'
+const at = (x, y, dy = 0) => ({ x, y, dy })
+
 export default () => ({
   aspectRatio: 1,
-  x: { label: 'Δ = det J', domain: [-4, 8] },
-  y: { label: 'τ = tr J', domain: [-5.5, 5.5] },
+  x: { label: 'Δ = det(J)', domain: [-4, 8] },
+  y: { label: 'τ = tr(J)', domain: [-5.5, 5.5] },
   marks: [
     Plot.ruleX([0], { stroke: black, strokeWidth: 2 }),
     Plot.ruleY([0], { stroke: black, strokeWidth: 2 }),
     Plot.line(parabola, { ...line, stroke: orange, clip: true }),
-    ...examples.flatMap(e => portrait(e, r)),
-    Plot.text(examples, { ...label, fontSize: 16, x: e => e.labelAt[0], y: e => e.labelAt[1], text: 'text', textAnchor: e => e.anchor ?? 'middle' }),
-    Plot.text(['τ² = 4Δ'], { ...label, fontSize: 16, x: 7.9, y: 4.4, textAnchor: 'end' }),
+    ...examples.flatMap(e => portrait(e, e.r ?? r)),
+    Plot.text(examples, { ...label, fontSize: 16, x: e => e.labelAt[0], y: e => e.labelAt[1], text: 'text' }),
+    Plot.text(examples, { ...label, fontSize: 14, fill: grey, x: e => e.labelAt[0], y: e => e.labelAt[1], dy: 17, text: 'detail' }),
+    Plot.text(['τ² = 4Δ:'], { ...label, fontSize: 16, ...at(7.9, 4.6), textAnchor: 'end' }),
+    Plot.text(['λ₁ = λ₂'], { ...label, fontSize: 14, fill: grey, ...at(7.9, 4.6, 17), textAnchor: 'end' }),
   ],
 })
