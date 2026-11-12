@@ -4,7 +4,8 @@
 // (green, drawn forwards and backwards in time), the eigenvector directions
 // when the eigenvalues are real (dashed blue for lambda1, orange for lambda2),
 // and the eigenvalues and type of the fixed point at the origin. It starts at
-// lecture 14's matrix (1 1; 2 0), a saddle with eigenvalues -1 and 2.
+// lecture 14's matrix (1 1; 2 0), a saddle with eigenvalues -1 and 2, and the
+// `presets` buttons jump to an example of each type.
 import * as Plot from '@observablehq/plot'
 import { directionField } from '#plots/marks.js'
 import { linspace } from '#plots/numerics.js'
@@ -12,6 +13,19 @@ import { blue, dot, green, label, line, mono, orange } from '#plots/style.js'
 
 const entry = value => ({ min: -2, max: 2, step: 0.01, value, color: '#1a1a1a' })
 export const controls = { a: entry(1), b: entry(1), c: entry(2), d: entry(0) }
+
+// Buttons under the sliders that set A to a good example of each type
+const matrix = ([a, b, c, d]) => ({ a, b, c, d })
+export const presets = [
+  { label: 'stable node', values: matrix([-2, 1, 1, -2]) }, // lambda = -3, -1
+  { label: 'unstable node', values: matrix([2, 1, 1, 2]) }, // 1, 3 (lecture 13's matrix)
+  { label: 'saddle', values: matrix([1, 1, 2, 0]) }, // -1, 2 (lecture 14's matrix)
+  { label: 'stable spiral', values: matrix([-0.5, 1, -1, -0.5]) }, // -0.5 +- i
+  { label: 'unstable spiral', values: matrix([0.5, 1, -1, 0.5]) }, // 0.5 +- i
+  { label: 'centre', values: matrix([0, 1, -1, 0]) }, // +- i
+  { label: 'stable star', values: matrix([-1, 0, 0, -1]) }, // -1, -1, A = -I
+  { label: 'degenerate node', values: matrix([-1, 1, 0, -1]) }, // -1, -1, one eigenvector
+]
 
 // Wider than tall, with equal units: the sliders span the axes' width, and
 // four of them need the room
@@ -80,8 +94,12 @@ export default ({ a, b, c, d }) => {
   const { real, lambdas, text } = classify(a, b, c, d)
   const starts = linspace(0, 2 * Math.PI, 9).slice(0, 8).map(t => [1.2 * Math.cos(t + 0.3), 1.2 * Math.sin(t + 0.3)])
   const solutions = starts.map(s => [...path(f, s, -1).reverse(), ...path(f, s, 1).slice(1)])
-  const directions = real
-    ? lambdas.map((lambda, i) => {
+  // A star has every direction as an eigenvector, so none is drawn; equal
+  // eigenvalues otherwise have one eigenvector direction, drawn once
+  const star = Math.abs(b) < tiny && Math.abs(c) < tiny && Math.abs(a - d) < tiny
+  const distinct = real && !star ? (Math.abs(lambdas[0] - lambdas[1]) < tiny ? lambdas.slice(0, 1) : lambdas) : []
+  const directions = distinct.length
+    ? distinct.map((lambda, i) => {
         const [u, v] = eigenvector(a, b, c, d, lambda)
         const k = 2 * xDomain[1] / Math.hypot(u, v)
         return Plot.line([[-k * u, -k * v], [k * u, k * v]], { ...line, stroke: i === 0 ? blue : orange, strokeDasharray: '8 8', clip: true })

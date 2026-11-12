@@ -194,14 +194,14 @@ When they are complex, the solutions turn around the fixed point: they spiral in
 
 <v-click>
 
-The figure starts at lecture 14's matrix, a saddle.
+It starts at lecture 14's matrix, and the buttons show other examples.
 
 </v-click>
 
 </div>
 <div>
 
-<PlotFigure name="linear-portrait" :height="360" />
+<PlotFigure name="linear-portrait" :height="440" />
 
 </div>
 </div>
@@ -319,8 +319,6 @@ $$
 </v-click>
 
 ---
-layout: two-cols
----
 
 # Steady state classification: trace and determinant
 
@@ -330,16 +328,22 @@ $$\lambda = \frac{\tau \pm \sqrt{\tau^2 - 4\Delta}}{2}.$$
 
 <v-click>
 
-So:
+So, from the trace and determinant alone:
 
-- $\Delta < 0$: a saddle
+</v-click>
+
+<v-clicks at="+0">
+
+- $\Delta < 0$: the eigenvalues have opposite signs, a saddle
 - $\Delta > 0$ and $\tau < 0$: stable
 - $\Delta > 0$ and $\tau > 0$: unstable
 - $\tau^2 < 4\Delta$: complex $\lambda$, a spiral
 
-</v-click>
+</v-clicks>
 
-::right::
+---
+
+# Steady state classification: the trace-determinant plane
 
 <img src="./imgs/phase_diagram.svg" alt="Steady states classified by the trace and determinant of J" class="mx-auto" style="max-height: 400px" />
 
